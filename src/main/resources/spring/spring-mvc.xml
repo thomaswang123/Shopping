@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/mvc   
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd"
 >
-<!--     数据库配置（通常）-->
+<!--     数据库配置（加配置文件）-->
     <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="url" value="jdbc:mysql://localhost:3306/accout_demo?serverTimezone=UTC"></property>
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
