@@ -2,6 +2,8 @@ package com.starlight.dao;
 
 import com.starlight.entity.PasswordProtecTion;
 
+import java.util.List;
+
 /**
  * Created by thomas.wang on 2016/12/20.
  */
