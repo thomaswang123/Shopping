@@ -14,7 +14,7 @@ public class Change_PasswordCotroller {
     //进行判断密保问题域答案是否一致，进行修改密码等
     @RequestMapping("alert.do")
     public String consistency_Of_Judgment(){
-
+        return null;
     }
 
    //修改密码
