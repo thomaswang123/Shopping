@@ -12,7 +12,7 @@ public class Test {
 @org.junit.Test
 public void test() {
 	ApplicationContext act =
-				new ClassPathXmlApplicationContext("spring/spring-mvc.xml");
+			new ClassPathXmlApplicationContext("spring/spring-mvc.xml");
 		/*	new FileSystemXmlApplicationContext("resources/spring/spring-mvc.xml");*/
 	System.out.println(act);
 	UserDao userdao = act.getBean(UserDao.class);
