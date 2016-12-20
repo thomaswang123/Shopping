@@ -7,9 +7,13 @@
         <param-name/>
         <param-value/>
     </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
 
     <welcome-file-list>
-        <welcome-file>Index.html</welcome-file>
+        <welcome-file>Index.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- 使用过滤器来解决中文乱码问题 -->

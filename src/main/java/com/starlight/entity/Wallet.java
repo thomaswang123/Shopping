@@ -7,7 +7,7 @@ package com.starlight.entity;
 public class Wallet {
     private int w_id;
     private float w_money;
-    private int w_pawd;
+    private int w_pwd;
 
     public int getW_id() {
         return w_id;
@@ -25,11 +25,11 @@ public class Wallet {
         this.w_money = w_money;
     }
 
-    public int getW_pawd() {
-        return w_pawd;
+    public int getW_pwd() {
+        return w_pwd;
     }
 
-    public void setW_pawd(int w_pawd) {
-        this.w_pawd = w_pawd;
+    public void setW_pwd(int w_pwd) {
+        this.w_pwd = w_pwd;
     }
 }

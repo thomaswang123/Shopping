@@ -8,7 +8,7 @@ package com.starlight.entity;
 public class User {
    private int   u_id ;
    private String   u_name;
-   private String  u_pawd ;
+   private String  u_pwd ;
 
     public int getU_id() {
         return u_id;
@@ -26,11 +26,11 @@ public class User {
         this.u_name = u_name;
     }
 
-    public String getU_pawd() {
-        return u_pawd;
+    public String getU_pwd() {
+        return u_pwd;
     }
 
-    public void setU_pawd(String u_pawd) {
-        this.u_pawd = u_pawd;
+    public void setU_pwd(String u_pwd) {
+        this.u_pwd = u_pwd;
     }
 }

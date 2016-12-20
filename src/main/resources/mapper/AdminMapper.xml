@@ -2,14 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starlight.dao.UserDao">
-    <select id="findAll"  resultType="com.starlight.entity.User">
-        select * from user
+<mapper namespace="com.starlight.dao.AdminDao">
+    <select id="finAllClssesById"  resultType="int" parameterType="int">
+        select admin_classes from admin where admin_id =#{u_id}
     </select>
 
-    <select id="login"  resultType="int" >
-        select u_id from user where u_name=#{u_name} and u_pwd=#{u_pwd}
-    </select>
     <!--<select id="findById" parameterType="int" resultType="com.wy.test.entity.Dept">
         select * from DEPT where DEPTNO=#{id}
     </select>

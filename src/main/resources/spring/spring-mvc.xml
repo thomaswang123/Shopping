@@ -63,7 +63,7 @@
     <mvc:annotation-driven></mvc:annotation-driven>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 后缀匹配 -->
-        <property name="suffix" value=".html"></property>
+        <property name="suffix" value=".jsp"></property>
     </bean>
 </beans>
 

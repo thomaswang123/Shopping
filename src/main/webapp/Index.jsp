@@ -1,3 +1,12 @@
+<%--
+Created by IntelliJ IDEA.
+User: thomas.wang
+Date: 2016/12/20
+Time: 14:45
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>蛋糕——shoopping</title>
@@ -258,7 +267,9 @@
                 <div id="loginBox">
                     <form id="loginForm" action="login.do" method="post">
                         <fieldset id="body">
-                            <div>请登录！！<a href="Admin.html">Admin</a></div>
+                            <c:choose>
+                            <c:when test="${sessionScope.userinfo==null}">
+                            <div style="color: red">请登录！!</div>
                             <fieldset>
                                 <label for="email">账号</label>
                                 <input type="text" name="username" id="email">
@@ -272,6 +283,29 @@
                         </fieldset>
                         <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a href="Change_Password .html">忘记密码?</a></span>
                         </p>
+                        </c:when>
+                        <c:otherwise>
+                            <div>
+                                <h4
+                                <span>欢迎:</span>
+                                <span>
+                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.uinfo_nickname}</a>
+                                </span>
+                                <c:choose>
+                                <c:when test="${sessionScope.admin>0}">
+                                <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                 <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
+                                </c:when>
+                                <c:otherwise></c:otherwise>
+                                </c:choose>
+                                </h4>
+                                <h5 style="margin-top: 15px">
+                                    <span><a href="Index.jsp"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="Index.jsp">退出</a></span>
+                                </h5>
+                            </div>
+                        </c:otherwise>
+                        </c:choose>
                     </form>
                 </div>
             </div>
