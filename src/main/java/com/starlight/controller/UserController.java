@@ -70,4 +70,13 @@ public class UserController {
         }
         return "Index";
     }
+
+    //账号注销以及账号切换
+    @RequestMapping("switchover.do")
+    public String  write_Off(HttpSession sessionUser){
+        //使session为null
+           sessionUser.invalidate();
+      /*      sessionUser.setAttribute("userinfo",null);*/
+            return "Index" ;
+    }
 }

@@ -281,7 +281,7 @@ To change this template use File | Settings | File Templates.
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a href="Change_Password .html">忘记密码?</a></span>
+                        <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a href="Change_Password.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
                         <c:otherwise>
@@ -300,8 +300,8 @@ To change this template use File | Settings | File Templates.
                                 </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="Index.jsp"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
-                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="Index.jsp">退出</a></span>
+                                    <span><a href="switchover.do"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>
