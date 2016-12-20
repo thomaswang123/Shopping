@@ -1,5 +1,5 @@
 import com.starlight.dao.UserDao;
-import com.starlight.entity.UserEt;
+import com.starlight.entity.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,8 +17,8 @@ public void test() {
 	System.out.println(act);
 	UserDao userdao = act.getBean(UserDao.class);
 	System.out.println("进来了");
-	List<UserEt> list = userdao.findAll();
-	for (UserEt lists : list) {
+	List<User> list = userdao.findAll();
+	for (User lists : list) {
 		System.out.println(lists.getU_id() + "," + lists.getU_name() + "," + lists.getU_pawd());
 	}
 }

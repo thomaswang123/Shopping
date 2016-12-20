@@ -1,9 +1,8 @@
 package com.starlight.dao;
 
-import com.starlight.entity.UserEt;
+import com.starlight.entity.User;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -11,5 +10,5 @@ import java.util.List;
  */
 @Component
 public interface UserDao {
-	List<UserEt> findAll();
+	List<User> findAll();
 }
