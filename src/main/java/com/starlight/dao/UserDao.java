@@ -14,12 +14,11 @@ public interface UserDao {
 	 * 查找所有的用户
 	 * @return list
 	 */
- 	public 	List<User> findAll();
+	List<User> findAll();
 
 	/**
 	 * 判断用户是否存在
-	 * @param u_name 账号
-	 * @param u_pwd  密码
+	 * @param user 账号
 	 * @return boolean
 	 */
 	public int login(User user);
@@ -28,13 +27,13 @@ public interface UserDao {
 	 * 通过账号来查询id
 	 * @return   id
 	 */
-	public int findIdByAccoun_Unmber(String u_name);
+	 int findIdByAccoun_Unmber(String u_name);
 
 	/**
 	 * 用来修改用户密码
-	 * @param u_id  用户的id
+	 * @param user  用户的id
 	 * @return
 	 */
-	public int alertPwdById(User user);
+	 int alertPwdById(User user);
 
 }

@@ -13,5 +13,5 @@ public interface UserinfoDao {
      * @param uinfo_id 账号
      * @return list  集合
      */
-    public Userinfo findUserifoById(int uinfo_id);
+     Userinfo findUserifoById(int uinfo_id);
 }

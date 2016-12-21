@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Appliction {
     public static  ApplicationContext getAct() {
         ApplicationContext act =
-                new ClassPathXmlApplicationContext("spring/spring-mvc.xml");
+                new ClassPathXmlApplicationContext("spring/springmvc.xml");
         return act;
     }
 }

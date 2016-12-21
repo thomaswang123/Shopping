@@ -16,7 +16,7 @@ public interface IUserinfoService {
      * @param List<Integer> 用户id的集合
      * @return list<Userinfo><
      */
-    public List<Userinfo> findAllUserinfoById(List<Integer> list);
+    List<Userinfo> findAllUserinfoById(List<Integer> list);
 
     /**
      * 通过姓名查询用户的信息
@@ -24,7 +24,7 @@ public interface IUserinfoService {
      * @return Userinfo
      * @paramu info_nickname  用户姓名
      */
-    public List<Userinfo> findUserinfoByNickName(String uinfo_nickname);
+    List<Userinfo> findUserinfoByNickName(String uinfo_nickname);
 
 
     /**
@@ -33,13 +33,13 @@ public interface IUserinfoService {
      * @param id 用户年龄
      * @return Userinfo
      */
-    public List<Userinfo> findUserinfoByAge(int age);
+     List<Userinfo> findUserinfoByAge(int age);
 
     /**
      * @param id
      * @return
      */
-    public boolean alterPhoneById(int id);
+    boolean alterPhoneById(int id);
 
     /**
      * 通过用户id来查询用户信息
@@ -47,6 +47,6 @@ public interface IUserinfoService {
      * @param u_id
      * @return
      */
-    public Userinfo findUserinfosById(int u_id);
+     Userinfo findUserinfosById(int u_id);
 
 }

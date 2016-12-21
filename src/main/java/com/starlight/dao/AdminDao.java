@@ -9,5 +9,5 @@ public interface AdminDao {
      * @param u_id
      * @return
      */
-    public int finAllClssesById(int u_id);
+    int finAllClssesById(int u_id);
 }

@@ -14,34 +14,34 @@ public interface IUserService {
 	 * 根据输入的账号密码判断是否存在用户
 	 * @return boolean
     */
-	public int login(User user);
+	 int login(User user);
 
 	/**
 	 * 判断是否存在该账号（前台ajax）
 	 * @param u_name 账号
 	 * @return   boolean
     */
-	public boolean byname_JudgeUserNameExist(String u_name);
+	 boolean byname_JudgeUserNameExist(String u_name);
 
 	/**
 	 * 通过用户账号获取id
 	 * @param u_name 用户账号
 	 * @return int
     */
-	public int  byname_GainId(String u_name);
+	 int  byname_GainId(String u_name);
 
 	/**
 	 * 获取全部的id
 	 * @param number 页面展示的数据数量
 	 * @return List<Integer>
 	 */
-	public List<Integer> findAllId(int number);
+	 List<Integer> findAllId(int number);
 
 	/**
 	 * 通过用户id获取用户全部的账号
 	 * @param list 用户id的集合
 	 * @return List<String>
 	 */
-	public List<String> findAllNameById(List<Integer> list);
+	List<String> findAllNameById(List<Integer> list);
 
 }

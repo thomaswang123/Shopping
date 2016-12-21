@@ -1,6 +1,8 @@
 package com.starlight.service;
 
 import com.starlight.entity.PasswordProtecTion;
+import com.starlight.entity.User;
+import com.starlight.entity.Wallet;
 
 import java.util.List;
 import java.util.Map;
@@ -8,27 +10,26 @@ import java.util.Map;
 /**
  * Created by thomas.wang on 2016/12/21.
  */
-public interface Change_PasswordService {
+public interface IChange_PasswordService {
     /**
-     * 通过id查询密保
+     * 通过id查询密保以及id
      * @param u_id
      * @return
      */
-    public String findQuestionById(int u_id);
+   String findQuestionAndIddByUid(int u_id);
 
     /**
      * 通过u_id查询答案，进行判断比对是否相同
      * @param u_id
      * @return
      */
-    public  String Answer_Comparison(int u_id,String[] result);
+      String Answer_Comparison(int u_id,String[] result);
 
     /**
      * 通过u_id进行不同数据库操作！这里需要事务处理
-     * @param u_id  用户的id
-     * @param paypwd   用户支付密码
-     * @param pwd     用户密码
+     * @param user   用户对象
+     * @param wallet    用户钱包对象
      * @param result  密保答案
      */
-    public String alertAllById(int u_id,String pwd,String paypwd,String[] result);
+     String alertAllById(User user, Wallet wallet, String[] result);
 }

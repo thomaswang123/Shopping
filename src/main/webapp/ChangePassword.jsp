@@ -49,7 +49,8 @@
                 $.post("answer.do",
                     $("#answer").serialize(),
                     function (data) {
-                        if (data != null) {
+                        if (data != "") {
+                            alert(data);
                             $("#security_settings").show();
                             $("#apply_for").hide();
                         }
@@ -65,8 +66,12 @@
                                 $("#userid").hide();
                                 var arr = data.split(",");
                                 for (var i = 0; i < arr.length; i++) {
-                                    $("#Security_question" + (i + 1)).text(arr[i] + "?");
-                                    $("#Security_question" + (i + 4)).text(arr[i] + "?");
+                                    if ((i+1)%2==0) {
+                                        $("#Security_question" + (i + 1)).text(arr[i] + "?");
+                                        $("#Security_question" + (i + 7)).text(arr[i] + "?");
+                                    }else{
+                                        $("#ppid" + (i+1)).text(arr[i]);
+                                    }
                                 }
                                 $("#Security_question").show();
                             } else {
@@ -77,9 +82,19 @@
                 }
             );
             /*进行后台的答案数据验证*/
-            $("#butto3").click(function () {
+      /*      $("#butto3").click(function () {
                 $.post("alertAll.do",
-                    $("#alertAll").serialize(),
+                    $("#alertPpAll").serialize(),
+                    function (data) {
+                        if (data != null) {
+                            alert(data);
+                        }
+                    }, "text");
+            });*/
+
+            $("#butto3").click(function () {
+                $.post("alertPpAll.do",
+                    $("#alertPpAll").serialize(),
                     function (data) {
                         if (data != null) {
                             alert(data);
@@ -414,19 +429,6 @@
                             <span>Secret question (密保问题：) <label style="color: red"> *请正确填写相关信息</label></span>
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题一：</span>
-                                <span style="margin-top: 5px"><label id="Security_question1"></label></span>
-                            </div>
-
-                            <div class="input">
-                                <div>
-                                    <span style="float: left;margin-top: 15px">答案：</span>
-                                    <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
-                                           type="text" name="result">
-                                </div>
-                                <br><br>
-                            </div>
-                            <div>
-                                <span style="float: left;margin-top: 5px">密保问题二：</span>
                                 <span style="margin-top: 5px"><label id="Security_question2"></label></span>
                             </div>
 
@@ -439,8 +441,21 @@
                                 <br><br>
                             </div>
                             <div>
+                                <span style="float: left;margin-top: 5px">密保问题二：</span>
+                                <span style="margin-top: 5px"><label id="Security_question4"></label></span>
+                            </div>
+
+                            <div class="input">
+                                <div>
+                                    <span style="float: left;margin-top: 15px">答案：</span>
+                                    <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
+                                           type="text" name="result">
+                                </div>
+                                <br><br>
+                            </div>
+                            <div>
                                 <span style="float: left;margin-top: 5px">密保问题三：</span>
-                                <span style="margin-top: 5px"><label id="Security_question3"></label></span>
+                                <span style="margin-top: 5px"><label id="Security_question6"></label></span>
                             </div>
                             <div class="input">
                                 <div>
@@ -459,7 +474,7 @@
                     </div>
                 </div>
                 <div id="security_settings" style="display: none">
-                    <form id="alertAll">
+                    <form id="alertPpAll">
                         <h3>security settings</h3>
                         <h4 style="color: #d58512;">设置密码等 :</h4>
                         <div>
@@ -497,7 +512,7 @@
                         <div id="Secret_question" style="display: none">
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题一：</span>
-                                <span style="margin-top: 5px"><label id="Security_question4"></label></span>
+                                <span style="margin-top: 5px"><label id="Security_question8"></label></span>
                             </div>
 
                             <div class="input">
@@ -505,12 +520,13 @@
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
+                                    <label id="ppid1"  style="display: none"></label>
                                 </div>
                                 <br><br>
                             </div>
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题二：</span>
-                                <span style="margin-top: 5px"><label id="Security_question5"></label></span>
+                                <span style="margin-top: 5px"><label id="Security_question10"></label></span>
                             </div>
 
                             <div class="input">
@@ -518,18 +534,20 @@
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
+                                    <label id="ppid3"  style="display: none"></label>
                                 </div>
                                 <br><br>
                             </div>
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题三：</span>
-                                <span style="margin-top: 5px"><label id="Security_question6"></label></span>
+                                <span style="margin-top: 5px"><label id="Security_question12"></label></span>
                             </div>
                             <div class="input">
                                 <div>
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
+                                    <label id="ppid5"  style="display: none"></label>
                                 </div>
                                 <br><br>
                             </div>

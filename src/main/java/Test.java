@@ -29,7 +29,7 @@ public class Test {
     @org.junit.Test
     public void test() {
         ApplicationContext act =
-                new ClassPathXmlApplicationContext("spring/spring-mvc.xml");
+                new ClassPathXmlApplicationContext("spring/springmvc.xml");
         /*	new FileSystemXmlApplicationContext("resources/spring/spring-mvc.xml");*/
         System.out.println(act);
         System.out.println(UserServiceImp);
@@ -39,8 +39,9 @@ public class Test {
         List<User> list = userdao.findAll();
         for (User lists : list) {
             System.out.println(lists.getU_id() + "," + lists.getU_name() + "," + lists.getU_pwd());
+           /* System.out.println(lists.getuId() + "," + lists.getuName() + "," + lists.getuPwd());*/
         }
-        User user = new User();
+     /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");
         if (userdao.login(user) != 0) {
@@ -59,7 +60,7 @@ public class Test {
             }
             temp ++;
         }
-        System.out.println(string);
+        System.out.println(string);*/
 
     }
 }
