@@ -14,7 +14,12 @@ public interface Change_PasswordDao {
      * @param u_id
      * @return
      */
-    public List<PasswordProtecTion> findALLById(int u_id);
+    public List<PasswordProtecTion> findQuestionById(int u_id);
 
-    public int alertAllById(int u_id);
+    /**
+     * 通过u_id查询答案，进行判断是否相同
+     * @param u_id
+     * @return
+     */
+    public List<PasswordProtecTion> findAnswerById(int u_id);
 }

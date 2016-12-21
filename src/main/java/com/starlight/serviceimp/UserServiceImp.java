@@ -30,8 +30,10 @@ public class UserServiceImp implements IUserService {
         return null;
     }
 
+
+    //根据用户账号来查询id，用于判断账号是否存在
     public int byname_GainId(String u_name) {
-        return 0;
+        return Appliction.getAct().getBean(UserDao.class).findIdByAccoun_Unmber(u_name);
     }
 
     public boolean byname_JudgeUserNameExist(String u_name) {

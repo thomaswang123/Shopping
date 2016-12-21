@@ -22,10 +22,16 @@ import java.util.List;
  */
 @Controller
 public class UserController {
+   //用来方便其他操作要用到u_Id的业务
+    private int u_id = 0;
+
+    //获取处理用户业务的类
     @Resource
     private UserServiceImp userServiceImp;
+    //获取用户信息业务处理的类
     @Resource
     private UserinfoServiceImp userinfoServiceImp;
+    //获取管理员业务处理的类
     @Resource
     private AminServiceImp aminServiceImp;
 
@@ -61,9 +67,7 @@ public class UserController {
         user.setU_name(username);
         user.setU_pwd(username);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
-        int u_id = 0;
         if((u_id=userServiceImp.login(user)) != 0){
-            System.out.println("存在");
             sessionUser.setAttribute("userinfo",userinfoServiceImp.findUserinfosById(u_id));
             sessionUser.setAttribute("admin",aminServiceImp.finAllClssesById(u_id));
             return "Index";
@@ -76,7 +80,7 @@ public class UserController {
     public String  write_Off(HttpSession sessionUser){
         //使session为null
            sessionUser.invalidate();
-      /*      sessionUser.setAttribute("userinfo",null);*/
+      //  sessionUser.setAttribute("userinfo",null);
             return "Index" ;
     }
 }

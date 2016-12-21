@@ -1,6 +1,9 @@
+import com.starlight.dao.Change_PasswordDao;
 import com.starlight.dao.UserDao;
+import com.starlight.entity.PasswordProtecTion;
 import com.starlight.entity.User;
 import com.starlight.serviceimp.UserServiceImp;
+import com.starlight.util.Appliction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -43,7 +46,20 @@ public class Test {
         if (userdao.login(user) != 0) {
             System.out.println("存在");
         }
+        String string = "" ;
+        int temp = 1;
+        List<PasswordProtecTion> lists =
+                Appliction.getAct().getBean(Change_PasswordDao.class).findQuestionById(1001);
 
+        for (PasswordProtecTion lt:lists
+                ) {
+            string += "" + lt.getPp_question() ;
+            if(temp<3) {
+                string += ",";
+            }
+            temp ++;
+        }
+        System.out.println(string);
 
     }
 }

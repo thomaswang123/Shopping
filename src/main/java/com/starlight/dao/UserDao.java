@@ -24,4 +24,17 @@ public interface UserDao {
 	 */
 	public int login(User user);
 
+	/**
+	 * 通过账号来查询id
+	 * @return   id
+	 */
+	public int findIdByAccoun_Unmber(String u_name);
+
+	/**
+	 * 用来修改用户密码
+	 * @param u_id  用户的id
+	 * @return
+	 */
+	public int alertPwdById(User user);
+
 }
