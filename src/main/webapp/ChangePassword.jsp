@@ -46,6 +46,7 @@
 
             /*进行后台的答案数据验证*/
             $("#butto2").click(function () {
+                alert("Aaa");
                 $.post("answer.do",
                     $("#answer").serialize(),
                     function (data) {
@@ -56,6 +57,7 @@
                         }
                     }, "text");
             });
+
             /*档账号输入框！失去焦点时，便发送ajax请求，请求成功，隐藏账号输入框*/
             $('#butto1').click(
                 function () {
@@ -70,7 +72,8 @@
                                         $("#Security_question" + (i + 1)).text(arr[i] + "?");
                                         $("#Security_question" + (i + 7)).text(arr[i] + "?");
                                     }else{
-                                        $("#ppid" + (i+1)).text(arr[i]);
+                                        $("#ppid" + (i+1)).val(arr[i]);
+                                        $("#ppid" + (i+1)).name="ppid";
                                     }
                                 }
                                 $("#Security_question").show();
@@ -520,24 +523,24 @@
 
                             <div class="input">
                                 <div>
-                                    <span style="float: left;margin-top: 15px">答案：</span>
+                                    <span  style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
-                                           type="text" name="result">
-                                    <label id="ppid1"  style="display: none"></label>
+                                           type="text" name="result" >
+                                    <input id="ppid1"  name="ppid" style="display: block">
                                 </div>
                                 <br><br>
                             </div>
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题二：</span>
-                                <span style="margin-top: 5px"><label id="Security_question10"></label></span>
+                                <span style="margin-top: 5px"><label  id="Security_question10"></label></span>
                             </div>
 
-                            <div class="input">
-                                <div>
+                            <div class="input" >
+                                <div >
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
-                                    <label id="ppid3"  style="display: none"></label>
+                                    <input id="ppid3"  name="ppid" style="display: none">
                                 </div>
                                 <br><br>
                             </div>
@@ -546,18 +549,19 @@
                                 <span style="margin-top: 5px"><label id="Security_question12"></label></span>
                             </div>
                             <div class="input">
-                                <div>
+                                <div >
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
-                                    <label id="ppid5"  style="display: none"></label>
+                                <%--    <label id="ppid5"  ></label>--%>
+                                    <input id="ppid5"  name="ppid" style="display: none">
                                 </div>
                                 <br><br>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="register-but">
-                            <input type="button" id="butto3" value="确认提交">
+                            <input type="button" id="butto3" value="确认提交" >
                             <div class="clearfix"></div>
                         </div>
                     </form>

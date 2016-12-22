@@ -45,7 +45,6 @@ public class Change_PasswordCotroller {
     @RequestMapping("answer.do")
     @ResponseBody
     public String consistency_OfJudgment(String[] result) {
-        System.out.println("aaaa");
         //进行判断答案是否正确
         // 返回的是ajax的数据，不是页面的名字
         return change_PasswordServiceImp.Answer_Comparison(u_id, result);
@@ -70,30 +69,29 @@ public class Change_PasswordCotroller {
     //此注解不能省略 否则ajax无法接受返回值
     @ResponseBody
     public String alertPpAll(String[] result,String password, String payment_code,String[] ppid){
-        System.out.println(ppid[0]);
-        System.out.println(result[0]);
-     /*   User user = new User();
+        User user = new User();
         Wallet wallet = new Wallet();
-        if(password!=null&&password!="") {
             //用户重置的密码
             user.setPassword(password);
             user.setId(u_id);
-        }else{
-            user = null;
-        }
         if(payment_code!=null&&payment_code!="") {
             //用户的钱包
             wallet.setId(u_id);
             wallet.setPassword(Integer.parseInt(payment_code));
+            System.out.println(Integer.parseInt(payment_code));
         }else{
             wallet = null;
+        }
+        for (int i = 0; i<result.length ; i++) {
+            if(result[i]==null&&result[i]==""){
+                result = null;
+            }
         }
         //判断是否为空
         if(change_PasswordServiceImp.alertAllById(user,wallet,result,ppid)!=null) {
             return "yes";
         }
-        return null;*/
-     return "yes";
+        return null;
     }
 
 }

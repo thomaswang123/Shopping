@@ -52,7 +52,10 @@ public class Test {
         pp.setAnswer("啊哈哈");
             int pwptemp = Appliction.getAct().getBean(IChangePasswordDao.class).alterPWP(pp);
             System.out.println(pwptemp);
-   
+        String[] string = Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(1001);
+        for (int temp = 0; temp < string.length; temp++
+                ) {
+            System.out.println(string[temp]);}
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");
