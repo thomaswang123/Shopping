@@ -1,11 +1,13 @@
 package com.starlight.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by thomas.wang on 2016/12/9.
  *
  * 商品类
  */
-
+@Component
 public class Goods {
 private int id ;
 private String name ;

@@ -21,7 +21,7 @@ public interface IUserDao {
 	 * @param user 账号
 	 * @return boolean
 	 */
-	public int login(User user);
+	 int login(User user);
 
 	/**
 	 * 通过账号来查询id
@@ -37,13 +37,13 @@ public interface IUserDao {
 	 int alertPwdById(User user);
 
 //  用户注册
-void register(User user);
+	void register(User user);
 //	查找该用户id
-int findIdByUser(String account);
+	int findIdByUser(String account);
 //		查询账号是否存在
-List<User> findAccount(String account);
+	List<User> findAccount(String account);
 
 //	修改密码
-boolean alterPassWord(String password);
+	boolean alterPassWord(String password);
 
 }
