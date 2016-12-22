@@ -11,8 +11,9 @@
         <result property="password" column="w_paypwd"/>
     </resultMap>
 
+    <!--修改支付密码-->
     <update id="alertPayPwdById" parameterType="com.starlight.entity.Wallet">
-
+           update wallet w_paypwd = #{password} where w_id = #{id}
     </update>
 
     <!--用户注册-->

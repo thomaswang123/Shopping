@@ -66,27 +66,34 @@ public class Change_PasswordCotroller {
     }
 
     //修改密码，支付密码，密保答案
-    @RequestMapping("alertAll.do")
+    @RequestMapping("alertPpAll.do")
     //此注解不能省略 否则ajax无法接受返回值
     @ResponseBody
-    public String alertAll(User user, String[] result, Wallet wallet, String password, String payment_code) {
-        //用户的密码
-        user.setId(u_id);
-        user.setPassword(password);
-        //用户的支付密码
-       wallet.setId(u_id);
-       wallet.setPassword(Integer.parseInt(payment_code));
- /*      System.out.println(ppid);*/
-       //进行处理并返回结果
-     /*   return  change_PasswordServiceImp.alertAllById(user, wallet, result);*/
-        return "Aaa";
-    }
-
-    @RequestMapping("alertPpAll.do")
-    @ResponseBody
-    public String alertPpAll(String[] result,User user, String password, String payment_code,String[] ppid){
-        System.out.println(result);
-        return  "Aaa";
+    public String alertPpAll(String[] result,String password, String payment_code,String[] ppid){
+        System.out.println(ppid[0]);
+        System.out.println(result[0]);
+     /*   User user = new User();
+        Wallet wallet = new Wallet();
+        if(password!=null&&password!="") {
+            //用户重置的密码
+            user.setPassword(password);
+            user.setId(u_id);
+        }else{
+            user = null;
+        }
+        if(payment_code!=null&&payment_code!="") {
+            //用户的钱包
+            wallet.setId(u_id);
+            wallet.setPassword(Integer.parseInt(payment_code));
+        }else{
+            wallet = null;
+        }
+        //判断是否为空
+        if(change_PasswordServiceImp.alertAllById(user,wallet,result,ppid)!=null) {
+            return "yes";
+        }
+        return null;*/
+     return "yes";
     }
 
 }

@@ -49,7 +49,7 @@
                 $.post("answer.do",
                     $("#answer").serialize(),
                     function (data) {
-                        if (data != null) {
+                        if (data != "") {
                             alert(data);
                             $("#security_settings").show();
                             $("#apply_for").hide();
@@ -93,6 +93,7 @@
             });*/
 
             $("#butto3").click(function () {
+                alert("aaa");
                 $.post("alertPpAll.do",
                     $("#alertPpAll").serialize(),
                     function (data) {
@@ -101,6 +102,8 @@
                         }
                     }, "text");
             });
+
+
         });
     </script>
 </head>

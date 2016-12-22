@@ -27,5 +27,5 @@ public interface IChangePasswordService {
      * @param wallet    用户钱包对象
      * @param result  密保答案
      */
-     String alertAllById(User user, Wallet wallet, String[] result);
+     String alertAllById(User user, Wallet wallet, String[] result,String[] ppid);
 }

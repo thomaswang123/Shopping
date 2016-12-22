@@ -23,14 +23,19 @@ public interface IChangePasswordDao {
      * @param u_id
      * @return
      */
-    List<PassWordProtection> findAnswerById(int u_id);
+    String[] findAnswerById(int u_id);
 
-//	查询密保
-    List<PassWordProtection> findAllById(int id);
-//	删除密保
-    void deleteById(int id);
-//	添加密保
-    void addPWP(PassWordProtection passWordProtection);
-//	修改密保
-    void alterPWP(PassWordProtection passWordProtection);
+	//	查询密保
+	List<PassWordProtection> findAllById(int id);
+	//	删除密保
+	void deleteById(int id);
+	//	添加密保
+	void addPWP(PassWordProtection passWordProtection);
+	//
+
+	/**
+	 *修改密保
+	 * * @param list
+    */
+	int alterPWP(PassWordProtection pwp);
 }
