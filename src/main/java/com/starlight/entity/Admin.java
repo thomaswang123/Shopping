@@ -8,22 +8,22 @@ package com.starlight.entity;
  *  管理员类
  */
 public class Admin {
-    private int admin_id ;
-    private int admin_classes;
+private int id;
+private int classes;
 
-    public int getAdmin_id() {
-        return admin_id;
-    }
+public int getId() {
+    return id;
+}
 
-    public void setAdmin_id(int admin_id) {
-        this.admin_id = admin_id;
-    }
+public void setId(int id) {
+    this.id = id;
+}
 
-    public int getAdmin_classes() {
-        return admin_classes;
-    }
+public int getClasses() {
+    return classes;
+}
 
-    public void setAdmin_classes(int admin_classes) {
-        this.admin_classes = admin_classes;
-    }
+public void setClasses(int classes) {
+    this.classes = classes;
+}
 }

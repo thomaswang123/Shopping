@@ -6,31 +6,49 @@ package com.starlight.entity;
  * 意见类
  */
 public class Opinion {
-    private int on_id ;
-    private  int on_gerade ;
-    private String on_discuss;
+private int id ;
+private  int grade ;
+private String discuss;
+private int goodsId;
+private int userId;
 
-    public int getOn_id() {
-        return on_id;
-    }
+public int getId() {
+    return id;
+}
 
-    public void setOn_id(int on_id) {
-        this.on_id = on_id;
-    }
+public void setId(int id) {
+    this.id = id;
+}
 
-    public int getOn_gerade() {
-        return on_gerade;
-    }
+public int getGrade() {
+    return grade;
+}
 
-    public void setOn_gerade(int on_gerade) {
-        this.on_gerade = on_gerade;
-    }
+public void setGrade(int grade) {
+    this.grade = grade;
+}
 
-    public String getOn_discuss() {
-        return on_discuss;
-    }
+public String getDiscuss() {
+    return discuss;
+}
 
-    public void setOn_discuss(String on_discuss) {
-        this.on_discuss = on_discuss;
-    }
+public void setDiscuss(String discuss) {
+    this.discuss = discuss;
+}
+
+public int getGoodsId() {
+    return goodsId;
+}
+
+public void setGoodsId(int goodsId) {
+    this.goodsId = goodsId;
+}
+
+public int getUserId() {
+    return userId;
+}
+
+public void setUserId(int userId) {
+    this.userId = userId;
+}
 }

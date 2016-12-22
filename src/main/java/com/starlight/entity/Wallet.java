@@ -5,31 +5,31 @@ package com.starlight.entity;
  * 钱包类
  */
 public class Wallet {
-    private int w_id;
-    private float w_money;
-    private int w_pwd;
+private int id;
+private float money;
+private int password;
 
-    public int getW_id() {
-        return w_id;
-    }
+public int getId() {
+    return id;
+}
 
-    public void setW_id(int w_id) {
-        this.w_id = w_id;
-    }
+public void setId(int id) {
+    this.id = id;
+}
 
-    public float getW_money() {
-        return w_money;
-    }
+public float getMoney() {
+    return money;
+}
 
-    public void setW_money(float w_money) {
-        this.w_money = w_money;
-    }
+public void setMoney(float money) {
+    this.money = money;
+}
 
-    public int getW_pwd() {
-        return w_pwd;
-    }
+public int getPassword() {
+    return password;
+}
 
-    public void setW_pwd(int w_pwd) {
-        this.w_pwd = w_pwd;
-    }
+public void setPassword(int password) {
+    this.password = password;
+}
 }

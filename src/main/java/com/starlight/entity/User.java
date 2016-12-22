@@ -6,31 +6,31 @@ package com.starlight.entity;
  * 用户类
  */
 public class User {
-   private int   u_id ;
-   private String   u_name;
-   private String  u_pwd ;
+private int   id ;
+private String  account;
+private String  password;
 
-    public int getU_id() {
-        return u_id;
-    }
+public int getId() {
+    return id;
+}
 
-    public void setU_id(int u_id) {
-        this.u_id = u_id;
-    }
+public void setId(int id) {
+    this.id = id;
+}
 
-    public String getU_name() {
-        return u_name;
-    }
+public String getAccount() {
+    return account;
+}
 
-    public void setU_name(String u_name) {
-        this.u_name = u_name;
-    }
+public void setAccount(String account) {
+    this.account = account;
+}
 
-    public String getU_pwd() {
-        return u_pwd;
-    }
+public String getPassword() {
+    return password;
+}
 
-    public void setU_pwd(String u_pwd) {
-        this.u_pwd = u_pwd;
-    }
+public void setPassword(String password) {
+    this.password = password;
+}
 }

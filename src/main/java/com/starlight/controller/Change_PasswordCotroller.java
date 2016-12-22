@@ -2,7 +2,7 @@ package com.starlight.controller;
 
 import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
-import com.starlight.serviceimp.Change_PasswordServiceImp;
+import com.starlight.serviceimp.ChangePasswordServiceImp;
 import com.starlight.serviceimp.UserServiceImp;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +23,13 @@ public class Change_PasswordCotroller {
 
     //获取对密保以及密码问题处理的对象
     @Resource
-    private Change_PasswordServiceImp change_PasswordServiceImp;
+    private ChangePasswordServiceImp change_PasswordServiceImp;
 
-    public Change_PasswordServiceImp getChange_PasswordServiceImp() {
+    public ChangePasswordServiceImp getChange_PasswordServiceImp() {
         return change_PasswordServiceImp;
     }
 
-    public void setChange_PasswordServiceImp(Change_PasswordServiceImp change_PasswordServiceImp) {
+    public void setChange_PasswordServiceImp(ChangePasswordServiceImp change_PasswordServiceImp) {
         this.change_PasswordServiceImp = change_PasswordServiceImp;
     }
 
@@ -71,11 +71,11 @@ public class Change_PasswordCotroller {
     @ResponseBody
     public String alertAll(User user, String[] result, Wallet wallet, String password, String payment_code) {
         //用户的密码
-        user.setU_id(u_id);
-        user.setU_pwd(password);
+        user.setId(u_id);
+        user.setPassword(password);
         //用户的支付密码
-       wallet.setW_id(u_id);
-       wallet.setW_pwd(Integer.parseInt(payment_code));
+       wallet.setId(u_id);
+       wallet.setPassword(Integer.parseInt(payment_code));
  /*      System.out.println(ppid);*/
        //进行处理并返回结果
      /*   return  change_PasswordServiceImp.alertAllById(user, wallet, result);*/

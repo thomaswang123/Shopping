@@ -5,22 +5,22 @@ package com.starlight.entity;
  * 库存类
  */
 public class Repertory {
-    private int ry_id ;
-    private int ry_number;
+private int id ;
+private int number;
 
-    public int getRy_id() {
-        return ry_id;
-    }
+public int getId() {
+    return id;
+}
 
-    public void setRy_id(int ry_id) {
-        this.ry_id = ry_id;
-    }
+public void setId(int id) {
+    this.id = id;
+}
 
-    public int getRy_number() {
-        return ry_number;
-    }
+public int getNumber() {
+    return number;
+}
 
-    public void setRy_number(int ry_number) {
-        this.ry_number = ry_number;
-    }
+public void setNumber(int number) {
+    this.number = number;
+}
 }

@@ -3,10 +3,10 @@ package com.starlight.serviceimp;
 import com.starlight.dao.IChangePasswordDao;
 import com.starlight.dao.IUserDao;
 import com.starlight.dao.IWalletDao;
-import com.starlight.entity.PasswordProtection;
+import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
-import com.starlight.service.IChange_PasswordService;
+import com.starlight.service.IChangePasswordService;
 import com.starlight.util.Appliction;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/21.
  */
 @Component
-public class Change_PasswordServiceImp implements IChange_PasswordService {
+public class ChangePasswordServiceImp implements IChangePasswordService {
 
     //用来处理密保,查询密保并展示到前台页面
     public String findQuestionAndIddByUid(int u_id) {
@@ -24,11 +24,11 @@ public class Change_PasswordServiceImp implements IChange_PasswordService {
         //记录分隔符“,”
         int temp = 1;
         //条用dao进行对数据库的查询
-        List<PasswordProtection> lists =
+        List<PassWordProtection> lists =
                 Appliction.getAct().getBean(IChangePasswordDao.class).findQuestionAndIddByUid(u_id);
-        for (PasswordProtection lt:lists
+        for (PassWordProtection lt:lists
                 ) {
-            string += ""+lt.getPp_id()+"," + lt.getPp_question() ;
+            string += ""+lt.getId()+"," + lt.getQuestion() ;
             if(temp<3) {
                 string += ",";
             }
@@ -42,10 +42,10 @@ public class Change_PasswordServiceImp implements IChange_PasswordService {
     public String Answer_Comparison(int u_id,String[] result) {
             //用来取出result中的数据
             int temp = 0;
-            for (PasswordProtection
+            for (PassWordProtection
                     ls : Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(u_id)
                     ) {
-                if (ls.getPp_answer().equals(result[temp])) {
+                if (ls.getAnswer().equals(result[temp])) {
                     temp++;
                 } else {
                     return null;

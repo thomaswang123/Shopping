@@ -1,9 +1,7 @@
 package com.starlight.dao;
 
-import com.starlight.entity.Userinfo;
+import com.starlight.entity.UserInfo;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
@@ -15,5 +13,5 @@ public interface IUserinfoDao {
      * @param uinfo_id 账号
      * @return list  集合
      */
-     Userinfo findUserifoById(int uinfo_id);
+     UserInfo findUserifoById(int uinfo_id);
 }

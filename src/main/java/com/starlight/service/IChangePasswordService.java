@@ -6,7 +6,7 @@ import com.starlight.entity.Wallet;
 /**
  * Created by thomas.wang on 2016/12/21.
  */
-public interface IChange_PasswordService {
+public interface IChangePasswordService {
     /**
      * 通过id查询密保以及id
      * @param u_id

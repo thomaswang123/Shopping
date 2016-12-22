@@ -1,6 +1,6 @@
 package com.starlight.service;
 
-import com.starlight.entity.Userinfo;
+import com.starlight.entity.UserInfo;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface IUserinfoService {
      * @param List<Integer> 用户id的集合
      * @return list<Userinfo><
      */
-    List<Userinfo> findAllUserinfoById(List<Integer> list);
+    List<UserInfo> findAllUserinfoById(List<Integer> list);
 
     /**
      * 通过姓名查询用户的信息
@@ -24,7 +24,7 @@ public interface IUserinfoService {
      * @return Userinfo
      * @paramu info_nickname  用户姓名
      */
-    List<Userinfo> findUserinfoByNickName(String uinfo_nickname);
+    List<UserInfo> findUserinfoByNickName(String uinfo_nickname);
 
 
     /**
@@ -33,7 +33,7 @@ public interface IUserinfoService {
      * @param id 用户年龄
      * @return Userinfo
      */
-     List<Userinfo> findUserinfoByAge(int age);
+     List<UserInfo> findUserinfoByAge(int age);
 
     /**
      * @param id
@@ -47,6 +47,6 @@ public interface IUserinfoService {
      * @param u_id
      * @return
      */
-     Userinfo findUserinfosById(int u_id);
+     UserInfo findUserinfosById(int u_id);
 
 }

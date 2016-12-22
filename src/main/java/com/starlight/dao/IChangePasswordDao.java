@@ -1,6 +1,6 @@
 package com.starlight.dao;
 
-import com.starlight.entity.PasswordProtection;
+import com.starlight.entity.PassWordProtection;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,12 +16,12 @@ public interface IChangePasswordDao {
      * @param u_id
      * @return
      */
-     List<PasswordProtection> findQuestionAndIddByUid(int u_id);
+     List<PassWordProtection> findQuestionAndIddByUid(int u_id);
 
     /**
      * 通过u_id查询答案，进行判断是否相同
      * @param u_id
      * @return
      */
-    List<PasswordProtection> findAnswerById(int u_id);
+    List<PassWordProtection> findAnswerById(int u_id);
 }

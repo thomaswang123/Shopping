@@ -35,7 +35,7 @@ public class Test {
         System.out.println("进来了");
         List<User> list = userdao.findAll();
         for (User lists : list) {
-            System.out.println(lists.getU_id() + "," + lists.getU_name() + "," + lists.getU_pwd());
+            System.out.println(lists.getId() + "," + lists.getPassword() + "," + lists.getAccount());
            /* System.out.println(lists.getuId() + "," + lists.getuName() + "," + lists.getuPwd());*/
         }
      /*   User user = new User();

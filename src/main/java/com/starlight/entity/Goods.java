@@ -7,50 +7,50 @@ package com.starlight.entity;
  */
 
 public class Goods {
-    private int g_id ;
-    private String g_name ;
-    private float g_price ;
-    private String  g_describe ;
-    private String g_picture ;
+private int id ;
+private String name ;
+private float price ;
+private String  describe ;
+private String picture ;
 
-    public String getG_picture() {
-        return g_picture;
-    }
+public int getId() {
+    return id;
+}
 
-    public void setG_picture(String g_picture) {
-        this.g_picture = g_picture;
-    }
+public void setId(int id) {
+    this.id = id;
+}
 
-    public int getG_id() {
-        return g_id;
-    }
+public String getName() {
+    return name;
+}
 
-    public void setG_id(int g_id) {
-        this.g_id = g_id;
-    }
+public void setName(String name) {
+    this.name = name;
+}
 
-    public String getG_name() {
-        return g_name;
-    }
+public float getPrice() {
+    return price;
+}
 
-    public void setG_name(String g_name) {
-        this.g_name = g_name;
-    }
+public void setPrice(float price) {
+    this.price = price;
+}
 
-    public String getG_describe() {
-        return g_describe;
-    }
+public String getDescribe() {
+    return describe;
+}
 
-    public void setG_describe(String g_describe) {
-        this.g_describe = g_describe;
-    }
+public void setDescribe(String describe) {
+    this.describe = describe;
+}
 
-    public float getG_price() {
-        return g_price;
-    }
+public String getPicture() {
+    return picture;
+}
 
-    public void setG_price(float g_price) {
-        this.g_price = g_price;
-    }
+public void setPicture(String picture) {
+    this.picture = picture;
+}
 
 }
