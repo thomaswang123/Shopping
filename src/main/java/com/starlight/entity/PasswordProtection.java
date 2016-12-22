@@ -5,7 +5,7 @@ package com.starlight.entity;
  *
  * 密保类
  */
-public class PasswordProtecTion {
+public class PasswordProtection {
     private int pp_id ;
     private String  pp_question ;
     private String  pp_answer ;

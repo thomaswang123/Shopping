@@ -4,7 +4,7 @@ package com.starlight.entity;
  * Created by thomas.wang on 2016/12/9.
  *  订单类
  */
-public class Oreders {
+public class Oreder {
     private int o_id ;
     private int o_uid ;
     private int o_gid ;
