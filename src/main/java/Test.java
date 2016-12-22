@@ -1,9 +1,6 @@
-import com.starlight.dao.Change_PasswordDao;
-import com.starlight.dao.UserDao;
-import com.starlight.entity.PasswordProtecTion;
+import com.starlight.dao.IUserDao;
 import com.starlight.entity.User;
 import com.starlight.serviceimp.UserServiceImp;
-import com.starlight.util.Appliction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,7 +30,7 @@ public class Test {
         /*	new FileSystemXmlApplicationContext("resources/spring/spring-mvc.xml");*/
         System.out.println(act);
         System.out.println(UserServiceImp);
-	    UserDao userdao = act.getBean(UserDao.class);
+	    IUserDao userdao = act.getBean(IUserDao.class);
         System.out.println(userdao);
         System.out.println("进来了");
         List<User> list = userdao.findAll();

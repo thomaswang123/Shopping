@@ -2,23 +2,39 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starlight.dao.WalletDao">
+<mapper namespace="com.starlight.dao.IWalletDao">
+
+    <!--字段映射-->
+    <resultMap id="wallet" type="com.starlight.entity.Wallet">
+        <id property="id" column="w_id " />
+        <result property="money" column="w_money " />
+        <result property="password" column="w_paypwd"/>
+    </resultMap>
+
     <update id="alertPayPwdById" parameterType="com.starlight.entity.Wallet">
 
     </update>
-    <!--<select id="findById" parameterType="int" resultType="com.wy.test.entity.Dept">
-        select * from DEPT where DEPTNO=#{id}
-    </select>
-    <insert id="save" parameterType="com.wy.test.entity.Dept">
-        insert into DEPT(deptno,dname,loc)
-            values(seq_dept.nextval,#{dname},#{loc})
+
+    <!--用户注册-->
+    <insert id="register"  parameterType="com.starlight.entity.Wallet">
+        insert into Wallet(w_id,w_money,w_paypwd)values(#{id},#{money},#{password})
     </insert>
-    <delete id="deleteById" parameterType="int">
-        delete from DEPT where deptno=#{id}
-    </delete>
-    <update id="update" parameterType="com.wy.test.entity.Dept">
-        update DEPT set dname=#{dname},loc=#{loc}  where deptno=#{deptno}
-    </update>
+
+    <!--通过账号查找ID-->
+    <select id="findIdByUser" parameterType="String" resultType="int">
+        select u_id from user where u_name=#{u_name}
+    </select>
+
+    <!--查找是否存在该用户-->
+    <select id="findAccout" parameterType="String"  resultMap="wallet">
+        SELECT u_id FROM USER WHERE u_name=#{u_name}
+    </select>
+
+    <resultMap id="uMap" type="com.starlight.entity.User">
+        <id column="u_id" property="u_id" />
+    </resultMap>
+
+<!--
     <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
         delete from DEPT
         <where>
@@ -32,5 +48,5 @@
                 1=2
             </if>
         </where>
-    </delete>-->
+    </delete>&ndash;&gt;-->
 </mapper>

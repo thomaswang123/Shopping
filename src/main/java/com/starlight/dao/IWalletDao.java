@@ -1,12 +1,14 @@
 package com.starlight.dao;
 
 import com.starlight.entity.Wallet;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by thomas.wang on 2016/12/21.
  * 用来进行对钱包的数据业务处理
  */
-public interface WalletDao {
+@Component
+public interface IWalletDao {
 
     /**
      * 进行钱包支付密码修改

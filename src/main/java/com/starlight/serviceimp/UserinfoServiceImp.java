@@ -1,11 +1,12 @@
 package com.starlight.serviceimp;
 
-import com.starlight.dao.UserinfoDao;
+import com.starlight.dao.IUserinfoDao;
 import com.starlight.entity.Userinfo;
 import com.starlight.service.IUserinfoService;
 import com.starlight.util.Appliction;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,6 +14,11 @@ import java.util.List;
  */
 @Component
 public class UserinfoServiceImp implements IUserinfoService{
+    
+    //用户信息
+    @Resource
+    IUserinfoDao iUserinfoDao;
+    
     public List<Userinfo> findAllUserinfoById(List<Integer> list) {
         return null;
     }
@@ -31,7 +37,7 @@ public class UserinfoServiceImp implements IUserinfoService{
 
     //查询用户信息返回一个List用户信息集合
     public Userinfo findUserinfosById(int u_id) {
-        UserinfoDao userifodao = Appliction.getAct().getBean(UserinfoDao.class);
+        IUserinfoDao userifodao = Appliction.getAct().getBean(IUserinfoDao.class);
         return  userifodao.findUserifoById(u_id);
     }
 }

@@ -1,6 +1,5 @@
 package com.starlight.service;
 
-import com.starlight.dao.UserDao;
 import com.starlight.entity.User;
 
 import java.util.List;

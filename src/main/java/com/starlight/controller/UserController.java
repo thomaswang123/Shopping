@@ -1,21 +1,14 @@
 package com.starlight.controller;
 
-import com.starlight.dao.UserDao;
-import com.starlight.dao.UserinfoDao;
 import com.starlight.entity.User;
 import com.starlight.serviceimp.AminServiceImp;
 import com.starlight.serviceimp.UserServiceImp;
 import com.starlight.serviceimp.UserinfoServiceImp;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
@@ -64,7 +57,7 @@ public class UserController {
     public String test(String username, String password,
                        HttpSession sessionUser, User user) {
         //为user赋值
-        user.setU_name(username);
+        user.set(username);
         user.setU_pwd(username);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
         if((u_id=userServiceImp.login(user)) != 0){
