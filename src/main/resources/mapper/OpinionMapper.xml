@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IOpinionDao">
+
+    <!--映射字段-->
+    <resultMap id="opinion" type="com.starlight.entity.Opinion">
+        <id property="id" column="on_id" />
+        <result property="grade" column="on_grade" />
+        <result property="discuss" column="on_discuss"/>
+        <result property="goodsId" column="on_gid"/>
+        <result property="userId" column="on_uid"/>
+    </resultMap>
+
+
+</mapper>

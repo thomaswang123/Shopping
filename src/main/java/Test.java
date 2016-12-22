@@ -38,6 +38,11 @@ public class Test {
             System.out.println(lists.getId() + "," + lists.getPassword() + "," + lists.getAccount());
            /* System.out.println(lists.getuId() + "," + lists.getuName() + "," + lists.getuPwd());*/
         }
+        User user = new User();
+        user.setAccount("123456");
+        user.setPassword("123456");
+        int usertemp = userdao.login(user);
+        System.out.println(usertemp);
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

@@ -1,9 +1,9 @@
 <%--
-Created by IntelliJ IDEA.
-User: thomas.wang
-Date: 2016/12/20
-Time: 14:45
-To change this template use File | Settings | File Templates.
+  Created by IntelliJ IDEA.
+  User: thomas.wang
+  Date: 2016/12/22
+  Time: 13:54
+  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -289,14 +289,14 @@ To change this template use File | Settings | File Templates.
                                 <h4
                                 <span>欢迎:</span>
                                 <span>
-                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.uinfo_nickname}</a>
+                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
                                 </span>
                                 <c:choose>
-                                <c:when test="${sessionScope.admin>0}">
-                                <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
-                                 <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
-                                </c:when>
-                                <c:otherwise></c:otherwise>
+                                    <c:when test="${sessionScope.admin>0}">
+                                        <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                        <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
+                                    </c:when>
+                                    <c:otherwise></c:otherwise>
                                 </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">

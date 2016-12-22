@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IShoppingCartDao">
+
+    <!--映射字段-->
+    <resultMap id="shoppingCart" type="com.starlight.entity.ShoppingCart">
+        <id property="id" column="sc_id" />
+        <result property="userId" column="sc_uid" />
+        <result property="goodsId" column="sc_gid"/>
+        <result property="number" column="sc_number"/>
+        <result property="totalMoney" column="sc_summoney"/>
+        <result property="date" column="sc_date"/>
+    </resultMap>
+
+</mapper>

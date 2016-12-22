@@ -36,4 +36,14 @@ public interface IUserDao {
 	 */
 	 int alertPwdById(User user);
 
+//  用户注册
+void register(User user);
+//	查找该用户id
+int findIdByUser(String account);
+//		查询账号是否存在
+List<User> findAccount(String account);
+
+//	修改密码
+boolean alterPassWord(String password);
+
 }

@@ -30,7 +30,7 @@
     </select>
 
     <select id="login"  resultType="int" parameterType="com.starlight.entity.User">
-        select u_id from user where u_name= #{account} and u_pwd=#{password}
+        select u_id from user where u_name= #{account} and u_pwd = #{password}
     </select>
 
     <select id="findIdByAccoun_Unmber" resultType="int" parameterType="java.lang.String">

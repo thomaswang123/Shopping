@@ -49,7 +49,7 @@
                 $.post("answer.do",
                     $("#answer").serialize(),
                     function (data) {
-                        if (data != "") {
+                        if (data != null) {
                             alert(data);
                             $("#security_settings").show();
                             $("#apply_for").hide();
@@ -355,7 +355,7 @@
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
                         <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a
-                                href="Change_Password.jsp">忘记密码?</a></span>
+                                href="ChangePassword.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
                         <c:otherwise>
@@ -363,7 +363,7 @@
                                 <h4
                                 <span>欢迎:</span>
                                 <span>
-                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.uinfo_nickname}</a>
+                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
                                 </span>
                                 <c:choose>
                                     <c:when test="${sessionScope.admin>0}">

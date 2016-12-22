@@ -14,8 +14,8 @@
         <result property="address" column="uinfo_address"/>
     </resultMap>
 
-    <select id="findUserifoById" resultType="com.starlight.entity.UserInfo" parameterType="int">
-        select * from userinfo where uinfo_id=#{u_id}
+    <select id="findUserifoById" resultMap="userInfo" parameterType="int">
+        select uinfo_nickname from userinfo where uinfo_id=#{u_id}
     </select>
 <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
         delete from DEPT
