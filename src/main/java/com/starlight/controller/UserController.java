@@ -57,8 +57,8 @@ public class UserController {
     public String test(String username, String password,
                        HttpSession sessionUser, User user) {
         //为user赋值
-        user.set(username);
-        user.setU_pwd(username);
+        user.setAccount(username);
+        user.setPassword(username);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
         if((u_id=userServiceImp.login(user)) != 0){
             sessionUser.setAttribute("userinfo",userinfoServiceImp.findUserinfosById(u_id));
