@@ -41,17 +41,14 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
 
     public String Answer_Comparison(int u_id,String[] result) {
             //用来取出result中的数据
-            int temp = 0;
-            for (PassWordProtection
-                    ls : Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(u_id)
+            String[] string = Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(u_id);
+            for (int temp = 0; temp<string.length;temp++
                     ) {
-                if (ls.getAnswer().equals(result[temp])) {
-                    temp++;
-                } else {
-                    return null;
+                if (string[temp].equals(result[temp])&&temp==2) {
+                    return "yes";
                 }
             }
-            return "yes";
+           return null;
     }
 
     //进行对密保答案，密码，支付密码的修改！*需要事务管理进行管理
