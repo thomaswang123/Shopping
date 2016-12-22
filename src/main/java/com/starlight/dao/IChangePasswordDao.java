@@ -26,11 +26,11 @@ public interface IChangePasswordDao {
     List<PassWordProtection> findAnswerById(int u_id);
 
 //	查询密保
-List<PassWordProtection> findAllById(int id);
+    List<PassWordProtection> findAllById(int id);
 //	删除密保
-void deleteById(int id);
+    void deleteById(int id);
 //	添加密保
-void addPWP(PassWordProtection passWordProtection);
+    void addPWP(PassWordProtection passWordProtection);
 //	修改密保
-void alterPWP(PassWordProtection passWordProtection);
+    void alterPWP(PassWordProtection passWordProtection);
 }

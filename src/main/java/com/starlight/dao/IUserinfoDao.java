@@ -16,7 +16,7 @@ public interface IUserinfoDao {
      UserInfo findUserifoById(int uinfo_id);
 
 //	  用户注册
-void register(UserInfo userInfo);
+      void register(UserInfo userInfo);
 //	查询详细信息
 UserInfo findAllById(int id);
 //	修改昵称

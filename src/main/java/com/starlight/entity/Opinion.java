@@ -1,10 +1,13 @@
 package com.starlight.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by thomas.wang on 2016/12/16.
  *
  * 意见类
  */
+@Component
 public class Opinion {
 private int id ;
 private  int grade ;

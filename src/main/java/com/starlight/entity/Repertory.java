@@ -1,9 +1,12 @@
 package com.starlight.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by thomas.wang on 2016/12/16.
  * 库存类
  */
+@Component
 public class Repertory {
 private int id ;
 private int number;

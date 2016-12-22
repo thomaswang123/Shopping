@@ -1,5 +1,6 @@
 package com.starlight.service;
 
+import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 
 import java.util.List;
@@ -43,4 +44,23 @@ public interface IUserService {
 	 */
 	List<String> findAllNameById(List<Integer> list);
 
+	/**
+	 * 用户注册并返回用户ID
+	 * @param user
+	 * @return
+	 */
+	int register(User user);
+
+	/**
+	 * 添加用户密保
+	 * @param passWordProtection
+	 */
+	void addPWP(PassWordProtection passWordProtection);
+
+	/**
+	 * 通过账号查找用户
+	 * @param account
+	 * @return
+	 */
+	List<User> findAccount(String account);
 }

@@ -17,6 +17,11 @@
     <select id="findUserifoById" resultMap="userInfo" parameterType="int">
         select uinfo_nickname from userinfo where uinfo_id=#{u_id}
     </select>
+
+    <insert id="register" parameterType="com.starlight.entity.UserInfo">
+        INSERT INTO UserInfo(uinfo_id,uinfo_nickname,uinfo_sex,uinfo_age,uinfo_phone,uinfo_address)
+        VALUES (#{id},#{nickname},#{sex},#{age},#{phone},#{address})
+    </insert>
 <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
         delete from DEPT
         <where>
