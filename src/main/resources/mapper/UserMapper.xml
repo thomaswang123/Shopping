@@ -37,8 +37,9 @@
              select u_id from user where u_name =#{u_name}
     </select>
 
+    <!--修改用户密码-->
     <update id="alertPwdById" parameterType="com.starlight.entity.User">
-        update user set u_pwd = #{account} where u_id = #{passwrd}
+        update user set u_pwd = #{password} where u_id = #{id}
     </update>
     <!--<select id="findById" parameterType="int" resultType="com.wy.test.entity.Dept">
         select * from DEPT where DEPTNO=#{id}

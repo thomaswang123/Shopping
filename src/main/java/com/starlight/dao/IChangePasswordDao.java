@@ -31,6 +31,11 @@ public interface IChangePasswordDao {
 	void deleteById(int id);
 	//	添加密保
 	void addPWP(PassWordProtection passWordProtection);
-	//	修改密保
-	void alterPWP(PassWordProtection passWordProtection);
+	//
+
+	/**
+	 *修改密保
+	 * * @param list
+    */
+	int alterPWP(PassWordProtection pwp);
 }

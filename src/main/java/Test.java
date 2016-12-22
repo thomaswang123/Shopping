@@ -1,6 +1,9 @@
+import com.starlight.dao.IChangePasswordDao;
 import com.starlight.dao.IUserDao;
+import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.serviceimp.UserServiceImp;
+import com.starlight.util.Appliction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -43,6 +46,13 @@ public class Test {
         user.setPassword("123456");
         int usertemp = userdao.login(user);
         System.out.println(usertemp);
+        
+        PassWordProtection pp = new PassWordProtection();
+        pp.setId(2001);
+        pp.setAnswer("啊哈哈");
+            int pwptemp = Appliction.getAct().getBean(IChangePasswordDao.class).alterPWP(pp);
+            System.out.println(pwptemp);
+   
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

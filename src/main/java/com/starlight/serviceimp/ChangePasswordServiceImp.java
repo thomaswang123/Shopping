@@ -9,12 +9,14 @@ import com.starlight.entity.Wallet;
 import com.starlight.service.IChangePasswordService;
 import com.starlight.util.Appliction;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/21.
  */
+@Transactional(rollbackFor=Exception.class) //指定回滚,遇到异常Exception时回滚
 @Component
 public class ChangePasswordServiceImp implements IChangePasswordService {
 
@@ -52,12 +54,49 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
     }
 
     //进行对密保答案，密码，支付密码的修改！*需要事务管理进行管理
-    public String alertAllById(User user, Wallet wallet, String[] result) {
+    public String alertAllById(User user, Wallet wallet, String[] result,String[] ppid) {
         //进行用户密码修改
         int usertemp = Appliction.getAct().getBean(IUserDao.class).alertPwdById(user);
-        //进行用户的钱包的修改
-        int walletemp  = Appliction.getAct().getBean(IWalletDao.class).alertPayPwdById(wallet);
-        //查询数据
-        return null;
+      
+        if(wallet!=null&&ppid!=null&&result!=null){
+            //进行用户的钱包的修改
+            int walletemp = Appliction.getAct().getBean(IWalletDao.class).alertPayPwdById(wallet);
+            int pwptemp = 0;
+            //插入密保问题
+            for (int i = 0; i < ppid.length; i++) {
+                PassWordProtection pwp = new PassWordProtection();
+                pwp.setId(Integer.parseInt(ppid[i]));
+                pwp.setAnswer(result[i]);
+                //添加对象
+                 pwptemp = Appliction.getAct().getBean(IChangePasswordDao.class).alterPWP(pwp);
+            }
+            if (usertemp != 0 && walletemp != 0 && pwptemp >1) {
+                return "yes";
+            }
+            return null;
+        }
+        
+        if(wallet==null&&ppid!=null&&result!=null){
+            //插入密保问题
+            int pwptemp = 0;
+            for (int i = 0; i < ppid.length; i++) {
+                PassWordProtection pwp = new PassWordProtection();
+                pwp.setId(Integer.parseInt(ppid[i]));
+                pwp.setAnswer(result[i]);
+                //添加对象
+              pwptemp += Appliction.getAct().getBean(IChangePasswordDao.class).alterPWP(pwp);
+            }
+            if(pwptemp==3){
+                return "yes";
+            }
+            return null;
+        }else{
+            //进行用户的钱包的修改
+            int walletemp = Appliction.getAct().getBean(IWalletDao.class).alertPayPwdById(wallet);
+            if(walletemp!=0){
+                return "yes";
+            }
+            return null;
+        }
     }
 }
