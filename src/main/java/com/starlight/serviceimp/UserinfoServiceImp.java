@@ -1,6 +1,8 @@
 package com.starlight.serviceimp;
 
+import com.starlight.dao.IUserDao;
 import com.starlight.dao.IUserinfoDao;
+import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
 import com.starlight.service.IUserinfoService;
 import com.starlight.util.Appliction;
@@ -18,9 +20,15 @@ public class UserinfoServiceImp implements IUserinfoService{
     //用户信息
     @Resource
     IUserinfoDao iUserinfoDao;
-    
-    public List<UserInfo> findAllUserinfoById(List<Integer> list) {
-        return null;
+
+    //通过分页来查询数据！
+    public List<UserInfo> byPagingfindAll(Paging paging) {
+        return Appliction.getAct().getBean(IUserinfoDao.class).byPagingfindAll(paging);
+    }
+
+    //处理数据的总数量
+    public int countUserIdNumber() {
+        return Appliction.getAct().getBean(IUserDao.class).countAllIdNumber();
     }
 
     public List<UserInfo> findUserinfoByAge(int age) {
