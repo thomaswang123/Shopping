@@ -46,7 +46,7 @@
 
             /*进行后台的答案数据验证*/
             $("#butto2").click(function () {
-                alert("Aaa");
+                alert("aaaa");
                 $.post("answer.do",
                     $("#answer").serialize(),
                     function (data) {
@@ -96,7 +96,6 @@
             });*/
 
             $("#butto3").click(function () {
-                alert("aaa");
                 $.post("alertPpAll.do",
                     $("#alertPpAll").serialize(),
                     function (data) {
@@ -104,6 +103,7 @@
                             alert(data);
                         }
                     }, "text");
+
             });
 
 
@@ -442,7 +442,7 @@
                                 <div>
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
-                                           type="text" name="result">
+                                           type="text" name="resultone">
                                 </div>
                                 <br><br>
                             </div>
@@ -455,7 +455,7 @@
                                 <div>
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
-                                           type="text" name="result">
+                                           type="text" name="resulttwo">
                                 </div>
                                 <br><br>
                             </div>
@@ -467,7 +467,7 @@
                                 <div>
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
-                                           type="text" name="result">
+                                           type="text" name="resultthree">
                                 </div>
                                 <br><br>
                             </div>
@@ -526,7 +526,7 @@
                                     <span  style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result" >
-                                    <input id="ppid1"  name="ppid" style="display: block">
+                                    <input id="ppid1"  name="ppid" style="display: none">
                                 </div>
                                 <br><br>
                             </div>
