@@ -21,11 +21,12 @@ public class AdminController {
     //进入管理员界面
     @RequestMapping("adminOperation.do")
     public String adminInit(int number,int pagination, Paging paging, HttpSession sessionPaging, HttpServletRequest rst) {
-        //设置分页的数据pagination为第几页
+        //设置分页的数据pagination为第几页number为一页有多数据
         paging.setRise((pagination*number)-number);
         paging.setStop(number*pagination);
         //利用session机制，进行页面的展示数据
         sessionPaging.setAttribute("userdata", userinfoServiceImp.byPagingfindAll(paging));
+        sessionPaging.setAttribute("number", number+1);
         int numbersum = userinfoServiceImp.countUserIdNumber();
         if(number>numbersum){
             numbersum = 0;
@@ -35,7 +36,6 @@ public class AdminController {
         System.out.println(numbersum+","+number);
         rst.setAttribute("number",numbersum);
         rst.setAttribute("numbersum",userinfoServiceImp.countUserIdNumber());
-
         return "Admin";
     }
 }

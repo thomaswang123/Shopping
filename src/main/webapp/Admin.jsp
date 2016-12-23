@@ -404,7 +404,7 @@
     </span>
         <span style="margin-left: 300px">刷新</span>
     </div>
-    <iframe src="UserTable.html" class="iframea yang" frameBorder="0" scrolling="no"></iframe>
+    <iframe src="UserTable.jsp" class="iframea yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="Shopping.html" class="iframesp yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="jurisdiction_s yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="tongji_iframe yang" frameBorder="0" scrolling="no"></iframe>
