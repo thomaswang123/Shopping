@@ -9,5 +9,5 @@ public interface IAdminService {
      * @param u_id
      * @return
      */
-     int finAllClssesById(int u_id);
+     int findAllClssesById(int u_id);
 }

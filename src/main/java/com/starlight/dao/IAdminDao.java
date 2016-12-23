@@ -12,5 +12,13 @@ public interface IAdminDao {
      * @param u_id
      * @return
      */
-    int finAllClssesById(int u_id);
+    int findAllClssesById(int u_id);
+
+    /**
+    * 查找用户有多少条数据
+    * @return
+    */
+    int findAllCountNumber();
+     
+    
 }

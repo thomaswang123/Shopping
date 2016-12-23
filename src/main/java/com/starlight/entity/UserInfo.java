@@ -12,6 +12,17 @@ private int age ;
 private String phone;
 private String  address;
 
+//用于多表查询
+private User user ;
+
+public User getUser() {
+    return user;
+}
+
+public void setUser(User user) {
+    this.user = user;
+}
+
 public int getId() {
     return id;
 }

@@ -1,7 +1,10 @@
 package com.starlight.dao;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
@@ -14,6 +17,14 @@ public interface IUserinfoDao {
      * @return list  集合
      */
      UserInfo findUserifoById(int uinfo_id);
+
+    /**
+    * 查找所有
+    *  @return
+    */
+    List<UserInfo> byPagingfindAll(Paging paging) ;
+
+
 
 //	  用户注册
 void register(UserInfo userInfo);

@@ -21,7 +21,7 @@ public interface IUserDao {
 	 * @param user 账号
 	 * @return boolean
 	 */
-	public int login(User user);
+	 int login(User user);
 
 	/**
 	 * 通过账号来查询id
@@ -35,6 +35,13 @@ public interface IUserDao {
 	 * @return
 	 */
 	 int alertPwdById(User user);
+
+	/**
+	 * 统计所有的用户的数量
+	 * @return
+	 */
+	  int countAllIdNumber();
+
 
 //  用户注册
 void register(User user);

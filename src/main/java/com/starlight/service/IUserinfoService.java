@@ -1,5 +1,6 @@
 package com.starlight.service;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
 
 import java.util.List;
@@ -11,13 +12,17 @@ import java.util.List;
 public interface IUserinfoService {
 
     /**
-     * 通过用户id查找用户信息（分页）
-     *
+     * 查找用户信息（分页）
      * @param List<Integer> 用户id的集合
      * @return list<Userinfo><
      */
-    List<UserInfo> findAllUserinfoById(List<Integer> list);
+    List<UserInfo> byPagingfindAll(Paging paging);
 
+    /**
+     * 统计数据的总数量
+     * @return
+     */
+    int countUserIdNumber();
     /**
      * 通过姓名查询用户的信息
      *

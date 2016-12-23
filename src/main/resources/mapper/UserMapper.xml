@@ -10,7 +10,10 @@
         <result property="account" column="u_name" />
         <result property="password" column="u_pwd"/>
     </resultMap>
-
+    <!--统计用户数量-->
+        <select id="countAllIdNumber" resultType="int">
+           select count(u_id) from user
+        </select>
     <!--用户注册-->
     <insert id="register"  parameterType="com.starlight.entity.User">
         insert into User(u_name,u_pwd)values(#{account},#{password})

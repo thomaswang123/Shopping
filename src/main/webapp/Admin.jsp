@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: thomas.wang
+  Date: 2016/12/23
+  Time: 11:38
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>修改密码--蛋糕-shopping</title>
@@ -287,17 +295,50 @@
                     <form id="loginForm">
                         <fieldset id="body">
                             <fieldset>
-                                <label for="email">账号 ：</label>
-                                <input type="text" name="username" id="email">
+                                <c:choose>
+                                <c:when test="${sessionScope.userinfo==null}">
+                                <div style="color: red">请登录！!</div>
+                                <fieldset>
+                                    <label for="email">账号</label>
+                                    <input type="text" name="username" id="email">
+                                </fieldset>
+                                <fieldset>
+                                    <label for="password">密码</label>
+                                    <input type="password" name="password" id="password">
+                                </fieldset>
+                                <input type="submit" id="login" value="登陆">
+                                <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                             </fieldset>
-                            <fieldset>
-                                <label for="password">密码 ：</label>
-                                <input type="password" name="password" id="password">
-                            </fieldset>
-                            <input type="submit" id="login" value="登陆">
-                            <!--<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>-->
-                        </fieldset>
-                        <p>没有账号 ? <a class="sign" href="Account.html">点击注册</a> <span><a href="#">忘记密码?</a></span></p>
+                            <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a
+                                    href="ChangePassword.jsp">忘记密码?</a></span>
+                            </p>
+                            </c:when>
+                            <c:otherwise>
+                            <div>
+                                <h4
+                                <span>欢迎:</span>
+                                <span>
+                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
+                                </span>
+                                <c:choose>
+                                    <c:when test="${sessionScope.admin>0}">
+                                        <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span
+                                                style="color: red">管理中心</span> </a></span>
+                                        <span style="margin-left: 20px;color: red">Lv:</span><span
+                                            style="color:red">${sessionScope.admin}</span>
+                                    </c:when>
+                                    <c:otherwise></c:otherwise>
+                                </c:choose>
+                                </h4>
+                                <h5 style="margin-top: 15px">
+                                    <span><a href="Index.jsp"><img src="images/login.png"><span
+                                            style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a
+                                            href="Index.jsp">退出</a></span>
+                                </h5>
+                            </div>
+                            </c:otherwise>
+                            </c:choose>
                     </form>
                 </div>
             </div>
@@ -341,6 +382,7 @@
             <option>30</option>
           </select>
     </span>
+        <span style="margin-left: 20px">数量:<label id="number"><b>${requestScope.numbersum}</b></label></span>
         <span style="margin-left: 190px">
          类型：<select style="width: 90px" class="selectuser">
                 <option>id</option>
@@ -366,6 +408,39 @@
     <iframe src="Shopping.html" class="iframesp yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="jurisdiction_s yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="tongji_iframe yang" frameBorder="0" scrolling="no"></iframe>
+        <div style="margin-left: 1100px">
+            <b>
+                <c:choose>
+               <%-- 只有一页--%>
+                    <c:when test="${requestScope.number==1&&requestScope==0}">
+                    </c:when>
+                    <c:otherwise>
+                <span><a href="#">上一页</a></span>
+                    <%--页面数--%>
+                <c:choose>
+                    <c:when test="${requestScope.number<10&&requestScope.number>1}">
+                        <c:forEach var="i" begin="1" end="${requestScope.number}">
+                            <span style="margin-left: 10px"><a href="#">${i}</a></span>
+                        </c:forEach>
+                    </c:when>
+                    <c:when test="${requestScope.number>10}">
+                        <c:forEach var="i" begin="1" end="${7}">
+                            <span style="margin-left: 10px"><a href="#">${i}</a></span>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <span>...</span> <span style="margin-left: 10px">${requestScope.number}</span>
+                    </c:otherwise>
+                </c:choose>
+                <span>
+        <input type="text" style="width: 25px;height: 20;margin-left: 10px">
+        <input type="button" value="跳转" id="buttonhref" style="text-align: center;margin-left: 10px">
+        </span>
+                <span><a href="#">下一页</a></span>
+            </b>
+        </div>
+    </c:otherwise>
+    </c:choose>
 </div>
 <!--footer-->
 <div class="footer-bottom">

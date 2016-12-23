@@ -14,7 +14,8 @@ import javax.annotation.Resource;
  * Created by thomas.wang on 2016/12/20.
  */
 @Controller
-public class Change_PasswordCotroller {
+public class ChangePasswordController {
+
     //用来记录改用户id方便其他操作
     private int u_id = 0;
     //获取对用户业务进行处理的对象
@@ -25,29 +26,46 @@ public class Change_PasswordCotroller {
     @Resource
     private ChangePasswordServiceImp change_PasswordServiceImp;
 
+
     public ChangePasswordServiceImp getChange_PasswordServiceImp() {
+
         return change_PasswordServiceImp;
     }
 
+
     public void setChange_PasswordServiceImp(ChangePasswordServiceImp change_PasswordServiceImp) {
+
         this.change_PasswordServiceImp = change_PasswordServiceImp;
     }
 
+
     public UserServiceImp getUserServiceImp() {
+
         return userServiceImp;
     }
 
+
     public void setUserServiceImp(UserServiceImp userServiceImp) {
+
         this.userServiceImp = userServiceImp;
     }
+
 
     //进行判断密保问题域答案是否一致，进行下一步的修改密码操作等
     @RequestMapping("answer.do")
     @ResponseBody
-    public String consistency_OfJudgment(String[] result) {
+    public String consistency_OfJudgment(String resultthree, String resultone, String resulttwo) {
+
+        String[] result = new String[3];
+        result[0] = resultone;
+        result[1] = resulttwo;
+        result[2] = resultthree;
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(result[i]);
+        }
         //进行判断答案是否正确
         // 返回的是ajax的数据，不是页面的名字
-        return change_PasswordServiceImp.Answer_Comparison(u_id, result);
+        return change_PasswordServiceImp.Answer_Comparison(result, u_id);
     }
 
 
@@ -56,6 +74,8 @@ public class Change_PasswordCotroller {
     //此注解不能省略 否则ajax无法接受返回值
     @ResponseBody
     public String user_CheckExist(String username) {
+
+        System.out.println("aaaa");
         //用户账号对应的id
         if ((u_id = userServiceImp.byname_GainId(username)) != 0) {
             //这里反回值是ajax的回调函数中数据！不是页面
@@ -64,34 +84,19 @@ public class Change_PasswordCotroller {
         return null;
     }
 
+
     //修改密码，支付密码，密保答案
     @RequestMapping("alertPpAll.do")
     //此注解不能省略 否则ajax无法接受返回值
     @ResponseBody
-    public String alertPpAll(String[] result,String password, String payment_code,String[] ppid){
-        User user = new User();
-        Wallet wallet = new Wallet();
-            //用户重置的密码
-            user.setPassword(password);
-            user.setId(u_id);
-        if(payment_code!=null&&payment_code!="") {
-            //用户的钱包
-            wallet.setId(u_id);
-            wallet.setPassword(Integer.parseInt(payment_code));
-            System.out.println(Integer.parseInt(payment_code));
-        }else{
-            wallet = null;
-        }
-        for (int i = 0; i<result.length ; i++) {
-            if(result[i]==null&&result[i]==""){
-                result = null;
-            }
-        }
-        //判断是否为空
-        if(change_PasswordServiceImp.alertAllById(user,wallet,result,ppid)!=null) {
-            return "yes";
-        }
-        return null;
+    public String alertPpAll(String[] result, User user, Wallet wallet, String password, String payment_code, String[] ppid) {
+        //用户重置的密码
+        user.setPassword(password);
+        user.setId(u_id);
+        //钱包
+        wallet.setId(u_id);
+        wallet.setPassword(Integer.parseInt(payment_code));
+        return change_PasswordServiceImp.alertAllById(user, result, ppid, wallet);
     }
 
 }

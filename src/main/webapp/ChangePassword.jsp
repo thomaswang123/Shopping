@@ -37,75 +37,80 @@
     <script type="application/x-javascript">
         $(document).ready(function () {
             /*展示修改密保以及支付密码的输入框*/
-            $("#zhifu").click(function () {
+            $("#zhifuAndmibao").click(function () {
                 $("#Payment_codepswd").toggle();
             });
-            $("#mibao").click(function () {
-                $("#Secret_question").toggle();
-            });
-
             /*进行后台的答案数据验证*/
             $("#butto2").click(function () {
-                alert("aaaa");
                 $.post("answer.do",
                     $("#answer").serialize(),
                     function (data) {
-                        if (data != "") {
-                            alert(data);
+                        if (data != "" && data != null) {
                             $("#security_settings").show();
                             $("#apply_for").hide();
+                            $("#answerwarn").hide();
+                        } else {
+                            $("#answerwarn").show();
                         }
                     }, "text");
             });
 
             /*档账号输入框！失去焦点时，便发送ajax请求，请求成功，隐藏账号输入框*/
-            $('#butto1').click(
-                function () {
-                    $.post("user_checkexist.do",
-                        {username: $("#username").val()}, function (data) {
-                            if (data != null) {
-                                $("#tishi").hide();
-                                $("#userid").hide();
-                                var arr = data.split(",");
-                                for (var i = 0; i < arr.length; i++) {
-                                    if ((i+1)%2==0) {
-                                        $("#Security_question" + (i + 1)).text(arr[i] + "?");
-                                        $("#Security_question" + (i + 7)).text(arr[i] + "?");
-                                    }else{
-                                        $("#ppid" + (i+1)).val(arr[i]);
-                                        $("#ppid" + (i+1)).name="ppid";
+            $('#butto1').click(function () {
+                    //判断是否为空
+                    if ($("#username").val() == null || $("#username").val() == "" || $("#username").val().length < 6) {
+                        $("#tishi").show();
+                    } else {
+                        $("#tishi").hide();
+                        $.post("user_checkexist.do",
+                            {username: $("#username").val()}, function (data) {
+                                if (data != null && data != "") {
+                                    $("#tishi").hide();
+                                    $("#userid").hide();
+                                    var arr = data.split(",");
+                                    for (var i = 0; i < arr.length; i++) {
+                                        if ((i + 1) % 2 == 0) {
+                                            $("#Security_question" + (i + 1)).text(arr[i] + "?");
+                                            $("#Security_question" + (i + 7)).text(arr[i] + "?");
+                                        } else {
+                                            $("#ppid" + (i + 1)).val(arr[i]);
+                                            $("#ppid" + (i + 1)).name = "ppid";
+                                        }
                                     }
+                                    $("#Security_question").show();
+                                } else {
+                                    $("#tishi").show();
                                 }
-                                $("#Security_question").show();
-                            } else {
-                                $("#tishi").show();
-                            }
-                        }, "text"
-                    );
-                }
-            );
+                            }, "text"
+                        );
+                    }
+                }//判断
+            )
+            ;
             /*进行后台的答案数据验证*/
-      /*      $("#butto3").click(function () {
-                $.post("alertAll.do",
-                    $("#alertPpAll").serialize(),
-                    function (data) {
-                        if (data != null) {
-                            alert(data);
-                        }
-                    }, "text");
-            });*/
+            /*      $("#butto3").click(function () {
+             $.post("alertAll.do",
+             $("#alertPpAll").serialize(),
+             function (data) {
+             if (data != null) {
+             alert(data);
+             }
+             }, "text");
+             });*/
 
             $("#butto3").click(function () {
                 $.post("alertPpAll.do",
                     $("#alertPpAll").serialize(),
                     function (data) {
-                        if (data != null) {
-                            alert(data);
+                        if (data != null && data != "") {
+                            alert("修改成功");
+                            $("#passWordAndaAnswer").hide();
+                            window.href("Index.jsp");
+                        } else {
+                            $("#passWordAndaAnswer").show();
                         }
                     }, "text");
-
             });
-
 
         });
     </script>
@@ -344,7 +349,7 @@
             <div class="header-right login">
                 <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                 <div id="loginBox">
-                    <form id="loginForm" action="login.do" method="post">
+                    <form id="loginForm" action="login.do?url=ChangePassword" method="post">
                         <fieldset id="body">
                             <c:choose>
                             <c:when test="${sessionScope.userinfo==null}">
@@ -373,7 +378,7 @@
                                 </span>
                                 <c:choose>
                                     <c:when test="${sessionScope.admin>0}">
-                                        <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span
+                                        <span style="margin-left: 20px"><a href="adminOperation.do?number=10&pagination=1"><img src="images/admin.png"><span
                                                 style="color: red">管理中心</span> </a></span>
                                         <span style="margin-left: 20px;color: red">Lv:</span><span
                                             style="color:red">${sessionScope.admin}</span>
@@ -382,10 +387,10 @@
                                 </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="Index.jsp"><img src="images/login.png"><span
+                                    <span><a href="switchover.do?url=ChangePassword"><img src="images/login.png"><span
                                             style="padding-top: 10px">切换账号</span></a></span>
                                     <span style="color: red;margin-left: 70px;margin-top: 10px"><a
-                                            href="Index.jsp">退出</a></span>
+                                            href="switchover.do?jspurl=ChangePassword">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>
@@ -422,7 +427,7 @@
                         <span>account number (填写账号 ：) <label style="color: red"> *</label></span>
                         <span style="float: left;margin-top: 5px">账号：</span>
                         <input type="text" id="username" style="width: 300px;float: left;margin-left: 23px">
-                        <span style="margin-left: 20px;color=red;display: none" id="tishi">账号不正确正确</span><br>
+                        <span style="margin-left: 30px;color=red;display: none" id="tishi">账号不正确正确</span><br>
                         <div class="clearfix"></div>
                         <div class="register-but">
                             <input type="button" id="butto1" value="确认提交">
@@ -433,6 +438,7 @@
                     <div id="Security_question" style="display: none">
                         <form id="answer">
                             <span>Secret question (密保问题：) <label style="color: red"> *请正确填写相关信息</label></span>
+                            <h4 style="color: red;display: none">密保答案不正确</h4>
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题一：</span>
                                 <span style="margin-top: 5px"><label id="Security_question2"></label></span>
@@ -483,27 +489,22 @@
                     <form id="alertPpAll">
                         <h3>security settings</h3>
                         <h4 style="color: #d58512;">设置密码等 :</h4>
-                        <div>
-                    <span style="color: #d58512;float: left">
-                             重置密保 :<input type="checkbox" id="mibao">
-                             </span>
-                            <span style="color: #d58512;float: left;margin-left: 15px">
-                             重置支付密码 :<input type="checkbox" id="zhifu">
-                             </span><br>
-                        </div>
-                        <br>
-
+                      <%--  <div>
+                            <span style="color: #d58512;margin-left: 15px">
+                             重置支付密码和密保 :<input type="checkbox" id="zhifuAndmibao">
+                             </span>--%>
+                            <h4 id="passWordAndaAnswer" style="display: none">你的填写的信息有误</h4>
                         <div class="input">
-                            <span>Password (密码 :) <label style="color: red"> *请填写新的密码</label></span>
+                            <span>Password (密码:) <label style="color: red"> *请填写新的密码（必填）</label></span>
                             <input type="password" name="password" style="width: 300px">
                         </div>
 
                         <div class="input">
-                            <span>Confirm Password (确认密码 :) <label style="color: red"> *</label></span>
+                            <span>Confirm Password (确认密码 :) <label style="color: red"> *（必填）</label></span>
                             <input type="password" name="Confirmpssoword" style="width: 300px">
                         </div>
-                        <!--支付密码-->
-                        <div id="Payment_codepswd" style="display: none">
+                        <!--支付密码以及密保-->
+                        <div id="Payment_codepswd" style="display: block">
                             <div class="input">
                                 <span> payment code (支付密码 :) <label style="color: red;"> *请填写新的支付密码</label></span>
                                 <input type="password" name="payment_code" style="width: 300px">
@@ -513,9 +514,6 @@
                                 <span> affirm payment code (确认支付密码 :) <label style="color: red"> *</label></span>
                                 <input type="password" name="affirm_payment_code" style="width: 300px">
                             </div>
-                        </div>
-                        <!--重置密码-->
-                        <div id="Secret_question" style="display: none">
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题一：</span>
                                 <span style="margin-top: 5px"><label id="Security_question8"></label></span>
@@ -523,24 +521,24 @@
 
                             <div class="input">
                                 <div>
-                                    <span  style="float: left;margin-top: 15px">答案：</span>
+                                    <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
-                                           type="text" name="result" >
-                                    <input id="ppid1"  name="ppid" style="display: none">
+                                           type="text" name="result">
+                                    <input id="ppid1" name="ppid" style="display: none">
                                 </div>
                                 <br><br>
                             </div>
                             <div>
                                 <span style="float: left;margin-top: 5px">密保问题二：</span>
-                                <span style="margin-top: 5px"><label  id="Security_question10"></label></span>
+                                <span style="margin-top: 5px"><label id="Security_question10"></label></span>
                             </div>
 
-                            <div class="input" >
-                                <div >
+                            <div class="input">
+                                <div>
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
-                                    <input id="ppid3"  name="ppid" style="display: none">
+                                    <input id="ppid3" name="ppid" style="display: none">
                                 </div>
                                 <br><br>
                             </div>
@@ -549,19 +547,19 @@
                                 <span style="margin-top: 5px"><label id="Security_question12"></label></span>
                             </div>
                             <div class="input">
-                                <div >
+                                <div>
                                     <span style="float: left;margin-top: 15px">答案：</span>
                                     <input style="margin-top: 10px;float: left;margin-left: 23px;width: 300px;height: 30px"
                                            type="text" name="result">
-                                <%--    <label id="ppid5"  ></label>--%>
-                                    <input id="ppid5"  name="ppid" style="display: none">
+                                    <%--    <label id="ppid5"  ></label>--%>
+                                    <input id="ppid5" name="ppid" style="display: none">
                                 </div>
                                 <br><br>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="register-but">
-                            <input type="button" id="butto3" value="确认提交" >
+                            <input type="button" id="butto3" value="确认提交">
                             <div class="clearfix"></div>
                         </div>
                     </form>

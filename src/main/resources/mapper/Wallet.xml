@@ -13,7 +13,7 @@
 
     <!--修改支付密码-->
     <update id="alertPayPwdById" parameterType="com.starlight.entity.Wallet">
-           update wallet w_paypwd = #{password} where w_id = #{id}
+           update wallet set w_paypwd = #{password} where w_id = #{id}
     </update>
 
     <!--用户注册-->
