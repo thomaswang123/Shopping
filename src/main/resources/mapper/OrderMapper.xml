@@ -16,4 +16,9 @@
         <delete id="delOrder">
             delete  from orders where  o_uid = #{uid}
         </delete>
+
+    <insert id="addOrder" parameterType="com.starlight.entity.Order">
+        insert into Orders (o_uid,o_gid,o_money,o_number,o_date)values(#{userId},#{goodsId},#{money},#{number},#{date})
+    </insert>
+
 </mapper>

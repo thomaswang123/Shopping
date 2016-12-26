@@ -46,7 +46,6 @@
                 var gid=<%=goods.getId()%>;
 
                 var quantity=$("#quantity").val();
-                alert("发送请求"+gid+"--"+quantity);
                 $.ajax({
                     url:'addToCart.do',
                     type:'post',
@@ -388,7 +387,7 @@
                 a
                 <p class="qty"> 数量 :  </p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small" onclick="up_sum(this.value)" >
                 <div class="btn_form">
-                    <a  id="addGoods" class="add-cart item_add">购买</a>
+                    <a  id="addGoods" class="add-cart item_add">加入购物车</a>
                 </div>
                 <div class="tag">
                     <p>分类 : <a href="#"> 蛋糕</a></p>

@@ -24,4 +24,13 @@
     <delete id="delShoppingCart" parameterType="int">
         delete shoppingcart where sc_uid = #{uid}
     </delete>
+
+    <delete id="removeOfCart" parameterType="int">
+        delete from ShoppingCart where sc_id=#{id}
+    </delete>
+
+    <select id="findOnlyOne" parameterType="int" resultMap="shoppingCart">
+        select sc_id,sc_uid,sc_gid,sc_number,sc_date,sc_summoney from ShoppingCart where sc_id=#{id}
+    </select>
+
 </mapper>

@@ -1,7 +1,5 @@
 package com.starlight.serviceimp;
 
-import com.starlight.dao.IUserDao;
-import com.starlight.entity.Paging;
 import com.starlight.dao.IUserInfoDao;
 import com.starlight.dao.IWalletDao;
 import com.starlight.entity.UserInfo;
@@ -17,8 +15,8 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/20.
  */
 @Component
-public class UserinfoServiceImp implements IUserinfoService {
-
+public class UserinfoServiceImp implements IUserinfoService{
+    
     //用户信息
     @Resource
     IUserInfoDao iUserinfoDao;
@@ -79,16 +77,14 @@ public class UserinfoServiceImp implements IUserinfoService {
     //查询用户信息返回一个List用户信息集合
     public UserInfo findUserinfosById(int u_id) {
         IUserInfoDao userifodao = Appliction.getAct().getBean(IUserInfoDao.class);
-        return userifodao.findUserifoById(u_id);
+        return  userifodao.findUserifoById(u_id);
     }
-
-    //    插入用户详细信息
-    public void register(UserInfo userInfo) {
+//    插入用户详细信息
+    public void register(UserInfo userInfo){
         iUserinfoDao.register(userInfo);
     }
-
-    //    注册用户钱包
-    public void registerWallet(Wallet wallet) {
+//    注册用户钱包
+    public void registerWallet(Wallet wallet){
         iWalletDao.register(wallet);
     }
 

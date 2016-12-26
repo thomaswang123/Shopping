@@ -6,8 +6,8 @@
 
     <!--字段映射-->
     <resultMap id="wallet" type="com.starlight.entity.Wallet">
-        <id property="id" column="w_id " />
-        <result property="money" column="w_money " />
+        <id property="id" column="w_id" />
+        <result property="money" column="w_money" />
         <result property="password" column="w_paypwd"/>
     </resultMap>
 
@@ -25,6 +25,10 @@
     <select id="findIdByUser" parameterType="String" resultType="int">
         select u_id from user where u_name=#{u_name}
     </select>
+
+   <update id="updateMoney" parameterType="com.starlight.entity.Wallet" >
+       update Wallet set w_money=#{money}where w_id=#{id}
+   </update>
 
     <!--查找是否存在该用户-->
     <select id="findAccout" parameterType="String"  resultMap="wallet">

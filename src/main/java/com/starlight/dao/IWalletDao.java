@@ -46,4 +46,10 @@ public interface IWalletDao {
      */
     int delWakket(int uid);
 
+    /**
+     *  修改金额
+     * @param wallet
+     */
+    void updateMoney(Wallet wallet);
+
 }
