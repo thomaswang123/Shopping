@@ -102,8 +102,7 @@ public class UserController {
             }
         }
 
-//
-        插入钱包表数据
+       // 插入钱包表数据
         wallet.setId(userId);
         wallet.setPassword(Integer.parseInt(payPassWord));
         userinfoServiceImp.registerWallet(wallet);

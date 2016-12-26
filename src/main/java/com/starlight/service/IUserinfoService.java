@@ -68,6 +68,12 @@ public interface IUserinfoService {
 
     void registerWallet(Wallet wallet);
 
-
+    /**
+     * 根据页面数据数量，以及第几页来展示数据
+     * @param pagination
+     * @param number
+     * @return
+     */
+    List<UserInfo> pagination(String pagination,String number);
 
 }

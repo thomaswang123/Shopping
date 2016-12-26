@@ -10,4 +10,11 @@ public interface IAdminService {
      * @return
      */
      int findAllClssesById(int u_id);
+
+    /**
+     * 删除用户相关所有数据
+     * @param uid
+     * @return
+     */
+     int  delAllUserData(int uid);
 }

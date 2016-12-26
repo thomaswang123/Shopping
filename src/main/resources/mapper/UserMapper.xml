@@ -10,6 +10,12 @@
         <result property="account" column="u_name" />
         <result property="password" column="u_pwd"/>
     </resultMap>
+
+    <!--删除用户-->
+    <delete id="delUser" parameterType="int">
+        delete from user where u_id =#{uid}
+    </delete>
+
     <!--统计用户数量-->
         <select id="countAllIdNumber" resultType="int">
            select count(u_id) from user

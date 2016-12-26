@@ -22,23 +22,10 @@
         INSERT INTO UserInfo(uinfo_id,uinfo_nickname,uinfo_sex,uinfo_age,uinfo_phone,uinfo_address)
         VALUES (#{id},#{nickname},#{sex},#{age},#{phone},#{address})
     </insert>
-<!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
-        delete from DEPT
-        <where>
-            <if test="deptnos!=null">
-                deptno in
-                <foreach collection="deptnos" item="dept" open="(" separator="," close=")">
-                #{dept}
-                </foreach>
-            </if>
-            <if test="deptnos==null">
-                1=2
-            </if>
-        </where>
-    </delete>-->
 
-
-
+    <delete id="delUserInfo">
+        delete from  userinfo where uinfo_id = #{uid}
+    </delete>
 
     <!--用户信息和用户表连表分页查询-->
     <resultMap id="CustomerOrdersMap" type="com.starlight.entity.UserInfo">

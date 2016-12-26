@@ -17,6 +17,13 @@ public interface IAdminDao {
     * @return
     */
     int findAllCountNumber();
+
+    /**
+     * 删除用户相关数据
+     * @param uid
+     * @return
+     */
+   int delAllUserData(int uid);
      
     
 }

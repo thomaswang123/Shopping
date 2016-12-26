@@ -31,9 +31,9 @@
         SELECT u_id FROM USER WHERE u_name=#{u_name}
     </select>
 
-    <resultMap id="uMap" type="com.starlight.entity.User">
-        <id column="u_id" property="u_id" />
-    </resultMap>
+    <delete id="delWakket" parameterType="int">
+        delete  from wallet where w_id = #{uid}
+    </delete>
 
 <!--
     <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">

@@ -55,6 +55,25 @@
                 $(".yang").hide();
                 $(".tongji_iframe").display = "block";
             });
+
+            /*点击页码进行刷新数据*/
+            $(".connect").click(function () {
+                /*进行颜色的变换*/
+                var pagination = $(this).attr("id");
+                var number = $("#select").val();
+                $(".connect").css("color", "blue");
+                $(this).css("color", "red");
+                /*进行查询该页面下的数据发送请求*/
+                $.post("pagination.do",
+                    {number: "" + number, pagination: "" + pagination}
+                    , function (data) {
+                      /*刷新用户内联页面，展示新的数据*/
+                        $('#iframeas').attr('src', $('#iframeas').attr('src'));
+                    }, "text"
+                );
+
+
+            });
         });
     </script>
 </head>
@@ -322,7 +341,9 @@
                                 </span>
                                 <c:choose>
                                     <c:when test="${sessionScope.admin>0}">
-                                        <span style="margin-left: 20px"><a href="adminOperation.do?number=10&pagination=1"><img src="images/admin.png"><span
+                                        <span style="margin-left: 20px"><a
+                                                href="adminOperation.do?number=10&pagination=1"><img
+                                                src="images/admin.png"><span
                                                 style="color: red">管理中心</span> </a></span>
                                         <span style="margin-left: 20px;color: red">Lv:</span><span
                                             style="color:red">${sessionScope.admin}</span>
@@ -376,11 +397,11 @@
     <div style="margin-top: 20px;margin-left: 150px">
         <span>显示:</span>
         <span>
-        <select>
-            <option>10</option>
+        <select id="select" ="">
+            <option selected value="10">10</option>
             <option>20</option>
             <option>30</option>
-          </select>
+            </select>
     </span>
         <span style="margin-left: 20px">数量:<label id="number"><b>${requestScope.numbersum}</b></label></span>
         <span style="margin-left: 190px">
@@ -404,53 +425,59 @@
     </span>
         <span style="margin-left: 300px"><a><img src="images/shuanxin.png">刷新</a></span>
     </div>
-    <iframe src="UserTable.jsp" class="iframea yang" frameBorder="0" scrolling="no"></iframe>
+    <iframe src="usertable.jsp" id="iframeas" class="iframea yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="Shopping.html" class="iframesp yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="jurisdiction_s yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="tongji_iframe yang" frameBorder="0" scrolling="no"></iframe>
-        <div style="margin-left: 1100px">
-            <%--用来记录当前的页码--%>
-            <input id="thisPaginaTion" value="1" style="display: none">
-            <b>
-                <c:choose>
-               <%-- 只有一页--%>
-                    <c:when test="${requestScope.number==1&&requestScope==0}">
-                    </c:when>
-                    <c:otherwise>
-                <span><a href="#">上一页</a></span>
-                    <%--页面数--%>
-                <c:choose>
-                    <c:when test="${requestScope.number<10&&requestScope.number>1}">
-                        <c:forEach var="i" begin="1" end="${requestScope.number}">
-                            <c:choose>
-                                <c:when test="${i==1}">
-                                    <span style="margin-left: 10px"><a href="#" style="color: red;font-size: 20px">${i}</a></span>
-                                </c:when>
-                                <c:otherwise>
-                                    <span style="margin-left: 10px;color:#006dcc"><a href="#" style="font-size: 20px">${i}</a></span>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </c:when>
-                    <c:when test="${requestScope.number>10}">
-                        <c:forEach var="i" begin="1" end="${7}">
-                            <span  style="margin-left: 10px"><a href="#" style="font-size: 20px">${i}</a></span>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <span>...</span>
-                        <span style="margin-left: 10px" >
+    <div style="margin-left: 1100px">
+        <%--用来记录当前的页码--%>
+        <input id="thisPaginaTion" value="1" style="display: none">
+        <b>
+            <c:choose>
+                <%-- 只有一页--%>
+            <c:when test="${requestScope.number==1&&requestScope==0}">
+            </c:when>
+            <c:otherwise>
+            <span><a href="#">上一页</a></span>
+                <%--页面数--%>
+            <c:choose>
+                <c:when test="${requestScope.number<10&&requestScope.number>1}">
+                    <c:forEach var="i" begin="1" end="${requestScope.number}">
+                        <c:choose>
+                            <c:when test="${i==1}">
+                                <span style="margin-left: 10px"><a class="connect" id="${i}"
+                                           onclick="conncet(this.id,this.class)" href="#"
+                                            style="color: red;font-size: 20px">${i}</a></span>
+                            </c:when>
+                            <c:otherwise>
+                                <span style="margin-left: 10px;color:#006dcc"><a class="connect" id="${i}"
+                                      onclick="conncet(this.id,this.class)"
+                                     href="#" style="font-size: 20px">${i}</a></span>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </c:when>
+                <c:when test="${requestScope.number>10}">
+                    <c:forEach var="i" begin="1" end="${7}">
+                        <span style="margin-left: 10px"><a class="connect" id="${i}"
+                                                           onclick="conncet(this.id,this.class)" href="#"
+                                                           style="font-size: 20px">${i}</a></span>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <span>...</span>
+                    <span style="margin-left: 10px">
                        <a href="#">${requestScope.number}</a>
                     </span>
-                    </c:otherwise>
-                </c:choose>
-                <span>
+                </c:otherwise>
+            </c:choose>
+            <span>
         <input type="text" style="width: 25px;height: 20;margin-left: 10px">
         <input type="button" value="跳转" id="buttonhref" style="text-align: center;margin-left: 10px">
         </span>
-                <span style="margin-left: 10px"><a href="#">下一页</a></span>
-            </b>
-        </div>
+            <span style="margin-left: 10px"><a href="#">下一页</a></span>
+        </b>
+    </div>
     </c:otherwise>
     </c:choose>
 </div>

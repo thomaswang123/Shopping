@@ -56,6 +56,7 @@ public class Test {
         for (int temp = 0; temp < string.length; temp++
                 ) {
             System.out.println(string[temp]);}
+            System.out.println(11%10);
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

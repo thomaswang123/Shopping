@@ -12,6 +12,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/admin.css" type="text/css" rel="stylesheet" media="all">
+    <script src="js/jquery.min.js"></script>
+    <script type="application/x-javascript">
+        $(document).ready(function () {
+            /*删除用户操作*/
+            $(".deluser").click(function () {
+                var id = $(this).attr("id");
+                $.post("deluser.do",
+                    {uid:""+id},function (data) {
+                        alert(data);
+                        //刷新当前页面
+                        window.location.reload();
+                    },"text");
+            });
+
+
+        });
+
+    </script>
 </head>
 <body>
 <!--展示数据-->
@@ -40,7 +58,7 @@
                             <td>${ud.phone}</td>
                             <td>${ud.address}</td>
                             <td>
-                                <input type="button"  name="${ud.user.id}" style="font-size: 20px;
+                                <input type="button"  class="deluser" id="${ud.user.id}" style="font-size: 20px;
                                 color: red;cursor: hand" value="×删除">
                             </td>
                         </tr>
@@ -55,7 +73,7 @@
                             <td>${ud.phone}</td>
                             <td>${ud.address}</td>
                             <td>
-                                <input type="button"  name="${ud.user.id}"
+                                <input type="button"  class="deluser"  id="${ud.user.id}"
                                        style="font-size: 20px;color: red;cursor: hand" value="×删除">
                             </td>
                         </tr>

@@ -22,4 +22,10 @@ public interface IShoppingCartDao {
 	 */
 	void addToCart(ShoppingCart shoppingCart);
 
+	/**
+	 * 删除用户信息
+	 * @param uid
+	 * @return
+	 */
+	int delShoppingCart(int uid);
 }

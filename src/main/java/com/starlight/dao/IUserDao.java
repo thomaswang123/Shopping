@@ -41,15 +41,36 @@ public interface IUserDao {
 	 */
 	  int countAllIdNumber();
 
-
-//  用户注册
+	/**
+	 *  用户注册
+	 * @param user
+	 */
 	void register(User user);
-//	查找该用户id
+
+	/**
+	 * 查找该用户id
+	 * @param account
+	 * @return
+	 */
 	int findIdByUser(String account);
-//		查询账号是否存在
+	/**
+	 * 查询账号是否存在
+	 * @param account
+	 * @return
+	 */
 	List<User> findAccount(String account);
 
-//	修改密码
+	/**
+	 * 修改密码
+	 * @param password
+	 * @return
+	 */
 	boolean alterPassWord(String password);
 
+	/**
+	 * 删除用户信息
+	 * @param uid
+	 * @return
+	 */
+	int delUser(int uid);
 }

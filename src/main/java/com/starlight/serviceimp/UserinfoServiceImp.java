@@ -24,15 +24,35 @@ public class UserinfoServiceImp implements IUserinfoService {
     IUserInfoDao iUserinfoDao;
     @Resource
     IWalletDao iWalletDao;
+    @Resource
+    Paging paging;
 
     //通过分页来查询数据！
     public List<UserInfo> byPagingfindAll(Paging paging) {
         List<UserInfo> list = Appliction.getAct().getBean(IUserInfoDao.class).byPagingfindAll(paging);
         //添加颜色
-        for (int i = 1; i < list.size(); i++) {
-            list.get(i).setColor(i);
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setColor(i+1);
         }
         return list;
+    }
+
+    //根据分页的页码来分页
+    public List<UserInfo> pagination(String pagination,String number) {
+      //页面的数据数量
+       int nbr = Integer.parseInt(number);
+       //页码
+       int pat = Integer.parseInt(pagination);
+       //从第几个数据开始
+        paging.setRise(pat*nbr-nbr);
+        //那个数据结束
+        paging.setStop(pat*nbr);
+        List<UserInfo> list = iUserinfoDao.byPagingfindAll(paging);
+        for (int i = 0; i <list.size() ; i++) {
+            list.get(i).setColor(i);
+            System.out.println(list.get(i).getNickname());
+        }
+      return list;
     }
 
     //处理数据的总数量
