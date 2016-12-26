@@ -33,7 +33,7 @@ public class UserController {
     private UserinfoServiceImp userinfoServiceImp;
     //获取管理员业务处理的类
     @Resource
-    private AdminServiceImp aminServiceImp;
+    private AdminServiceImp adminServiceImp;
 
     @Resource
     User user;
@@ -148,7 +148,7 @@ public class UserController {
             System.out.println(userInfo.getNickname());
             sessionUser.setAttribute("userinfo", userInfo);
             //判断是否为空
-            sessionUser.setAttribute("admin", aminServiceImp.findAllClssesById(u_id));
+            sessionUser.setAttribute("admin", adminServiceImp.findAllClssesById(u_id));
             return url;
         }
         return url;

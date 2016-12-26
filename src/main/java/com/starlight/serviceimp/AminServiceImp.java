@@ -17,7 +17,11 @@ public class AminServiceImp implements IAdminService {
     IAdminDao iAdminDao;
     
     //查询管理员的等级
-    public int finAllClssesById(int u_id) {
-        return Appliction.getAct().getBean(IAdminDao.class).finAllClssesById(u_id);
+    public int findAllClssesById(int u_id) {
+        return Appliction.getAct().getBean(IAdminDao.class).findAllClssesById(u_id);
+    }
+
+    public int delAllUserData(int uid) {
+        return 0;
     }
 }
