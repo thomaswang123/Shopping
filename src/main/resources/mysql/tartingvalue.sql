@@ -42,17 +42,18 @@ insert  into passwordprotection values(2011,1004,'你最好的朋友姓名','哼
 insert  into passwordprotection values(2012,1004,'你最好异性名字','哼一哼');
 
 /*商品表*/
-insert into goods values(1111,'生日蛋糕','2.png',100,'用于生日宴会以及家庭生日的一筐蛋糕');
-insert into goods values(1112,'巧克力风味蛋糕','g1.jpg',152.50,'如果你是喜欢吃巧克力的人，这是绝对是非常棒的选择');
-insert into goods values(1113,'三层塔式奶酪式蛋糕','g2.jpg',200,'如果是开宴会，这也是一款不错的选择');
-insert into goods values(1114,'爱心巧克力蛋糕','g8.png',450.90,'这是一款适合约会使用一款蛋糕');
-insert into goods values(1115,'七彩色式祷告','g9_png',320.40,'一款适合孩子们一起过生的蛋糕');
-insert into goods values(1116,'三层粉色时蛋糕','m1.png',420.2,'用于女孩子生日聚会上使用');
-insert into goods values(1117,'玫瑰花式蛋糕','m2.png',300,'典雅高端的宴会最热的选择');
-insert into goods values(1118,'曲奇饼式蛋糕','s2.png',251.20,'十一款不错的早餐的蛋糕选择');
-insert into goods values(1119,'翠绿三层塔式蛋糕','m3.png',300.20,'适合在野外聚会使用，具有独特的风趣，也是不错搭配选择');
-insert into goods values(1120,'猫式粉色蛋糕','g3.png',400.50,'也是公主风式的搭配选择');
+insert into goods values(1111,'生日蛋糕','m1.png',100,'用于生日宴会以及家庭生日的一筐蛋糕');
+insert into goods values(1112,'巧克力风味蛋糕','m2.png',152.50,'如果你是喜欢吃巧克力的人，这是绝对是非常棒的选择');
+insert into goods values(1113,'三层塔式奶酪式蛋糕','m3.png',200,'如果是开宴会，这也是一款不错的选择');
+insert into goods values(1114,'爱心巧克力蛋糕','m4.png',450.90,'这是一款适合约会使用一款蛋糕');
+insert into goods values(1115,'七彩色式祷告','m5.png',320.40,'一款适合孩子们一起过生的蛋糕');
+insert into goods values(1116,'三层粉色时蛋糕','m6.png',420.2,'用于女孩子生日聚会上使用');
+insert into goods values(1117,'玫瑰花式蛋糕','m7.png',300,'典雅高端的宴会最热的选择');
+insert into goods values(1118,'曲奇饼式蛋糕','m9.png',251.20,'十一款不错的早餐的蛋糕选择');
+insert into goods values(1119,'翠绿三层塔式蛋糕','m1.png',300.20,'适合在野外聚会使用，具有独特的风趣，也是不错搭配选择');
+insert into goods values(1120,'猫式粉色蛋糕','m3.png',400.50,'也是公主风式的搭配选择');
 
+COMMIT ;
 /*库存*/
 insert into repertory values(1111,50);
 insert into repertory values(1112,30);

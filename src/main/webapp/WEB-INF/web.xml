@@ -5,7 +5,7 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>Index.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <!-- 使用过滤器来解决中文乱码问题 -->

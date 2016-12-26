@@ -1,5 +1,6 @@
 package com.starlight.service;
 
+import com.starlight.entity.Goods;
 import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 
@@ -62,4 +63,7 @@ public interface IUserinfoService {
      */
 
     void registerWallet(Wallet wallet);
+
+
+
 }

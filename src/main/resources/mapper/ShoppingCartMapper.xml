@@ -10,8 +10,14 @@
         <result property="userId" column="sc_uid" />
         <result property="goodsId" column="sc_gid"/>
         <result property="number" column="sc_number"/>
-        <result property="totalMoney" column="sc_summoney"/>
         <result property="date" column="sc_date"/>
+        <result property="totalMoney" column="sc_summoney"/>
     </resultMap>
 
+    <select id="findAll"  parameterType="int" resultMap="shoppingCart">
+        select sc_id,sc_gid,sc_number,sc_summoney,sc_date from ShoppingCart where sc_uid=#{id}
+    </select>
+    <insert id="addToCart" parameterType="com.starlight.entity.ShoppingCart" >
+        insert into ShoppingCart (sc_uid,sc_gid,sc_number,sc_date,sc_summoney)values(#{userId},#{goodsId},#{number},#{date},#{totalMoney})
+    </insert>
 </mapper>

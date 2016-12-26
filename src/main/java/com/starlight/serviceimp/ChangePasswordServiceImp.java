@@ -49,11 +49,11 @@ public String Answer_Comparison(int u_id, String[] result) {
 			) {
 		System.out.println(string[temp]);
 		
-	/*	if (string[temp].equals(result[temp]) && temp == 2) {
+		if (string[temp].equals(result[temp]) && temp == 2) {
 			return "yes";
-		}*/
+		}
 	}
-	return "yes";
+	return null;
 }
 
 //进行对密保答案，密码，支付密码的修改！*需要事务管理进行管理

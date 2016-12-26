@@ -106,7 +106,7 @@ public String register(String nickName, String account_number, String tel, Strin
     wallet.setPassword(Integer.parseInt(payPassWord));
     userinfoServiceImp.registerWallet(wallet);
     
-    return "redirect:index.html";
+    return "redirect:index.jsp";
 }
 
 /**
@@ -135,16 +135,18 @@ public String checkAccout(String name) {
     @RequestMapping("login.do")
     public String test (String username, String password,
                                                         HttpSession sessionUser, User user){
+        int id=0;
         //为user赋值
         user.setAccount(username);
         user.setPassword(username);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
-        if ((u_id = userServiceImp.login(user)) != 0) {
-            sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserinfosById(u_id));
-            sessionUser.setAttribute("admin", aminServiceImp.finAllClssesById(u_id));
-            return "Index";
+        if ((id = userServiceImp.login(user)) != 0) {
+            sessionUser.setAttribute("userId",id);
+            sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserinfosById(id));
+            sessionUser.setAttribute("admin", aminServiceImp.finAllClssesById(id));
+            return "index";
         }
-        return "Index";
+        return "index";
     }
     
     //账号注销以及账号切换
@@ -153,7 +155,7 @@ public String checkAccout(String name) {
         //使session为null
         sessionUser.invalidate();
         //  sessionUser.setAttribute("userinfo",null);
-        return "Index";
+        return "index";
     }
     
 }

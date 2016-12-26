@@ -136,7 +136,6 @@
 			}
         });
         $(".submit").click(function () {
-            alert("点击事件")
             var s=0;
             for(var i=0;i<7;i++){
                 if(flag[i]==true){
@@ -144,7 +143,7 @@
 				}
 			}
 			if(s==flag.length){
-                alert("全部正确")
+
 				$("form").submit();
 			}
         });
@@ -399,7 +398,7 @@
 								<input type="submit" id="login" value="登陆">
 								<!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
 							</fieldset>
-							<p>没有账号吧？<a class="sign" href="Register.html">点击注册</a> <span><a href="Change_Password .html">忘记密码?</a></span></p>
+							<p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a href="Change_Password .html">忘记密码?</a></span></p>
 						</form>
 					</div>
 				</div>

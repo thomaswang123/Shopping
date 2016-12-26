@@ -74,11 +74,15 @@ public class Change_PasswordCotroller {
             //用户重置的密码
             user.setPassword(password);
             user.setId(u_id);
+
+            System.out.print("p:"+password+"pa:"+payment_code);
+
         if(payment_code!=null&&payment_code!="") {
             //用户的钱包
             wallet.setId(u_id);
             wallet.setPassword(Integer.parseInt(payment_code));
             System.out.println(Integer.parseInt(payment_code));
+
         }else{
             wallet = null;
         }
