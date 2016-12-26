@@ -14,7 +14,6 @@
     <link href="css/admin.css" type="text/css" rel="stylesheet" media="all">
 </head>
 <body>
-
 <!--展示数据-->
 <div style="margin-top: 20px;margin-left: 100px;margin-right: 25px">
     <div style="height:620px;overflow-y:scroll; border:1px solid;">
@@ -29,10 +28,10 @@
                 <td style="width: 300px">地址</td>
                 <td>其他操作</td>
             </tr>
-            <c:forEach items="${sessionScope.userdata}" var="ud" begin="1" end="${sessionScope.number}">
+            <c:forEach items="${sessionScope.userdata}" var="ud">
                 <c:choose>
-                    <c:when test="${ud%2!=0}">
-                        <tr style="color: #FFFFFF;background-color: #FD9F3E">
+                    <c:when test="${ud.color%2!=0}">
+                        <tr style="color: #FFFFFF;background-color: #3498DB">
                             <td>${ud.user.id}</td>
                             <td>${ud.user.account}</td>
                             <td>${ud.nickname}</td>
@@ -40,11 +39,14 @@
                             <td>${ud.age}</td>
                             <td>${ud.phone}</td>
                             <td>${ud.address}</td>
-                            <td></td>
+                            <td>
+                                <input type="button"  name="${ud.user.id}" style="font-size: 20px;
+                                color: red;cursor: hand" value="×删除">
+                            </td>
                         </tr>
                     </c:when>
                     <c:otherwise>
-                        <tr style=";background-color: #2fa8ec">
+                        <tr style=";background-color: #5bb75b">
                             <td>${ud.user.id}</td>
                             <td>${ud.user.account}</td>
                             <td>${ud.nickname}</td>
@@ -52,7 +54,10 @@
                             <td>${ud.age}</td>
                             <td>${ud.phone}</td>
                             <td>${ud.address}</td>
-                            <td></td>
+                            <td>
+                                <input type="button"  name="${ud.user.id}"
+                                       style="font-size: 20px;color: red;cursor: hand" value="×删除">
+                            </td>
                         </tr>
                     </c:otherwise>
                 </c:choose>

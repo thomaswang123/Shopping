@@ -390,7 +390,7 @@
                                     <span><a href="switchover.do?url=ChangePassword"><img src="images/login.png"><span
                                             style="padding-top: 10px">切换账号</span></a></span>
                                     <span style="color: red;margin-left: 70px;margin-top: 10px"><a
-                                            href="switchover.do?jspurl=ChangePassword">退出</a></span>
+                                            href="switchover.do?url=ChangePassword">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>

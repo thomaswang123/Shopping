@@ -23,7 +23,12 @@ public class UserinfoServiceImp implements IUserinfoService{
 
     //通过分页来查询数据！
     public List<UserInfo> byPagingfindAll(Paging paging) {
-        return Appliction.getAct().getBean(IUserinfoDao.class).byPagingfindAll(paging);
+        List<UserInfo> list = Appliction.getAct().getBean(IUserinfoDao.class).byPagingfindAll(paging);
+        //添加颜色
+        for (int i = 1; i <list.size() ; i++) {
+            list.get(i).setColor(i);
+        }
+        return list;
     }
 
     //处理数据的总数量

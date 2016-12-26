@@ -26,14 +26,12 @@ public class AdminController {
         paging.setStop(number*pagination);
         //利用session机制，进行页面的展示数据
         sessionPaging.setAttribute("userdata", userinfoServiceImp.byPagingfindAll(paging));
-        sessionPaging.setAttribute("number", number+1);
         int numbersum = userinfoServiceImp.countUserIdNumber();
         if(number>numbersum){
             numbersum = 0;
         }else{
             numbersum = numbersum%number;
         }
-        System.out.println(numbersum+","+number);
         rst.setAttribute("number",numbersum);
         rst.setAttribute("numbersum",userinfoServiceImp.countUserIdNumber());
         return "Admin";
