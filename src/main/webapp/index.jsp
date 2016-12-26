@@ -345,7 +345,7 @@
     <div class="container">
         <div class="gallery-grids">
             <div class="col-md-8 gallery-grid glry-one">
-                <a href="Products.html"><img src="images/g1.jpg" class="img-responsive" alt=""/>
+                <a href="products.jsp"><img src="images/g1.jpg" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 详情</p>
                         <a class="shop" href="Single.html">添加购物车</a>
