@@ -22,4 +22,17 @@ public interface IShoppingCartDao {
 	 */
 	void addToCart(ShoppingCart shoppingCart);
 
+	/**
+	 * 通过Id删除一条数据
+	 * @param id
+	 */
+	void removeOfCart(int id);
+
+	/**
+	 * 通过ID查找一条数据
+	 * @param id
+	 * @return
+	 */
+	ShoppingCart findOnlyOne(int id);
+
 }

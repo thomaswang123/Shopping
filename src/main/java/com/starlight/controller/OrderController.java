@@ -12,5 +12,5 @@ import javax.annotation.Resource;
 public class OrderController {
 	@Resource
 	OrderServiceImp orderServiceImp;
-	
+
 }

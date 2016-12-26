@@ -22,10 +22,100 @@
     <!-- js -->
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/css.css" media="all">
+
     <!-- //js -->
     <!-- cart -->
     <script src="js/simpleCart.min.js"> </script>
     <!-- cart -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".close3").click(function () {
+                var id=$(this).attr("name");
+                $.ajax({
+                    url:'removeOfCart.do',
+                    type:'post',
+                    async:true,
+                    dataType: "text",
+                    data:{id:id},
+                    timeout:5000,
+                    success:function (data) {
+                        if(data=="true"){
+                            window.location.reload();
+                        }else {
+                            alert("页面不能跳转")
+                        }
+                    },
+                    error:function () {
+                        alert("出现错误");
+                    }
+                });
+
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.add-cart').click(function(){
+//                获取价格
+                var payMoney=$(this).parent().parent().prev().prev().text();
+//                分割字符串
+                var arr=payMoney.split("总计：");
+                var id=$(this).attr("name");
+                $(".btn-primary").attr("name",id);
+                $(".payMoney").text(arr[1]);
+
+                $('.theme-popover-mask').fadeIn(100);
+
+                $('.theme-popover').slideDown(200);
+
+            })
+
+            $('.theme-poptit .close').click(function(){
+
+                $('.theme-popover-mask').fadeOut(100);
+
+                $('.theme-popover').slideUp(200);
+            })
+        })
+
+    </script>
+    <%--支付--%>
+    <script>
+        $(document).ready(function () {
+            $(".btn-primary").click(function () {
+                var password=$(".ipt").val();
+                var id=$(this).attr("name");
+                $.ajax({
+                    url:'pay.do',
+                    type:'post',
+                    async:true,
+                    dataType: "text",
+                    data:{password:password,id:id},
+                    timeout:5000,
+                    success:function (data) {
+                        if(data=="true"){
+                            notification.update({
+                                text: "Success!",
+                                icon: "img/smiley.png"
+                            });
+                            window.location.reload();
+                        }else if(data="false"){
+                            alert("密码错误！");
+                        }else if(data="failed"){
+                            alert("余额不足！");
+                        }
+                    },
+                    error:function () {
+                        alert("出现错误");
+                    }
+                });
+
+            });
+        });
+    </script>
 </head>
 <body>
 <!--header-->
@@ -292,36 +382,73 @@
 </div>
 <!--//header-->
 <!--cart-items-->
-<div class="cart-items">
-    <div class="container">
-        <h2>My Shopping Cart(3)</h2>
 
-        <c:forEach items="${cartList}" var="goods">
+<div class="theme-popover">
 
-        <div class="cart-header" >
-            <div class="close3"> </div>
-            <div class="cart-sec simpleCart_shelfItem" >
-                <div class="cart-item cyc">
-                    <img src="images/${goods.gPicture}" class="img-responsive" alt="">
-                </div>
-                <div class="cart-item-info">
-                    <h3><a href="#"> ${goods.goodsName} </a><span>加入时间:${goods.date}</span></h3>
-                    <ul class="qty">
-                        <li><p>购买数量:</p></li>
-                        <li><p>${goods.number}</p></li>
-                    </ul>
-                    <div class="delivery">
-                        <p>单价: ${goods.goodsPrice}</p>
-                        <span>总计：${goods.totalMoney}</span>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
+    <div class="theme-poptit">
+
+        <a href="javascript:;" title="关闭" class="close">×</a>
+
+        <h3>支付是一种诚信</h3>
+
+    </div>
+
+    <div class="theme-popbod dform">
+
+        <form class="theme-signin" name="loginform" action="" method="post">
+            <ol>
+
+                <li><strong>支付金额：</strong><label class="payMoney">100.0元</label></li>
+
+                <li><strong>支付密码：</strong><input class="ipt" type="password" name="pwd" placeholder="******" size="20" /></li>
+
+                <li><input class="btn btn-primary" type="submit" name="submit" style="width: 180px" value=" 确认支付" /></li>
+
+            </ol>
+
+        </form>
+
     </div>
 </div>
-</c:forEach>
+
+
+
+
+
+    <h2>My Shopping Cart(3)</h2>
+        <c:forEach items="${cartList}" var="goods">
+            <div class="cart-items">
+                <div class="container">
+
+            <div class="cart-header" >
+                <div class="close3" name="${goods.id}"> </div>
+                <div class="cart-sec simpleCart_shelfItem" >
+                    <div class="cart-item cyc">
+                        <img src="images/${goods.gPicture}" class="img-responsive" alt="">
+                    </div>
+                    <div class="cart-item-info">
+                        <h3><a href="#"> ${goods.goodsName} </a><span>加入时间:${goods.date}</span></h3>
+                        <ul class="qty">
+                            <li><p>购买数量:</p></li>
+                            <li><p>${goods.number}件</p></li>
+                        </ul>
+                        <div class="delivery">
+                            <p>单价: ${goods.goodsPrice}元</p>
+                            <span>总计：${goods.totalMoney}元</span><br>
+                            <span>
+                                  <div class="btn_form">
+                                     <a  id="addGoods" class="add-cart item_add" name="${goods.id}" >购买</a>
+                                  </div>
+                            </span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
 <!--//checkout-->
 <!--footer-->
 <div class="footer">
@@ -384,4 +511,5 @@
     </div>
 </div>
 </body>
+</html>
 

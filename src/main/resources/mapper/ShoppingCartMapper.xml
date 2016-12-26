@@ -20,4 +20,13 @@
     <insert id="addToCart" parameterType="com.starlight.entity.ShoppingCart" >
         insert into ShoppingCart (sc_uid,sc_gid,sc_number,sc_date,sc_summoney)values(#{userId},#{goodsId},#{number},#{date},#{totalMoney})
     </insert>
+
+    <delete id="removeOfCart" parameterType="int">
+        delete from ShoppingCart where sc_id=#{id}
+    </delete>
+
+    <select id="findOnlyOne" parameterType="int" resultMap="shoppingCart">
+        select sc_id,sc_uid,sc_gid,sc_number,sc_date,sc_summoney from ShoppingCart where sc_id=#{id}
+    </select>
+
 </mapper>

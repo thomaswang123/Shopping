@@ -6,8 +6,8 @@
 
     <!--字段映射-->
     <resultMap id="wallet" type="com.starlight.entity.Wallet">
-        <id property="id" column="w_id " />
-        <result property="money" column="w_money " />
+        <id property="id" column="w_id" />
+        <result property="money" column="w_money" />
         <result property="password" column="w_paypwd"/>
     </resultMap>
 
@@ -21,19 +21,14 @@
         insert into Wallet(w_id,w_money,w_paypwd)values(#{id},#{money},#{password})
     </insert>
 
-    <!--通过账号查找ID-->
-    <select id="findIdByUser" parameterType="String" resultType="int">
-        select u_id from user where u_name=#{u_name}
+
+    <select id="findById" parameterType="int" resultMap="wallet">
+        select w_id,w_money,w_paypwd from Wallet where w_id=#{id}
     </select>
 
-    <!--查找是否存在该用户-->
-    <select id="findAccout" parameterType="String"  resultMap="wallet">
-        SELECT u_id FROM USER WHERE u_name=#{u_name}
-    </select>
-
-    <resultMap id="uMap" type="com.starlight.entity.User">
-        <id column="u_id" property="u_id" />
-    </resultMap>
+   <update id="updateMoney" parameterType="com.starlight.entity.Wallet" >
+       update Wallet set w_money=#{money}where w_id=#{id}
+   </update>
 
 <!--
     <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">

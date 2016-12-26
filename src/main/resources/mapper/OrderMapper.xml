@@ -12,6 +12,8 @@
         <result property="number" column="o_number"/>
         <result property="date" column="o_date"/>
     </resultMap>
-
+    <insert id="addOrder" parameterType="com.starlight.entity.Order">
+        insert into Orders (o_uid,o_gid,o_money,o_number,o_date)values(#{userId},#{goodsId},#{money},#{number},#{date})
+    </insert>
 
 </mapper>

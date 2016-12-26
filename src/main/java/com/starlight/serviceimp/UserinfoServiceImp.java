@@ -6,7 +6,8 @@ import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 import com.starlight.service.IUserinfoService;
 import com.starlight.util.Appliction;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
 /**
  * Created by thomas.wang on 2016/12/20.
  */
-@Component
+@Service
+@Transactional
 public class UserinfoServiceImp implements IUserinfoService{
     
     //用户信息

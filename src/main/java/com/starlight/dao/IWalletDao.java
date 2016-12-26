@@ -19,7 +19,9 @@ public interface IWalletDao {
 //	钱包注册
     void register(Wallet wallet);
 //	查询钱包
-    Wallet findWallet(int id);
+    Wallet findById(int id);
+//   修改金额
+    void updateMoney(Wallet wallet);
 //	充值操作
     void rechargeMoney(float momey);
 //	修改密码

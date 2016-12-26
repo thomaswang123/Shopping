@@ -3,7 +3,8 @@ package com.starlight.serviceimp;
 import com.starlight.dao.IShoppingCartDao;
 import com.starlight.entity.ShoppingCart;
 import com.starlight.service.IShoppingCartService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 /**
  * Created by james.jiang on 2016/12/23.
  */
-@Component
+@Service
+@Transactional
 public class ShoppingCartServiceImp implements IShoppingCartService {
 	@Resource
 	IShoppingCartDao iShoppingCartDao;
@@ -23,6 +25,14 @@ public class ShoppingCartServiceImp implements IShoppingCartService {
 		iShoppingCartDao.addToCart(shoppingCart);
 	}
 
+ 	public void removeOfCart(int id){
+			iShoppingCartDao.removeOfCart(id);
+	}
+
+	public ShoppingCart findOnlyOne(int id){
+
+		return iShoppingCartDao.findOnlyOne(id);
+	}
 
 
 }
