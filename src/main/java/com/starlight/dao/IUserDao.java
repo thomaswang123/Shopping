@@ -1,14 +1,13 @@
 package com.starlight.dao;
 
 import com.starlight.entity.User;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
  */
-@Component
+
 public interface IUserDao {
 	/**
 	 * 查找所有的用户
@@ -44,13 +43,13 @@ public interface IUserDao {
 
 
 //  用户注册
-void register(User user);
+	void register(User user);
 //	查找该用户id
-int findIdByUser(String account);
+	int findIdByUser(String account);
 //		查询账号是否存在
-List<User> findAccount(String account);
+	List<User> findAccount(String account);
 
 //	修改密码
-boolean alterPassWord(String password);
+	boolean alterPassWord(String password);
 
 }

@@ -1,9 +1,5 @@
 package com.starlight.controller;
 
-import com.starlight.dao.IChangePasswordDao;
-import com.starlight.dao.IUserDao;
-import com.starlight.dao.IUserinfoDao;
-import com.starlight.dao.IWalletDao;
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.entity.UserInfo;
@@ -40,14 +36,13 @@ public class UserController {
     private AdminServiceImp aminServiceImp;
 
     @Resource
-    IUserDao iUser;
+    User user;
     @Resource
-    IUserinfoDao iUserInfo;
+    UserInfo userInfo;
     @Resource
-    IChangePasswordDao iChangePasswordDao;
+    PassWordProtection passWordProtection;
     @Resource
-    IWalletDao iWallet;
-
+    Wallet wallet;
 
     /**
      * 用户注册方法
@@ -57,7 +52,7 @@ public class UserController {
      */
     @RequestMapping("/register.do")
     public String register(String nickName, String account_number, String tel, String age, String sex, String password,
-                           String w_paypwd,
+                           String payPassWord,
                            HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
         System.out.println("进入注册");
@@ -66,23 +61,26 @@ public class UserController {
                 + httpServletRequest.getParameter("city") + httpServletRequest.getParameter("area");
 
         System.out.println(address);
-//		插入用户表数据
-        User user = new User();
+        System.out.println(nickName + "--" + account_number + "--" + age + "--" + tel + "--" + sex + "--" + password + "--"
+                + payPassWord);
+
+//		插入用户表数据，并返回用户ID
         user.setAccount(account_number);
         user.setPassword(password);
-        iUser.register(user);
-//		获取用户id
-        int u_id = iUser.findIdByUser(account_number);
+
+        System.out.println("构建个体");
+        int userId = userServiceImp.register(user);
+
 //		插入用户详细信息表数据
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(u_id);
+        userInfo.setId(userId);
         userInfo.setNickname(nickName);
         userInfo.setAge(Integer.parseInt(age));
         userInfo.setAddress(address);
         userInfo.setPhone(tel);
         userInfo.setSex(sex);
 
-        iUserInfo.register(userInfo);
+        userinfoServiceImp.register(userInfo);
+
 //		插入密保表数据
         String question1 = httpServletRequest.getParameter("question1");
         String question2 = httpServletRequest.getParameter("question2");
@@ -96,42 +94,37 @@ public class UserController {
         for (int i = 0; i < question.length; i++) {
 //			判断是否为空
             if (question[i] != null && answer[i] != null) {
-                PassWordProtection pwp = new PassWordProtection();
-                pwp.setUserId(u_id);
-                pwp.setQuestion(question[i]);
-                pwp.setAnswer(answer[i]);
+                passWordProtection.setUserId(userId);
+                passWordProtection.setQuestion(question[i]);
+                passWordProtection.setAnswer(answer[i]);
 //				插入数据
-                iChangePasswordDao.addPWP(pwp);
+                userServiceImp.addPWP(passWordProtection);
             }
         }
 
-//		插入钱包表数据
-        Wallet wallet = new Wallet();
-        wallet.setId(u_id);
-        wallet.setPassword(Integer.parseInt(w_paypwd));
-        iWallet.register(wallet);
+//
+        插入钱包表数据
+        wallet.setId(userId);
+        wallet.setPassword(Integer.parseInt(payPassWord));
+        userinfoServiceImp.registerWallet(wallet);
 
-        return "redirect:index.html";
 
+        return "redirect:index.jsp";
     }
-
 
     /**
      * 匹配账号方法
      *
      * @param name
-     * @param httpServletRequest
-     * @param httpServletResponse
      * @return
      */
     @RequestMapping(value = "/checkAccout.do", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String checkAccout(String name, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-
+    public String checkAccout(String name) {
         System.out.println("进入账号验证");
 //		匹配输入的账号是否符合规则并查询是否存在该账号
 
-        if (iUser.findAccount(name).isEmpty()) {
+        if (userServiceImp.findAccount(name).isEmpty()) {
             System.out.println("进入账号正确:" + "<label style='color:green'>√</label>");
             return "true";
         } else {
@@ -139,7 +132,6 @@ public class UserController {
             return "false";
         }
     }
-
 
     //登陆验证
     @RequestMapping("login.do")
@@ -156,6 +148,7 @@ public class UserController {
                             userInfo.getNickname());
             System.out.println(userInfo.getNickname());
             sessionUser.setAttribute("userinfo", userInfo);
+            //判断是否为空
             sessionUser.setAttribute("admin", aminServiceImp.findAllClssesById(u_id));
             return url;
         }

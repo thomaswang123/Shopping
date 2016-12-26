@@ -18,7 +18,10 @@ public class AdminServiceImp implements IAdminService {
     
     //查询管理员的等级
     public int findAllClssesById(int u_id) {
-        return Appliction.getAct().getBean(IAdminDao.class).findAllClssesById(u_id);
+       if(Appliction.getAct().getBean(IAdminDao.class).findAllClssesById(u_id)+""==null){
+            return 0;
+        }
+      return  Appliction.getAct().getBean(IAdminDao.class).findAllClssesById(u_id);
     }
     
      

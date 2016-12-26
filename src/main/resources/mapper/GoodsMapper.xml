@@ -2,15 +2,26 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starlight.dao.IGoodDao">
+<mapper namespace="com.starlight.dao.IGoodsDao">
     <!--映射字段-->
-    <resultMap id="goods" type="com.starlight.entity.Goods">
+    <resultMap id="go" type="com.starlight.entity.Goods">
         <id property="id" column="g_id" />
         <result property="name" column="g_name" />
+        <result property="picture" column="g_picture"/>
         <result property="price" column="g_price"/>
         <result property="describe" column="g_describe"/>
-        <result property="picture" column="g_picture"/>
+
     </resultMap>
 
+
+    <!--查找所有商品-->
+    <select id="findAll" resultMap="go">
+        select g_id,g_name,g_picture,g_price,g_describe from Goods
+    </select>
+
+    <!--通过ID查找商品-->
+    <select id="findById" parameterType="int" resultMap="go">
+        select g_id,g_name,g_picture,g_price,g_describe from Goods where g_id=#{id}
+    </select>
 
 </mapper>

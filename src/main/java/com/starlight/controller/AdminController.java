@@ -34,6 +34,6 @@ public class AdminController {
         }
         rst.setAttribute("number",numbersum);
         rst.setAttribute("numbersum",userinfoServiceImp.countUserIdNumber());
-        return "Admin";
+        return "admin";
     }
 }

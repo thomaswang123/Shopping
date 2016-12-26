@@ -27,30 +27,6 @@ public class ChangePasswordController {
     private ChangePasswordServiceImp change_PasswordServiceImp;
 
 
-    public ChangePasswordServiceImp getChange_PasswordServiceImp() {
-
-        return change_PasswordServiceImp;
-    }
-
-
-    public void setChange_PasswordServiceImp(ChangePasswordServiceImp change_PasswordServiceImp) {
-
-        this.change_PasswordServiceImp = change_PasswordServiceImp;
-    }
-
-
-    public UserServiceImp getUserServiceImp() {
-
-        return userServiceImp;
-    }
-
-
-    public void setUserServiceImp(UserServiceImp userServiceImp) {
-
-        this.userServiceImp = userServiceImp;
-    }
-
-
     //进行判断密保问题域答案是否一致，进行下一步的修改密码操作等
     @RequestMapping("answer.do")
     @ResponseBody
@@ -74,8 +50,6 @@ public class ChangePasswordController {
     //此注解不能省略 否则ajax无法接受返回值
     @ResponseBody
     public String user_CheckExist(String username) {
-
-        System.out.println("aaaa");
         //用户账号对应的id
         if ((u_id = userServiceImp.byname_GainId(username)) != 0) {
             //这里反回值是ajax的回调函数中数据！不是页面
@@ -83,7 +57,6 @@ public class ChangePasswordController {
         }
         return null;
     }
-
 
     //修改密码，支付密码，密保答案
     @RequestMapping("alertPpAll.do")

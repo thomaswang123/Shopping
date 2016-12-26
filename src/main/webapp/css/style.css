@@ -696,7 +696,7 @@ ul.rating li a:hover, .price_single a:hover, ul.size li a:hover {
 }
 .rsidebar {
     display: block;
-    float: left;
+
     margin: 4em 2em 0% 0;
     width: 22%;
 }
@@ -1864,7 +1864,6 @@ i.sele{
 }
 .rsidebar {
     display: block;
-    float: left;
     margin: 4em 2em 0% 0;
     width: 22%;
 }

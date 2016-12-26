@@ -1,9 +1,12 @@
 package com.starlight.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by thomas.wang on 2016/12/9.
  *  订单类
  */
+@Component
 public class Order {
 private int id;
 private int userId;

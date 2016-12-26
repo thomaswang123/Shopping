@@ -2,6 +2,7 @@ package com.starlight.service;
 
 import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
+import com.starlight.entity.Wallet;
 
 import java.util.List;
 
@@ -53,5 +54,20 @@ public interface IUserinfoService {
      * @return
      */
      UserInfo findUserinfosById(int u_id);
+
+    /**
+     * 插入用户详细信息
+     * @param userInfo
+     */
+    void register(UserInfo userInfo);
+
+    /**
+     * 钱包注册
+     * @param wallet
+     */
+
+    void registerWallet(Wallet wallet);
+
+
 
 }

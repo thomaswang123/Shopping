@@ -1,10 +1,13 @@
 package com.starlight.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by thomas.wang on 2016/12/9.
  *
  * 用户类
  */
+@Component
 public class User {
 private int   id ;
 private String  account;

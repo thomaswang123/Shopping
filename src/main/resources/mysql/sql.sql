@@ -140,7 +140,7 @@ CREATE TABLE Repertory
   CONSTRAINT PK_REPERTORY_RYID PRIMARY KEY (ry_id),
   FOREIGN KEY (ry_id) REFERENCES Goods (g_id)
 );
-
+COMMIT ;
 /***********************************************************************************/
 /*意见表*/
 DROP TABLE Opinion;

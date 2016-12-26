@@ -2,15 +2,14 @@ package com.starlight.dao;
 
 import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
  */
-@Component
-public interface IUserinfoDao {
+
+public interface IUserInfoDao {
     /**
      * 通过用户id来查询用户信息
      * @param uinfo_id 账号
@@ -27,7 +26,7 @@ public interface IUserinfoDao {
 
 
 //	  用户注册
-void register(UserInfo userInfo);
+      void register(UserInfo userInfo);
 //	查询详细信息
 UserInfo findAllById(int id);
 //	修改昵称

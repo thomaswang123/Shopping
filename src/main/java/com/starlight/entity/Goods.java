@@ -1,56 +1,66 @@
 package com.starlight.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by thomas.wang on 2016/12/9.
  *
  * 商品类
  */
-
+@Component
 public class Goods {
-private int id ;
-private String name ;
-private float price ;
-private String  describe ;
-private String picture ;
+//    商品ID
+    private int id ;
+//    商品名称
+    private String name ;
+//    价格
+    private float price ;
+//    描述
+    private String  describe ;
+//    图片
+    private String picture ;
 
-public int getId() {
-    return id;
-}
 
-public void setId(int id) {
-    this.id = id;
-}
 
-public String getName() {
-    return name;
-}
+    public int getId() {
+        return id;
+    }
 
-public void setName(String name) {
-    this.name = name;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public float getPrice() {
-    return price;
-}
+    public String getName() {
+        return name;
+    }
 
-public void setPrice(float price) {
-    this.price = price;
-}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-public String getDescribe() {
-    return describe;
-}
+    public float getPrice() {
+        return price;
+    }
 
-public void setDescribe(String describe) {
-    this.describe = describe;
-}
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
-public String getPicture() {
-    return picture;
-}
+    public String getDescribe() {
+        return describe;
+    }
 
-public void setPicture(String picture) {
-    this.picture = picture;
-}
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
 
 }

@@ -1,15 +1,13 @@
 import com.starlight.dao.IChangePasswordDao;
 import com.starlight.dao.IUserDao;
-import com.starlight.dao.IUserinfoDao;
-import com.starlight.dao.IWalletDao;
-import com.starlight.entity.*;
+import com.starlight.entity.PassWordProtection;
+import com.starlight.entity.User;
 import com.starlight.serviceimp.UserServiceImp;
 import com.starlight.util.Appliction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -46,38 +44,25 @@ public class Test {
         User user = new User();
         user.setAccount("123456");
         user.setPassword("123456");
-        System.out.println(userdao.login(user));
+        int usertemp = userdao.login(user);
+        System.out.println(usertemp);
         
-      /*  PassWordProtection pp = new PassWordProtection();
+        PassWordProtection pp = new PassWordProtection();
         pp.setId(2001);
         pp.setAnswer("啊哈哈");
             int pwptemp = Appliction.getAct().getBean(IChangePasswordDao.class).alterPWP(pp);
-            System.out.println(pwptemp);*/
-    
-        Wallet wallet = new Wallet();
-        wallet.setId(1001);
-        wallet.setPassword(123456);
-        int walletemp = Appliction.getAct().getBean(IWalletDao.class).alertPayPwdById(wallet);
-        System.out.println(walletemp);
+            System.out.println(pwptemp);
         String[] string = Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(1001);
-        for (int i = 0; i <string.length ; i++) {
-            System.out.println(string[i]);
+        for (int temp = 0; temp < string.length; temp++
+                ) {
+            System.out.println(string[temp]);}
+     /*   User user = new User();
+        user.setU_name("123456");
+        user.setU_pwd("123456");
+        if (userdao.login(user) != 0) {
+            System.out.println("存在");
         }
-        System.out.println("哈哈".equals("哈哈"));
-        Paging paging = new Paging();
-        paging.setRise(0);
-        paging.setStop(4);
-        List<UserInfo> list1s = act.getBean(IUserinfoDao.class).byPagingfindAll(paging);
-        for (UserInfo ls:list1s
-             ) {
-            System.out.println(ls.getNickname()+","+ls.getPhone()+","+ls.getSex()+ls.getAge()+ls.getUser().getAccount());
-        }
-
-        user.setAccount("654321");
-        user.setPassword("123456");
-            System.out.println("存在"+userdao.login(user));
-            System.out.println(22%20);
-      /*  String string = "" ;
+        String string = "" ;
         int temp = 1;
         List<PasswordProtecTion> lists =
                 Appliction.getAct().getBean(Change_PasswordDao.class).findQuestionById(1001);

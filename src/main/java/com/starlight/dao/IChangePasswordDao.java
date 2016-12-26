@@ -1,14 +1,13 @@
 package com.starlight.dao;
 
 import com.starlight.entity.PassWordProtection;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/20.
  */
-@Component
+
 public interface IChangePasswordDao {
 
     /**
