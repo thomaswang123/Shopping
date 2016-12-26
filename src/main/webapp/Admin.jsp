@@ -402,13 +402,15 @@
          <input type="text" style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
             <!--   <input type="button" value="查询" style="margin-left: 20px;width: 80px;height:25px ">-->
     </span>
-        <span style="margin-left: 300px">刷新</span>
+        <span style="margin-left: 300px"><a><img src="images/shuanxin.png">刷新</a></span>
     </div>
     <iframe src="UserTable.jsp" class="iframea yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="Shopping.html" class="iframesp yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="jurisdiction_s yang" frameBorder="0" scrolling="no"></iframe>
     <iframe src="UserTable.html" class="tongji_iframe yang" frameBorder="0" scrolling="no"></iframe>
         <div style="margin-left: 1100px">
+            <%--用来记录当前的页码--%>
+            <input id="thisPaginaTion" value="1" style="display: none">
             <b>
                 <c:choose>
                <%-- 只有一页--%>
@@ -420,23 +422,30 @@
                 <c:choose>
                     <c:when test="${requestScope.number<10&&requestScope.number>1}">
                         <c:forEach var="i" begin="1" end="${requestScope.number}">
-                            <span style="margin-left: 10px"><a href="#">${i}</a></span>
+                            <c:choose>
+                                <c:when test="${i}==1">
+                                    <span style="margin-left: 10px;color:#006dcc"><a href="#">${i}</a></span>
+                                </c:when>
+                            </c:choose>
                         </c:forEach>
                     </c:when>
                     <c:when test="${requestScope.number>10}">
                         <c:forEach var="i" begin="1" end="${7}">
-                            <span style="margin-left: 10px"><a href="#">${i}</a></span>
+                            <span  style="margin-left: 10px"><a href="#">${i}</a></span>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <span>...</span> <span style="margin-left: 10px">${requestScope.number}</span>
+                        <span>...</span>
+                        <span style="margin-left: 10px" >
+                       <a href="#">${requestScope.number}</a>
+                    </span>
                     </c:otherwise>
                 </c:choose>
                 <span>
         <input type="text" style="width: 25px;height: 20;margin-left: 10px">
         <input type="button" value="跳转" id="buttonhref" style="text-align: center;margin-left: 10px">
         </span>
-                <span><a href="#">下一页</a></span>
+                <span style="margin-left: 10px"><a href="#">下一页</a></span>
             </b>
         </div>
     </c:otherwise>
