@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.starlight.entity.User" %><%--
   Created by IntelliJ IDEA.
   User: james.jiang
   Date: 2016/12/26
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
@@ -33,6 +34,8 @@
     <!-- cart -->
     <script type="text/javascript" src="js/jsAddress.js"></script>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/css.css" media="all">
+
     <script type="text/javascript">
         $(document).ready(function () {
             $(".dropdown").mouseenter(function () {
@@ -78,6 +81,62 @@
     <!--[if IE]>
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".remove").mouseenter(function () {
+            $(this).css("background", "rgba(240,120,24,0.7)");
+        });
+        $(".remove").mouseleave(function () {
+            $(this).css("background", "");
+        });
+        $(".remove").click(function () {
+            var id=$(this).attr("name");
+            var obj=$(this);
+            $.ajax({
+                url:'removeOrder.do',
+                type:'post',
+                async:true,
+                dataType: "text",
+                data:{id:id},
+                timeout:5000,
+                success:function (data) {
+                    if(data=="true"){
+                        obj.parent().remove();
+                    }else {
+                        alert("删除不成功")
+                    }
+                },
+                error:function () {
+
+                }
+            });
+
+        });
+
+    });
+</script>
+
+    <script>
+        $(document).ready(function() {
+
+            $(".recharge").click(function(){
+
+                $('.theme-popover-mask').fadeIn(100);
+
+                $('.theme-popover').slideDown(200);
+
+            })
+
+            $('.theme-poptit .close').click(function(){
+
+                $('.theme-popover-mask').fadeOut(100);
+
+                $('.theme-popover').slideUp(200);
+            })
+        })
+
+    </script>
 </head>
 <body>
 <!--header-->
@@ -92,12 +151,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand" style="margin: 0px auto;"><a href="index.html">Yummy</a></h1>
+                <h1 class="navbar-brand" style="margin: 0px auto;"><a href="index.jsp">Yummy</a></h1>
             </div>
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="height: 67px;">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -313,11 +372,14 @@
             <div class="header-right login" style="height: 67px;">
                 <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                 <div id="loginBox">
-                    <form id="loginForm">
+                    <form id="loginForm" action="login.do" method="post">
                         <fieldset id="body">
+                            <c:choose>
+                            <c:when test="${sessionScope.userinfo==null}">
+                            <div style="color: red">请登录！!</div>
                             <fieldset>
                                 <label for="email">账号</label>
-                                <input type="text" name="email" id="email">
+                                <input type="text" name="username" id="email">
                             </fieldset>
                             <fieldset>
                                 <label for="password">密码</label>
@@ -326,15 +388,38 @@
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="account.html">点击注册</a> <span><a href="Change_Password .html">忘记密码?</a></span>
+                        <p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a href="changePassword.jsp">忘记密码?</a></span>
                         </p>
+                        </c:when>
+                        <c:otherwise>
+                            <div>
+                                <h4>
+                                    <span>欢迎:</span>
+                                    <span>
+                                    <a href="personal.do" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
+                                </span>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.admin>0}">
+                                            <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                            <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
+                                        </c:when>
+                                        <c:otherwise></c:otherwise>
+                                    </c:choose>
+                                </h4>
+                                <h5 style="margin-top: 15px">
+                                    <span><a href="switchover.do"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do">退出</a></span>
+                                </h5>
+                            </div>
+                        </c:otherwise>
+                        </c:choose>
                     </form>
                 </div>
             </div>
             <div class="header-right cart" style="height: 67px;">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="checkout.html">
+                    <h4><a href="checkout.jsp">
                         <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
                                                                                                 class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
@@ -350,20 +435,20 @@
 <!--//header-->
 
 <!--account-->
-<div style="height: 800px;width: 100%;margin: 50px 80px;">
-    <div id="content" style="float:left;margin: 0px 5px;width: 350px;height: 800px;color: whitesmoke;">
+<div style="height: auto;min-height:800px;width: 100%;margin: 50px 80px;">
+    <div id="content" style="float:left;margin: 0px 5px;width: 350px;height: 700px;color: whitesmoke;position:fixed;">
         <div style="height: 500px;width: 100%;margin: 5px 5px;">
             <div id="headerpic">
                 <img src="images/headpic.jpg" width="100px" height="100px">
             </div>
             <div id="info" style="margin: 20px 20px;">
-                账号：525252<br><br>
-                真实姓名：<input type="text" class="in rename" name="rename" value="张飒"> <br><br>
-                性别：<input type="text" class="in sex" name="sex" value="女"><br><br>
-                年龄：<input type="text" class="in age" name="age" value="18"><br><br>
-                电话：<input type="text" class="in phone" name="phone" value="13203200681"> <br><br>
-                住址：<input type="text" class="in place" name="place" value="湖南省长沙市宁乡县"><br><br>
-                钱包：1999.00元<br>
+                账号：<label>${sessionScope.user.account}</label><br><br>
+                昵称：<input type="text" class="in rename nickName"  name="rename" value="${sessionScope.userInfo.nickname}" style="color: whitesmoke;"> <br><br>
+                性别：<label>${sessionScope.userInfo.sex}</label><br><br>
+                年龄：<input type="text" class="in age" name="age" value="${sessionScope.userInfo.age}" style="color: whitesmoke;"><br><br>
+                电话：<input type="text" class="in phone" name="phone" value="${sessionScope.userInfo.phone}" style="color: whitesmoke;"> <br><br>
+                住址：<input type="text" class="in place" name="place" value="${sessionScope.userInfo.address}" style="color: whitesmoke;"><br><br>
+                钱包：<label>${sessionScope.wallet.money}</label>元<br>
 
             </div>
         </div>
@@ -377,8 +462,12 @@
                 <p>Our best cakes make your day special</p>
             </div>
         </div>
+
+
         <!--订单-->
-        <div class="head-titles2">
+        <c:forEach items="${orderList}" var="order">
+
+        <div class="head-titles2" style="width: 100%;height: 150px;margin-left: 350px;float: left;">
             <!--单选框-->
             <div class="cbdiv"
                  style="float: left;margin: 40px 20px;padding-top:30px;width: 50px;height:50px;text-align: center;">
@@ -387,29 +476,63 @@
 
             <!--商品图片-->
             <div class="goodpic"
-                 style="float: left;margin: 10px 20px;background-color: #F2F6F7;width: 160px;height: 140px;">
-                <img src="images/m1.png" width="160px" height="140px">
+                 style="float: left;margin: 20px 10px;background-color: #F2F6F7;width: 140px;height: 120px;">
+                <img src="images/m1.png" width="140px" height="120px">
             </div>
             <!--商品价格-->
-            <div class="goodprice" style="float: left;margin: 40px 20px;padding-top:30px;width: 200px;height: 60px;">
-                名称：草莓蛋糕
+            <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 130px;height: 60px;">
+                名称：${order.goodsName}
             </div>
-            <div class="goodprice" style="float: left;margin: 40px 20px;padding-top:30px;width: 200px;height: 60px;">
-                价格：100.00
+            <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 130px;height: 60px;">
+                价格：100.00元
             </div>
-            <div class="gooddescribe" style="float: left;margin: 40px 20px;padding-top:30px;width: 150px;height: 60px;">
+            <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 100px;height: 60px;">
+                数量：42
+            </div>
+            <div class="gooddescribe" style="float: left;margin: 40px 10px;padding-top:30px;width: 160px;height: 60px;">
                 购买时间：16.12.10
             </div>
-            <div class="gooddescribe"
-                 style="float: left;margin: 50px 20px;padding-top:20px;width: 60px;height: 60px;text-align: center">
+            <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 120px;height: 60px;">
+                总计：525元
+            </div>
+            <div class="gooddescribe remove"
+                 style="float: left;margin: 50px 10px;padding-top:20px;width: 60px;height: 60px;text-align: center" name="${order.id}" >
                 删除
             </div>
         </div>
+
+        </c:forEach>
+    </div>
+    <!--充值-->
+    <div id="content3" class="recharge">
+        充值
+    </div>
+</div>
+
+
+<div class="theme-popover">
+
+    <div class="theme-poptit">
+
+        <a href="javascript:;" title="关闭" class="close">×</a>
+
+        <h3>经常充值能快速提高等级哦！</h3>
+
     </div>
 
-    <!--充值-->
-    <div id="content3">
-        充值
+    <div class="theme-popbod dform">
+
+        <form class="theme-signin" name="loginform" action="" method="post" autocomplete="off">
+            <ol>
+                <li><strong>充入金额：</strong><input class="ipt" type="text" name="amount" placeholder="999.00" size="20"/></li>
+
+                <li><strong>充值密码：</strong><input class="ipt" type="password" name="pwd" placeholder="******" size="20" /></li>
+
+                <li><input id="btn" class="btn btn-primary" type="submit" name="submit" style="width: 180px" value=" 确认充入" /></li>
+
+            </ol>
+        </form>
+
     </div>
 </div>
 
@@ -426,7 +549,7 @@
 
 <!--火箭-->
 <!-- 右侧小火箭图标返回顶部 -->
-<div id="shangxia2" style="margin-right: 20px;margin-bottom: 80px;">
+<div id="shangxia2" >
 				<span id="gotop1">
 					<img src="images/huojian.svg" alt="返回顶部小火箭">
                     <!-- <img src="img/rocked.png" alt="返回顶部小火箭"> -->
@@ -477,67 +600,7 @@
     });
 </script>
 
-
 <!--footer-->
-<div class="footer">
-    <div class="container">
-        <div class="footer-grids">
-            <div class="col-md-2 footer-grid">
-                <h4>company</h4>
-                <ul>
-                    <li><a href="products.html">products</a></li>
-                    <li><a href="#">Work Here</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Happenings</a></li>
-                    <li><a href="#">Dealer Locator</a></li>
-                </ul>
-            </div>
-            <div class="col-md-2 footer-grid">
-                <h4>service</h4>
-                <ul>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Warranty</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 footer-grid">
-                <h4>order & returns</h4>
-                <ul>
-                    <li><a href="#">Order Status</a></li>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Return Policy</a></li>
-                    <li><a href="#">Digital Gift Card</a></li>
-                </ul>
-            </div>
-            <div class="col-md-2 footer-grid">
-                <h4>legal</h4>
-                <ul>
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Terms and Conditions</a></li>
-                    <li><a href="#">Social Responsibility</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 footer-grid icons">
-                <h4>Connect with Us</h4>
-                <ul>
-                    <li><a href="#"><img src="images/i1.png" alt=""/>Follow us on Facebook</a></li>
-                    <li><a href="#"><img src="images/i2.png" alt=""/>Follow us on Twitter</a></li>
-                    <li><a href="#"><img src="images/i3.png" alt=""/>Follow us on Google-plus</a></li>
-                    <li><a href="#"><img src="images/i4.png" alt=""/>Follow us on Pinterest</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
-</div>
-<!--footer-->
-<div class="footer-bottom">
-    <div class="container">
-        <p>Copyright &copy; 2015.Company name All rights reserved</p>
-    </div>
-</div>
 </body>
 
 </html>

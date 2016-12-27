@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand"><a href="index.html">Yummy</a></h1>
+                <h1 class="navbar-brand"><a href="index.jsp">Yummy</a></h1>
             </div>
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -289,7 +289,7 @@
                                 <h4>
                                 <span>欢迎:</span>
                                 <span>
-                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
+                                    <a href="personal.do" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
                                 </span>
                                 <c:choose>
                                     <c:when test="${sessionScope.admin>0}">
@@ -386,11 +386,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -411,11 +412,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -436,11 +438,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -461,11 +464,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -486,11 +490,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -511,11 +516,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -536,11 +542,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -561,11 +568,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -586,11 +594,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -659,6 +668,7 @@
                     <li><a href="#"><img src="images/i2.png" alt=""/>Follow us on Twitter</a></li>
                     <li><a href="#"><img src="images/i3.png" alt=""/>Follow us on Google-plus</a></li>
                     <li><a href="#"><img src="images/i4.png" alt=""/>Follow us on Pinterest</a></li>
+                </ul>
             </div>
         </div>
         <div class="clearfix"></div>

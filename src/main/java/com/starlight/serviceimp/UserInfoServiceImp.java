@@ -4,8 +4,7 @@ import com.starlight.dao.IUserInfoDao;
 import com.starlight.dao.IWalletDao;
 import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
-import com.starlight.service.IUserinfoService;
-import com.starlight.util.Appliction;
+import com.starlight.service.IUserInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class UserinfoServiceImp implements IUserinfoService{
+public class UserInfoServiceImp implements IUserInfoService {
     
     //用户信息
     @Resource
@@ -25,28 +24,27 @@ public class UserinfoServiceImp implements IUserinfoService{
     @Resource
     IWalletDao iWalletDao;
 
-    
-    public List<UserInfo> findAllUserinfoById(List<Integer> list) {
+
+    public List<UserInfo> findAllUserInfoById(List<Integer> list) {
         return null;
     }
 
-    public List<UserInfo> findUserinfoByAge(int age) {
+    public List<UserInfo> findUserInfoByNickName(String uinfo_nickname) {
         return null;
     }
 
-    public List<UserInfo> findUserinfoByNickName(String uinfo_nickname) {
+    public List<UserInfo> findUserInfoByAge(int age) {
         return null;
+    }
+
+    public UserInfo findUserInfoById(int id) {
+        return iUserinfoDao.findUserInfoById(id);
     }
 
     public boolean alterPhoneById(int id) {
         return false;
     }
 
-    //查询用户信息返回一个List用户信息集合
-    public UserInfo findUserinfosById(int u_id) {
-        IUserInfoDao userifodao = Appliction.getAct().getBean(IUserInfoDao.class);
-        return  userifodao.findUserifoById(u_id);
-    }
 //    插入用户详细信息
     public void register(UserInfo userInfo){
         iUserinfoDao.register(userInfo);

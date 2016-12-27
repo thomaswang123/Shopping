@@ -12,18 +12,46 @@ public interface IUserInfoDao {
      * @param uinfo_id 账号
      * @return list  集合
      */
-     UserInfo findUserifoById(int uinfo_id);
+     UserInfo findUserInfoById(int uinfo_id);
 
-//	  用户注册
+    /**
+     * 用户注册
+     * @param userInfo
+     */
       void register(UserInfo userInfo);
-//	查询详细信息
-UserInfo findAllById(int id);
-//	修改昵称
-boolean alterNickName(String nickName);
-//	修改年龄
-boolean alterAge(int age);
-//	修改电话
-boolean alterPhone(String phone);
-//	修改地址
-boolean alterAddress(String address);
+
+    /**
+     * 查询详细信息
+     * @param id
+     * @return
+     */
+    UserInfo findAllById(int id);
+
+    /**
+     * 修改昵称
+     * @param nickName
+     * @return
+     */
+    boolean alterNickName(String nickName);
+
+    /**
+     * 修改年龄
+     * @param age
+     * @return
+     */
+    boolean alterAge(int age);
+
+    /**
+     * 修改电话
+     * @param phone
+     * @return
+     */
+    boolean alterPhone(String phone);
+
+    /**
+     * 修改地址
+     * @param address
+     * @return
+     */
+    boolean alterAddress(String address);
 }

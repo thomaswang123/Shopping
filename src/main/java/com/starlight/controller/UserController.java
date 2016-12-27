@@ -1,12 +1,7 @@
 package com.starlight.controller;
 
-import com.starlight.entity.PassWordProtection;
-import com.starlight.entity.User;
-import com.starlight.entity.UserInfo;
-import com.starlight.entity.Wallet;
-import com.starlight.serviceimp.AminServiceImp;
-import com.starlight.serviceimp.UserServiceImp;
-import com.starlight.serviceimp.UserinfoServiceImp;
+import com.starlight.entity.*;
+import com.starlight.serviceimp.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
@@ -29,11 +25,18 @@ private int u_id = 0;
 private UserServiceImp userServiceImp;
 //获取用户信息业务处理的类
 @Resource
-private UserinfoServiceImp userinfoServiceImp;
+private UserInfoServiceImp userinfoServiceImp;
 //获取管理员业务处理的类
 @Resource
 private AminServiceImp aminServiceImp;
-
+@Resource
+private WalletServiceImp walletServiceImp;
+@Resource
+private OrderServiceImp orderServiceImp;
+@Resource
+private GoodsServiceImp goodsServiceImp;
+@Resource
+List<Order> orderList1;
 @Resource
 User user;
 @Resource
@@ -123,18 +126,17 @@ public String checkAccout(String name) {
 //		匹配输入的账号是否符合规则并查询是否存在该账号
     
     if (userServiceImp.findAccount(name).isEmpty()) {
-        System.out.println("进入账号正确:" + "<label style='color:green'>√</label>");
+
         return "true";
     } else {
-        System.out.println("进入账号正确:" + "<label style='color:green'>√</label>");
+
         return "false";
     }
 }
     
     //登陆验证
     @RequestMapping("login.do")
-    public String test (String username, String password,
-                                                        HttpSession sessionUser, User user){
+    public String test (String username, String password, HttpSession sessionUser, User user){
         int id=0;
         //为user赋值
         user.setAccount(username);
@@ -142,7 +144,7 @@ public String checkAccout(String name) {
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
         if ((id = userServiceImp.login(user)) != 0) {
             sessionUser.setAttribute("userId",id);
-            sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserinfosById(id));
+            sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserInfoById(id));
             sessionUser.setAttribute("admin", aminServiceImp.finAllClssesById(id));
             return "index";
         }
@@ -157,5 +159,51 @@ public String checkAccout(String name) {
         //  sessionUser.setAttribute("userinfo",null);
         return "index";
     }
-    
+
+
+//    个人信息展示
+    @RequestMapping("/personal.do")
+    public String personal(HttpSession httpSession){
+        int userId=(Integer)httpSession.getAttribute("userId");
+//        查找账号
+        User user=userServiceImp.findAccountById(userId);
+        System.out.println(user.getId()+"--"+user.getPassword()+"--"+user.getAccount());
+
+//      创建session
+        httpSession.setAttribute("user",user);
+
+//      查找用户详细信息
+        UserInfo userInfo=userinfoServiceImp.findUserInfoById(userId);
+        System.out.println(userInfo.getAddress()+"--"+userInfo.getNickname()+"--"
+                +userInfo.getPhone()+"--"+userInfo.getSex()+"--"+userInfo.getAge());
+
+//       创建session
+        httpSession.setAttribute("userInfo",userInfo);
+
+//        查找钱包信息
+        Wallet wallet=walletServiceImp.findById(userId);
+        System.out.println(wallet.getPassword()+"--"+wallet.getMoney());
+
+//        创建session
+        httpSession.setAttribute("wallet",wallet);
+
+//        查找账单
+        List<Order> orderList=orderServiceImp.findByUserId(userId);
+
+        for (Order o:orderList) {
+            Goods goods=goodsServiceImp.findById(o.getGoodsId());
+            o.setGoodsName(goods.getName());
+            o.setPicture(goods.getPicture());
+            o.setPrice(goods.getPrice());
+        }
+
+//        for (Order o1:
+//             orderList) {
+//            System.out.println("集合："+o1.getId()+"--"+o1.getGoodsName()+"--"+o1.getPrice());
+//        }
+//        创建session
+        httpSession.setAttribute("orderList",orderList);
+
+        return "redirect:personal.jsp";
+    }
 }

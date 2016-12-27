@@ -123,7 +123,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand"><a href="index.html">Yummy</a></h1>
+                <h1 class="navbar-brand"><a href="index.jsp">Yummy</a></h1>
             </div>
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -336,7 +336,7 @@
                     <form class="navbar-form">
                         <input type="text" class="form-control">
                         <button type="submit" class="btn btn-default" aria-label="Left Align">
-                            搜索
+                            开始搜索
                         </button>
                     </form>
                 </div>
@@ -360,32 +360,27 @@
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a
-                                href="changePassword.jsp">忘记密码?</a></span>
+                        <p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a href="changePassword.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
                         <c:otherwise>
                             <div>
-                                <h4
-                                <span>欢迎:</span>
-                                <span>
-                                    <a href="#" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
+                                <h4>
+                                    <span>欢迎:</span>
+                                    <span>
+                                    <a href="personal.do" style="color: #0e90d2;">${sessionScope.userinfo.nickname}</a>
                                 </span>
-                                <c:choose>
-                                    <c:when test="${sessionScope.admin>0}">
-                                        <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span
-                                                style="color: red">管理中心</span> </a></span>
-                                        <span style="margin-left: 20px;color: red">Lv:</span><span
-                                            style="color:red">${sessionScope.admin}</span>
-                                    </c:when>
-                                    <c:otherwise></c:otherwise>
-                                </c:choose>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.admin>0}">
+                                            <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                            <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
+                                        </c:when>
+                                        <c:otherwise></c:otherwise>
+                                    </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="index.jsp"><img src="images/login.png"><span
-                                            style="padding-top: 10px">切换账号</span></a></span>
-                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a
-                                            href="index.jsp">退出</a></span>
+                                    <span><a href="switchover.do"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>
@@ -404,7 +399,6 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
     </div>

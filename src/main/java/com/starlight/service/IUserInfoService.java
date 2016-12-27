@@ -1,6 +1,5 @@
 package com.starlight.service;
 
-import com.starlight.entity.Goods;
 import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 
@@ -10,15 +9,14 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/20.
  * 用户信息接口
  */
-public interface IUserinfoService {
+public interface IUserInfoService {
 
     /**
      * 通过用户id查找用户信息（分页）
-     *
-     * @param List<Integer> 用户id的集合
-     * @return list<Userinfo><
+     * @param list
+     * @return
      */
-    List<UserInfo> findAllUserinfoById(List<Integer> list);
+    List<UserInfo> findAllUserInfoById(List<Integer> list);
 
     /**
      * 通过姓名查询用户的信息
@@ -26,16 +24,15 @@ public interface IUserinfoService {
      * @return Userinfo
      * @paramu info_nickname  用户姓名
      */
-    List<UserInfo> findUserinfoByNickName(String uinfo_nickname);
+    List<UserInfo> findUserInfoByNickName(String uinfo_nickname);
 
 
     /**
      * 通过age查询用户的信息
-     *
-     * @param id 用户年龄
-     * @return Userinfo
+     * @param age
+     * @return
      */
-     List<UserInfo> findUserinfoByAge(int age);
+     List<UserInfo> findUserInfoByAge(int age);
 
     /**
      * @param id
@@ -49,7 +46,7 @@ public interface IUserinfoService {
      * @param u_id
      * @return
      */
-     UserInfo findUserinfosById(int u_id);
+     UserInfo findUserInfoById(int u_id);
 
     /**
      * 插入用户详细信息

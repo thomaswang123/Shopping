@@ -15,5 +15,11 @@
     <insert id="addOrder" parameterType="com.starlight.entity.Order">
         insert into Orders (o_uid,o_gid,o_money,o_number,o_date)values(#{userId},#{goodsId},#{money},#{number},#{date})
     </insert>
+    <select id="findByUserId" parameterType="int" resultMap="order">
+        select o_id,o_uid,o_gid,o_money,o_number,o_date from Orders where o_uid=#{id}
+    </select>
 
+    <delete id="removeOrder" parameterType="int" >
+        delete from Orders where o_id=#{id}
+    </delete>
 </mapper>

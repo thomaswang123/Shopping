@@ -8,31 +8,31 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Wallet {
-private int id;
-private float money;
-private int password;
+    private int id;
+    private float money;
+    private int password;
 
-public int getId() {
-    return id;
-}
+    public int getId() {
+        return id;
+    }
 
-public void setId(int id) {
-    this.id = id;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public float getMoney() {
-    return money;
-}
+    public float getMoney() {
+        return money;
+    }
 
-public void setMoney(float money) {
-    this.money = money;
-}
+    public void setMoney(float money) {
+        this.money = money;
+    }
 
-public int getPassword() {
-    return password;
-}
+    public int getPassword() {
+        return password;
+    }
 
-public void setPassword(int password) {
-    this.password = password;
-}
+    public void setPassword(int password) {
+        this.password = password;
+    }
 }
