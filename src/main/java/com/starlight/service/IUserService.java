@@ -63,4 +63,11 @@ public interface IUserService {
 	 * @return
 	 */
 	List<User> findAccount(String account);
+
+	/**
+	 * 查找所有有关管理员信息
+	 * @param uid
+	 * @return
+	 */
+	List<User> findAllUserAndUserInfoAndAdminById(int uid);
 }

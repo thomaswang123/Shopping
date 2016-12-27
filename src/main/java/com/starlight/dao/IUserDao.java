@@ -1,5 +1,6 @@
 package com.starlight.dao;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.User;
 
 import java.util.List;
@@ -73,4 +74,11 @@ public interface IUserDao {
 	 * @return
 	 */
 	int delUser(int uid);
+
+	/**
+	 * 查询出管理员
+	 * @param paging
+	 * @return
+	 */
+	List<User> findAllUserByPaging(Paging paging);
 }

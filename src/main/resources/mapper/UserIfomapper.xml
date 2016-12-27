@@ -50,6 +50,10 @@
             from user,userinfo as uf
             where user.u_id = uf.uinfo_id  limit #{rise},#{stop};
     </select>
+
+    <select id="findAllById" parameterType="int" resultMap="userInfo">
+      select uinfo_nickname ,uinfo_sex,uinfo_age,uinfo_phone from userinfo where uinfo_id = #{uid}
+    </select>
     <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
             delete from DEPT
             <where>

@@ -13,6 +13,10 @@ private int   id ;
 private String  account;
 private String  password;
 
+//多表查询使用(用户信息)
+private UserInfo userInfo;
+
+//管理员等级
 
 
 public int getId() {

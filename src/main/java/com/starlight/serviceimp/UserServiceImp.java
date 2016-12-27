@@ -28,7 +28,7 @@ public class UserServiceImp implements IUserService {
     //登陆
     public int login(User user) {
         IUserDao userdao = Appliction.getAct().getBean(IUserDao.class);
-        return  userdao.login(user);
+        return userdao.login(user);
     }
 
     public List<String> findAllNameById(List<Integer> list) {
@@ -42,7 +42,7 @@ public class UserServiceImp implements IUserService {
 
     //根据用户账号来查询id，用于判断账号是否存在
     public int byname_GainId(String u_name) {
-        
+
         return Appliction.getAct().getBean(IUserDao.class).findIdByAccoun_Unmber(u_name);
     }
 
@@ -50,17 +50,25 @@ public class UserServiceImp implements IUserService {
         return false;
     }
 
-//    用户注册
-    public int register(User user){
+    //    用户注册
+    public int register(User user) {
         iUserDao.register(user);
         return iUserDao.findIdByUser(user.getAccount());
     }
-//    添加密保
-    public void addPWP(PassWordProtection passWordProtection){
+
+    //    添加密保
+    public void addPWP(PassWordProtection passWordProtection) {
+
         iChangePasswordDao.addPWP(passWordProtection);
     }
 
-    public List<User> findAccount(String account){
+    public List<User> findAccount(String account) {
         return iUserDao.findAccount(account);
+    }
+
+    //查找所有有关管理员信息
+    public List<User> findAllUserAndUserInfoAndAdminById(int uid) {
+
+        return null;
     }
 }

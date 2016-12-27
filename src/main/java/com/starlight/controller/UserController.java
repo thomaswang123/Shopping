@@ -147,8 +147,8 @@ public class UserController {
                             userInfo.getNickname());
             System.out.println(userInfo.getNickname());
             sessionUser.setAttribute("userinfo", userInfo);
-            //判断是否为空
-            sessionUser.setAttribute("admin", adminServiceImp.findAllClssesById(u_id));
+            //判断是否是管理员
+            sessionUser.setAttribute("admin", adminServiceImp.findClssesById(u_id));
             return url;
         }
         return url;

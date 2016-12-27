@@ -1,5 +1,8 @@
 import com.starlight.dao.IChangePasswordDao;
+import com.starlight.dao.IGoodsDao;
 import com.starlight.dao.IUserDao;
+import com.starlight.entity.Goods;
+import com.starlight.entity.Paging;
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.serviceimp.UserServiceImp;
@@ -57,6 +60,14 @@ public class Test {
                 ) {
             System.out.println(string[temp]);}
             System.out.println(11%10);
+        Paging paging = new Paging();
+        paging.setRise(1);
+        paging.setStop(10);
+        List<Goods> listss = act .getBean(IGoodsDao.class).byPagingfindAll(paging);
+        for (Goods ls:listss
+             ) {
+            System.out.println(ls.getName());
+        }
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

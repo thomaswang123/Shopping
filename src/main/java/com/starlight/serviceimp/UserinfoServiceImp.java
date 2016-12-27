@@ -39,8 +39,9 @@ public class UserinfoServiceImp implements IUserinfoService{
 
     //根据分页的页码来分页
     public List<UserInfo> pagination(String pagination,String number) {
+        System.out.println("aaaaa"+number+pagination);
       //页面的数据数量
-       int nbr = Integer.parseInt(number);
+       int nbr = Integer.parseInt(number.substring(number.indexOf(":")+1,number.length()));
        //页码
        int pat = Integer.parseInt(pagination);
        //从第几个数据开始
@@ -89,5 +90,7 @@ public class UserinfoServiceImp implements IUserinfoService{
     public void registerWallet(Wallet wallet){
         iWalletDao.register(wallet);
     }
+
+
 
 }

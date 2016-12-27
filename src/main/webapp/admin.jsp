@@ -35,49 +35,120 @@
     <!-- cart -->
     <script type="application/x-javascript">
         $(document).ready(function () {
-            $(".user").click(function () {
-                $(".yang").hide();
-                $(".selectuser").show();
-                $(".selectsp").hide();
-                $(".iframea").show();
-            });
-            $(".sp").click(function () {
-                $(".yang").hide();
-                $(".selectuser").hide();
-                $(".selectsp").show();
-                $(".iframesp").show();
-            });
-            $(".jurisdiction").click(function () {
-                $(".yang").hide();
-                $(".jurisdiction_s").display = "block";
-            });
-            $(".tongji").click(function () {
-                $(".yang").hide();
-                $(".tongji_iframe").display = "block";
-            });
 
-            /*点击页码进行刷新数据*/
+            /*用户管理点击页码进行刷新数据*/
             $(".connect").click(function () {
+                var goods = parseInt($("#goodsnumber").val());
                 /*进行颜色的变换*/
                 var pagination = $(this).attr("id");
                 var number = $("#select").val();
                 $(".connect").css("color", "blue");
                 $(this).css("color", "red");
+                $("#thisPaginaTion").val(pagination);
                 /*进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination}
+                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods}
                     , function (data) {
-                      /*刷新用户内联页面，展示新的数据*/
-                        $('#iframeas').attr('src', $('#iframeas').attr('src'));
+                        if (goods != 1) {
+                            /*刷新用户内联页面，展示新的数据*/
+                            $('#iframeas').attr('src', $('#iframeas').attr('src'));
+                        } else if (goods == 1) {
+                            /*刷新商品内联页面，展示新的数据*/
+                            $('#goods').attr('src', $('#goods').attr('src'));
+                        }
                     }, "text"
                 );
+            });
 
+            /*选中页面数据数量并刷新页面*/
+            /*       $("#select").change(function (){
+             var number = $("#select").val();
+             /!*进行查询该页面下的数据发送请求*!/
+             $.post("intransit.do",
+             {number: "" + number, pagination: "" + 1}
+             );
+             alert("Aaaa");
+             });*/
+
+            /*用户管理上一页*/
+            $("#previousPage").click(function () {
+                var goods = parseInt($("#goodsnumber").val());
+                var number = $("#select").val();
+                var val = $("#thisPaginaTion").val();
+                var pagination = parseInt(val) - 1;
+                if (pagination <= 1) {
+                    pagination = 1;
+                }
+                $(".connect").css("color", "blue");
+                $("#" + pagination).css("color", "red");
+                $("#thisPaginaTion").val("" + pagination);
+                /*  进行查询该页面下的数据发送请求*/
+                $.post("pagination.do",
+                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods}
+                    , function (data) {
+                        if (goods != 1) {
+                            /*刷新用户内联页面，展示新的数据*/
+                            $('#iframeas').attr('src', $('#iframeas').attr('src'));
+                        } else if (goods == 1) {
+                            /*刷新商品内联页面，展示新的数据*/
+                            $('#goods').attr('src', $('#goods').attr('src'));
+                        }
+                    }, "text");
 
             });
+
+            /*用户管理下一页*/
+            $("#nextPage").click(function () {
+                var goods = parseInt($("#goodsnumber").val());
+                var number = $("#select").val();
+                var val = $("#thisPaginaTion").val();
+                var pagination = parseInt(val) + 1;
+                if (pagination > parseInt($("#maxPaginaTion").val())) {
+                    pagination = pagination - 1;
+                }
+                $("#thisPaginaTion").val("" + pagination);
+                $(".connect").css("color", "blue");
+                $("#" + pagination).css("color", "red");
+                /*  进行查询该页面下的数据发送请求*/
+                $.post("pagination.do",
+                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods}
+                    , function (data) {
+                        if (goods != 1) {
+                            /*刷新用户内联页面，展示新的数据*/
+                            $('#iframeas').attr('src', $('#iframeas').attr('src'));
+                        } else if (goods == 1) {
+                            /*刷新商品内联页面，展示新的数据*/
+                            $('#goods').attr('src', $('#goods').attr('src'));
+                        }
+                    }, "text"
+                );
+            });
+
         });
+
+
+        /*用户管理选中页面数据数量并刷新页面*/
+        function chage(value) {
+            var goodNumber = document.getElementById("goodsnumber").value;
+            if (parseInt(goodNumber) == 1) {
+                / *利用js发送商品管理请求*/
+                window.location.href = "goods.do?number=" + value + "&pagination=1";
+            } else {
+                /   *利用js发送用户管理请求*/
+                window.location.href = "adminOperation.do?number=" + value + "&pagination=1";
+            }
+        }
     </script>
 </head>
 <body>
+<c:choose>
+    <c:when test="${sessionScope.goodsdata!=null}">
+        <input id="goodsnumber" value="1">
+    </c:when>
+    <c:otherwise>
+        <input id="goodsnumber" value="0">
+    </c:otherwise>
+</c:choose>
 <!--header-->
 <div class="header">
     <div class="container">
@@ -352,10 +423,10 @@
                                 </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="switchover.do?url=admin"><img src="images/login.png"><span
+                                    <span><a href="switchover.do?url=index"><img src="images/login.png"><span
                                             style="padding-top: 10px">切换账号</span></a></span>
                                     <span style="color: red;margin-left: 70px;margin-top: 10px"><a
-                                            href="switchover.do?url=admin">退出</a></span>
+                                            href="switchover.do?url=index">退出</a></span>
                                 </h5>
                             </div>
                             </c:otherwise>
@@ -385,10 +456,10 @@
 <div class="left_menu">
     <div class="left_menuzi">
         <h3>
-            <span><a class="user" href="#">用户管理</a></span>
-            <span><a class="sp" href="#">商品管理</a></span>
+            <span><a class="user" href="adminOperation.do?number=10&pagination=1">用户管理</a></span>
+            <span><a class="sp" href="goods.do?number=10&pagination=1">商品管理</a></span>
             <span><a class="jurisdiction" href="#">权限管理</a></span>
-            <span><a class="tongji" href="#">销售统计</a></span>
+            <%--            <span><a class="tongji" href="#">销售统计</a></span>--%>
         </h3>
     </div>
 </div>
@@ -397,48 +468,69 @@
     <div style="margin-top: 20px;margin-left: 150px">
         <span>显示:</span>
         <span>
-        <select id="select" ="">
-            <option selected value="10">10</option>
-            <option>20</option>
-            <option>30</option>
+        <select id="select" onchange="chage(this.value)">
+                  <option selected>当前值:${requestScope.datanumber}</option>
+                    <option>10</option>
+                  <option>20</option>
+                  <option>30</option>
             </select>
     </span>
         <span style="margin-left: 20px">数量:<label id="number"><b>${requestScope.numbersum}</b></label></span>
         <span style="margin-left: 190px">
-         类型：<select style="width: 90px" class="selectuser">
-                <option>id</option>
-                <option>账号</option>
-                <option>姓名</option>
-                <option>性别</option>
-                <option>年龄</option>
-                <option>电话</option>
-                <option>地址</option>
-        </select>
-            <select class="selectsp">
-                <option>id</option>
-                <option>商品名称</option>
-                <option>商品单价</option>
-                <option>商品评分</option>
-            </select>
+         类型：
+            <c:choose>
+                <c:when test="${sessionScope.goodsdata!=null}">
+                    <select class="selectGoods">
+                         <option>id</option>
+                         <option>商品名称</option>
+                         <option>商品单价</option>
+                         <option>商品评分</option>
+                   </select>
+                </c:when>
+                <c:otherwise>
+                        <select style="width: 90px" class="selectuser">
+                         <option>id</option>
+                         <option>账号</option>
+                         <option>姓名</option>
+                         <option>性别</option>
+                         <option>年龄</option>
+                         <option>电话</option>
+                         <option>地址</option>
+                  </select>
+                </c:otherwise>
+            </c:choose>
          <input type="text" style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
             <!--   <input type="button" value="查询" style="margin-left: 20px;width: 80px;height:25px ">-->
     </span>
         <span style="margin-left: 300px"><a><img src="images/shuanxin.png">刷新</a></span>
     </div>
-    <iframe src="usertable.jsp" id="iframeas" class="iframea yang" frameBorder="0" scrolling="no"></iframe>
-    <iframe src="Shopping.html" class="iframesp yang" frameBorder="0" scrolling="no"></iframe>
-    <iframe src="UserTable.html" class="jurisdiction_s yang" frameBorder="0" scrolling="no"></iframe>
-    <iframe src="UserTable.html" class="tongji_iframe yang" frameBorder="0" scrolling="no"></iframe>
-    <div style="margin-left: 1100px">
+    <c:choose>
+        <c:when test="${sessionScope.goodsdata!=null}">
+            <iframe src="goods.jsp" id="goods" frameBorder="0" scrolling="no"
+                    style="width:90%;height: 660px;"></iframe>
+        </c:when>
+        <c:when test="${sessionScope.userRight!=null}">
+            <iframe src="jurisdiction.jsp" id="userRight" frameBorder="0"
+                    scrolling="no" style="width:90%;height: 660px;"></iframe>
+        </c:when>
+        <c:otherwise>
+            <iframe src="usertable.jsp" id="iframeas" class="iframea yang"
+                    frameBorder="0" scrolling="no"></iframe>
+        </c:otherwise>
+    </c:choose>
+    <div style="margin-left: 950px">
         <%--用来记录当前的页码--%>
         <input id="thisPaginaTion" value="1" style="display: none">
+        <select id="maxPaginaTion" style="display: none">
+            <option selected>${requestScope.number}</option>
+        </select>
         <b>
             <c:choose>
                 <%-- 只有一页--%>
-            <c:when test="${requestScope.number==1&&requestScope==0}">
+            <c:when test="${requestScope.number==1||requestScope.number==0}">
             </c:when>
             <c:otherwise>
-            <span><a href="#">上一页</a></span>
+            <span><a href="#" id="previousPage">上一页</a></span>
                 <%--页面数--%>
             <c:choose>
                 <c:when test="${requestScope.number<10&&requestScope.number>1}">
@@ -446,13 +538,14 @@
                         <c:choose>
                             <c:when test="${i==1}">
                                 <span style="margin-left: 10px"><a class="connect" id="${i}"
-                                           onclick="conncet(this.id,this.class)" href="#"
-                                            style="color: red;font-size: 20px">${i}</a></span>
+                                             onclick="conncet(this.id,this.class)" href="#"
+                                              style="color: red;font-size: 20px">${i}</a></span>
                             </c:when>
                             <c:otherwise>
                                 <span style="margin-left: 10px;color:#006dcc"><a class="connect" id="${i}"
-                                      onclick="conncet(this.id,this.class)"
-                                     href="#" style="font-size: 20px">${i}</a></span>
+                                           onclick="conncet(this.id,this.class)"
+                                            href="#"
+                                             style="font-size: 20px">${i}</a></span>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -467,7 +560,7 @@
                 <c:otherwise>
                     <span>...</span>
                     <span style="margin-left: 10px">
-                       <a href="#">${requestScope.number}</a>
+                       <a href="#" id="${requestScope.number}">${requestScope.number}</a>
                     </span>
                 </c:otherwise>
             </c:choose>
@@ -475,17 +568,18 @@
         <input type="text" style="width: 25px;height: 20;margin-left: 10px">
         <input type="button" value="跳转" id="buttonhref" style="text-align: center;margin-left: 10px">
         </span>
-            <span style="margin-left: 10px"><a href="#">下一页</a></span>
+            <span style="margin-left: 10px"><a href="#" id="nextPage">下一页</a></span>
         </b>
     </div>
     </c:otherwise>
     </c:choose>
 </div>
+<%--<br>
 <!--footer-->
 <div class="footer-bottom">
     <div class="container">
         <p>Copyright &copy; 2015.Company name All rights reserved</p>
     </div>
-</div>
+</div>--%>
 </body>
 </html>

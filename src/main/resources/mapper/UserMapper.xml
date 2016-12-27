@@ -46,6 +46,11 @@
              select u_id from user where u_name =#{u_name}
     </select>
 
+    <!--查找账号-->
+    <select id="findUserId" resultMap="user" parameterType="int">
+        select u_name from user where u_id = #{uid}
+    </select>
+
     <!--修改用户密码-->
     <update id="alertPwdById" parameterType="com.starlight.entity.User">
         update user set u_pwd = #{password} where u_id = #{id}

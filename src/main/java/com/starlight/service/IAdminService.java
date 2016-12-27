@@ -1,5 +1,10 @@
 package com.starlight.service;
 
+import com.starlight.entity.Goods;
+import com.starlight.entity.Paging;
+
+import java.util.List;
+
 /**
  * Created by thomas.wang on 2016/12/20.
  */
@@ -9,7 +14,7 @@ public interface IAdminService {
      * @param u_id
      * @return
      */
-     int findAllClssesById(int u_id);
+     int findClssesById(int u_id);
 
     /**
      * 删除用户相关所有数据
@@ -17,4 +22,25 @@ public interface IAdminService {
      * @return
      */
      int  delAllUserData(int uid);
+
+    /**
+     * 处理一夜所需要的商品数据
+     * @param paging
+     * @return
+     */
+     List<Goods> findAllByPaging(Paging paging);
+
+    /**
+     * 处理商品的总数量进行分页
+     * @return
+     */
+    int conutGoodsDataNumber();
+
+    /**
+     * 根据页面数据数量，以及第几页来展示数据
+     * @param pagination
+     * @param number
+     * @return
+     */
+    List<Goods> pagination(String pagination,String number);
 }

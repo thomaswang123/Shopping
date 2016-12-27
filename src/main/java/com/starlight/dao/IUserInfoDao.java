@@ -19,6 +19,12 @@ public interface IUserInfoDao {
     UserInfo findUserifoById(int uinfo_id);
 
     /**
+     * 通过id寻找有关的用户信息
+     * @param uid
+     * @return
+     */
+     List<UserInfo> findAllById(int uid);
+    /**
      * 查找所有
      *
      * @return

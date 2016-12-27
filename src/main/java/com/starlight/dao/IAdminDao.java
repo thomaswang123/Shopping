@@ -10,6 +10,13 @@ public interface IAdminDao {
      * @param u_id
      * @return
      */
+    int findClssesById(int u_id);
+
+    /**
+     * 返回所有管理员
+     * @param u_id
+     * @return
+     */
     int findAllClssesById(int u_id);
 
     /**

@@ -10,10 +10,19 @@
         <result property="classes" column="admin_classes" />
     </resultMap>
 
-    <select id="findAllClssesById"  resultType="int" parameterType="int">
+    <select id="findClssesById"  resultType="int" parameterType="int">
         select admin_classes from admin where admin_id =#{u_id}
     </select>
+
+    <select id="findClssesById"  resultType="int" parameterType="int">
+        select admin_classes from admin where admin_id =#{u_id}
+    </select>
+
+    <select id=" findAllClssesById"  resultMap="admin" parameterType="int">
+        select admin_classes,admin_id from admin where admin_id !=#{u_id}
+    </select>
 <!--
+
     <insert id="">
         insert into admin admin_id =
     </insert>-->
