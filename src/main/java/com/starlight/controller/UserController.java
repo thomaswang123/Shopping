@@ -6,7 +6,7 @@ import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 import com.starlight.serviceimp.AdminServiceImp;
 import com.starlight.serviceimp.UserServiceImp;
-import com.starlight.serviceimp.UserinfoServiceImp;
+import com.starlight.serviceimp.UserInfoServiceImp;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +30,7 @@ public class UserController {
     private UserServiceImp userServiceImp;
     //获取用户信息业务处理的类
     @Resource
-    private UserinfoServiceImp userinfoServiceImp;
+    private UserInfoServiceImp userinfoServiceImp;
     //获取管理员业务处理的类
     @Resource
     private AdminServiceImp adminServiceImp;
@@ -148,7 +148,7 @@ public class UserController {
             System.out.println(userInfo.getNickname());
             sessionUser.setAttribute("userinfo", userInfo);
             //判断是否是管理员
-            sessionUser.setAttribute("admin", adminServiceImp.findClssesById(u_id));
+            sessionUser.setAttribute("admin", adminServiceImp.findClassesById(u_id));
             return url;
         }
         return url;

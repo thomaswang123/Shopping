@@ -16,7 +16,7 @@ public interface IUserInfoDao {
      * @param uinfo_id 账号
      * @return list  集合
      */
-    UserInfo findUserifoById(int uinfo_id);
+    UserInfo findUserIfoById(int uinfo_id);
 
     /**
      * 通过id寻找有关的用户信息
@@ -43,7 +43,7 @@ public interface IUserInfoDao {
      * @param id
      * @return
      */
-    UserInfo findAllById(int id);
+    UserInfo findUserInfoById(int id);
 
 
     /**

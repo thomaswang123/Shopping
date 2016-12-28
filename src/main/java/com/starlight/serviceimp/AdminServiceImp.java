@@ -48,9 +48,9 @@ public class AdminServiceImp implements IAdminService {
     Paging paging;
 
     //查询管理员的等级
-    public int findClssesById(int u_id) {
+    public int findClassesById(int u_id) {
 
-        return Appliction.getAct().getBean(IAdminDao.class).findClssesById(u_id);
+        return Appliction.getAct().getBean(IAdminDao.class).findClassesById(u_id);
     }
 
     //删除用户所有数据的操作

@@ -10,11 +10,7 @@
         <result property="classes" column="admin_classes" />
     </resultMap>
 
-    <select id="findClssesById"  resultType="int" parameterType="int">
-        select admin_classes from admin where admin_id =#{u_id}
-    </select>
-
-    <select id="findClssesById"  resultType="int" parameterType="int">
+    <select id="findClassesById"  resultType="int" parameterType="int">
         select admin_classes from admin where admin_id =#{u_id}
     </select>
 
@@ -26,6 +22,7 @@
     <insert id="">
         insert into admin admin_id =
     </insert>-->
+
    <!-- 删除管理员表数据-->
     <delete id="delAllUserData" parameterType="int">
           delete from admin where admin_id =#{uid};

@@ -10,7 +10,7 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/20.
  * 用户信息接口
  */
-public interface IUserinfoService {
+public interface IUserInfoService {
 
     /**
      * 查找用户信息（分页）

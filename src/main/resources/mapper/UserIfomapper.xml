@@ -14,7 +14,7 @@
         <result property="address" column="uinfo_address"/>
     </resultMap>
 
-    <select id="findUserifoById" resultMap="userInfo" parameterType="int">
+    <select id="findUserIfoById" resultMap="userInfo" parameterType="int">
         select uinfo_nickname from userinfo where uinfo_id=#{u_id}
     </select>
 
