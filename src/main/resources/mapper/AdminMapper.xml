@@ -10,7 +10,7 @@
         <result property="classes" column="admin_classes" />
     </resultMap>
 
-    <select id="findClassesById"  resultType="int" parameterType="int">
+    <select id="finAllClassesById"  resultType="int" parameterType="int">
         select admin_classes from admin where admin_id =#{u_id}
     </select>
     <select id="addAdmin" parameterType="com.starlight.entity.Admin">

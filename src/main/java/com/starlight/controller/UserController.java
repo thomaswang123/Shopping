@@ -133,10 +133,8 @@ public String checkAccout(String name) {
 //		匹配输入的账号是否符合规则并查询是否存在该账号
     
     if (userServiceImp.findAccount(name).isEmpty()) {
-
         return "true";
     } else {
-
         return "false";
     }
 }
@@ -152,7 +150,7 @@ public String checkAccout(String name) {
         if ((id = userServiceImp.login(user)) != 0) {
             sessionUser.setAttribute("userId",id);
             sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserInfoById(id));
-            sessionUser.setAttribute("admin", adminServiceImp.finAllClssesById(id));
+            sessionUser.setAttribute("admin", adminServiceImp.finAllClassesById(id));
             return "index";
         }
         return "index";

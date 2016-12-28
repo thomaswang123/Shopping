@@ -31,7 +31,7 @@
 
     <!--查找是否存在该用户-->
     <select id="findAccount" parameterType="String"  resultMap="user">
-        SELECT u_id FROM USER WHERE u_name=#{account}
+        select u_id from user where u_name=#{account}
     </select>
 
     <select id="findAll"  resultMap="user">

@@ -12,13 +12,14 @@ public interface IAdminDao {
      * @param u_id
      * @return
      */
-    int finAllClssesById(int u_id);
+    int finAllClassesById(int u_id);
 
     /**
      * 添加管理员
      * @param admin
      */
     void addAdmin(Admin admin);
+
     int findClassesById(int u_id);
 
     /**

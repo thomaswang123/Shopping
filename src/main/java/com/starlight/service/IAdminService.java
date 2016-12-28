@@ -1,6 +1,9 @@
 package com.starlight.service;
 
 import com.starlight.entity.Admin;
+import com.starlight.entity.Goods;
+
+import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/20.
@@ -11,7 +14,7 @@ public interface IAdminService {
      * @param u_id
      * @return
      */
-     int finAllClssesById(int u_id);
+     int finAllClassesById(int u_id);
 
     /**
      * 插入管理员信息
@@ -32,7 +35,7 @@ public interface IAdminService {
      * @param paging
      * @return
      */
-     List<Goods> findAllByPaging(Paging paging);
+
 
     /**
      * 处理商品的总数量进行分页
@@ -46,5 +49,5 @@ public interface IAdminService {
      * @param number
      * @return
      */
-    List<Goods> pagination(String pagination,String number);
+    List<Goods> pagination(String pagination, String number);
 }

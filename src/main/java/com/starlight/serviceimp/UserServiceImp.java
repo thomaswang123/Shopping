@@ -27,8 +27,7 @@ public class UserServiceImp implements IUserService {
 
     //登陆
     public int login(User user) {
-        IUserDao userdao = Appliction.getAct().getBean(IUserDao.class);
-        return userdao.login(user);
+        return iUserDao.login(user);
     }
 
     public int bynameGainId(String u_name) {

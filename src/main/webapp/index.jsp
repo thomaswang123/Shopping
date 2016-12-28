@@ -287,10 +287,10 @@
                         </c:when>
                         <c:otherwise>
                             <div>
-                                <h4
+                                <h4>
                                 <span>欢迎:</span>
                                 <span>
-                                    <a href="#" style="color: #0e90d2;">
+                                    <a href="personal.do" style="color: #0e90d2;">
                                     ${sessionScope.userinfo.nickname}
                                     </a>
                                 </span>
@@ -440,11 +440,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -465,11 +465,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -490,11 +490,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -515,11 +515,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -540,11 +540,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -565,11 +565,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -590,11 +590,11 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
