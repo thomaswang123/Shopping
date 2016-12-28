@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IShoppingCartDao">
+
+    <!--映射字段-->
+    <resultMap id="shoppingCart" type="com.starlight.entity.ShoppingCart">
+        <id property="id" column="sc_id" />
+        <result property="userId" column="sc_uid" />
+        <result property="goodsId" column="sc_gid"/>
+        <result property="number" column="sc_number"/>
+        <result property="date" column="sc_date"/>
+        <result property="totalMoney" column="sc_summoney"/>
+    </resultMap>
+
+    <select id="findAll"  parameterType="int" resultMap="shoppingCart">
+        select sc_id,sc_gid,sc_number,sc_summoney,sc_date from ShoppingCart where sc_uid=#{id}
+    </select>
+    <insert id="addToCart" parameterType="com.starlight.entity.ShoppingCart" >
+        insert into ShoppingCart (sc_uid,sc_gid,sc_number,sc_date,sc_summoney)values(#{userId},#{goodsId},#{number},#{date},#{totalMoney})
+    </insert>
+
+    <delete id="removeOfCart" parameterType="int">
+        delete from ShoppingCart where sc_id=#{id}
+    </delete>
+
+    <select id="findOnlyOne" parameterType="int" resultMap="shoppingCart">
+        select sc_id,sc_uid,sc_gid,sc_number,sc_date,sc_summoney from ShoppingCart where sc_id=#{id}
+    </select>
+
+
+    <delete id="delShoppingCart" parameterType="int">
+        delete shoppingcart where sc_uid = #{uid}
+    </delete>
+
+</mapper>

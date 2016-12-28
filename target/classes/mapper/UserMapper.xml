@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IUserDao">
+
+    <!--映射字段-->
+    <resultMap id="user" type="com.starlight.entity.User">
+        <id property="id" column="u_id" />
+        <result property="account" column="u_name" />
+        <result property="password" column="u_pwd"/>
+    </resultMap>
+
+    <!--删除用户-->
+    <delete id="delUser" parameterType="int">
+        delete from user where u_id =#{uid}
+    </delete>
+
+    <!--统计用户数量-->
+        <select id="countAllIdNumber" resultType="int">
+           select count(u_id) from user
+        </select>
+    <!--用户注册-->
+    <insert id="register"  parameterType="com.starlight.entity.User">
+        insert into User(u_name,u_pwd)values(#{account},#{password})
+    </insert>
+    <!--通过账号查找ID-->
+    <select id="findIdByUser" parameterType="String" resultType="int">
+        select u_id from user where u_name=#{account}
+    </select>
+
+    <!--查找是否存在该用户-->
+    <select id="findAccount" parameterType="String"  resultMap="user">
+        SELECT u_id FROM USER WHERE u_name=#{account}
+    </select>
+
+    <select id="findAll"  resultMap="user">
+        select u_id, u_name, u_pwd from user
+    </select>
+
+    <select id="login"  resultType="int" parameterType="com.starlight.entity.User">
+        select u_id from user where u_name= #{account} and u_pwd = #{password}
+    </select>
+
+    <select id="findIdByAccoun_Unmber" resultType="int" parameterType="java.lang.String">
+             select u_id from user where u_name =#{u_name}
+    </select>
+
+    <!--查找账号-->
+    <select id="findUserId" resultMap="user" parameterType="int">
+        select u_name from user where u_id = #{uid}
+    </select>
+
+    <!--修改用户密码-->
+    <update id="alertPwdById" parameterType="com.starlight.entity.User">
+        update user set u_pwd = #{password} where u_id = #{id}
+    </update>
+
+    <!--通过ID查找账号-->
+    <select id="findAccountById" parameterType="int" resultMap="user">
+        select u_id,u_name,u_pwd from user where  u_id = #{id}
+    </select>
+
+</mapper>

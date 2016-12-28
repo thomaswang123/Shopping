@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IGoodsDao">
+    <!--映射字段-->
+    <resultMap id="go" type="com.starlight.entity.Goods">
+        <id property="id" column="g_id" />
+        <result property="name" column="g_name" />
+        <result property="picture" column="g_picture"/>
+        <result property="price" column="g_price"/>
+        <result property="describe" column="g_describe"/>
+    </resultMap>
+
+    <!--用户信息和用户表连表分页查询-->
+    <resultMap id="CustomerOrdersMap" type="com.starlight.entity.Goods">
+        <!--定义用户信息-->
+        <id property="id" column="g_id" />
+        <result property="name" column="g_name" />
+        <result property="picture" column="g_picture"/>
+        <result property="price" column="g_price"/>
+        <result property="describe" column="g_describe"/>
+        <!-- 定义客户对应的订单信息，这里是一对多的关系，所以用到collection
+           注意下面用到的ofType而不是javaType
+        -->
+        <collection property="repertory" javaType="com.starlight.entity.Repertory">
+            <id property="id" column="ry_id" />
+            <result property="number" column="ry_number" />
+        </collection>
+    </resultMap>
+    <select id="byPagingfindAll" resultMap="CustomerOrdersMap" parameterType="com.starlight.entity.Paging">
+        select repertory.*,uf.g_id, uf.g_name, uf.g_picture, uf.g_price, uf.g_describe
+        from repertory,goods as uf
+        where repertory.ry_id = uf.g_id limit #{rise},#{stop};
+    </select>
+
+    <!--统计数量-->
+    <select id="conutGoodsNumber" resultType="int">
+        select count(g_id) from goods
+    </select>
+
+    <!--查找所有商品-->
+    <select id="findAll" resultMap="go">
+        select g_id,g_name,g_picture,g_price,g_describe from Goods
+    </select>
+
+    <!--通过ID查找商品-->
+    <select id="findById" parameterType="int" resultMap="go">
+        select g_id,g_name,g_picture,g_price,g_describe from Goods where g_id=#{id}
+    </select>
+
+</mapper>
