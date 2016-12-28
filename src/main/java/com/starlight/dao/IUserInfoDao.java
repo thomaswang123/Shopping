@@ -38,14 +38,6 @@ public interface IUserInfoDao {
      */
     void register(UserInfo userInfo);
 
-    /**
-     * 查询详细信息
-     * @param id
-     * @return
-     */
-    UserInfo findAllById(int id);
-
-    findClssesById()
 
     /**
      * 修改昵称
