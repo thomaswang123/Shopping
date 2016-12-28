@@ -64,13 +64,11 @@
 //                分割字符串
                 var arr=payMoney.split("总计：");
                 var id=$(this).attr("name");
+                alert(id);
                 $(".btn-primary").attr("name",id);
                 $(".payMoney").text(arr[1]);
-
                 $('.theme-popover-mask').fadeIn(100);
-
                 $('.theme-popover').slideDown(200);
-
             })
 
             $('.theme-poptit .close').click(function(){

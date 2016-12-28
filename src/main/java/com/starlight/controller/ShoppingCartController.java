@@ -41,11 +41,12 @@ public class ShoppingCartController {
 
 	@RequestMapping(value = "/addToCart.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String addToCart(int id,String quantity,HttpSession httpSession){
+	public String addToCart(int id,String quantity,HttpSession httpSession,HttpSession sessionUser){
 		System.out.println("id:"+id);
 		System.out.println("q:"+quantity);
 
-		int uid=(Integer)httpSession.getAttribute("userId");
+		int uid=(Integer)sessionUser.getAttribute("userId");
+
 		System.out.println("用户："+uid);
 		Goods g=goodsServiceImp.findById(id);
 
