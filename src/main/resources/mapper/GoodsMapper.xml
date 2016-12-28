@@ -34,6 +34,10 @@
         where repertory.ry_id = uf.g_id limit #{rise},#{stop};
     </select>
 
+    <!--查找最大值-->
+    <select id="findMaxId" resultType="int">
+            select max(g_id) from goods
+    </select>
     <!--统计数量-->
     <select id="conutGoodsNumber" resultType="int">
         select count(g_id) from goods

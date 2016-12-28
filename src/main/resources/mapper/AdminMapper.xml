@@ -17,6 +17,12 @@
         insert into admin (admin_id,admin_classes)values(#{id},#{classes})
     </select>
 
+    <!--统计管理员数量-->
+    <select id="countAdminnumber" resultType="int">
+        select count(admin_id) from admin
+    </select>
+
+
     <select id=" findAllClssesById"  resultMap="admin" parameterType="int">
         select admin_classes,admin_id from admin where admin_id !=#{u_id}
     </select>

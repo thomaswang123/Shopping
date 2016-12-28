@@ -17,6 +17,11 @@ public interface IGoodsDao {
 	List<Goods> findAll();
 
 	/**
+	 * 求最大id值
+	 * @return
+	 */
+	int findMaxId();
+	/**
 	 * 通过ID查找商品
 	 * @param id
 	 * @return
