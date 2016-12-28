@@ -19,4 +19,20 @@ public interface IAdminDao {
      * @param admin
      */
     void addAdmin(Admin admin);
+    int findClassesById(int u_id);
+
+    /**
+    * 查找用户有多少条数据
+    * @return
+    */
+    int findAllCountNumber();
+
+    /**
+     * 删除用户相关数据
+     * @param uid
+     * @return
+     */
+   int delAllUserData(int uid);
+
+
 }

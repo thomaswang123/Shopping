@@ -29,4 +29,9 @@
         select sc_id,sc_uid,sc_gid,sc_number,sc_date,sc_summoney from ShoppingCart where sc_id=#{id}
     </select>
 
+
+    <delete id="delShoppingCart" parameterType="int">
+        delete shoppingcart where sc_uid = #{uid}
+    </delete>
+
 </mapper>

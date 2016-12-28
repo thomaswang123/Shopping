@@ -1,6 +1,7 @@
 package com.starlight.dao;
 
 import com.starlight.entity.Goods;
+import com.starlight.entity.Paging;
 
 import java.util.List;
 
@@ -22,5 +23,16 @@ public interface IGoodsDao {
 	 */
 	Goods findById(int id);
 
+	/**
+	 * 通过分页查询商品信息
+	 * @param paging
+	 * @return
+	 */
+	List<Goods> byPagingfindAll(Paging paging);
 
+	/**
+	 * 统计数量
+	 * @return
+	 */
+	int conutGoodsNumber();
 }

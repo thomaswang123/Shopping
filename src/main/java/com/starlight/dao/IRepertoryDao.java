@@ -8,8 +8,9 @@ import com.starlight.entity.Repertory;
  */
 
 public interface IRepertoryDao {
+
 	/**
-	 * 查询库存
+	 *  查询库存
 	 * @param id
 	 * @return
 	 */
@@ -23,7 +24,7 @@ public interface IRepertoryDao {
 	boolean addRepertory(Repertory re);
 
 	/**
-	 * 减少库存
+	 *  减少库存
 	 * @param re
 	 * @return
 	 */

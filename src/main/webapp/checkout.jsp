@@ -47,7 +47,7 @@
                         }
                     },
                     error:function () {
-
+                        alert("出现错误");
                     }
                 });
 
@@ -109,7 +109,7 @@
                         }
                     },
                     error:function () {
-
+                        alert("出现错误");
                     }
                 });
 
@@ -188,8 +188,7 @@
                         </ul>
                     </li>
                     <li class="dropdown grid">
-                        <a href="#" class="dropdown-toggle list1" data-toggle="dropdown">Wedding<b
-                                class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle list1" data-toggle="dropdown">Wedding<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
                             <div class="row">
                                 <div class="col-sm-3">

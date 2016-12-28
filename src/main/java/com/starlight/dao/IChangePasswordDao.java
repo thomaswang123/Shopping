@@ -25,24 +25,24 @@ public interface IChangePasswordDao {
     String[] findAnswerById(int u_id);
 
 	/**
-	 * 	查询密保
+	 * 查询密保
 	 * @param id
 	 * @return
 	 */
 	List<PassWordProtection> findAllById(int id);
 
+
 	/**
 	 * 删除密保
 	 * @param id
 	 */
-	void deleteById(int id);
+	int deletePwp(int id);
 
 	/**
 	 * 添加密保
 	 * @param passWordProtection
 	 */
 	void addPWP(PassWordProtection passWordProtection);
-
 
 	/**
 	 *修改密保

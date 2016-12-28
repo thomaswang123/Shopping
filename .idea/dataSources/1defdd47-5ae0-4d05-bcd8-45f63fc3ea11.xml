@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="accout_demo@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="accout_demo">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="acess"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="sakila"/>
+    <schema id="8" parent="1" name="student"/>
+    <schema id="9" parent="1" name="test"/>
+    <schema id="10" parent="1" name="world"/>
+    <table id="11" parent="2" name="admin"/>
+    <table id="12" parent="2" name="goods"/>
+    <table id="13" parent="2" name="opinion"/>
+    <table id="14" parent="2" name="orders"/>
+    <table id="15" parent="2" name="passwordprotection"/>
+    <table id="16" parent="2" name="repertory"/>
+    <table id="17" parent="2" name="shoppingcart"/>
+    <table id="18" parent="2" name="user"/>
+    <table id="19" parent="2" name="userinfo"/>
+    <table id="20" parent="2" name="wallet"/>
+    <column id="21" parent="11" name="admin_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="11" name="admin_classes">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="23" parent="11" name="PRIMARY">
+      <ColNames>admin_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="24" parent="11" name="admin_ibfk_1">
+      <ColNames>admin_id</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <column id="25" parent="12" name="g_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="12" name="g_name">
+      <Position>2</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="12" name="g_picture">
+      <Position>3</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="12" name="g_price">
+      <Position>4</Position>
+      <DataType>float(7,2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="12" name="g_describe">
+      <Position>5</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <key id="30" parent="12" name="PRIMARY">
+      <ColNames>g_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="31" parent="13" name="on_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="32" parent="13" name="on_gid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="13" name="on_uid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="13" name="on_grade">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="13" name="on_discuss">
+      <Position>5</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <index id="36" parent="13" name="on_gid">
+      <ColNames>on_gid</ColNames>
+    </index>
+    <key id="37" parent="13" name="PRIMARY">
+      <ColNames>on_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="38" parent="13" name="opinion_ibfk_1">
+      <ColNames>on_gid</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>goods</RefTableName>
+      <RefColNames>g_id</RefColNames>
+    </foreign-key>
+    <column id="39" parent="14" name="o_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="40" parent="14" name="o_uid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="14" name="o_gid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="14" name="o_money">
+      <Position>4</Position>
+      <DataType>float(7,2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="14" name="o_date">
+      <Position>5</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="14" name="o_number">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="45" parent="14" name="o_uid">
+      <ColNames>o_uid</ColNames>
+    </index>
+    <key id="46" parent="14" name="PRIMARY">
+      <ColNames>o_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="47" parent="14" name="orders_ibfk_1">
+      <ColNames>o_uid</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <column id="48" parent="15" name="pp_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="49" parent="15" name="pp_uid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="50" parent="15" name="pp_question">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="51" parent="15" name="pp_answer">
+      <Position>4</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <index id="52" parent="15" name="pp_uid">
+      <ColNames>pp_uid</ColNames>
+    </index>
+    <key id="53" parent="15" name="PRIMARY">
+      <ColNames>pp_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="54" parent="15" name="passwordprotection_ibfk_1">
+      <ColNames>pp_uid</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <column id="55" parent="16" name="ry_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="56" parent="16" name="ry_number">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="57" parent="16" name="PRIMARY">
+      <ColNames>ry_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="58" parent="16" name="repertory_ibfk_1">
+      <ColNames>ry_id</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>goods</RefTableName>
+      <RefColNames>g_id</RefColNames>
+    </foreign-key>
+    <column id="59" parent="17" name="sc_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="60" parent="17" name="sc_uid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="17" name="sc_gid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="17" name="sc_number">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="17" name="sc_date">
+      <Position>5</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="17" name="sc_summoney">
+      <Position>6</Position>
+      <DataType>float(7,2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="65" parent="17" name="sc_gid">
+      <ColNames>sc_gid</ColNames>
+    </index>
+    <index id="66" parent="17" name="sc_uid">
+      <ColNames>sc_uid</ColNames>
+    </index>
+    <key id="67" parent="17" name="PRIMARY">
+      <ColNames>sc_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="68" parent="17" name="shoppingcart_ibfk_1">
+      <ColNames>sc_uid</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="69" parent="17" name="shoppingcart_ibfk_2">
+      <ColNames>sc_gid</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>goods</RefTableName>
+      <RefColNames>g_id</RefColNames>
+    </foreign-key>
+    <column id="70" parent="18" name="u_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="71" parent="18" name="u_name">
+      <Position>2</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="18" name="u_pwd">
+      <Position>3</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="73" parent="18" name="PRIMARY">
+      <ColNames>u_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="74" parent="19" name="uinfo_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="75" parent="19" name="uinfo_nickname">
+      <Position>2</Position>
+      <DataType>varchar(16)|0</DataType>
+    </column>
+    <column id="76" parent="19" name="uinfo_sex">
+      <Position>3</Position>
+      <DataType>char(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="19" name="uinfo_age">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="78" parent="19" name="uinfo_phone">
+      <Position>5</Position>
+      <DataType>varchar(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="79" parent="19" name="uinfo_address">
+      <Position>6</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="80" parent="19" name="PRIMARY">
+      <ColNames>uinfo_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="81" parent="19" name="userinfo_ibfk_1">
+      <ColNames>uinfo_id</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+    <column id="82" parent="20" name="w_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="83" parent="20" name="w_money">
+      <Position>2</Position>
+      <DataType>float(7,2)|0</DataType>
+    </column>
+    <column id="84" parent="20" name="w_paypwd">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="85" parent="20" name="PRIMARY">
+      <ColNames>w_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="86" parent="20" name="wallet_ibfk_1">
+      <ColNames>w_id</ColNames>
+      <RefSchemaName>accout_demo</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>u_id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

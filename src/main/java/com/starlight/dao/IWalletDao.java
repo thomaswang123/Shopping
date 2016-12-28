@@ -30,12 +30,6 @@ public interface IWalletDao {
     Wallet findById(int id);
 
     /**
-     *  修改金额
-     * @param wallet
-     */
-    void updateMoney(Wallet wallet);
-
-    /**
      * 充值操作
      * @param momey
      */
@@ -46,4 +40,18 @@ public interface IWalletDao {
      * @param password
      */
     void changePWD(int password);
+
+    /**
+     * 删除用户钱包数据
+     * @param uid
+     * @return
+     */
+    int delWakket(int uid);
+
+    /**
+     *  修改金额
+     * @param wallet
+     */
+    void updateMoney(Wallet wallet);
+
 }

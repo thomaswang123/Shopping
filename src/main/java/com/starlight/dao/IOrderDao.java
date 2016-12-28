@@ -4,6 +4,8 @@ import com.starlight.entity.Order;
 
 import java.util.List;
 
+import com.starlight.entity.Order;
+
 /**
  * Created by james.jiang on 2016/12/21.
  */
@@ -27,4 +29,11 @@ public interface IOrderDao {
      * @param id
      */
     void removeOrder(int id);
+
+    /**
+     * 删除用户订单
+     * @param uid
+     * @return
+     */
+    int delOrder(int uid);
 }
