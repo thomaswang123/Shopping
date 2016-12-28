@@ -459,7 +459,7 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <%=goods.getDescribe()%>
                     </div>
                 </div>
             </div>
@@ -487,7 +487,15 @@
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <c:if test="${empty opinion}">
+                            还没有人评论哦！
+                        </c:if>
+                        <c:if test="${not empty opinion}">
+                        <c:forEach items="${opinion}" var="opinion">
+                            用户：某某，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;评分：${opinion.grade}分<br><br>
+                            描述：${opinion.discuss}
+                        </c:forEach>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -515,7 +523,7 @@
         <h3>Related Products</h3>
         <div class="product-model-sec single-product-grids">
             <div class="product-grid single-product">
-                <a href="single.html">
+                <a href="single.jsp">
                     <div class="more-product"><span> </span></div>
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                         <img src="images/m1.png" class="img-responsive" alt="">
@@ -539,7 +547,7 @@
                 </div>
             </div>
             <div class="product-grid single-product">
-                <a href="single.html">
+                <a href="single.jsp">
                     <div class="more-product"><span> </span></div>
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                         <img src="images/m2.png" class="img-responsive" alt="">
@@ -563,7 +571,7 @@
                 </div>
             </div>
             <div class="product-grid single-product">
-                <a href="single.html">
+                <a href="single.jsp">
                     <div class="more-product"><span> </span></div>
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                         <img src="images/m3.png" class="img-responsive" alt="">
@@ -587,7 +595,7 @@
                 </div>
             </div>
             <div class="product-grid single-product">
-                <a href="single.html">
+                <a href="single.jsp">
                     <div class="more-product"><span> </span></div>
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                         <img src="images/m4.png" class="img-responsive" alt="">
@@ -622,7 +630,7 @@
             <div class="col-md-2 footer-grid">
                 <h4>company</h4>
                 <ul>
-                    <li><a href="products.html">products</a></li>
+                    <li><a href="products.jsp">products</a></li>
                     <li><a href="#">Work Here</a></li>
                     <li><a href="#">Team</a></li>
                     <li><a href="#">Happenings</a></li>

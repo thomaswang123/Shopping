@@ -2,6 +2,7 @@ package com.starlight.controller;
 
 import com.starlight.entity.Goods;
 import com.starlight.serviceimp.GoodsServiceImp;
+import com.starlight.serviceimp.OpinionServiceImp;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,6 +22,8 @@ public class GoodsController {
 	Goods goods;
 	@Resource
 	GoodsServiceImp goodsServiceImp;
+	@Resource
+	OpinionServiceImp opinionServiceImp;
 	@Resource
 	List<Goods> li;
 	@RequestMapping("/products.do")
@@ -44,6 +47,10 @@ public class GoodsController {
 		     list) {
 			if(g.getId()==id){
 				httpSession.setAttribute("onlyGoods",g);
+				if(opinionServiceImp.findGoodsOpinion(g.getId())!=null){
+					httpSession.setAttribute("opinion",opinionServiceImp.findGoodsOpinion(g.getId()));
+				}
+
 				return "redirect:single.jsp";
 			}
 		}

@@ -36,7 +36,7 @@ public interface IUserInfoService {
     /**
      * 通过age查询用户的信息
      *
-     * @param id 用户年龄
+     * @param age 用户年龄
      * @return Userinfo
      */
      List<UserInfo> findUserInfoByAge(int age);
@@ -50,16 +50,16 @@ public interface IUserInfoService {
     /**
      * 通过用户id来查询用户信息
      *
-     * @param u_id
+     * @param id
      * @return
      */
-     UserInfo findUserInfoById(int u_id);
+     UserInfo findUserInfoById(int id);
 
 
     /**
      *
      */
-    List<UserInfo> findAllUserInfoById(int u_id);
+    List<UserInfo> findAllUserInfoById(int id);
 
     /**
      * 插入用户详细信息

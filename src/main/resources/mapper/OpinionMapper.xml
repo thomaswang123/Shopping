@@ -17,4 +17,8 @@
         delete from opinion where on_id = #{uid}
     </delete>
 
+    <!--查找指定商品的评论-->
+    <select id="findGoodsOpinion" parameterType="int" resultMap="opinion">
+      select on_id,on_grade,on_discuss,on_gid,on_uid from opinion where on_gid = #{goodsId} order by on_id desc
+    </select>
 </mapper>

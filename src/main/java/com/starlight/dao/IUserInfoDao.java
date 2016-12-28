@@ -12,10 +12,10 @@ import java.util.List;
 public interface IUserInfoDao {
     /**
      * 通过用户id来查询用户信息
-     * @param uinfo_id 账号
+     * @param id 账号
      * @return list  集合
      */
-     UserInfo findUserInfoById(int uinfo_id);
+     UserInfo findUserInfoById(int id);
 
 /*    *//*
      * 查询详细信息

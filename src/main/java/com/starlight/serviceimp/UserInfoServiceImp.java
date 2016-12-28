@@ -36,10 +36,10 @@ public class UserInfoServiceImp implements IUserInfoService {
         return Appliction.getAct().getBean(IUserDao.class).countAllIdNumber();
     }
 
-    public List<UserInfo> findAllUserInfoById(int u_id) {
+    public List<UserInfo> findAllUserInfoById(int id) {
 
-        IUserInfoDao userifodao = Appliction.getAct().getBean(IUserInfoDao.class);
-        return  userifodao.findAllUserInfoById(u_id);
+
+        return iUserinfoDao.findAllUserInfoById(id);
     }
 
     public List<UserInfo> findUserInfoByNickName(String uinfo_nickname) {
@@ -60,9 +60,9 @@ public class UserInfoServiceImp implements IUserInfoService {
         return false;
     }
 
-    public UserInfo findUserInfoById(int u_id) {
+    public UserInfo findUserInfoById(int id) {
 
-        return iUserinfoDao.findUserInfoById(u_id);
+        return iUserinfoDao.findUserInfoById(id);
     }
 
     //    插入用户详细信息
