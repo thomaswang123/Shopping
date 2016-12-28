@@ -4,23 +4,43 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by thomas.wang on 2016/12/9.
- *
+ * <p>
  * 商品类
  */
 @Component
 public class Goods {
-//    商品ID
-    private int id ;
-//    商品名称
-    private String name ;
-//    价格
-    private float price ;
-//    描述
-    private String  describe ;
-//    图片
-    private String picture ;
+    //    商品ID
+    private int id;
+    //    商品名称
+    private String name;
+    //    价格
+    private float price;
+    //    描述
+    private String describe;
+    //    图片
+    private String picture;
 
+    //分页查询用库存
+    private Repertory repertory;
 
+    //换行
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Repertory getRepertory() {
+        return repertory;
+    }
+
+    public void setRepertory(Repertory repertory) {
+        this.repertory = repertory;
+    }
 
     public int getId() {
         return id;

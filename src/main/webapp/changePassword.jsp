@@ -37,7 +37,7 @@
     <script type="application/x-javascript">
         $(document).ready(function () {
             /*展示修改密保以及支付密码的输入框*/
-            $("#zhifuAndmibao").click(function () {
+            $("#zhifu").click(function () {
                 $("#Payment_codepswd").toggle();
             });
             /*进行后台的答案数据验证*/
@@ -88,15 +88,15 @@
             )
             ;
             /*进行后台的答案数据验证*/
-            /*      $("#butto3").click(function () {
-             $.post("alertAll.do",
-             $("#alertPpAll").serialize(),
-             function (data) {
-             if (data != null) {
-             alert(data);
-             }
-             }, "text");
-             });*/
+      /*      $("#butto3").click(function () {
+                $.post("alertAll.do",
+                    $("#alertPpAll").serialize(),
+                    function (data) {
+                        if (data != null) {
+                            alert(data);
+                        }
+                    }, "text");
+            });*/
 
             $("#butto3").click(function () {
                 $.post("alertPpAll.do",
@@ -128,12 +128,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand"><a href="Index.html">Yummy</a></h1>
+                <h1 class="navbar-brand"><a href="index.jsp">Yummy</a></h1>
             </div>
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="Index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -341,7 +341,7 @@
                     <form class="navbar-form">
                         <input type="text" class="form-control">
                         <button type="submit" class="btn btn-default" aria-label="Left Align">
-                            搜索
+                            开始搜索
                         </button>
                     </form>
                 </div>
@@ -349,7 +349,7 @@
             <div class="header-right login">
                 <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                 <div id="loginBox">
-                    <form id="loginForm" action="login.do?url=ChangePassword" method="post">
+                    <form id="loginForm" action="login.do?url=changePassword" method="post">
                         <fieldset id="body">
                             <c:choose>
                             <c:when test="${sessionScope.userinfo==null}">
@@ -365,7 +365,7 @@
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="Account.html">点击注册</a> <span><a
+                        <p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a href="changePassword.jsp">忘记密码?</a></span>
                                 href="ChangePassword.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
@@ -387,10 +387,10 @@
                                 </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="switchover.do?url=ChangePassword"><img src="images/login.png"><span
+                                    <span><a href="switchover.do?url=index"><img src="images/login.png"><span
                                             style="padding-top: 10px">切换账号</span></a></span>
                                     <span style="color: red;margin-left: 70px;margin-top: 10px"><a
-                                            href="switchover.do?url=ChangePassword">退出</a></span>
+                                            href="switchover.do?url=index">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>
@@ -401,7 +401,7 @@
             <div class="header-right cart">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="Checkout.html">
+                    <h4><a href="checkout.html">
                         <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
                                                                                                 class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
@@ -580,7 +580,7 @@
             <div class="col-md-2 footer-grid">
                 <h4>company</h4>
                 <ul>
-                    <li><a href="Products.html">products</a></li>
+                    <li><a href="products.html">products</a></li>
                     <li><a href="#">Work Here</a></li>
                     <li><a href="#">Team</a></li>
                     <li><a href="#">Happenings</a></li>
@@ -593,7 +593,7 @@
                     <li><a href="#">Support</a></li>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">Warranty</a></li>
-                    <li><a href="Contact.html">Contact Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">

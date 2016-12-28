@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IUserInfoDao">
+
+    <!--映射字段-->
+    <resultMap id="userInfo" type="com.starlight.entity.UserInfo">
+        <id property="id" column="uinfo_id"/>
+        <result property="sex" column="uinfo_sex"/>
+        <result property="nickname" column="uinfo_nickname"/>
+        <result property="age" column="uinfo_age"/>
+        <result property="phone" column="uinfo_phone"/>
+        <result property="address" column="uinfo_address"/>
+    </resultMap>
+
+    <select id="findAllUserInfoById" resultMap="userInfo" parameterType="int">
+        select uinfo_id,uinfo_sex,uinfo_nickname,uinfo_age,uinfo_phone,uinfo_address from UserInfo where uinfo_id=#{id}
+    </select>
+
+    <select id="findUserInfoById" resultMap="userInfo" parameterType="int">
+        select uinfo_nickname from userinfo where uinfo_id=#{u_id}
+    </select>
+
+
+    <insert id="register" parameterType="com.starlight.entity.UserInfo">
+        INSERT INTO UserInfo(uinfo_id,uinfo_nickname,uinfo_sex,uinfo_age,uinfo_phone,uinfo_address)
+        VALUES (#{id},#{nickname},#{sex},#{age},#{phone},#{address})
+    </insert>
+
+
+
+
+
+    <delete id="delUserInfo">
+        delete from  userinfo where uinfo_id = #{uid}
+    </delete>
+
+    <!--用户信息和用户表连表分页查询-->
+    <resultMap id="CustomerOrdersMap" type="com.starlight.entity.UserInfo">
+        <!--定义用户信息-->
+        <id property="id" column="uinfo_id"/>
+        <result property="sex" column="uinfo_sex"/>
+        <result property="nickname" column="uinfo_nickname"/>
+        <result property="age" column="uinfo_age"/>
+        <result property="phone" column="uinfo_phone"/>
+        <result property="address" column="uinfo_address"/>
+        <!-- 定义客户对应的订单信息，这里是一对多的关系，所以用到collection
+           注意下面用到的ofType而不是javaType
+        -->
+        <collection property="user" javaType="com.starlight.entity.User">
+            <id column="u_id" property="id"></id>
+            <result property="account" column="u_name"/>
+            <result property="password" column="u_pwd"/>
+        </collection>
+    </resultMap>
+    <select id="byPagingfindAll" resultMap="CustomerOrdersMap" parameterType="com.starlight.entity.Paging">
+           select user.*,uf.uinfo_nickname,uf.uinfo_sex,uf.uinfo_age,uf.uinfo_phone,uf.uinfo_address
+            from user,userinfo as uf
+            where user.u_id = uf.uinfo_id  limit #{rise},#{stop};
+    </select>
+
+    <select id="findAllById" parameterType="int" resultMap="userInfo">
+      select uinfo_nickname ,uinfo_sex,uinfo_age,uinfo_phone from userinfo where uinfo_id = #{uid}
+    </select>
+    <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
+            delete from DEPT
+            <where>
+                <if test="deptnos!=null">
+                    deptno in
+                    <foreach collection="deptnos" item="dept" open="(" separator="," close=")">
+                    #{dept}
+                    </foreach>
+                </if>
+                <if test="deptnos==null">
+                    1=2
+                </if>
+            </where>
+        </delete>-->
+</mapper>

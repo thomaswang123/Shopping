@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IRepertoryDao">
+
+  <!--映射字段-->
+    <resultMap id="repertory" type="com.starlight.entity.Repertory">
+        <id property="id" column="ry_id" />
+        <result property="number" column="ry_number" />
+    </resultMap>
+
+</mapper>

@@ -51,69 +51,47 @@ public class UserInfo {
         return id;
     }
 
+public void setId(int id) {
+    this.id = id;
+}
 
-    public void setId(int id) {
+public String getSex() {
+    return sex;
+}
 
-        this.id = id;
-    }
+public void setSex(String sex) {
+    this.sex = sex;
+}
 
+public String getNickname() {
+    return nickname;
+}
 
-    public String getSex() {
+public void setNickname(String nickname) {
+    this.nickname = nickname;
+}
 
-        return sex;
-    }
+public int getAge() {
+    return age;
+}
 
+public void setAge(int age) {
+    this.age = age;
+}
 
-    public void setSex(String sex) {
+public String getPhone() {
+    return phone;
+}
 
-        this.sex = sex;
-    }
+public void setPhone(String phone) {
+    this.phone = phone;
+}
 
+public String getAddress() {
+    return address;
+}
 
-    public String getNickname() {
-
-        return nickname;
-    }
-
-
-    public void setNickname(String nickname) {
-
-        this.nickname = nickname;
-    }
-
-
-    public int getAge() {
-
-        return age;
-    }
-
-
-    public void setAge(int age) {
-
-        this.age = age;
-    }
-
-
-    public String getPhone() {
-
-        return phone;
-    }
-
-
-    public void setPhone(String phone) {
-
-        this.phone = phone;
-    }
-
-
-    public String getAddress() {
-
-        return address;
-    }
-
-
-    public void setAddress(String address) {
-
-        this.address = address;
-    }
+public void setAddress(String address) {
+    this.address = address;
+}
 }
