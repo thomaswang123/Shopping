@@ -1,6 +1,7 @@
 package com.starlight.serviceimp;
 
 import com.starlight.dao.IAdminDao;
+import com.starlight.entity.Admin;
 import com.starlight.service.IAdminService;
 import com.starlight.util.Appliction;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class AminServiceImp implements IAdminService {
+public class AdminServiceImp implements IAdminService {
      
     @Resource
     IAdminDao iAdminDao;
@@ -21,5 +22,9 @@ public class AminServiceImp implements IAdminService {
     //查询管理员的等级
     public int finAllClssesById(int u_id) {
         return Appliction.getAct().getBean(IAdminDao.class).finAllClssesById(u_id);
+    }
+
+    public void addAdmin(Admin admin) {
+        iAdminDao.addAdmin(admin);
     }
 }

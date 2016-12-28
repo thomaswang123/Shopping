@@ -49,7 +49,7 @@
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -312,7 +312,7 @@
             <div class="header-right cart">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="checkout.html">
+                    <h4><a href="showCheckout.do">
                         <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
                                                                                                 class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
@@ -330,7 +330,7 @@
     <div class="container">
         <h2 class="hdng">Yummy <span>Cakes</span> for u</h2>
         <p>Our best cakes make your day special</p>
-        <a href="products.html">开始 shopping</a>
+        <a href="products.do">开始 shopping</a>
         <div class="banner-text">
             <img src="images/2.png" alt=""/>
         </div>
@@ -353,7 +353,6 @@
                     </div>
                 </a>
 
-
                 <div class="galy-info">
                     <p>Lorem Ipsum is simply</p>
                     <div class="galry">
@@ -372,10 +371,10 @@
                 </div>
             </div>
             <div class="col-md-4 gallery-grid glry-two">
-                <a href="products.html"><img src="images/g2.jpg" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g2.jpg" class="img-responsive" alt=""/>
                     <div class="gallery-info galrr-info-two">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
-                        <a class="shop" href="single.html">SHOP NOW</a>
+                        <a class="shop" href="single.jsp">SHOP NOW</a>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -398,7 +397,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g3.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g3.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -424,7 +423,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g4.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g4.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -450,7 +449,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g5.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g5.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -476,7 +475,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g6.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g6.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -502,7 +501,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g7.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g7.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 查看</p>
                         <a class="shop" href="single.html">添加购物车</a>
@@ -528,7 +527,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g8.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g8.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -554,7 +553,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g9.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g9.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -580,7 +579,7 @@
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="products.html"><img src="images/g10.png" class="img-responsive" alt=""/>
+                <a href="products.do"><img src="images/g10.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
                         <a class="shop" href="single.html">SHOP NOW</a>
@@ -628,7 +627,7 @@
             <div class="col-md-2 footer-grid">
                 <h4>company</h4>
                 <ul>
-                    <li><a href="products.html">products</a></li>
+                    <li><a href="products.do">products</a></li>
                     <li><a href="#">Work Here</a></li>
                     <li><a href="#">Team</a></li>
                     <li><a href="#">Happenings</a></li>

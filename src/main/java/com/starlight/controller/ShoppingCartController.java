@@ -45,50 +45,54 @@ public class ShoppingCartController {
 		System.out.println("id:"+id);
 		System.out.println("q:"+quantity);
 
-		int uid=(Integer)httpSession.getAttribute("userId");
-		System.out.println("用户："+uid);
-		Goods g=goodsServiceImp.findById(id);
+		if(httpSession.getAttribute("userId")!=null){
+			int uid=(Integer)httpSession.getAttribute("userId");
+			System.out.println("用户："+uid);
+			Goods g=goodsServiceImp.findById(id);
 
 //		计算价格
-		Float total=g.getPrice()*Integer.parseInt(quantity);
-		System.out.println("总价："+total);
+			Float total=g.getPrice()*Integer.parseInt(quantity);
+			System.out.println("总价："+total);
 
 //      生成本地时间
-		Date date=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String str=sdf.format(date);
-		System.out.print(str);
+			Date date=new Date();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String str=sdf.format(date);
+			System.out.print(str);
 
 
 //		将数据添加到对象中
-		shoppingCart.setUserId(uid);
-		shoppingCart.setGoodsId(id);
-		shoppingCart.setNumber(Integer.parseInt(quantity));
-		shoppingCart.setTotalMoney(total);
-		shoppingCart.setDate(str);
-		System.out.println("对象构建完成");
+			shoppingCart.setUserId(uid);
+			shoppingCart.setGoodsId(id);
+			shoppingCart.setNumber(Integer.parseInt(quantity));
+			shoppingCart.setTotalMoney(total);
+			shoppingCart.setDate(str);
+			System.out.println("对象构建完成");
 //		添加到数据库
-		shoppingCartSI.addToCart(shoppingCart);
-		System.out.println("添加到数据库");
+			shoppingCartSI.addToCart(shoppingCart);
+			System.out.println("添加到数据库");
 //		获取购物车
-		List<ShoppingCart> sc=shoppingCartSI.findById(uid);
-		System.out.println("添加到数据库");
+			List<ShoppingCart> sc=shoppingCartSI.findById(uid);
+			System.out.println("添加到数据库");
 //		创建临时仓库
-		List<Goods> goods2=(List<Goods>) httpSession.getAttribute("showAllGoods");
+			List<Goods> goods2=(List<Goods>) httpSession.getAttribute("showAllGoods");
 
-		for (Goods g2:goods2) {
-			for (ShoppingCart sc2:sc) {
-				if(sc2.getGoodsId()==g2.getId()){
-					sc2.setGoodsName(g2.getName());
-					sc2.setGoodsPrice(g2.getPrice());
-					sc2.setgPicture(g2.getPicture());
+			for (Goods g2:goods2) {
+				for (ShoppingCart sc2:sc) {
+					if(sc2.getGoodsId()==g2.getId()){
+						sc2.setGoodsName(g2.getName());
+						sc2.setGoodsPrice(g2.getPrice());
+						sc2.setgPicture(g2.getPicture());
+					}
 				}
 			}
-		}
-		if(sc!=null){
-			httpSession.setAttribute("cartList",sc);
-			System.out.println("跳转");
-			return "true";
+			if(sc!=null){
+				httpSession.setAttribute("cartList",sc);
+				System.out.println("跳转");
+				return "true";
+			}
+		}else {
+			return "noBody";
 		}
 
 		return "false";
@@ -126,8 +130,8 @@ public class ShoppingCartController {
 
 
 		Wallet wallet=walletServiceImp.findById(uid);
-//
-// 如果密码正确则判断钱包金额是否大于或等于待支付的金额
+
+// 		如果密码正确则判断钱包金额是否大于或等于待支付的金额
 		if(wallet.getPassword()==Integer.parseInt(password)){
 
 //		通过Id查询购物商品的金额
@@ -177,5 +181,19 @@ public class ShoppingCartController {
 
 		}
 		return "false";
+	}
+
+	@RequestMapping("/showCheckout.do")
+	public String showCheckout(HttpSession httpSession){
+
+
+		if(httpSession.getAttribute("cartList")!=null){
+
+			return "redirect:checkout.jsp";
+		}else{
+			return "";
+		}
+
+
 	}
 }

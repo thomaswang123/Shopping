@@ -64,6 +64,7 @@
 //                分割字符串
                 var arr=payMoney.split("总计：");
                 var id=$(this).attr("name");
+                $(this).attr("name","0");
                 $("#btn").attr("name",id);
                 $(".payMoney").text(arr[1]);
 
@@ -88,6 +89,9 @@
             $("#btn").click(function () {
                 var password=$(".ipt").val();
                 var id=$(this).attr("name");
+                var obj=$('[name="0"]');
+                $('[name="0"]').attr("name",id);
+
                 $.ajax({
                     url:'pay.do',
                     type:'post',
@@ -97,10 +101,10 @@
                     timeout:5000,
                     success:function (data) {
                         if(data=="true"){
-                            window.location.reload();
-                        }else if(data="false"){
+                            obj.parent().parent().remove();
+                        }else if(data=="false"){
                             alert("密码错误！");
-                        }else if(data="failed"){
+                        }else if(data=="failed"){
                             alert("余额不足！");
                         }
                     },
@@ -115,8 +119,8 @@
 </head>
 <body>
 <!--header-->
-<div class="header">
-    <div class="container">
+<div class="header" style="height: 67px;">
+    <div class="container" style="height: 67px;">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -126,12 +130,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand"><a href="index.jsp">Yummy</a></h1>
+                <h1 class="navbar-brand" style="margin: 0px auto;"><a href="index.jsp">Yummy</a></h1>
             </div>
             <!--navbar-header-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="height: 67px;">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -332,8 +336,8 @@
             </div>
             <!--//navbar-header-->
         </nav>
-        <div class="header-info">
-            <div class="header-right search-box">
+        <div class="header-info" style="height: 67px;">
+            <div class="header-right search-box" style="height: 67px;">
                 <a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                 <div class="search">
                     <form class="navbar-form">
@@ -344,7 +348,7 @@
                     </form>
                 </div>
             </div>
-            <div class="header-right login">
+            <div class="header-right login" style="height: 67px;">
                 <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                 <div id="loginBox">
                     <form id="loginForm" action="login.do" method="post">
@@ -391,10 +395,10 @@
                     </form>
                 </div>
             </div>
-            <div class="header-right cart">
+            <div class="header-right cart" style="height: 67px;">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="checkout.html">
+                    <h4><a href="checkout.jsp">
                         <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
                                                                                                 class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
@@ -402,6 +406,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -461,7 +466,7 @@
                             <span>总计：${goods.totalMoney}元</span><br>
                             <span>
                                   <div class="btn_form">
-                                     <a  id="addGoods" class="add-cart item_add" name="${goods.id}" >购买</a>
+                                     <a  id="addGoods" class="add-cart item_add" name="${goods.id}">购买</a>
                                   </div>
                             </span>
                             <div class="clearfix"></div>

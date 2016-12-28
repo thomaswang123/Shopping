@@ -13,6 +13,9 @@
     <select id="finAllClssesById"  resultType="int" parameterType="int">
         select admin_classes from admin where admin_id =#{u_id}
     </select>
+    <select id="addAdmin" parameterType="com.starlight.entity.Admin">
+        insert into admin (admin_id,admin_classes)values(#{id},#{classes})
+    </select>
 
 <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
         delete from DEPT

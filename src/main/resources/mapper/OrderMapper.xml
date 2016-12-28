@@ -16,7 +16,7 @@
         insert into Orders (o_uid,o_gid,o_money,o_number,o_date)values(#{userId},#{goodsId},#{money},#{number},#{date})
     </insert>
     <select id="findByUserId" parameterType="int" resultMap="order">
-        select o_id,o_uid,o_gid,o_money,o_number,o_date from Orders where o_uid=#{id}
+        select o_id,o_uid,o_gid,o_money,o_number,o_date from Orders where o_uid=#{id} order by o_id desc
     </select>
 
     <delete id="removeOrder" parameterType="int" >

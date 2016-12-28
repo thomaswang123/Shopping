@@ -15,7 +15,7 @@
     </resultMap>
 
     <select id="findAll"  parameterType="int" resultMap="shoppingCart">
-        select sc_id,sc_gid,sc_number,sc_summoney,sc_date from ShoppingCart where sc_uid=#{id}
+        select sc_id,sc_gid,sc_number,sc_summoney,sc_date from ShoppingCart where sc_uid=#{id} order by sc_id desc
     </select>
     <insert id="addToCart" parameterType="com.starlight.entity.ShoppingCart" >
         insert into ShoppingCart (sc_uid,sc_gid,sc_number,sc_date,sc_summoney)values(#{userId},#{goodsId},#{number},#{date},#{totalMoney})

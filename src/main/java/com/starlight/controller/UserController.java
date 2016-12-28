@@ -28,7 +28,7 @@ private UserServiceImp userServiceImp;
 private UserInfoServiceImp userinfoServiceImp;
 //获取管理员业务处理的类
 @Resource
-private AminServiceImp aminServiceImp;
+private AdminServiceImp adminServiceImp;
 @Resource
 private WalletServiceImp walletServiceImp;
 @Resource
@@ -45,6 +45,8 @@ UserInfo userInfo;
 PassWordProtection passWordProtection;
 @Resource
 Wallet wallet;
+@Resource
+Admin admin;
 
 /**
  * 用户注册方法
@@ -82,6 +84,11 @@ public String register(String nickName, String account_number, String tel, Strin
     userInfo.setSex(sex);
     
     userinfoServiceImp.register(userInfo);
+
+//      插入管理员等级
+    admin.setId(userId);
+    admin.setClasses(0);
+    adminServiceImp.addAdmin(admin);
 
 //		插入密保表数据
     String question1 = httpServletRequest.getParameter("question1");
@@ -140,12 +147,12 @@ public String checkAccout(String name) {
         int id=0;
         //为user赋值
         user.setAccount(username);
-        user.setPassword(username);
+        user.setPassword(password);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
         if ((id = userServiceImp.login(user)) != 0) {
             sessionUser.setAttribute("userId",id);
             sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserInfoById(id));
-            sessionUser.setAttribute("admin", aminServiceImp.finAllClssesById(id));
+            sessionUser.setAttribute("admin", adminServiceImp.finAllClssesById(id));
             return "index";
         }
         return "index";
@@ -197,10 +204,7 @@ public String checkAccout(String name) {
             o.setPrice(goods.getPrice());
         }
 
-//        for (Order o1:
-//             orderList) {
-//            System.out.println("集合："+o1.getId()+"--"+o1.getGoodsName()+"--"+o1.getPrice());
-//        }
+
 //        创建session
         httpSession.setAttribute("orderList",orderList);
 

@@ -57,7 +57,9 @@
 
                         if(data=="true"){
                             window.location.href="checkout.jsp";
-                        }else {
+                        }else if(data=="noBody"){
+                            alert("请先登录！")
+                        }else{
                             alert("页面不能跳转")
                         }
 
@@ -88,7 +90,7 @@
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">

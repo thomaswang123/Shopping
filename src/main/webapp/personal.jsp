@@ -81,7 +81,7 @@
     <!--[if IE]>
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
-
+<%--删除订单--%>
 <script type="text/javascript">
     $(document).ready(function () {
         $(".remove").mouseenter(function () {
@@ -137,8 +137,38 @@
         })
 
     </script>
+
+    <%--充值--%>
+    <script>
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                var money=$('[name="amount"]').val();
+                var password=$('[name="pwd"]').val();
+                $.ajax({
+                    url:'chargeMoney.do',
+                    type:'post',
+                    async:true,
+                    dataType: "text",
+                    data:{money:money,password:password},
+                    timeout:5000,
+                    success:function (data) {
+                        if(data=="true"){
+
+                        }else {
+                            alert("充入失败！")
+                        }
+                    },
+                    error:function () {
+
+                    }
+                });
+
+            });
+        });
+    </script>
 </head>
-<body>
+
+<body style="background-image:url('images/image2.jpg');">
 <!--header-->
 <div class="header" style="height: 67px;">
     <div class="container" style="height: 67px;">
@@ -477,7 +507,7 @@
             <!--商品图片-->
             <div class="goodpic"
                  style="float: left;margin: 20px 10px;background-color: #F2F6F7;width: 140px;height: 120px;">
-                <img src="images/m1.png" width="140px" height="120px">
+                <img src="images/${order.picture}" width="140px" height="120px">
             </div>
             <!--商品价格-->
             <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 130px;height: 60px;">
@@ -537,14 +567,7 @@
 </div>
 
 
-<!--center-->
-<div id="slideshow">
-    <img src="images/image1.jpg" alt="Slideshow Image 1" class="active"/>
-    <img src="images/image2.jpg" alt="Slideshow Image 2"/>
-    <img src="images/image3.jpg" alt="Slideshow Image 3"/>
-    <img src="images/image1.jpg" alt="Slideshow Image 4"/>
-    <img src="images/image2.jpg" alt="Slideshow Image 5"/>
-</div>
+
 
 
 <!--火箭-->

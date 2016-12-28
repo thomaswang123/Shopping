@@ -1,5 +1,7 @@
 package com.starlight.dao;
 
+import com.starlight.entity.Admin;
+
 /**
  * Created by thomas.wang on 2016/12/20.
  */
@@ -11,4 +13,10 @@ public interface IAdminDao {
      * @return
      */
     int finAllClssesById(int u_id);
+
+    /**
+     * 添加管理员
+     * @param admin
+     */
+    void addAdmin(Admin admin);
 }
