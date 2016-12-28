@@ -183,17 +183,35 @@ public class ShoppingCartController {
 		return "false";
 	}
 
+//	展示购物车
 	@RequestMapping("/showCheckout.do")
 	public String showCheckout(HttpSession httpSession){
-
-
+		int uid=(Integer)httpSession.getAttribute("userId");
 		if(httpSession.getAttribute("cartList")!=null){
-
 			return "redirect:checkout.jsp";
-		}else{
-			return "";
 		}
 
+//		从数据库查找数据并发送到session
+		List<ShoppingCart> sc=shoppingCartSI.findById(uid);
+		System.out.println("添加到数据库");
+//		创建临时仓库
+		List<Goods> goods =goodsServiceImp.findAll();
+
+		for (Goods g:goods) {
+			for (ShoppingCart shoppingCart:sc) {
+				if(shoppingCart.getGoodsId()==g.getId()){
+					shoppingCart.setGoodsName(g.getName());
+					shoppingCart.setgPicture(g.getPicture());
+					shoppingCart.setGoodsPrice(g.getPrice());
+				}
+			}
+		}
+
+		if(sc!=null){
+			httpSession.setAttribute("cartList",sc);
+			return "redirect:checkout.jsp";
+		}
+			return "redirect:404error.html";
 
 	}
 }

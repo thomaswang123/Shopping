@@ -90,7 +90,7 @@
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.jsp" class="active">主页</a></li>
+                    <li><a href="index.html" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -489,8 +489,8 @@
                     <div class="panel-body">
                         <c:if test="${empty opinion}">
                             还没有人评论哦！
-                        </c:if>
-                        <c:if test="${not empty opinion}">
+                        <c:if test="${not empty opinion}">                        </c:if>
+
                         <c:forEach items="${opinion}" var="opinion">
                             用户：某某，&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;评分：${opinion.grade}分<br><br>
                             描述：${opinion.discuss}
@@ -595,7 +595,7 @@
                 </div>
             </div>
             <div class="product-grid single-product">
-                <a href="single.jsp">
+                <a href="single.html">
                     <div class="more-product"><span> </span></div>
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                         <img src="images/m4.png" class="img-responsive" alt="">
@@ -630,7 +630,7 @@
             <div class="col-md-2 footer-grid">
                 <h4>company</h4>
                 <ul>
-                    <li><a href="products.jsp">products</a></li>
+                    <li><a href="products.html">products</a></li>
                     <li><a href="#">Work Here</a></li>
                     <li><a href="#">Team</a></li>
                     <li><a href="#">Happenings</a></li>

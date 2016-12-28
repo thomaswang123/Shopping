@@ -67,11 +67,8 @@
                 $(this).attr("name","0");
                 $("#btn").attr("name",id);
                 $(".payMoney").text(arr[1]);
-
                 $('.theme-popover-mask').fadeIn(100);
-
                 $('.theme-popover').slideDown(200);
-
             })
 
             $('.theme-poptit .close').click(function(){
@@ -109,7 +106,7 @@
                         }
                     },
                     error:function () {
-                        alert("出现错误");
+
                     }
                 });
 
@@ -394,18 +391,37 @@
                     </form>
                 </div>
             </div>
-            <div class="header-right cart" style="height: 67px;">
-                <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                <div class="cart-box">
-                    <h4><a href="checkout.jsp">
-                        <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
-                                                                                                class="simpleCart_quantity"> 0 </span>)
-                    </a></h4>
-                    <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
-                    <div class="clearfix"></div>
+            <c:if test="${sessionScope.userinfo==null}">
+                <div class="header-right cart">
+                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                    <div class="cart-box">
+                        <h4>
+                            <a href="#">
+                        <span  style="color: red">
+                            请先登录！
+                        </span>
+
+                            </a></h4>
+                        <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
+            </c:if>
+            <c:if test="${sessionScope.userinfo!=null}">
+                <div class="header-right cart">
+                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                    <div class="cart-box">
+                        <h4>
+                            <a href="showCheckout.do">
+                        <span class="simpleCart_total" style="color: red"> $0.0
+                        </span>
+                                (<span id="simpleCart_quantity"  class="simpleCart_quantity"> 0 </span>)
+                            </a></h4>
+                        <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </c:if>
         </div>
         <div class="clearfix"></div>
     </div>

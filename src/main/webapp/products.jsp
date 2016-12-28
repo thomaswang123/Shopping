@@ -41,6 +41,29 @@
     <!-- //the jScrollPane script -->
     <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
     <!-- the mousewheel plugin -->
+
+    <script>
+        $(document).ready(function () {
+           $(".addToCart").click(function () {
+               var quantity=$(this).prev().val();
+               var id=parseInt($(this).attr("name"));
+               $.ajax({
+                   url:'addToCart.do',
+                   type:'post',
+                   async:true,
+                   dataType: "text",
+                   data:{id:id,quantity:quantity},
+                   timeout:5000,
+                   success:function (data) {
+
+                   },
+                   error:function () {
+                       alert("出现错误");
+                   }
+               });
+           });
+        });
+    </script>
 </head>
 <body>
 <!--header-->
@@ -320,17 +343,37 @@
                     </form>
                 </div>
             </div>
-            <div class="header-right cart">
-                <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                <div class="cart-box">
-                    <h4><a >
-                        <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
-                                                                                                class="simpleCart_quantity"> 0 </span>)
-                    </a></h4>
-                    <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
-                    <div class="clearfix"></div>
+            <c:if test="${sessionScope.userinfo==null}">
+                <div class="header-right cart">
+                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                    <div class="cart-box">
+                        <h4>
+                            <a href="#">
+                        <span  style="color: red">
+                            请先登录！
+                        </span>
+
+                            </a></h4>
+                        <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
-            </div>
+            </c:if>
+            <c:if test="${sessionScope.userinfo!=null}">
+                <div class="header-right cart">
+                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                    <div class="cart-box">
+                        <h4>
+                            <a href="showCheckout.do">
+                        <span class="simpleCart_total" style="color: red"> $0.0
+                        </span>
+                                (<span id="simpleCart_quantity"  class="simpleCart_quantity"> 0 </span>)
+                            </a></h4>
+                        <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </c:if>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -369,7 +412,7 @@
                             <p class="disc">[15% Off]</p>
                         </div>
                         <input type="text" class="item_quantity" value="1"/>
-                        <input type="button" class="item_add items" value="Add">
+                        <input type="button" class="item_add items addToCart" name="${cake.id}" value="Add">
                         <div class="clearfix"></div>
                     </div>
                 </div>

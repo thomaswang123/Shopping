@@ -312,17 +312,37 @@
                     </form>
                 </div>
             </div>
+            <c:if test="${sessionScope.userinfo==null}">
+                <div class="header-right cart">
+                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                    <div class="cart-box">
+                        <h4>
+                            <a href="#">
+                        <span  style="color: red">
+                            请先登录！
+                        </span>
+
+                            </a></h4>
+                        <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </c:if>
+            <c:if test="${sessionScope.userinfo!=null}">
             <div class="header-right cart">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="showCheckout.do">
-                        <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
-                                                                                                class="simpleCart_quantity"> 0 </span>)
+                    <h4>
+                        <a href="showCheckout.do">
+                        <span class="simpleCart_total" style="color: red"> $0.0
+                        </span>
+                            (<span id="simpleCart_quantity"  class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
                     <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
                     <div class="clearfix"></div>
                 </div>
             </div>
+            </c:if>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -351,7 +371,7 @@
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 详情</p>
 
-                        <a class="shop" href="single.html">添加购物车</a>
+                        <a class="shop" href="single.jsp">添加购物车</a>
                         <div class="clearfix"></div>
                     </div>
                 </a>
