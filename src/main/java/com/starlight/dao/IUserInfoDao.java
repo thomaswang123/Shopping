@@ -45,6 +45,7 @@ public interface IUserInfoDao {
      */
     UserInfo findAllById(int id);
 
+    findClssesById()
 
     /**
      * 修改昵称
