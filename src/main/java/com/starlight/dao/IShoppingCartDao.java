@@ -23,12 +23,6 @@ public interface IShoppingCartDao {
 	void addToCart(ShoppingCart shoppingCart);
 
 	/**
-	 * 删除用户信息
-	 * @param uid
-	 * @return
-	 */
-	int delShoppingCart(int uid);
-	/**
 	 * 通过Id删除一条数据
 	 * @param id
 	 */
@@ -40,5 +34,12 @@ public interface IShoppingCartDao {
 	 * @return
 	 */
 	ShoppingCart findOnlyOne(int id);
+
+    /**
+     * 删除用户信息
+     * @param uid
+     * @return
+     */
+    int delShoppingCart(int uid);
 
 }

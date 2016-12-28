@@ -3,14 +3,14 @@ package com.starlight.controller;
 import com.starlight.entity.Paging;
 import com.starlight.serviceimp.AdminServiceImp;
 import com.starlight.serviceimp.GoodsServiceImp;
-import com.starlight.serviceimp.UserinfoServiceImp;
+import com.starlight.serviceimp.UserInfoServiceImp;
+import com.starlight.util.Appliction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -19,14 +19,24 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class AdminController {
-    @Resource
-    UserinfoServiceImp userinfoServiceImp;
+/*
 
-    @Resource
-    AdminServiceImp adminServiceImp;
+   private UserInfoServiceImp userInfoServiceImp = Appliction.getAct().getBean(UserInfoServiceImp.class);
 
-    @Resource
-    GoodsServiceImp goodsServiceImp;
+   private AdminServiceImp adminServiceImp = Appliction.getAct().getBean(AdminServiceImp.class);
+
+   private GoodsServiceImp goodsServiceImp = Appliction.getAct().getBean(GoodsServiceImp.class);
+*/
+
+   @Resource
+   UserInfoServiceImp userInfoServiceImp;
+
+   @Resource
+   AdminServiceImp adminServiceImp;
+
+   @Resource
+   GoodsServiceImp goodsServiceImp;
+
 
     //进入用户管理员界面
     @RequestMapping("adminOperation.do")
@@ -35,11 +45,11 @@ public class AdminController {
         paging.setRise((pagination * number) - number);
         paging.setStop(number * pagination);
         //利用session机制，进行页面的展示数据
-        sessionPaging.setAttribute("userdata", userinfoServiceImp.byPagingfindAll(paging));
+        sessionPaging.setAttribute("userdata", userInfoServiceImp.byPagingfindAll(paging));
         sessionPaging.setAttribute("goodsdata",null);
         sessionPaging.setAttribute("userRight",null);
         //处理页数
-        int numbersum = userinfoServiceImp.countUserIdNumber();
+        int numbersum = userInfoServiceImp.countUserIdNumber();
         if (number > numbersum) {
             numbersum = 0;
         } else {
@@ -53,7 +63,7 @@ public class AdminController {
         //数据发送到当前页面展示
         rst.setAttribute("number", numbersum);
         rst.setAttribute("datanumber",number);
-        rst.setAttribute("numbersum", userinfoServiceImp.countUserIdNumber());
+        rst.setAttribute("numbersum", userInfoServiceImp.countUserIdNumber());
         rst.setAttribute("goodstemp",0);
         return "admin";
     }
@@ -68,7 +78,7 @@ public class AdminController {
           System.out.println(goodsnumber);
         //利用session机制，进行页面的展示数据
         if(goodsnumber!=1){
-            sessionPaging.setAttribute("userdata", userinfoServiceImp.pagination(pagination, number));
+            sessionPaging.setAttribute("userdata", userInfoServiceImp.pagination(pagination, number));
         }else if(goodsnumber==1){
             sessionPaging.setAttribute("goodsdata", adminServiceImp.pagination(pagination,number));
         }

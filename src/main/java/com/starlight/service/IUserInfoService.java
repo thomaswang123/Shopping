@@ -10,7 +10,7 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/20.
  * 用户信息接口
  */
-public interface IUserinfoService {
+public interface IUserInfoService {
 
     /**
      * 查找用户信息（分页）
@@ -30,7 +30,7 @@ public interface IUserinfoService {
      * @return Userinfo
      * @paramu info_nickname  用户姓名
      */
-    List<UserInfo> findUserinfoByNickName(String uinfo_nickname);
+    List<UserInfo> findUserInfoByNickName(String uinfo_nickname);
 
 
     /**
@@ -39,7 +39,7 @@ public interface IUserinfoService {
      * @param id 用户年龄
      * @return Userinfo
      */
-     List<UserInfo> findUserinfoByAge(int age);
+     List<UserInfo> findUserInfoByAge(int age);
 
     /**
      * @param id
@@ -53,7 +53,13 @@ public interface IUserinfoService {
      * @param u_id
      * @return
      */
-     UserInfo findUserinfosById(int u_id);
+     UserInfo findUserInfoById(int u_id);
+
+
+    /**
+     *
+     */
+    List<UserInfo> findAllUserInfoById(int u_id);
 
     /**
      * 插入用户详细信息

@@ -48,12 +48,13 @@ public interface IUserDao {
 	 */
 	void register(User user);
 
-	/**
-	 * 查找该用户id
-	 * @param account
-	 * @return
-	 */
-	int findIdByUser(String account);
+    /**
+     * 查找该用户id
+     * @param account
+     * @return
+     */
+    int findIdByUser(String account);
+
 	/**
 	 * 查询账号是否存在
 	 * @param account
@@ -67,6 +68,13 @@ public interface IUserDao {
 	 * @return
 	 */
 	boolean alterPassWord(String password);
+
+	/**
+	 * 通过ID查找账号
+	 * @param id
+	 * @return
+	 */
+	User findAccountById(int id);
 
 	/**
 	 * 删除用户信息

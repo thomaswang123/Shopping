@@ -26,6 +26,10 @@
         select u_id from user where u_name=#{u_name}
     </select>
 
+    <select id="findById" parameterType="int" resultMap="wallet">
+        select w_id,w_money,w_paypwd from Wallet where w_id=#{id}
+    </select>
+
    <update id="updateMoney" parameterType="com.starlight.entity.Wallet" >
        update Wallet set w_money=#{money}where w_id=#{id}
    </update>

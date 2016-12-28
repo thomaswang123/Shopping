@@ -9,49 +9,49 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Opinion {
-private int id ;
-private  int grade ;
-private String discuss;
-private int goodsId;
-private int userId;
+    private int id ;
+    private  int grade ;
+    private String discuss;
+    private int goodsId;
+    private int userId;
 
-public int getId() {
-    return id;
-}
+    public int getId() {
+        return id;
+    }
 
-public void setId(int id) {
-    this.id = id;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public int getGrade() {
-    return grade;
-}
+    public int getGrade() {
+        return grade;
+    }
 
-public void setGrade(int grade) {
-    this.grade = grade;
-}
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
 
-public String getDiscuss() {
-    return discuss;
-}
+    public String getDiscuss() {
+        return discuss;
+    }
 
-public void setDiscuss(String discuss) {
-    this.discuss = discuss;
-}
+    public void setDiscuss(String discuss) {
+        this.discuss = discuss;
+    }
 
-public int getGoodsId() {
-    return goodsId;
-}
+    public int getGoodsId() {
+        return goodsId;
+    }
 
-public void setGoodsId(int goodsId) {
-    this.goodsId = goodsId;
-}
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
 
-public int getUserId() {
-    return userId;
-}
+    public int getUserId() {
+        return userId;
+    }
 
-public void setUserId(int userId) {
-    this.userId = userId;
-}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

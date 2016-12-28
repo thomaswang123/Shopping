@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class User {
-private int   id ;
-private String  account;
-private String  password;
+    private int   id ;
+    private String  account;
+    private String  password;
 
 //多表查询使用(用户信息)
 private UserInfo userInfo;
@@ -23,23 +23,23 @@ public int getId() {
     return id;
 }
 
-public void setId(int id) {
-    this.id = id;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public String getAccount() {
-    return account;
-}
+    public String getAccount() {
+        return account;
+    }
 
-public void setAccount(String account) {
-    this.account = account;
-}
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
-public String getPassword() {
-    return password;
-}
+    public String getPassword() {
+        return password;
+    }
 
-public void setPassword(String password) {
-    this.password = password;
-}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -14,7 +14,7 @@ public interface IAdminService {
      * @param u_id
      * @return
      */
-     int findClssesById(int u_id);
+     int findClassesById(int u_id);
 
     /**
      * 删除用户相关所有数据

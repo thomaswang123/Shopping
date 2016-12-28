@@ -31,6 +31,11 @@ public class UserServiceImp implements IUserService {
         return userdao.login(user);
     }
 
+    public int bynameGainId(String u_name) {
+        return 0;
+    }
+
+
     public List<String> findAllNameById(List<Integer> list) {
         return null;
     }
@@ -39,6 +44,9 @@ public class UserServiceImp implements IUserService {
         return null;
     }
 
+    public boolean bynameJudgeUserNameExist(String u_name) {
+        return false;
+    }
 
     //根据用户账号来查询id，用于判断账号是否存在
     public int byname_GainId(String u_name) {
@@ -55,20 +63,25 @@ public class UserServiceImp implements IUserService {
         iUserDao.register(user);
         return iUserDao.findIdByUser(user.getAccount());
     }
-
-    //    添加密保
-    public void addPWP(PassWordProtection passWordProtection) {
-
+//    添加密保
+    public void addPWP(PassWordProtection passWordProtection){
         iChangePasswordDao.addPWP(passWordProtection);
     }
 
-    public List<User> findAccount(String account) {
-        return iUserDao.findAccount(account);
-    }
 
     //查找所有有关管理员信息
     public List<User> findAllUserAndUserInfoAndAdminById(int uid) {
 
         return null;
+    }
+
+    //    通过账号查找是否存在该用户
+    public List<User> findAccount(String account){
+        return iUserDao.findAccount(account);
+    }
+
+    //      通过ID查找用户账号
+    public User findAccountById(int id) {
+        return iUserDao.findAccountById(id);
     }
 }

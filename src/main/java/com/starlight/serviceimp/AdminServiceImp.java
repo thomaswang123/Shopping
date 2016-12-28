@@ -48,9 +48,8 @@ public class AdminServiceImp implements IAdminService {
     Paging paging;
 
     //查询管理员的等级
-    public int findClssesById(int u_id) {
-
-        return Appliction.getAct().getBean(IAdminDao.class).findClssesById(u_id);
+    public int findClassesById(int u_id) {
+        return Appliction.getAct().getBean(IAdminDao.class).findClassesById(u_id);
     }
 
     //删除用户所有数据的操作
@@ -90,20 +89,20 @@ public class AdminServiceImp implements IAdminService {
 
     //查询数据总数量
     public int conutGoodsDataNumber() {
-        return  Appliction.getAct().getBean(IGoodsDao.class).conutGoodsNumber();
+        return Appliction.getAct().getBean(IGoodsDao.class).conutGoodsNumber();
     }
 
 
     //根据分页的页码来展示数据
-    public List<Goods> pagination(String pagination,String number) {
+    public List<Goods> pagination(String pagination, String number) {
         //页面的数据数量
-        int nbr = Integer.parseInt(number.substring(number.indexOf(":")+1,number.length()));
+        int nbr = Integer.parseInt(number.substring(number.indexOf(":") + 1, number.length()));
         //页码
         int pat = Integer.parseInt(pagination);
         //从第几个数据开始
-        paging.setRise(pat*nbr-nbr);
+        paging.setRise(pat * nbr - nbr);
         //那个数据结束
-        paging.setStop(pat*nbr);
-        return  Appliction.getAct().getBean(IGoodsDao.class).byPagingfindAll(paging);
+        paging.setStop(pat * nbr);
+        return Appliction.getAct().getBean(IGoodsDao.class).byPagingfindAll(paging);
     }
 }

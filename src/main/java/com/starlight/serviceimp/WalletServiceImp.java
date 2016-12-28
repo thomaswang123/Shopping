@@ -19,12 +19,12 @@ public class WalletServiceImp implements IWalletService {
 
 	//通过ID查找用户钱包信息
 	public Wallet findById(int uId) {
-		return iWalletDao.findWallet(uId);
+		return iWalletDao.findById(uId);
 	}
 
 	//修改金额
 	public void updateMoney(Wallet wallet) {
-
-		iWalletDao.updateMoney(wallet);
+		  iWalletDao.updateMoney(wallet);
 	}
+
 }

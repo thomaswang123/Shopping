@@ -44,12 +44,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand"><a href="Index.html">Yummy</a></h1>
+                <h1 class="navbar-brand"><a href="index.jsp">Yummy</a></h1>
             </div>
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="Index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -315,7 +315,7 @@
             <div class="header-right cart">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="Checkout.html">
+                    <h4><a href="checkout.html">
                         <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
                                                                                                 class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
@@ -333,7 +333,7 @@
     <div class="container">
         <h2 class="hdng">Yummy <span>Cakes</span> for u</h2>
         <p>Our best cakes make your day special</p>
-        <a href="Products.html">开始 shopping</a>
+        <a href="products.html">开始 shopping</a>
         <div class="banner-text">
             <img src="images/2.png" alt=""/>
         </div>
@@ -345,13 +345,18 @@
     <div class="container">
         <div class="gallery-grids">
             <div class="col-md-8 gallery-grid glry-one">
-                <a href="products.jsp"><img src="images/g1.jpg" class="img-responsive" alt=""/>
+                <%--第一个蛋糕--%>
+                <a href="products.do"><img src="images/g1.jpg" class="img-responsive" alt=""/>
+
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 详情</p>
-                        <a class="shop" href="Single.html">添加购物车</a>
+
+                        <a class="shop" href="single.html">添加购物车</a>
                         <div class="clearfix"></div>
                     </div>
                 </a>
+
+
                 <div class="galy-info">
                     <p>Lorem Ipsum is simply</p>
                     <div class="galry">
@@ -370,10 +375,10 @@
                 </div>
             </div>
             <div class="col-md-4 gallery-grid glry-two">
-                <a href="Products.html"><img src="images/g2.jpg" class="img-responsive" alt=""/>
+                <a href="products.html"><img src="images/g2.jpg" class="img-responsive" alt=""/>
                     <div class="gallery-info galrr-info-two">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
-                        <a class="shop" href="Single.html">SHOP NOW</a>
+                        <a class="shop" href="single.html">SHOP NOW</a>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -384,21 +389,22 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 gallery-grid ">
-                <a href="Products.html"><img src="images/g3.png" class="img-responsive" alt=""/>
+                <a href="products.html"><img src="images/g3.png" class="img-responsive" alt=""/>
                     <div class="gallery-info">
                         <p><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> view</p>
-                        <a class="shop" href="Single.html">SHOP NOW</a>
+                        <a class="shop" href="single.html">SHOP NOW</a>
                         <div class="clearfix"></div>
                     </div>
                 </a>
@@ -409,11 +415,12 @@
                             <h5 class="item_price">$95.00</h5>
                         </div>
                         <div class="rating">
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
-								<span>�?/span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -657,6 +664,7 @@
                     <li><a href="#"><img src="images/i2.png" alt=""/>Follow us on Twitter</a></li>
                     <li><a href="#"><img src="images/i3.png" alt=""/>Follow us on Google-plus</a></li>
                     <li><a href="#"><img src="images/i4.png" alt=""/>Follow us on Pinterest</a></li>
+                </ul>
             </div>
         </div>
         <div class="clearfix"></div>

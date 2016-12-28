@@ -1,12 +1,7 @@
 package com.starlight.controller;
 
-import com.starlight.entity.PassWordProtection;
-import com.starlight.entity.User;
-import com.starlight.entity.UserInfo;
-import com.starlight.entity.Wallet;
-import com.starlight.serviceimp.AdminServiceImp;
-import com.starlight.serviceimp.UserServiceImp;
-import com.starlight.serviceimp.UserinfoServiceImp;
+import com.starlight.entity.*;
+import com.starlight.serviceimp.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
@@ -24,17 +20,23 @@ public class UserController {
 
     //用来方便其他操作要用到u_Id的业务
     private int u_id = 0;
-
+    //获取管理员业务处理的类
+    @Resource
+    AdminServiceImp adminServiceImp;
     //获取处理用户业务的类
     @Resource
     private UserServiceImp userServiceImp;
     //获取用户信息业务处理的类
     @Resource
-    private UserinfoServiceImp userinfoServiceImp;
-    //获取管理员业务处理的类
+    private UserInfoServiceImp userInfoServiceImp;
     @Resource
-    private AdminServiceImp adminServiceImp;
-
+    private WalletServiceImp walletServiceImp;
+    @Resource
+    private OrderServiceImp orderServiceImp;
+    @Resource
+    private GoodsServiceImp goodsServiceImp;
+    @Resource
+    List<Order> orderList1;
     @Resource
     User user;
     @Resource
@@ -79,7 +81,7 @@ public class UserController {
         userInfo.setPhone(tel);
         userInfo.setSex(sex);
 
-        userinfoServiceImp.register(userInfo);
+        userInfoServiceImp.register(userInfo);
 
 //		插入密保表数据
         String question1 = httpServletRequest.getParameter("question1");
@@ -102,11 +104,10 @@ public class UserController {
             }
         }
 
-       // 插入钱包表数据
+//		插入钱包表数据
         wallet.setId(userId);
         wallet.setPassword(Integer.parseInt(payPassWord));
-        userinfoServiceImp.registerWallet(wallet);
-
+        userInfoServiceImp.registerWallet(wallet);
 
         return "redirect:index.jsp";
     }
@@ -122,12 +123,9 @@ public class UserController {
     public String checkAccout(String name) {
         System.out.println("进入账号验证");
 //		匹配输入的账号是否符合规则并查询是否存在该账号
-
         if (userServiceImp.findAccount(name).isEmpty()) {
-            System.out.println("进入账号正确:" + "<label style='color:green'>√</label>");
             return "true";
         } else {
-            System.out.println("进入账号正确:" + "<label style='color:green'>√</label>");
             return "false";
         }
     }
@@ -141,14 +139,15 @@ public class UserController {
         user.setPassword(password);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
         if ((u_id = userServiceImp.login(user)) != 0) {
-            UserInfo userInfo = userinfoServiceImp.findUserinfosById(u_id);
+            UserInfo userInfo = userInfoServiceImp.findUserInfoById(u_id);
             userInfo.setNickname(
                     userInfo.getNickname().length() > 2 ? userInfo.getNickname().substring(0, 1) + "…" :
                             userInfo.getNickname());
             System.out.println(userInfo.getNickname());
             sessionUser.setAttribute("userinfo", userInfo);
+            sessionUser.setAttribute("userId",u_id);
             //判断是否是管理员
-            sessionUser.setAttribute("admin", adminServiceImp.findClssesById(u_id));
+            sessionUser.setAttribute("admin",adminServiceImp.findClassesById(u_id));
             return url;
         }
         return url;
@@ -164,4 +163,50 @@ public class UserController {
         return url;
     }
 
+
+    //    个人信息展示
+    @RequestMapping("/personal.do")
+    public String personal(HttpSession httpSession) {
+        int userId = (Integer) httpSession.getAttribute("userId");
+//        查找账号
+        User user = userServiceImp.findAccountById(userId);
+        System.out.println(user.getId() + "--" + user.getPassword() + "--" + user.getAccount());
+
+//      创建session
+        httpSession.setAttribute("user", user);
+
+//      查找用户详细信息
+        UserInfo userInfo = userInfoServiceImp.findUserInfoById(userId);
+        System.out.println(userInfo.getAddress() + "--" + userInfo.getNickname() + "--"
+                + userInfo.getPhone() + "--" + userInfo.getSex() + "--" + userInfo.getAge());
+
+//       创建session
+        httpSession.setAttribute("userInfo", userInfo);
+
+//        查找钱包信息
+        Wallet wallet = walletServiceImp.findById(userId);
+        System.out.println(wallet.getPassword() + "--" + wallet.getMoney());
+
+//        创建session
+        httpSession.setAttribute("wallet", wallet);
+
+//        查找账单
+        List<Order> orderList = orderServiceImp.findByUserId(userId);
+
+        for (Order o : orderList) {
+            Goods goods = goodsServiceImp.findById(o.getGoodsId());
+            o.setGoodsName(goods.getName());
+            o.setPicture(goods.getPicture());
+            o.setPrice(goods.getPrice());
+        }
+
+//        for (Order o1:
+//             orderList) {
+//            System.out.println("集合："+o1.getId()+"--"+o1.getGoodsName()+"--"+o1.getPrice());
+//        }
+//        创建session
+        httpSession.setAttribute("orderList", orderList);
+
+        return "redirect:personal.jsp";
+    }
 }

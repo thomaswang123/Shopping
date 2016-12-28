@@ -17,15 +17,17 @@ public interface IWalletDao {
     int alertPayPwdById(Wallet wallet);
 
     /**
-     *    钱包注册
+     * 钱包注册
+      * @param wallet
      */
     void register(Wallet wallet);
+
     /**
      * 查询钱包
      * @param id
      * @return
      */
-    Wallet findWallet(int id);
+    Wallet findById(int id);
 
     /**
      * 充值操作

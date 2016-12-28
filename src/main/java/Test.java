@@ -1,3 +1,4 @@
+import com.starlight.dao.IAdminDao;
 import com.starlight.dao.IChangePasswordDao;
 import com.starlight.dao.IGoodsDao;
 import com.starlight.dao.IUserDao;
@@ -68,6 +69,8 @@ public class Test {
              ) {
             System.out.println(ls.getName());
         }
+        int adminclasses = act.getBean(IAdminDao.class).findClassesById(1001);
+        System.out.println(adminclasses);
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

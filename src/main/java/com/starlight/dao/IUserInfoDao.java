@@ -12,18 +12,24 @@ import java.util.List;
 public interface IUserInfoDao {
     /**
      * 通过用户id来查询用户信息
-     *
      * @param uinfo_id 账号
      * @return list  集合
      */
-    UserInfo findUserifoById(int uinfo_id);
+     UserInfo findUserInfoById(int uinfo_id);
+
+/*    *//*
+     * 查询详细信息
+     * @param id
+     * @return
+     *//*
+    UserInfo findById(int id);*/
 
     /**
      * 通过id寻找有关的用户信息
      * @param uid
      * @return
      */
-     List<UserInfo> findAllById(int uid);
+     List<UserInfo> findAllUserInfoById(int uid);
     /**
      * 查找所有
      *
@@ -37,6 +43,7 @@ public interface IUserInfoDao {
      * @param userInfo
      */
     void register(UserInfo userInfo);
+
 
 
     /**
