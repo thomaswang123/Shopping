@@ -60,7 +60,7 @@
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -323,7 +323,7 @@
             <div class="header-right cart">
                 <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                 <div class="cart-box">
-                    <h4><a href="checkout.html">
+                    <h4><a >
                         <span class="simpleCart_total" style="color: red"> $0.00 </span> (<span id="simpleCart_quantity"
                                                                                                 class="simpleCart_quantity"> 0 </span>)
                     </a></h4>
