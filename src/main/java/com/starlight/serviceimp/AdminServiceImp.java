@@ -7,6 +7,7 @@ import com.starlight.entity.Admin;
 import com.starlight.entity.Goods;
 import com.starlight.entity.Paging;
 import com.starlight.service.IAdminService;
+import com.starlight.util.Appliction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,9 +29,6 @@ public class AdminServiceImp implements IAdminService {
 
     @Resource
     IAdminDao iAdminDao;
-
-    @Resource
-    AdminServiceImp adminServiceImp;
 
     @Resource
     IUserInfoDao iUserInfoDao;

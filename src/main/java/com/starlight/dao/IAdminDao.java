@@ -2,6 +2,8 @@ package com.starlight.dao;
 
 import com.starlight.entity.Admin;
 
+import java.util.List;
+
 /**
  * Created by thomas.wang on 2016/12/20.
  */
@@ -12,7 +14,7 @@ public interface IAdminDao {
      * @param u_id
      * @return
      */
-    int finAllClassesById(int u_id);
+    List<Admin> finAllClassesById(int u_id);
 
     /**
      * 添加管理员
@@ -20,6 +22,11 @@ public interface IAdminDao {
      */
     void addAdmin(Admin admin);
 
+    /**
+     * 返回用户的管理员的等级
+     * @param u_id
+     * @return
+     */
     int findClassesById(int u_id);
 
     /**

@@ -150,7 +150,7 @@ public String checkAccout(String name) {
         if ((id = userServiceImp.login(user)) != 0) {
             sessionUser.setAttribute("userId",id);
             sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserInfoById(id));
-            sessionUser.setAttribute("admin", adminServiceImp.finAllClassesById(id));
+            sessionUser.setAttribute("admin", adminServiceImp.findClassesById(id));
             return url;
         }
         return url;
