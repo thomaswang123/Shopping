@@ -296,7 +296,7 @@
                                 </span>
                                 <c:choose>
                                     <c:when test="${sessionScope.admin>0}">
-                                        <span style="margin-left: 20px"><a href="adminOperation.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                        <span style="margin-left: 20px"><a href="userControl.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
                                         <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
                                     </c:when>
                                     <c:otherwise></c:otherwise>

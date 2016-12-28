@@ -1,5 +1,7 @@
 package com.starlight.controller;
 
+import com.starlight.dao.IAdminDao;
+import com.starlight.dao.IGoodsDao;
 import com.starlight.entity.Paging;
 import com.starlight.serviceimp.AdminServiceImp;
 import com.starlight.serviceimp.GoodsServiceImp;
@@ -7,11 +9,15 @@ import com.starlight.serviceimp.UserInfoServiceImp;
 import com.starlight.util.Appliction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.spi.http.HttpContext;
 
 /**
  * Created by thomas.wang on 2016/12/23.
@@ -19,14 +25,6 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class AdminController {
-/*
-
-   private UserInfoServiceImp userInfoServiceImp = Appliction.getAct().getBean(UserInfoServiceImp.class);
-
-   private AdminServiceImp adminServiceImp = Appliction.getAct().getBean(AdminServiceImp.class);
-
-   private GoodsServiceImp goodsServiceImp = Appliction.getAct().getBean(GoodsServiceImp.class);
-*/
 
    @Resource
    UserInfoServiceImp userInfoServiceImp;
@@ -37,9 +35,15 @@ public class AdminController {
    @Resource
    GoodsServiceImp goodsServiceImp;
 
+   @Resource
+    IAdminDao iAdminDao;
+
+   @Resource
+    IGoodsDao iGoodsDao;
+
 
     //进入用户管理员界面
-    @RequestMapping("adminOperation.do")
+    @RequestMapping("userControl.do")
     public String adminInit(int number, int pagination, Paging paging, HttpSession sessionPaging, HttpServletRequest rst) {
         //设置分页的数据pagination为第几页number为一页有多数据
         paging.setRise((pagination * number) - number);
@@ -75,11 +79,21 @@ public class AdminController {
         System.out.println("页码" + pagination);
         System.out.println(number);
      /*    sessionPaging.invalidate();*/
-          System.out.println(goodsnumber);
         //利用session机制，进行页面的展示数据
-        if(goodsnumber!=1){
+        if(goodsnumber!=1&&goodsnumber!=2){
             sessionPaging.setAttribute("userdata", userInfoServiceImp.pagination(pagination, number));
-        }else if(goodsnumber==1){
+        }else if(goodsnumber == 2){
+            //页面的数据数量
+            int nbr = Integer.parseInt(number.substring(number.indexOf(":") + 1, number.length()));
+            //页码
+            int pat = Integer.parseInt(pagination);
+            Paging paging = new Paging();
+            //从第几个数据开始
+            paging.setRise(pat * nbr - nbr);
+            //那个数据结束
+            paging.setStop(pat * nbr);
+            sessionPaging.setAttribute("userRight", adminServiceImp.findAdminByPaging(paging));
+        }else{
             sessionPaging.setAttribute("goodsdata", adminServiceImp.pagination(pagination,number));
         }
         return "yes";
@@ -124,7 +138,7 @@ public class AdminController {
         rst.setAttribute("number", numbersum);
         rst.setAttribute("datanumber",number);
         rst.setAttribute("numbersum", adminServiceImp.conutGoodsDataNumber());
-        rst.setAttribute("goodstemp",1);
+        rst.setAttribute("maxid",iGoodsDao.findMaxId());
         return "admin";
     }
 
@@ -136,11 +150,11 @@ public class AdminController {
         paging.setRise((pagination * number) - number);
         paging.setStop(number * pagination);
         //利用session机制，进行页面的展示数据
-        sessionPaging.setAttribute("goodsdata", adminServiceImp.findAllByPaging(paging));
+        sessionPaging.setAttribute("userRight", adminServiceImp.findAdminByPaging(paging));
         sessionPaging.setAttribute("userdata",null);
-        sessionPaging.setAttribute("userRight",null);
+        sessionPaging.setAttribute("goodsdata",null);
         //处理页数
-        int numbersum = adminServiceImp.conutGoodsDataNumber();
+        int numbersum =iAdminDao.countAdminnumber();
         if (number > numbersum) {
             numbersum = 0;
         } else {
@@ -154,10 +168,15 @@ public class AdminController {
         //数据发送到当前页面展示
         rst.setAttribute("number", numbersum);
         rst.setAttribute("datanumber",number);
-        rst.setAttribute("numbersum", adminServiceImp.conutGoodsDataNumber());
-        rst.setAttribute("goodstemp",1);
+        rst.setAttribute("numbersum", iAdminDao.countAdminnumber());
         return "admin";
     }
 
 
+    @RequestMapping("addgoodsdata.do")
+    public String addGoods(MultipartFile file, String goodsname, String goodsprivce, String goodsid, String goodsnumber, String gdsdescribe){
+           System.out.println(file);
+           System.out.println(goodsid);
+             return "yes";
+    }
 }

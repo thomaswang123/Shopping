@@ -20,7 +20,16 @@ public class UserInfo {
     private User user;
     //用于控制颜色
     private int color;
+    //多表查询(管理员等级)
+    private int classes;
 
+    public int getClasses() {
+        return classes;
+    }
+
+    public void setClasses(int classes) {
+        this.classes = classes;
+    }
 
     public int getColor() {
 

@@ -15,49 +15,69 @@
 </head>
 <body>
 <!--展示数据-->
-<div style="margin-top: 20px;margin-left: 150px ;overflow-y: auto" >
-    <table style="text-align: center " class="usertable">
-        <tr style="background-color: #c67605;color: #f3f3f3">
-            <td>id</td>
-            <td>名字</td>
-            <td style="width: 150;height: 100">图片</td>
-            <td>单价</td>
-            <td>库存</td>
-            <td>评分</td>
-            <td style="width: 300">描述</td>
-            <td>其他操作</td>
-        </tr>
-        <tr style="background-color: #a9dba9">
-            <td>1001</td>
-            <td>12346546</td>
-            <td>张三</td>
-            <td>男</td>
-            <td>18</td>
-            <td>54654654</td>
-            <td>大师傅告诉大哥大范甘迪</td>
-            <td></td>
-        </tr>
-        <tr style="background-color: #a9dba9">
-            <td>1001</td>
-            <td>12346546</td>
-            <td>张三</td>
-            <td>男</td>
-            <td>18</td>
-            <td>54654654</td>
-            <td>大师傅告诉大哥大范甘迪</td>
-            <td></td>
-        </tr>
-        <tr style="background-color: #a9dba9">
-            <td>1001</td>
-            <td>12346546</td>
-            <td>张三</td>
-            <td>男</td>
-            <td>18</td>
-            <td>54654654</td>
-            <td>大师傅告诉大哥大范甘迪</td>
-            <td></td>
-        </tr>
-    </table>
+<div style="margin-top: 20px;margin-left: 100px;margin-right: 25px">
+    <div style="height:620px;overflow-y:scroll; border:1px solid;">
+        <table style="text-align: center " class="usertable">
+            <tr style="background-color: #c67605;color: #f3f3f3;;">
+                <td>id</td>
+                <td>账号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>电话</td>
+                <td>地址</td>
+                <td>其他操作</td>
+            </tr>
+            <c:forEach items="${sessionScope.userRight}" var="ur">
+                <c:choose>
+                    <c:when test="${ur.color%2!=0}">
+                        <tr style="color: #FFFFFF;background-color: #3498DB">
+                            <td>${ur.user.id}</td>
+                            <td>${ur.user.account}</td>
+                            <td>${ur.nickname}</td>
+                            <td>${ur.sex}</td>
+                            <td>${ur.age}</td>
+                            <td>${ur.phone}</td>
+                            <td style="color:#FFFFFF;width: 40px"><b>${ur.classes}</b></td>
+                            <td>
+                              设置级别: <select>
+                                    <option selected>当前级别：${ur.classes}</option>
+                                    <option>3</option>
+                                    <option>2</option>
+                                    <option>1</option>
+                                    <option>0</option>
+                                </select>
+                                <input type="button"  class="deluser" id="${ur.user.id}" style="font-size: 20px;
+                                color: red;cursor: hand" value="×删除">
+                            </td>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <tr style=";background-color: #5bb75b">
+                            <td>${ur.user.id}</td>
+                            <td>${ur.user.account}</td>
+                            <td>${ur.nickname}</td>
+                            <td>${ur.sex}</td>
+                            <td>${ur.age}</td>
+                            <td>${ur.phone}</td>
+                            <td style="color:  #FFFFFF"><b>${ur.classes}</b></td>
+                            <td>
+                                设置级别:  <select>
+                                    <option selected>当前级别：${ur.classes}</option>
+                                    <option>3</option>
+                                    <option>2</option>
+                                    <option>1</option>
+                                    <option>0</option>
+                                </select>
+                                <input type="button"  class="deluser"  id="${ur.user.id}"
+                                       style="font-size: 20px;color: red;cursor: hand" value="×删除">
+                            </td>
+                        </tr>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 </body>
 </html>

@@ -1,8 +1,7 @@
 package com.starlight.serviceimp;
 
 import com.starlight.dao.*;
-import com.starlight.entity.Goods;
-import com.starlight.entity.Paging;
+import com.starlight.entity.*;
 import com.starlight.service.IAdminService;
 import com.starlight.util.Appliction;
 import org.springframework.stereotype.Component;
@@ -104,5 +103,17 @@ public class AdminServiceImp implements IAdminService {
         //那个数据结束
         paging.setStop(pat * nbr);
         return Appliction.getAct().getBean(IGoodsDao.class).byPagingfindAll(paging);
+    }
+
+    //查询有关管理员的信息
+    public List<UserInfo> findAdminByPaging(Paging paging) {
+        List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
+        for (int i = 0; i < list.size(); i++) {
+            //颜色
+            list.get(i).setColor(i + 1);
+            //管理级别
+            list.get(i).setClasses(iAdminDao.findClassesById(list.get(i).getUser().getId()));
+        }
+        return list;
     }
 }

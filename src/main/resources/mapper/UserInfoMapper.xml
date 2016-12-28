@@ -29,9 +29,6 @@
     </insert>
 
 
-
-
-
     <delete id="delUserInfo">
         delete from  userinfo where uinfo_id = #{uid}
     </delete>
@@ -54,6 +51,7 @@
             <result property="password" column="u_pwd"/>
         </collection>
     </resultMap>
+
     <select id="byPagingfindAll" resultMap="CustomerOrdersMap" parameterType="com.starlight.entity.Paging">
            select user.*,uf.uinfo_nickname,uf.uinfo_sex,uf.uinfo_age,uf.uinfo_phone,uf.uinfo_address
             from user,userinfo as uf
@@ -63,6 +61,7 @@
     <select id="findAllById" parameterType="int" resultMap="userInfo">
       select uinfo_nickname ,uinfo_sex,uinfo_age,uinfo_phone from userinfo where uinfo_id = #{uid}
     </select>
+
     <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
             delete from DEPT
             <where>

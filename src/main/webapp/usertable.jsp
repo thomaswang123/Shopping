@@ -25,8 +25,6 @@
                         window.location.reload();
                     },"text");
             });
-
-
         });
 
     </script>
