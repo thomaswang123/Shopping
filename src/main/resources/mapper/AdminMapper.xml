@@ -10,9 +10,24 @@
         <result property="classes" column="admin_classes" />
     </resultMap>
 
-    <select id="finAllClssesById"  resultType="int" parameterType="int">
+    <select id="findClassesById"  resultType="int" parameterType="int">
         select admin_classes from admin where admin_id =#{u_id}
     </select>
+
+    <select id=" findAllClssesById"  resultMap="admin" parameterType="int">
+        select admin_classes,admin_id from admin where admin_id !=#{u_id}
+    </select>
+<!--
+
+    <insert id="">
+        insert into admin admin_id =
+    </insert>-->
+
+   <!-- 删除管理员表数据-->
+    <delete id="delAllUserData" parameterType="int">
+          delete from admin where admin_id =#{uid};
+    </delete>
+
 
 <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
         delete from DEPT

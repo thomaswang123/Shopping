@@ -13,5 +13,8 @@
         <result property="userId" column="on_uid"/>
     </resultMap>
 
+    <delete id="delOpinion" parameterType="int">
+        delete from opinion where on_id = #{uid}
+    </delete>
 
 </mapper>

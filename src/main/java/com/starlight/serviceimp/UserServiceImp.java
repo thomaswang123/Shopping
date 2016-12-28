@@ -28,31 +28,13 @@ public class UserServiceImp implements IUserService {
     //登陆
     public int login(User user) {
         IUserDao userdao = Appliction.getAct().getBean(IUserDao.class);
-        return  userdao.login(user);
+        return userdao.login(user);
     }
 
-    //根据用户账号来查询id，用于判断账号是否存在
-    public int byname_GainId(String u_name) {
-        return Appliction.getAct().getBean(IUserDao.class).findIdByAccoun_Unmber(u_name);
+    public int bynameGainId(String u_name) {
+        return 0;
     }
 
-    //    用户注册
-    public int register(User user){
-        iUserDao.register(user);
-        return iUserDao.findIdByUser(user.getAccount());
-    }
-    //    添加密保
-    public void addPWP(PassWordProtection passWordProtection){
-        iChangePasswordDao.addPWP(passWordProtection);
-    }
-    //    通过账号查找是否存在该用户
-    public List<User> findAccount(String account){
-        return iUserDao.findAccount(account);
-    }
-    //      通过ID查找用户账号
-    public User findAccountById(int id) {
-        return iUserDao.findAccountById(id);
-    }
 
     public List<String> findAllNameById(List<Integer> list) {
         return null;
@@ -66,11 +48,40 @@ public class UserServiceImp implements IUserService {
         return false;
     }
 
-    public int bynameGainId(String u_name) {
-        return 0;
+    //根据用户账号来查询id，用于判断账号是否存在
+    public int byname_GainId(String u_name) {
+
+        return Appliction.getAct().getBean(IUserDao.class).findIdByAccoun_Unmber(u_name);
+    }
+
+    public boolean byname_JudgeUserNameExist(String u_name) {
+        return false;
+    }
+
+    //    用户注册
+    public int register(User user) {
+        iUserDao.register(user);
+        return iUserDao.findIdByUser(user.getAccount());
+    }
+//    添加密保
+    public void addPWP(PassWordProtection passWordProtection){
+        iChangePasswordDao.addPWP(passWordProtection);
     }
 
 
+    //查找所有有关管理员信息
+    public List<User> findAllUserAndUserInfoAndAdminById(int uid) {
 
+        return null;
+    }
 
+    //    通过账号查找是否存在该用户
+    public List<User> findAccount(String account){
+        return iUserDao.findAccount(account);
+    }
+
+    //      通过ID查找用户账号
+    public User findAccountById(int id) {
+        return iUserDao.findAccountById(id);
+    }
 }

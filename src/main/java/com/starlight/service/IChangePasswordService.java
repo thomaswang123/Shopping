@@ -19,7 +19,7 @@ public interface IChangePasswordService {
      * @param u_id
      * @return
      */
-      String Answer_Comparison(int u_id,String[] result);
+      String Answer_Comparison(String[] result,int u_id);
 
     /**
      * 通过u_id进行不同数据库操作！这里需要事务处理
@@ -27,5 +27,8 @@ public interface IChangePasswordService {
      * @param wallet    用户钱包对象
      * @param result  密保答案
      */
-     String alertAllById(User user, Wallet wallet, String[] result,String[] ppid);
+     String alertAllById(User user,String[] result,String[] ppid,Wallet wallet);
+
+
+
 }

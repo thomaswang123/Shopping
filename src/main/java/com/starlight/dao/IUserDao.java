@@ -1,5 +1,6 @@
 package com.starlight.dao;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.User;
 
 import java.util.List;
@@ -36,17 +37,23 @@ public interface IUserDao {
 	 int alertPwdById(User user);
 
 	/**
-	 * 用户注册
+	 * 统计所有的用户的数量
+	 * @return
+	 */
+	  int countAllIdNumber();
+
+	/**
+	 *  用户注册
 	 * @param user
 	 */
 	void register(User user);
 
-	/**
-	 * 查找该用户id
-	 * @param account
-	 * @return
-	 */
-	int findIdByUser(String account);
+    /**
+     * 查找该用户id
+     * @param account
+     * @return
+     */
+    int findIdByUser(String account);
 
 	/**
 	 * 查询账号是否存在
@@ -69,4 +76,17 @@ public interface IUserDao {
 	 */
 	User findAccountById(int id);
 
+	/**
+	 * 删除用户信息
+	 * @param uid
+	 * @return
+	 */
+	int delUser(int uid);
+
+	/**
+	 * 查询出管理员
+	 * @param paging
+	 * @return
+	 */
+	List<User> findAllUserByPaging(Paging paging);
 }

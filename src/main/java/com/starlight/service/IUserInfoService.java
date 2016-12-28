@@ -1,5 +1,6 @@
 package com.starlight.service;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 
@@ -12,12 +13,17 @@ import java.util.List;
 public interface IUserInfoService {
 
     /**
-     * 通过用户id查找用户信息（分页）
-     * @param list
+     * 查找用户信息（分页）
+     * @param List<Integer> 用户id的集合
+     * @return list<Userinfo><
+     */
+    List<UserInfo> byPagingfindAll(Paging paging);
+
+    /**
+     * 统计数据的总数量
      * @return
      */
-    List<UserInfo> findAllUserInfoById(List<Integer> list);
-
+    int countUserIdNumber();
     /**
      * 通过姓名查询用户的信息
      *
@@ -29,8 +35,9 @@ public interface IUserInfoService {
 
     /**
      * 通过age查询用户的信息
-     * @param age
-     * @return
+     *
+     * @param id 用户年龄
+     * @return Userinfo
      */
      List<UserInfo> findUserInfoByAge(int age);
 
@@ -48,6 +55,12 @@ public interface IUserInfoService {
      */
      UserInfo findUserInfoById(int u_id);
 
+
+    /**
+     *
+     */
+    List<UserInfo> findAllUserInfoById(int u_id);
+
     /**
      * 插入用户详细信息
      * @param userInfo
@@ -61,6 +74,12 @@ public interface IUserInfoService {
 
     void registerWallet(Wallet wallet);
 
-
+    /**
+     * 根据页面数据数量，以及第几页来展示数据
+     * @param pagination
+     * @param number
+     * @return
+     */
+    List<UserInfo> pagination(String pagination,String number);
 
 }

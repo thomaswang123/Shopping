@@ -15,13 +15,13 @@ public interface IUserService {
 	 * @return boolean
     */
 	 int login(User user);
+    /**
+     * 判断是否存在该账号（前台ajax）
+     * @param u_name 账号
+     * @return   boolean
+     */
+    boolean bynameJudgeUserNameExist(String u_name);
 
-	/**
-	 * 判断是否存在该账号（前台ajax）
-	 * @param u_name 账号
-	 * @return   boolean
-    */
-	 boolean bynameJudgeUserNameExist(String u_name);
 
 	/**
 	 * 通过用户账号获取id
@@ -70,4 +70,11 @@ public interface IUserService {
 	 * @return
 	 */
 	User findAccountById(int id);
+
+	/**
+	 * 查找所有有关管理员信息
+	 * @param uid
+	 * @return
+	 */
+	List<User> findAllUserAndUserInfoAndAdminById(int uid);
 }

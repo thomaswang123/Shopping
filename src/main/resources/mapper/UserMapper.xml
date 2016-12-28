@@ -11,6 +11,15 @@
         <result property="password" column="u_pwd"/>
     </resultMap>
 
+    <!--删除用户-->
+    <delete id="delUser" parameterType="int">
+        delete from user where u_id =#{uid}
+    </delete>
+
+    <!--统计用户数量-->
+        <select id="countAllIdNumber" resultType="int">
+           select count(u_id) from user
+        </select>
     <!--用户注册-->
     <insert id="register"  parameterType="com.starlight.entity.User">
         insert into User(u_name,u_pwd)values(#{account},#{password})
@@ -35,6 +44,11 @@
 
     <select id="findIdByAccoun_Unmber" resultType="int" parameterType="java.lang.String">
              select u_id from user where u_name =#{u_name}
+    </select>
+
+    <!--查找账号-->
+    <select id="findUserId" resultMap="user" parameterType="int">
+        select u_name from user where u_id = #{uid}
     </select>
 
     <!--修改用户密码-->

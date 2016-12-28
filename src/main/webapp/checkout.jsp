@@ -47,7 +47,7 @@
                         }
                     },
                     error:function () {
-
+                        alert("出现错误");
                     }
                 });
 
@@ -64,7 +64,7 @@
 //                分割字符串
                 var arr=payMoney.split("总计：");
                 var id=$(this).attr("name");
-                $("#btn").attr("name",id);
+                $(".btn-primary").attr("name",id);
                 $(".payMoney").text(arr[1]);
 
                 $('.theme-popover-mask').fadeIn(100);
@@ -85,7 +85,7 @@
     <%--支付--%>
     <script>
         $(document).ready(function () {
-            $("#btn").click(function () {
+            $(".btn-primary").click(function () {
                 var password=$(".ipt").val();
                 var id=$(this).attr("name");
                 $.ajax({
@@ -97,6 +97,10 @@
                     timeout:5000,
                     success:function (data) {
                         if(data=="true"){
+                            notification.update({
+                                text: "Success!",
+                                icon: "img/smiley.png"
+                            });
                             window.location.reload();
                         }else if(data="false"){
                             alert("密码错误！");
@@ -105,7 +109,7 @@
                         }
                     },
                     error:function () {
-
+                        alert("出现错误");
                     }
                 });
 
@@ -131,7 +135,7 @@
             <!--navbar-header-->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html" class="active">主页</a></li>
+                    <li><a href="index.jsp" class="active">主页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Birthday<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
@@ -184,8 +188,7 @@
                         </ul>
                     </li>
                     <li class="dropdown grid">
-                        <a href="#" class="dropdown-toggle list1" data-toggle="dropdown">Wedding<b
-                                class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle list1" data-toggle="dropdown">Wedding<b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-4">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -408,71 +411,36 @@
 </div>
 <!--//header-->
 <!--cart-items-->
+<div class="cart-items">
+    <div class="container">
+        <h2>My Shopping Cart(3)</h2>
 
-<div class="theme-popover">
+        <c:forEach items="${cartList}" var="goods">
 
-    <div class="theme-poptit">
-
-        <a href="javascript:;" title="关闭" class="close">×</a>
-
-        <h3>支付是一种诚信</h3>
-
-    </div>
-
-    <div class="theme-popbod dform">
-
-        <form class="theme-signin" name="loginform" action="" method="post" autocomplete="off">
-            <ol>
-                <li><strong>支付金额：</strong><label class="payMoney">100.0元</label></li>
-
-                <li><strong>支付密码：</strong><input class="ipt" type="password" name="pwd" placeholder="******" size="20" /></li>
-
-                <li><input id="btn" class="btn btn-primary" type="submit" name="submit" style="width: 180px" value=" 确认支付" /></li>
-
-            </ol>
-        </form>
-
+        <div class="cart-header" >
+            <div class="close3"> </div>
+            <div class="cart-sec simpleCart_shelfItem" >
+                <div class="cart-item cyc">
+                    <img src="images/${goods.gPicture}" class="img-responsive" alt="">
+                </div>
+                <div class="cart-item-info">
+                    <h3><a href="#"> ${goods.goodsName} </a><span>加入时间:${goods.date}</span></h3>
+                    <ul class="qty">
+                        <li><p>购买数量:</p></li>
+                        <li><p>${goods.number}</p></li>
+                    </ul>
+                    <div class="delivery">
+                        <p>单价: ${goods.goodsPrice}</p>
+                        <span>总计：${goods.totalMoney}</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
-
-
-    <h2>My Shopping Cart(3)</h2>
-        <c:forEach items="${cartList}" var="goods">
-            <div class="cart-items">
-                <div class="container">
-
-            <div class="cart-header" >
-                <div class="close3" name="${goods.id}"> </div>
-                <div class="cart-sec simpleCart_shelfItem" >
-                    <div class="cart-item cyc">
-                        <img src="images/${goods.gPicture}" class="img-responsive" alt="">
-                    </div>
-                    <div class="cart-item-info">
-                        <h3><a href="#"> ${goods.goodsName} </a><span>加入时间:${goods.date}</span></h3>
-                        <ul class="qty">
-                            <li><p>购买数量:</p></li>
-                            <li><p>${goods.number}件</p></li>
-                        </ul>
-                        <div class="delivery">
-                            <p>单价: ${goods.goodsPrice}元</p>
-                            <span>总计：${goods.totalMoney}元</span><br>
-                            <span>
-                                  <div class="btn_form">
-                                     <a  id="addGoods" class="add-cart item_add" name="${goods.id}" >购买</a>
-                                  </div>
-                            </span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
+</c:forEach>
 <!--//checkout-->
 <!--footer-->
 <div class="footer">
@@ -535,5 +503,4 @@
     </div>
 </div>
 </body>
-</html>
 

@@ -1,6 +1,9 @@
 package com.starlight.dao;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
+
+import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/19.
@@ -14,18 +17,34 @@ public interface IUserInfoDao {
      */
      UserInfo findUserInfoById(int uinfo_id);
 
-    /**
-     * 用户注册
-     * @param userInfo
-     */
-      void register(UserInfo userInfo);
-
-    /**
+/*    *//*
      * 查询详细信息
      * @param id
      * @return
+     *//*
+    UserInfo findById(int id);*/
+
+    /**
+     * 通过id寻找有关的用户信息
+     * @param uid
+     * @return
      */
-    UserInfo findAllById(int id);
+     List<UserInfo> findAllUserInfoById(int uid);
+    /**
+     * 查找所有
+     *
+     * @return
+     */
+    List<UserInfo> byPagingfindAll(Paging paging);
+
+
+    /**
+     *  用户注册
+     * @param userInfo
+     */
+    void register(UserInfo userInfo);
+
+
 
     /**
      * 修改昵称
@@ -33,6 +52,7 @@ public interface IUserInfoDao {
      * @return
      */
     boolean alterNickName(String nickName);
+
 
     /**
      * 修改年龄
@@ -42,7 +62,7 @@ public interface IUserInfoDao {
     boolean alterAge(int age);
 
     /**
-     * 修改电话
+     *修改电话
      * @param phone
      * @return
      */
@@ -54,4 +74,11 @@ public interface IUserInfoDao {
      * @return
      */
     boolean alterAddress(String address);
+
+    /**
+     * 删除改用户的数据
+     * @param uid
+     * @return
+     */
+     int delUserInfo(int uid);
 }
