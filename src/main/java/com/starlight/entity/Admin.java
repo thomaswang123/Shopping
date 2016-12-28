@@ -11,22 +11,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Admin {
-private int id;
-private int classes;
+    private int id;
+    private int classes;
 
-public int getId() {
-    return id;
-}
+    public int getId() {
+        return id;
+    }
 
-public void setId(int id) {
-    this.id = id;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public int getClasses() {
-    return classes;
-}
+    public int getClasses() {
+        return classes;
+    }
 
-public void setClasses(int classes) {
-    this.classes = classes;
-}
+    public void setClasses(int classes) {
+        this.classes = classes;
+    }
 }

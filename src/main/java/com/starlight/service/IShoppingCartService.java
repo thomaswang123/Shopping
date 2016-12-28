@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IShoppingCartService {
 	/**
-	 * 查找某个用户的购物车
+	 * 查找某个用户的购物车的所有数据
 	 * @param id
 	 * @return
 	 */
@@ -20,4 +20,19 @@ public interface IShoppingCartService {
 	 * @param shoppingCart
 	 */
 	void addToCart(ShoppingCart shoppingCart);
+
+	/**
+	 * 删除购物车中的一条数据
+	 * @param id
+	 */
+	void removeOfCart(int id);
+
+	/**
+	 * 通过ID查找一条数据
+	 * @param id
+	 * @return
+	 */
+	ShoppingCart findOnlyOne(int id);
+
+
 }

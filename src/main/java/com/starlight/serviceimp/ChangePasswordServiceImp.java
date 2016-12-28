@@ -39,8 +39,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         return string;
     }
 
-//查找pp_answer进行答案的判断
-
+    //查找pp_answer进行答案的判断
     public String Answer_Comparison(String[] result, int u_id) {
         //用来取出result中的数据
         String[] string = Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(u_id);

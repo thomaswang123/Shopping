@@ -16,12 +16,42 @@ public interface IWalletDao {
      */
     int alertPayPwdById(Wallet wallet);
 
-//	钱包注册
+    /**
+     * 钱包注册
+      * @param wallet
+     */
     void register(Wallet wallet);
-//	查询钱包
-    Wallet findWallet(int id);
-//	充值操作
+
+    /**
+     * 查询钱包
+     * @param id
+     * @return
+     */
+    Wallet findById(int id);
+
+    /**
+     * 充值操作
+     * @param momey
+     */
     void rechargeMoney(float momey);
-//	修改密码
+
+    /**
+     * 修改密码
+     * @param password
+     */
     void changePWD(int password);
+
+    /**
+     * 删除用户钱包数据
+     * @param uid
+     * @return
+     */
+    int delWakket(int uid);
+
+    /**
+     *  修改金额
+     * @param wallet
+     */
+    void updateMoney(Wallet wallet);
+
 }

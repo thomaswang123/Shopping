@@ -10,6 +10,12 @@
         <result property="account" column="u_name" />
         <result property="password" column="u_pwd"/>
     </resultMap>
+
+    <!--删除用户-->
+    <delete id="delUser" parameterType="int">
+        delete from user where u_id =#{uid}
+    </delete>
+
     <!--统计用户数量-->
         <select id="countAllIdNumber" resultType="int">
            select count(u_id) from user
@@ -40,35 +46,19 @@
              select u_id from user where u_name =#{u_name}
     </select>
 
+    <!--查找账号-->
+    <select id="findUserId" resultMap="user" parameterType="int">
+        select u_name from user where u_id = #{uid}
+    </select>
+
     <!--修改用户密码-->
     <update id="alertPwdById" parameterType="com.starlight.entity.User">
         update user set u_pwd = #{password} where u_id = #{id}
     </update>
-    <!--<select id="findById" parameterType="int" resultType="com.wy.test.entity.Dept">
-        select * from DEPT where DEPTNO=#{id}
+
+    <!--通过ID查找账号-->
+    <select id="findAccountById" parameterType="int" resultMap="user">
+        select u_id,u_name,u_pwd from user where  u_id = #{id}
     </select>
-    <insert id="save" parameterType="com.wy.test.entity.Dept">
-        insert into DEPT(deptno,dname,loc)
-            values(seq_dept.nextval,#{dname},#{loc})
-    </insert>
-    <delete id="deleteById" parameterType="int">
-        delete from DEPT where deptno=#{id}
-    </delete>
-    <update id="update" parameterType="com.wy.test.entity.Dept">
-        update DEPT set dname=#{dname},loc=#{loc}  where deptno=#{deptno}
-    </update>
-    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
-        delete from DEPT
-        <where>
-            <if test="deptnos!=null">
-                deptno in
-                <foreach collection="deptnos" item="dept" open="(" separator="," close=")">
-                #{dept}
-                </foreach>
-            </if>
-            <if test="deptnos==null">
-                1=2
-            </if>
-        </where>
-    </delete>-->
+
 </mapper>

@@ -8,22 +8,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Repertory {
-private int id ;
-private int number;
+    private int id ;
+    private int number;
 
-public int getId() {
-    return id;
-}
+    public int getId() {
+        return id;
+    }
 
-public void setId(int id) {
-    this.id = id;
-}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-public int getNumber() {
-    return number;
-}
+    public int getNumber() {
+        return number;
+    }
 
-public void setNumber(int number) {
-    this.number = number;
-}
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }

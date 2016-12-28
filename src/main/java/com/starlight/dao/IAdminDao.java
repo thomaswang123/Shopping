@@ -10,13 +10,27 @@ public interface IAdminDao {
      * @param u_id
      * @return
      */
-    int findAllClssesById(int u_id);
+    int findClassesById(int u_id);
+
+    /**
+     * 返回所有管理员
+     * @param u_id
+     * @return
+     */
+    int findAllClassesById(int u_id);
 
     /**
     * 查找用户有多少条数据
     * @return
     */
     int findAllCountNumber();
+
+    /**
+     * 删除用户相关数据
+     * @param uid
+     * @return
+     */
+   int delAllUserData(int uid);
      
     
 }
