@@ -1,7 +1,7 @@
 package com.starlight.service;
 
-import com.starlight.entity.Admin;
 import com.starlight.entity.Goods;
+import com.starlight.entity.Paging;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ import java.util.List;
 public interface IAdminService {
     /**
      * 返回用户的管理员的等级
+     *
      * @param u_id
      * @return
      */
-     int finAllClassesById(int u_id);
+    int findClassesById(int u_id);
 
     /**
      * 插入管理员信息
      * @param admin
      */
     void addAdmin(Admin admin);
-
 
     /**
      * 删除用户相关所有数据
@@ -35,7 +35,7 @@ public interface IAdminService {
      * @param paging
      * @return
      */
-
+     List<Goods> findAllByPaging(Paging paging);
 
     /**
      * 处理商品的总数量进行分页
@@ -50,4 +50,11 @@ public interface IAdminService {
      * @return
      */
     List<Goods> pagination(String pagination, String number);
+
+    /**
+     * 查询所有有关管理员的信息
+     *
+     * @return
+     */
+    List<UserInfo> findAdminByPaging(Paging paging);
 }

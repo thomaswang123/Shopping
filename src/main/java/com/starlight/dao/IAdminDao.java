@@ -29,6 +29,12 @@ public interface IAdminDao {
     int findAllCountNumber();
 
     /**
+     * 统计管理员的数量
+     * @return
+     */
+    int countAdminnumber();
+
+    /**
      * 删除用户相关数据
      * @param uid
      * @return
