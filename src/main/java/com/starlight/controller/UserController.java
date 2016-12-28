@@ -48,6 +48,7 @@ Wallet wallet;
 @Resource
 Admin admin;
 
+
 /**
  * 用户注册方法
  *
@@ -165,7 +166,6 @@ public String checkAccout(String name) {
         return "index";
     }
 
-
 //    个人信息展示
     @RequestMapping("/personal.do")
     public String personal(HttpSession httpSession){
@@ -208,4 +208,5 @@ public String checkAccout(String name) {
 
         return "redirect:personal.jsp";
     }
+
 }

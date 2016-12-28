@@ -166,6 +166,34 @@
             });
         });
     </script>
+    
+    <%--修改信息--%>
+    <script>
+        $(document).ready(function () {
+            $(".nickName").blur(function () {
+                var nickName=$(this).val();
+                alert(nickName);
+                $.ajax({
+                    url:'updateNickName.do',
+                    type:'post',
+                    async:true,
+                    dataType: "text",
+                    data:{nickName:nickName},
+                    timeout:5000,
+                    success:function (data) {
+                        if(data=="true"){
+                            alert("修改成功！")
+                        }else {
+                            alert("修改失败！")
+                        }
+                    },
+                    error:function () {
+
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body style="background-image:url('images/image2.jpg');">
