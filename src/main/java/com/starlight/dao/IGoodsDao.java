@@ -40,4 +40,10 @@ public interface IGoodsDao {
 	 * @return
 	 */
 	int conutGoodsNumber();
+
+	/**
+	 * 添加商品
+	 * @param goods
+	 */
+	void addGoods(Goods goods);
 }

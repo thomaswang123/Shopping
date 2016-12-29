@@ -10,4 +10,8 @@
         <result property="number" column="ry_number" />
     </resultMap>
 
+    <insert id="addRepertory" parameterType="com.starlight.entity.Repertory">
+        insert into Repertory(ry_id,ry_number)values(#{id},#{number})
+    </insert>
+
 </mapper>
