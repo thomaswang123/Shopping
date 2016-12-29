@@ -1,6 +1,8 @@
 package com.starlight.dao;
 
 import com.starlight.entity.Admin;
+import com.starlight.entity.Goods;
+import com.starlight.entity.Paging;
 
 import java.util.List;
 

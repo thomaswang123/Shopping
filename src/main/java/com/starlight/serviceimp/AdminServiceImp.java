@@ -54,9 +54,16 @@ public class AdminServiceImp implements IAdminService {
     @Resource
     Paging paging;
 
+    @Resource
+    IGoodsDao iGoodsDao;
+
+    @Resource
+    IRepertoryDao iRepertoryDao;
+
     public void addAdmin(Admin admin) {
-            iAdminDao.addAdmin(admin);
+        iAdminDao.addAdmin(admin);
     }
+
     //查询管理员的等级
     public int findClassesById(int u_id) {
         return Appliction.getAct().getBean(IAdminDao.class).findClassesById(u_id);
@@ -124,6 +131,31 @@ public class AdminServiceImp implements IAdminService {
             list.get(i).setColor(i + 1);
             //管理级别
             list.get(i).setClasses(iAdminDao.findClassesById(list.get(i).getUser().getId()));
+        }
+        return list;
+    }
+
+    //修改商品信息和库存的信息
+    public int alterGoodsData(Goods goods, Repertory repertory) {
+        int goodsTemp = iGoodsDao.alterGoods(goods);
+        int repertoryTemp = iRepertoryDao.alterRepertory(repertory);
+        return goodsTemp+repertoryTemp;
+    }
+    //删除商品信息
+    public int delGoodsData(int id) {
+        int repertoryTemp = iRepertoryDao.delRepertoryData(id);
+        int goodsTemp = iGoodsDao.delGoods(id);
+        return goodsTemp+repertoryTemp;
+    }
+
+    //根据单价来查询
+    public List<Goods> findByGoodsPrice(Paging paging) {
+        List<Goods> list = iGoodsDao.findByPrice(paging);
+        Repertory repertory = new Repertory();
+        for (Goods lt:list
+             ) {
+          repertory.setNumber(iRepertoryDao.findNumberById(lt.getId()));
+          lt.setRepertory(repertory);
         }
         return list;
     }

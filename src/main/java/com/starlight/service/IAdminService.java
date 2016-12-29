@@ -1,9 +1,6 @@
 package com.starlight.service;
 
-import com.starlight.entity.Admin;
-import com.starlight.entity.Goods;
-import com.starlight.entity.Paging;
-import com.starlight.entity.UserInfo;
+import com.starlight.entity.*;
 
 import java.util.List;
 
@@ -59,4 +56,26 @@ public interface IAdminService {
      * @return
      */
     List<UserInfo> findAdminByPaging(Paging paging);
+
+    /**
+     * 修改商品信息 和库存的信息
+     * @param goods
+     * @param repertory
+     */
+     int  alterGoodsData(Goods goods, Repertory repertory);
+
+    /**
+     * 删除商品信息
+     * @param id
+     * @return
+     */
+     int delGoodsData(int id);
+
+    /**
+     * 根据单价来查询
+     * @param paging
+     * @return
+     */
+    List<Goods>  findByGoodsPrice(Paging paging);
+
 }

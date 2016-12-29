@@ -14,7 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content=""/>
-    <script type="application/x-javascript"> addEventListener("load", function () {
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
     function hideURLbar() {
@@ -38,6 +39,8 @@
 
             /*用户管理点击页码进行刷新数据*/
             $(".connect").click(function () {
+                var  text =  $("#goodsText").val();
+                var  goodsCondition =  $("#goodsCondition").val();
                 var goods = parseInt($("#goodsnumber").val());
                 alert(goods);
                 /*进行颜色的变换*/
@@ -48,7 +51,8 @@
                 $("#thisPaginaTion").val(pagination);
                 /*进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods}
+                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods
+                    ,goodsCondition:""+goodsCondition,price:""+text}
                     , function (data) {
                         if (goods != 1 && goods != 2) {
                             /*刷新用户内联页面，展示新的数据*/
@@ -87,6 +91,8 @@
 
             /*用户管理上一页*/
             $("#previousPage").click(function () {
+                var  text =  $("#goodsText").val();
+                var  goodsCondition =  $("#goodsCondition").val();
                 var goods = parseInt($("#goodsnumber").val());
                 var number = $("#select").val();
                 var val = $("#thisPaginaTion").val();
@@ -99,7 +105,8 @@
                 $("#thisPaginaTion").val("" + pagination);
                 /*  进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods}
+                    {number: "" + number, pagination: "" + pagination,
+                        goodsnumber: "" + goods,goodsCondition:""+goodsCondition,price:""+text}
                     , function (data) {
                         if (goods != 1 && goods != 2) {
                             /*刷新用户内联页面，展示新的数据*/
@@ -115,9 +122,11 @@
 
             /*用户管理下一页*/
             $("#nextPage").click(function () {
+                var  text =  $("#goodsText").val();
                 var goods = parseInt($("#goodsnumber").val());
                 var number = $("#select").val();
                 var val = $("#thisPaginaTion").val();
+                var  goodsCondition =  $("#goodsCondition").val();
                 var pagination = parseInt(val) + 1;
                 if (pagination > parseInt($("#maxPaginaTion").val())) {
                     pagination = pagination - 1;
@@ -127,7 +136,8 @@
                 $("#" + pagination).css("color", "red");
                 /*  进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods}
+                    {number: "" + number, pagination: "" + pagination,
+                        goodsnumber: "" + goods,goodsCondition:""+goodsCondition,price:""+text}
                     , function (data) {
                         if (goods != 1 && goods != 2) {
                             /*刷新用户内联页面，展示新的数据*/
@@ -151,6 +161,34 @@
                     /*        $('#goods').attr('src', $('#goods').attr('src'));*/
                     }, "text");
             });
+
+            /*刷新*/
+            $("#refresh").click(function () {
+                var goods = parseInt($("#goodsnumber").val());
+                if (goods != 1 && goods != 2) {
+                    /*刷新用户内联页面，展示新的数据*/
+                    $('#iframeas').attr('src', $('#iframeas').attr('src'));
+                } else if (goods == 2) {
+                    $('#userRight').attr('src', $('#userRight').attr('src'));
+                } else {
+                    /*刷新商品内联页面，展示新的数据*/
+                    $('#goods').attr('src', $('#goods').attr('src'));
+                }
+            });
+
+            /*条件查询*/
+            $("#findGoods").click(function () {
+                var number = $("#select").val();
+                var  text =  $("#goodsText").val();
+                 if("商品单价"==$(".selectGoods").val()){
+                     / *利用js发送商品管理请求*/
+                     window.location.href = "findByGoodsPrice.do?numbers=" + number + "&pagination=1&"+"price="+text;
+                  } else if("id"==$(".selectGoods").val()){
+                     / *利用js发送商品管理请求*/
+                     window.location.href = "findByGoodId.do?numbers=" + number + "&pagination=1&"+"price="+text;
+                 }
+            });
+
         });
 
         /*用户管理选中页面数据数量并刷新页面*/
@@ -173,13 +211,13 @@
 <%--标记作用--%>
 <c:choose>
     <c:when test="${sessionScope.goodsdata!=null}">
-        <input id="goodsnumber" value="1">
+        <input id="goodsnumber" value="1" style="display: none">
     </c:when>
     <c:when test="${sessionScope.userRight!=null}">
-        <input id="goodsnumber" value="2">
+        <input id="goodsnumber" value="2"  style="display: none">
     </c:when>
     <c:otherwise>
-        <input id="goodsnumber" value="0">
+        <input id="goodsnumber" value="0"  style="display: none">
     </c:otherwise>
 </c:choose>
 
@@ -566,35 +604,53 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
          类型：
             <c:choose>
                 <c:when test="${sessionScope.goodsdata!=null}">
-                    <select class="selectGoods">
-                         <option>id</option>
-                         <option>商品名称</option>
-                         <option>商品单价</option>
+                    <select class="selectGoods" style="width: 120px">
+                        <option selected>${requestScope.type}</option>
+                      <%--   <option>id</option>
+                         <option>商品单价</option>--%>
                    </select>
                 </c:when>
                 <c:when test="${sessionScope.userRight!=null}">
-                     <select class="selectGoods">
-                         <option>id</option>
-                         <option>账号</option>
-                         <option>级别</option>
+                     <select class="userRight" style="width:120px">
+                       <option selected>${requestScope.type}</option>
+                       <%--  <option>id</option>
+                         <option>账号</option>--%>
+                <%--         <option>级别</option>--%>
                       </select>
                 </c:when>
                 <c:otherwise>
-                        <select style="width: 90px" class="selectuser">
-                         <option>id</option>
-                         <option>账号</option>
-                         <option>姓名</option>
+                        <select style="width: 120px" class="selectuser">
+                            <option selected>${requestScope.type}</option>
+                  <%--       <option>id</option>
+                         <option>账号</option>--%>
+                       <%--  <option>姓名</option>
                          <option>性别</option>
-                         <option>年龄</option>
-                         <option>电话</option>
-                         <option>地址</option>
+                         <option>年龄</option>--%>
                   </select>
                 </c:otherwise>
             </c:choose>
-         <input type="text" style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
+            <c:choose>
+                <c:when test="${sessionScope.goodsdata!=null}">
+                    <input type="text" id="goodsText"
+                           style="margin-left: 10px;width: 200px;height: 25px"
+                           placeholder="请输入相关类型信息" value="${requestScope.price}">
+                    <input type="button"  id="findGoods" value="◎查询">
+                    <input type="text" id="goodsCondition" style="display: none" value="${requestScope.temp}">
+                </c:when>
+                <c:when test="${sessionScope.userRight!=null}">
+                    <input type="text" id="userRightText" value=""  style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
+                    <input type="button"  id="findUserRight" value="◎查询">
+                    <input type="text" id="goodsCondition" style="display: none" value="${requestScope.temp}">
+                </c:when>
+                <c:otherwise>
+                    <input type="text" id="userText" value=""  style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
+                    <input type="button"  id="findUser" value="◎查询">
+                    <input type="text" id="goodsCondition" style="display: none" value="${requestScope.temp}">
+                </c:otherwise>
+            </c:choose>
             <!--   <input type="button" value="查询" style="margin-left: 20px;width: 80px;height:25px ">-->
     </span>
-        <span style="margin-left: 300px"><a><img src="images/shuanxin.png">刷新</a></span>
+        <span style="margin-left: 200px"><a href="#" id="refresh"><img src="images/shuanxin.png">刷新</a></span>
     </div>
 
     <%--内联页面--%>
@@ -632,14 +688,14 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                         <c:choose>
                             <c:when test="${i==1}">
                                 <span style="margin-left: 10px"><a class="connect" id="${i}"
-                                                                   onclick="conncet(this.id,this.class)" href="#"
-                                                                   style="color: red;font-size: 20px">${i}</a></span>
+                                        onclick="conncet(this.id,this.class)" href="#"
+                                      style="color: red;font-size: 20px">${i}</a></span>
                             </c:when>
                             <c:otherwise>
                                 <span style="margin-left: 10px;color:#006dcc"><a class="connect" id="${i}"
-                                                                                 onclick="conncet(this.id,this.class)"
-                                                                                 href="#"
-                                                                                 style="font-size: 20px">${i}</a></span>
+                                       onclick="conncet(this.id,this.class)"
+                                          href="#"
+                                       style="font-size: 20px">${i}</a></span>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -647,15 +703,15 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                 <c:when test="${requestScope.number>10}">
                     <c:forEach var="i" begin="1" end="${7}">
                         <span style="margin-left: 10px"><a class="connect" id="${i}"
-                                                           onclick="conncet(this.id,this.class)" href="#"
-                                                           style="font-size: 20px">${i}</a></span>
+                                 onclick="conncet(this.id,this.class)" href="#"
+                             style="font-size: 20px">${i}</a></span>
                     </c:forEach>
-                </c:when>
-                <c:otherwise>
                     <span>...</span>
                     <span style="margin-left: 10px">
                        <a href="#" id="${requestScope.number}">${requestScope.number}</a>
                     </span>
+                </c:when>
+                <c:otherwise>
                 </c:otherwise>
             </c:choose>
             <span>

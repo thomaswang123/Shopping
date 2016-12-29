@@ -60,6 +60,10 @@ public class Test {
         paging.setStop(10);
         int adminclasses = act.getBean(IAdminDao.class).findClassesById(1001);
         System.out.println(adminclasses);
+      /*  System.out.println(act.getBean(IRepertoryDao.class).findIdNumber(1142));*/
+
+        Goods goods = new Goods();
+
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

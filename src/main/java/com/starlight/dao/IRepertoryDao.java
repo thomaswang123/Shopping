@@ -14,7 +14,7 @@ public interface IRepertoryDao {
 	 * @param id
 	 * @return
 	 */
-	Repertory findById(int id);
+	int findNumberById(int id);
 
 	/**
 	 * 添加库存
@@ -29,4 +29,19 @@ public interface IRepertoryDao {
 	 * @return
 	 */
 	boolean cutRepertory(Repertory re);
+
+	/**
+	 * 修改商品的库存信息
+	 * @param repertory
+	 * @return
+	 */
+	int alterRepertory(Repertory repertory);
+
+	/**
+	 * 删除商品的库存信息
+	 * @param id
+	 * @return
+	 */
+	int delRepertoryData(int id);
+
 }
