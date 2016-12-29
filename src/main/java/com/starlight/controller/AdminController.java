@@ -8,18 +8,14 @@ import com.starlight.entity.Repertory;
 import com.starlight.serviceimp.AdminServiceImp;
 import com.starlight.serviceimp.GoodsServiceImp;
 import com.starlight.serviceimp.UserInfoServiceImp;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.spi.http.HttpContext;
 
 /**
  * Created by thomas.wang on 2016/12/23.
@@ -28,19 +24,19 @@ import javax.xml.ws.spi.http.HttpContext;
 @Controller
 public class AdminController {
 
-    @Resource
-    UserInfoServiceImp userInfoServiceImp;
+   @Resource
+   UserInfoServiceImp userInfoServiceImp;
 
-    @Resource
-    AdminServiceImp adminServiceImp;
+   @Resource
+   AdminServiceImp adminServiceImp;
 
-    @Resource
-    GoodsServiceImp goodsServiceImp;
+   @Resource
+   GoodsServiceImp goodsServiceImp;
 
-    @Resource
+   @Resource
     IAdminDao iAdminDao;
 
-    @Resource
+   @Resource
     IGoodsDao iGoodsDao;
 
 
@@ -52,8 +48,8 @@ public class AdminController {
         paging.setStop(number * pagination);
         //利用session机制，进行页面的展示数据
         sessionPaging.setAttribute("userdata", userInfoServiceImp.byPagingfindAll(paging));
-        sessionPaging.setAttribute("goodsdata", null);
-        sessionPaging.setAttribute("userRight", null);
+        sessionPaging.setAttribute("goodsdata",null);
+        sessionPaging.setAttribute("userRight",null);
         //处理页数
         int numbersum = userInfoServiceImp.countUserIdNumber();
         if (number > numbersum) {
@@ -131,7 +127,7 @@ public class AdminController {
     @ResponseBody
     public String deluser(String uid) {
         System.out.println(uid);
-        if (adminServiceImp.delAllUserData(Integer.parseInt(uid)) != 0) {
+        if (adminServiceImp.delAllUserData(Integer.parseInt(uid))!=0){
             return "删除成功！";
         }
         return "可能还有数据存在，删除不了";
@@ -147,8 +143,8 @@ public class AdminController {
         paging.setStop(number * pagination);
         //利用session机制，进行页面的展示数据
         sessionPaging.setAttribute("goodsdata", adminServiceImp.findAllByPaging(paging));
-        sessionPaging.setAttribute("userdata", null);
-        sessionPaging.setAttribute("userRight", null);
+        sessionPaging.setAttribute("userdata",null);
+        sessionPaging.setAttribute("userRight",null);
         //处理页数
         int numbersum = adminServiceImp.conutGoodsDataNumber();
         if (number > numbersum) {
@@ -170,7 +166,7 @@ public class AdminController {
         rst.setAttribute("price",0);
         rst.setAttribute("temp",0);
         rst.setAttribute("numbersum", adminServiceImp.conutGoodsDataNumber());
-        rst.setAttribute("maxid", iGoodsDao.findMaxId());
+        rst.setAttribute("maxid",iGoodsDao.findMaxId());
         return "admin";
     }
 
@@ -183,10 +179,10 @@ public class AdminController {
         paging.setStop(number * pagination);
         //利用session机制，进行页面的展示数据
         sessionPaging.setAttribute("userRight", adminServiceImp.findAdminByPaging(paging));
-        sessionPaging.setAttribute("userdata", null);
-        sessionPaging.setAttribute("goodsdata", null);
+        sessionPaging.setAttribute("userdata",null);
+        sessionPaging.setAttribute("goodsdata",null);
         //处理页数
-        int numbersum = iAdminDao.countAdminnumber();
+        int numbersum =iAdminDao.countAdminnumber();
         if (number > numbersum) {
             numbersum = 0;
         } else {

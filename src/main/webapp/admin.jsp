@@ -227,7 +227,9 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
 ;border-width: 1px; border-style: solid; padding: 1px;display: none;
  ">
     <%--添加的商品信息--%>
-    <form id="addgoodsdata"  method="post" enctype="multipart/form-data">
+
+
+    <form id="addgoodsdata"  action="upload.do" method="post" enctype="multipart/form-data">
         <div style="float:left;width: 300;height: 300;border-width: 1px; border-style: solid; padding: 1px;">
             <%--   <span><img src="images/g3.png" style="width: 300;height: 300"></span>--%>
             <input name="file" type="file" value="添加图片">
@@ -238,14 +240,14 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                     <li><label>商品编号id:<b>${requestScope.maxid}</b></label></li>
                     <input name="goodsid" value="${requestScope.maxid}" style="display: none">
                 </c:if>
-                <li><label>商品名称: </label><input type="text" name="goodsname" </li>
+                <li><label>商品名称: </label><input type="text" name="goodsname"></li>
                 <li><label>商品单价: </label><input type="text" name="goodsprivce"></li>
                 <li><label>商品数量: </label><input type="text" name="goodsnumber"></li>
                 <li><label>商品描述: </label><input type="text" name="gdsdescribe"></li>
             </ul>
         </div>
         <div style="float: left;margin-left: 20px;margin-top: 20px">
-            <span> <input id="submit" type="button" value="提交"></span>
+            <span> <input id="submit" type="submit" value="提交"></span>
             <span><input style="margin-left: 50px" type="button" id="abolish" value="取消"></span>
         </div>
     </form>

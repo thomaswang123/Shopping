@@ -77,6 +77,18 @@
         <!-- 后缀匹配 -->
         <property name="suffix" value=".jsp"></property>
     </bean>
+
+
+        <!--上传文件配置-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 (ISO-8859-1) -->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 最大文件大小，-1为无限止(-1) -->
+        <property name="maxUploadSize" value="20000000000"/>
+        <!-- 最大内存大小 (10240)-->
+        <property name="maxInMemorySize" value="200000"/>
+    </bean>
+
 </beans>
 
 
