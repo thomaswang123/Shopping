@@ -6,18 +6,14 @@ import com.starlight.entity.Paging;
 import com.starlight.serviceimp.AdminServiceImp;
 import com.starlight.serviceimp.GoodsServiceImp;
 import com.starlight.serviceimp.UserInfoServiceImp;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.spi.http.HttpContext;
 
 /**
  * Created by thomas.wang on 2016/12/23.
@@ -172,7 +168,7 @@ public class AdminController {
         return "admin";
     }
 
-
+//上传图片
     @RequestMapping("addgoodsdata.do")
     public String addGoods(MultipartFile file, String goodsname, String goodsprivce, String goodsid, String goodsnumber, String gdsdescribe){
            System.out.println(file);
