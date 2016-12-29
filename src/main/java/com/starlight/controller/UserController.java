@@ -142,7 +142,7 @@ public String checkAccout(String name) {
     
     //登陆验证
     @RequestMapping("login.do")
-    public String test (String username, String password, HttpSession sessionUser, User user){
+    public String test (String username, String password, HttpSession sessionUser, User user,String url){
         int id=0;
         //为user赋值
         user.setAccount(username);
@@ -152,18 +152,18 @@ public String checkAccout(String name) {
             sessionUser.setAttribute("userId",id);
             sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserInfoById(id));
             sessionUser.setAttribute("admin", adminServiceImp.findClassesById(id));
-            return "index";
+            return url;
         }
-        return "index";
+        return url;
     }
     
     //账号注销以及账号切换
     @RequestMapping("switchover.do")
-    public String write_Off (HttpSession sessionUser){
+    public String write_Off (HttpSession sessionUser,String url){
         //使session为null
         sessionUser.invalidate();
         //  sessionUser.setAttribute("userinfo",null);
-        return "index";
+        return url;
     }
 
 //    个人信息展示

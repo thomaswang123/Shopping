@@ -26,9 +26,6 @@ public class AdminServiceImp implements IAdminService {
     IAdminDao iAdminDao;
 
     @Resource
-    AdminServiceImp adminServiceImp;
-
-    @Resource
     IUserInfoDao iUserInfoDao;
 
     @Resource
