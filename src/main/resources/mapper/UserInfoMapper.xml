@@ -59,8 +59,25 @@
     </select>
 
     <select id="findAllById" parameterType="int" resultMap="userInfo">
-      select uinfo_nickname ,uinfo_sex,uinfo_age,uinfo_phone from userinfo where uinfo_id = #{uid}
+      select uinfo_nickname,uinfo_sex,uinfo_age,uinfo_phone from userinfo where uinfo_id = #{uid}
     </select>
+
+
+    <update id="updateNickName" parameterType="com.starlight.entity.UserInfo" >
+        update userinfo set uinfo_nickname=#{nickname} where uinfo_id=#{id}
+    </update>
+
+    <update id="updateUserAge" parameterType="com.starlight.entity.UserInfo">
+       update userinfo set uinfo_age=#{age} where uinfo_id=#{id}
+    </update>
+
+    <update id="updateUserPhone" parameterType="com.starlight.entity.UserInfo">
+        update userinfo set uinfo_phone=#{phone} where uinfo_id=#{id}
+    </update>
+
+    <update id="updateUserAddress" parameterType="com.starlight.entity.UserInfo">
+        update userinfo set uinfo_address=#{address} where uinfo_id=#{id}
+    </update>
 
     <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
             delete from DEPT

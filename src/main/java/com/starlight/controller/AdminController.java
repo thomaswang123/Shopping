@@ -6,18 +6,14 @@ import com.starlight.entity.Paging;
 import com.starlight.serviceimp.AdminServiceImp;
 import com.starlight.serviceimp.GoodsServiceImp;
 import com.starlight.serviceimp.UserInfoServiceImp;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.spi.http.HttpContext;
 
 /**
  * Created by thomas.wang on 2016/12/23.
@@ -54,16 +50,18 @@ public class AdminController {
         sessionPaging.setAttribute("userRight",null);
         //处理页数
         int numbersum = userInfoServiceImp.countUserIdNumber();
-        if (number > numbersum) {
-            numbersum = 0;
-        } else {
-            if (numbersum % number != 0) {
-                numbersum = numbersum / number + 1;
-            } else {
-                numbersum = numbersum / number;
+
+        if(number>numbersum){
+            numbersum=0;
+        }else {
+            if ((numbersum%number!=0)){
+                numbersum=numbersum/number+1;
+            }else {
+                numbersum=numbersum/number;
             }
             System.out.println(numbersum);
         }
+
         //数据发送到当前页面展示
         rst.setAttribute("number", numbersum);
         rst.setAttribute("datanumber",number);
@@ -124,16 +122,18 @@ public class AdminController {
         sessionPaging.setAttribute("userRight",null);
         //处理页数
         int numbersum = adminServiceImp.conutGoodsDataNumber();
-        if (number > numbersum) {
-            numbersum = 0;
-        } else {
-            if (numbersum % number != 0) {
-                numbersum = numbersum / number + 1;
-            } else {
-                numbersum = numbersum / number;
+
+        if (number>numbersum){
+            numbersum=0;
+        }else {
+            if ((numbersum%number!=0)){
+                numbersum=numbersum/number+1;
+            }else {
+                numbersum=numbersum/number;
             }
             System.out.println(numbersum);
         }
+
         //数据发送到当前页面展示
         rst.setAttribute("number", numbersum);
         rst.setAttribute("datanumber",number);

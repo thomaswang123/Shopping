@@ -110,4 +110,22 @@ public class UserInfoServiceImp implements IUserInfoService {
         }
         return list;
     }
+
+//    修改昵称
+    public void updateNickName(UserInfo userInfo) {
+        iUserinfoDao.updateNickName(userInfo);
+    }
+
+//    修改年龄
+    public void updateUserAge(UserInfo userInfo) {
+        iUserinfoDao.updateUserAge(userInfo);
+    }
+//  修改手机号
+    public void updateUserPhone(UserInfo userInfo) {
+        iUserinfoDao.updateUserPhone(userInfo);
+    }
+//  修改地址
+    public void updateUserAddress(UserInfo userInfo) {
+        iUserinfoDao.updateUserAddress(userInfo);
+    }
 }

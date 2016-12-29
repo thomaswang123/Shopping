@@ -81,4 +81,28 @@ public interface IUserInfoDao {
      * @return
      */
      int delUserInfo(int uid);
+
+    /**
+     * 修改昵称
+     * @param userInfo
+     */
+    void updateNickName(UserInfo userInfo);
+
+    /**
+     * 修改年龄
+     * @param userInfo
+     */
+    void updateUserAge(UserInfo userInfo);
+
+    /**
+     * 修改用户手机号
+     * @param userInfo
+     */
+    void updateUserPhone(UserInfo userInfo);
+
+    /**
+     * 修改地址
+     * @param userInfo
+     */
+    void updateUserAddress(UserInfo userInfo);
 }

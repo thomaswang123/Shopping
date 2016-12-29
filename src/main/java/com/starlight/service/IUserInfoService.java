@@ -1,6 +1,7 @@
 package com.starlight.service;
 
 import com.starlight.entity.Paging;
+import com.starlight.entity.User;
 import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 
@@ -82,4 +83,27 @@ public interface IUserInfoService {
      */
     List<UserInfo> pagination(String pagination,String number);
 
+    /**
+     * 修改昵称
+     * @param userInfo
+     */
+    void updateNickName(UserInfo userInfo);
+
+    /**
+     * 修改年龄
+     * @param userInfo
+     */
+    void updateUserAge(UserInfo userInfo);
+
+    /**
+     * 修改手机号
+     * @param userInfo
+     */
+    void updateUserPhone(UserInfo userInfo);
+
+    /**
+     * 修改地址
+     * @param userInfo
+     */
+    void updateUserAddress(UserInfo userInfo);
 }

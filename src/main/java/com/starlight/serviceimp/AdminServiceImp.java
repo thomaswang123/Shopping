@@ -1,18 +1,17 @@
 package com.starlight.serviceimp;
 
 import com.starlight.dao.*;
-import com.starlight.entity.*;
-import com.starlight.dao.IAdminDao;
 import com.starlight.entity.Admin;
 import com.starlight.entity.Goods;
 import com.starlight.entity.Paging;
+import com.starlight.entity.UserInfo;
 import com.starlight.service.IAdminService;
+import com.starlight.util.Appliction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by thomas.wang on 2016/12/20.
@@ -23,9 +22,6 @@ public class AdminServiceImp implements IAdminService {
 
     @Resource
     List<Goods> list;
-    @Resource
-    AdminServiceImp adminServiceImp;
-
     @Resource
     IAdminDao iAdminDao;
 
@@ -59,9 +55,10 @@ public class AdminServiceImp implements IAdminService {
     public void addAdmin(Admin admin) {
             iAdminDao.addAdmin(admin);
     }
+
     //查询管理员的等级
     public int findClassesById(int u_id) {
-        return Appliction.getAct().getBean(IAdminDao.class).findClassesById(u_id);
+        return iAdminDao.findClassesById(u_id);
     }
 
     //删除用户所有数据的操作
