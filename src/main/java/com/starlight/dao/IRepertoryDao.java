@@ -18,10 +18,10 @@ public interface IRepertoryDao {
 
 	/**
 	 * 添加库存
-	 * @param re
+	 * @param repertory
 	 * @return
 	 */
-	boolean addRepertory(Repertory re);
+	boolean addRepertory(Repertory repertory);
 
 	/**
 	 *  减少库存

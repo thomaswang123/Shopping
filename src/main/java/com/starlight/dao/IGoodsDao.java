@@ -68,4 +68,10 @@ public interface IGoodsDao {
 	 */
 	int  findSumNumberByPrice(Paging paging);
 
+
+	/**
+	 * 添加商品
+	 * @param goods
+	 */
+	void addGoods(Goods goods);
 }

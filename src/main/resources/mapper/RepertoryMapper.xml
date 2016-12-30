@@ -23,4 +23,9 @@
     <select id="findNumberById" resultType="int" parameterType="int">
         select ry_number from repertory where ry_id = #{id}
     </select>
+
+    <insert id="addRepertory" parameterType="com.starlight.entity.Repertory">
+        insert into Repertory(ry_id,ry_number)values(#{id},#{number})
+    </insert>
+
 </mapper>

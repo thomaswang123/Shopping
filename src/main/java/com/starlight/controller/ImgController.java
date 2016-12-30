@@ -1,10 +1,15 @@
 package com.starlight.controller;
 
+import com.starlight.entity.Goods;
+import com.starlight.entity.Repertory;
+import com.starlight.serviceimp.GoodsServiceImp;
+import com.starlight.serviceimp.RepertoryServiceImp;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
@@ -15,6 +20,14 @@ import java.io.*;
 @Controller
 public class ImgController {
 
+    @Resource
+    GoodsServiceImp goodsServiceImp;
+    @Resource
+    Goods goods;
+    @Resource
+    Repertory repertory;
+    @Resource
+    RepertoryServiceImp repertoryServiceImp;
 
     @RequestMapping(value = "/upload.do", produces = "text/html;charset=UTF-8")
 
@@ -48,21 +61,18 @@ public class ImgController {
 //              切割
                 String []strs=url.split("target");
                 System.out.println("--:"+strs[0]+"src/main/webapp/");
-//              创建File
-                String newUrl=strs[0]+"src/main/webapp/goodImages/";
+//             拼接路径
+                String newUrl=strs[0]+"src/main/webapp/images/"+multipartFile.getOriginalFilename();
 
                 String path3=newUrl.substring(newUrl.indexOf("/")+1);
                 System.out.println("path3"+path3);
-//                String str2=newUrl.replace("/","\\\\");
-//                String str3=newUrl.replaceAll("/","\\\\");
-//                System.out.println(str2+"--"+str3);
 
-                String path4=path3+multipartFile.getOriginalFilename();
-                File file=new File(path4);
+//                创建File
+                File file=new File(path3);
 //              判断是否存在该目录，如果没有就创建
-                if(!file.exists()){
-                    file.mkdir();
-                }
+//                if(!file.exists()){
+//                    file.mkdir();
+//                }
 
                 System.out.println(multipartFile.getContentType());
 //               创建输入流输入文件
@@ -83,12 +93,24 @@ public class ImgController {
                     out.flush();
                 }
 
-
-//              存储到数据库
-                request.getParameter("");
-
                 out.close();
                 inputStream.close();
+
+//              存储到数据库
+                System.out.println(request.getParameter("goodsid"));
+                goods.setId(Integer.parseInt(request.getParameter("goodsid"))+1);
+                goods.setName(request.getParameter("goodsname"));
+                goods.setPicture(multipartFile.getOriginalFilename());
+                goods.setPrice(Float.parseFloat(request.getParameter("goodsprivce")));
+                goods.setDescribe(request.getParameter("gdsdescribe"));
+                goodsServiceImp.addGoods(goods);
+
+//              添加到库存
+                repertory.setId(Integer.parseInt(request.getParameter("goodsid"))+1);
+                repertory.setNumber(Integer.parseInt(request.getParameter("goodsnumber")));
+                repertoryServiceImp.addRepertory(repertory);
+
+
             }else{
                 System.out.println("不是图片文件");
             }

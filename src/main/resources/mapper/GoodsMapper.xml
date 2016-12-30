@@ -5,8 +5,8 @@
 <mapper namespace="com.starlight.dao.IGoodsDao">
     <!--映射字段-->
     <resultMap id="go" type="com.starlight.entity.Goods">
-        <id property="id" column="g_id"/>
-        <result property="name" column="g_name"/>
+        <id property="id" column="g_id" />
+        <result property="name" column="g_name" />
         <result property="picture" column="g_picture"/>
         <result property="price" column="g_price"/>
         <result property="describe" column="g_describe"/>
@@ -15,8 +15,8 @@
     <!--用户信息和用户表连表分页查询-->
     <resultMap id="CustomerOrdersMap" type="com.starlight.entity.Goods">
         <!--定义用户信息-->
-        <id property="id" column="g_id"/>
-        <result property="name" column="g_name"/>
+        <id property="id" column="g_id" />
+        <result property="name" column="g_name" />
         <result property="picture" column="g_picture"/>
         <result property="price" column="g_price"/>
         <result property="describe" column="g_describe"/>
@@ -24,8 +24,8 @@
            注意下面用到的ofType而不是javaType
         -->
         <collection property="repertory" javaType="com.starlight.entity.Repertory">
-            <id property="id" column="ry_id"/>
-            <result property="number" column="ry_number"/>
+            <id property="id" column="ry_id" />
+            <result property="number" column="ry_number" />
         </collection>
     </resultMap>
     <select id="byPagingfindAll" resultMap="CustomerOrdersMap" parameterType="com.starlight.entity.Paging">
@@ -58,6 +58,10 @@
     <select id="findById" parameterType="int" resultMap="go">
         select g_id,g_name,g_picture,g_price,g_describe from Goods where g_id=#{id}
     </select>
+
+    <insert id="addGoods" parameterType="com.starlight.entity.Goods">
+        insert into goods(g_id,g_name,g_picture,g_price,g_describe)values(#{id},#{name},#{picture},#{price},#{describe});
+    </insert>
 
     <!--删除商品信息-->
     <delete id="delGoods" parameterType="int">
