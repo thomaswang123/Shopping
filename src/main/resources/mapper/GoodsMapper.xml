@@ -70,11 +70,11 @@
 
     <!--根据单价查询-->
     <select id="findByPrice" resultMap="go" parameterType="com.starlight.entity.Paging">
-        select g_id,g_name,g_picture,g_price,g_describe from goods where g_price >= #{price} limit #{rise},#{stop}
+        select g_id,g_name,g_picture,g_price,g_describe from goods where g_price &lt;= #{price} limit #{rise},#{stop}
     </select>
 
     <!--根据单价查询总数量-->
     <select id="findSumNumberByPrice" parameterType="com.starlight.entity.Paging" resultType="int">
-          select count(g_id) from goods where g_price >= #{price}
+          select count(g_id) from goods where g_price &lt;= #{price}
     </select>
 </mapper>

@@ -56,14 +56,22 @@ public class Test {
             System.out.println(string[temp]);}
             System.out.println(11%10);
         Paging paging = new Paging();
+        paging.setPrice(300);
         paging.setRise(1);
         paging.setStop(10);
         int adminclasses = act.getBean(IAdminDao.class).findClassesById(1001);
         System.out.println(adminclasses);
+
+     /*   Admin admin = new Admin();
+        admin.setId(1001);
+        admin.setClasses(2);
+        System.out.println(act.getBean(IAdminDao.class).alterAdmin(admin));*/
+
+
       /*  System.out.println(act.getBean(IRepertoryDao.class).findIdNumber(1142));*/
 
+        System.out.println(act.getBean(IGoodsDao.class).findByPrice(paging));
         Goods goods = new Goods();
-
      /*   User user = new User();
         user.setU_name("123456");
         user.setU_pwd("123456");

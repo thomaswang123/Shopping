@@ -23,6 +23,8 @@ public class UserInfo {
     //多表查询(管理员等级)
     private int classes;
 
+
+
     public int getClasses() {
         return classes;
     }

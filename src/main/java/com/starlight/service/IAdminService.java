@@ -78,4 +78,27 @@ public interface IAdminService {
      */
     List<Goods>  findByGoodsPrice(Paging paging);
 
+    /**
+     * 修改admin的级别
+     * @param admin
+     * @param oneselfClasses
+     * @return
+     */
+    String alterAdminClasses(Admin admin,int oneselfClasses,int classes);
+
+    /**
+     * 通过管理员的等级条件来查询
+     * @param paging
+     * @param classes
+     * @return
+     */
+    List<UserInfo> findByAdminClasses(Paging paging,int classes);
+
+    /**
+     * 通过账号来模糊查询用户信息
+     * @param paging
+     * @return
+     */
+    List<UserInfo> findAllByLikeName(Paging paging);
+
 }

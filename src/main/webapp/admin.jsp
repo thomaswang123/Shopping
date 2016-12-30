@@ -16,11 +16,11 @@
     <meta name="keywords" content=""/>
     <script type="application/x-javascript">
         addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
 
     </script>
     <!-- //Custom Theme files -->
@@ -39,8 +39,15 @@
 
             /*用户管理点击页码进行刷新数据*/
             $(".connect").click(function () {
-                var  text =  $("#goodsText").val();
-                var  goodsCondition =  $("#goodsCondition").val();
+                //用户条件查询
+                var userAccount = $("#userText").val();
+                var userTemp = $("#userCondition").val();
+                //管理员条件查询
+                var userRightTemp =  $("#userRightCondition").val();
+                var userRightClasses = $("#userRightText").val();
+
+                var text = $("#goodsText").val();
+                var goodsCondition = $("#goodsCondition").val();
                 var goods = parseInt($("#goodsnumber").val());
                 alert(goods);
                 /*进行颜色的变换*/
@@ -51,8 +58,12 @@
                 $("#thisPaginaTion").val(pagination);
                 /*进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods
-                    ,goodsCondition:""+goodsCondition,price:""+text}
+                    {
+                        number: "" + number, pagination: "" + pagination, goodsnumber: "" + goods
+                        , goodsCondition: "" + goodsCondition, price: "" + text
+                        , userRightTemp:""+userRightTemp,userRightClasses:""+userRightClasses
+                        , Account:""+userAccount,userTemp:""+userTemp
+                    }
                     , function (data) {
                         if (goods != 1 && goods != 2) {
                             /*刷新用户内联页面，展示新的数据*/
@@ -91,8 +102,15 @@
 
             /*用户管理上一页*/
             $("#previousPage").click(function () {
-                var  text =  $("#goodsText").val();
-                var  goodsCondition =  $("#goodsCondition").val();
+                //用户条件查询
+                var userAccount = $("#userText").val();
+                var userTemp = $("#userCondition").val();
+                //管理员条件查询
+                var userRightTemp =  $("#userRightCondition").val();
+                var userRightClasses = $("#userRightText").val();
+
+                var text = $("#goodsText").val();
+                var goodsCondition = $("#goodsCondition").val();
                 var goods = parseInt($("#goodsnumber").val());
                 var number = $("#select").val();
                 var val = $("#thisPaginaTion").val();
@@ -105,8 +123,12 @@
                 $("#thisPaginaTion").val("" + pagination);
                 /*  进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination,
-                        goodsnumber: "" + goods,goodsCondition:""+goodsCondition,price:""+text}
+                    {
+                        number: "" + number, pagination: "" + pagination,
+                        goodsnumber: "" + goods, goodsCondition: "" + goodsCondition, price: "" + text
+                        , userRightTemp:""+userRightTemp,userRightClasses:""+userRightClasses
+                        , Account:""+userAccount,userTemp:""+userTemp
+                    }
                     , function (data) {
                         if (goods != 1 && goods != 2) {
                             /*刷新用户内联页面，展示新的数据*/
@@ -122,11 +144,18 @@
 
             /*用户管理下一页*/
             $("#nextPage").click(function () {
-                var  text =  $("#goodsText").val();
+                //用户条件查询
+                var userAccount = $("#userText").val();
+                var userTemp = $("#userCondition").val();
+                //管理员条件查询
+                var userRightTemp =  $("#userRightCondition").val();
+                var userRightClasses = $("#userRightText").val();
+
+                var text = $("#goodsText").val();
                 var goods = parseInt($("#goodsnumber").val());
                 var number = $("#select").val();
                 var val = $("#thisPaginaTion").val();
-                var  goodsCondition =  $("#goodsCondition").val();
+                var goodsCondition = $("#goodsCondition").val();
                 var pagination = parseInt(val) + 1;
                 if (pagination > parseInt($("#maxPaginaTion").val())) {
                     pagination = pagination - 1;
@@ -136,8 +165,12 @@
                 $("#" + pagination).css("color", "red");
                 /*  进行查询该页面下的数据发送请求*/
                 $.post("pagination.do",
-                    {number: "" + number, pagination: "" + pagination,
-                        goodsnumber: "" + goods,goodsCondition:""+goodsCondition,price:""+text}
+                    {
+                        number: "" + number, pagination: "" + pagination,
+                        goodsnumber: "" + goods, goodsCondition: "" + goodsCondition, price: "" + text
+                       , userRightTemp:""+userRightTemp,userRightClasses:""+userRightClasses
+                        , Account:""+userAccount,userTemp:""+userTemp
+                    }
                     , function (data) {
                         if (goods != 1 && goods != 2) {
                             /*刷新用户内联页面，展示新的数据*/
@@ -156,9 +189,9 @@
                 $.post("addgoodsdata.do",
                     $("#addgoodsdata").serialize(),
                     function (data) {
-                    alert(data);
-                            /*刷新商品内联页面，展示新的数据*/
-                    /*        $('#goods').attr('src', $('#goods').attr('src'));*/
+                        alert(data);
+                        /*刷新商品内联页面，展示新的数据*/
+                        /*        $('#goods').attr('src', $('#goods').attr('src'));*/
                     }, "text");
             });
 
@@ -176,18 +209,41 @@
                 }
             });
 
-            /*条件查询*/
+            /*商品的单价条件查询*/
             $("#findGoods").click(function () {
                 var number = $("#select").val();
-                var  text =  $("#goodsText").val();
-                 if("商品单价"==$(".selectGoods").val()){
-                     / *利用js发送商品管理请求*/
-                     window.location.href = "findByGoodsPrice.do?numbers=" + number + "&pagination=1&"+"price="+text;
-                  } else if("id"==$(".selectGoods").val()){
-                     / *利用js发送商品管理请求*/
-                     window.location.href = "findByGoodId.do?numbers=" + number + "&pagination=1&"+"price="+text;
-                 }
+                var text = $("#goodsText").val();
+                if ("商品单价" == $(".selectGoods").val()) {
+                    / *利用js发送商品管理请求*/
+                    window.location.href = "findByGoodsPrice.do?numbers=" + number + "&pagination=1&" + "price=" + text;
+                }
+                /*      else if("id"==$(".selectGoods").val()){
+                 / *利用js发送商品管理请求*!/
+                 window.location.href = "findByGoodId.do?numbers=" + number + "&pagination=1&"+"price="+text;
+                 }*/
             });
+
+            /*管理员的级别条件查询*/
+            $("#findUserRight").click(function () {
+                var number = $("#select").val();
+                var text = $("#userRightText").val();
+                if ("级别" == $(".userRight").val()) {
+                    / *利用js发送商品管理请求*/
+                    window.location.href = "findByAdminClasses.do?numbers=" + number + "&pagination=1&" + "classes=" + text;
+                }
+            });
+
+            /*用户的账号条件查询*/
+            $("#findUser").click(function () {
+                var number = $("#select").val();
+                var text = $("#userText").val();
+                if ("账号" == $(".selectUser").val()) {
+                    / *利用js发送商品管理请求*/
+                    window.location.href = "findByLikeName.do?numbers=" + number + "&pagination=1&" + "Account=" + text;
+                }
+            });
+
+
 
         });
 
@@ -214,10 +270,10 @@
         <input id="goodsnumber" value="1" style="display: none">
     </c:when>
     <c:when test="${sessionScope.userRight!=null}">
-        <input id="goodsnumber" value="2"  style="display: none">
+        <input id="goodsnumber" value="2" style="display: none">
     </c:when>
     <c:otherwise>
-        <input id="goodsnumber" value="0"  style="display: none">
+        <input id="goodsnumber" value="0" style="display: none">
     </c:otherwise>
 </c:choose>
 
@@ -229,7 +285,7 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
     <%--添加的商品信息--%>
 
 
-    <form id="addgoodsdata"  action="upload.do" method="post" enctype="multipart/form-data">
+    <form id="addgoodsdata" action="upload.do" method="post" enctype="multipart/form-data">
         <div style="float:left;width: 300;height: 300;border-width: 1px; border-style: solid; padding: 1px;">
             <%--   <span><img src="images/g3.png" style="width: 300;height: 300"></span>--%>
             <input name="file" type="file" value="添加图片">
@@ -543,7 +599,7 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                     <div class="cart-box">
                         <h4>
                             <a href="#">
-                        <span  style="color: red">
+                        <span style="color: red">
                             请先登录！
                         </span>
 
@@ -561,7 +617,7 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                             <a href="showCheckout.do">
                         <span class="simpleCart_total" style="color: red"> $0.0
                         </span>
-                                (<span id="simpleCart_quantity"  class="simpleCart_quantity"> 0 </span>)
+                                (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span>)
                             </a></h4>
                         <p><a href="javascript:;" class="simpleCart_empty">清空购物车</a></p>
                         <div class="clearfix"></div>
@@ -621,7 +677,7 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                       </select>
                 </c:when>
                 <c:otherwise>
-                        <select style="width: 120px" class="selectuser">
+                        <select style="width: 120px" class="selectUser">
                             <option selected>${requestScope.type}</option>
                   <%--       <option>id</option>
                          <option>账号</option>--%>
@@ -633,20 +689,41 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
             </c:choose>
             <c:choose>
                 <c:when test="${sessionScope.goodsdata!=null}">
+                    <label><b style="font-size: 20px"><</b></label>
                     <input type="text" id="goodsText"
                            style="margin-left: 10px;width: 200px;height: 25px"
                            placeholder="请输入相关类型信息" value="${requestScope.price}">
-                    <input type="button"  id="findGoods" value="◎查询">
+                    <input type="button" id="findGoods" value="◎查询">
+                    <%--用来分页--%>
                     <input type="text" id="goodsCondition" style="display: none" value="${requestScope.temp}">
+                    <%--用来分页--%>
+                    <input type="text" id="userCondition" style="display: none" value="${requestScope.userTemp}">
+                    <%--用来分页--%>
+                    <input type="text" id="userRightCondition" style="display: none"
+                           value="${requestScope.userRightTemp}">
                 </c:when>
                 <c:when test="${sessionScope.userRight!=null}">
-                    <input type="text" id="userRightText" value=""  style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
-                    <input type="button"  id="findUserRight" value="◎查询">
+                    <input type="text" id="userRightText" value="${requestScope.classes}"
+                           style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
+                    <input type="button" id="findUserRight" value="◎查询">
+                    <%--用来分页--%>
+                    <input type="text" id="userRightCondition" style="display: none"
+                           value="${requestScope.userRightTemp}">
+                    <%--用来分页--%>
+                    <input type="text" id="userCondition" style="display: none" value="${requestScope.userTemp}">
+                    <%--用来分页--%>
                     <input type="text" id="goodsCondition" style="display: none" value="${requestScope.temp}">
                 </c:when>
                 <c:otherwise>
-                    <input type="text" id="userText" value=""  style="margin-left: 10px;width: 200px;height: 25px" placeholder="请输入相关类型信息">
-                    <input type="button"  id="findUser" value="◎查询">
+                    <input type="text" id="userText" value="${requestScope.Account}" style="margin-left: 10px;width: 200px;height: 25px"
+                           placeholder="请输入相关类型信息">
+                    <input type="button" id="findUser" value="◎查询">
+                    <%--用来分页--%>
+                    <input type="text" id="userCondition" style="display: none" value="${requestScope.userTemp}">
+                    <%--用来分页--%>
+                    <input type="text" id="userRightCondition" style="display: none"
+                           value="${requestScope.userRightTemp}">
+                    <%--用来分页--%>
                     <input type="text" id="goodsCondition" style="display: none" value="${requestScope.temp}">
                 </c:otherwise>
             </c:choose>
@@ -690,14 +767,14 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                         <c:choose>
                             <c:when test="${i==1}">
                                 <span style="margin-left: 10px"><a class="connect" id="${i}"
-                                        onclick="conncet(this.id,this.class)" href="#"
-                                      style="color: red;font-size: 20px">${i}</a></span>
+                                                                   onclick="conncet(this.id,this.class)" href="#"
+                                                                   style="color: red;font-size: 20px">${i}</a></span>
                             </c:when>
                             <c:otherwise>
                                 <span style="margin-left: 10px;color:#006dcc"><a class="connect" id="${i}"
-                                       onclick="conncet(this.id,this.class)"
-                                          href="#"
-                                       style="font-size: 20px">${i}</a></span>
+                                                                                 onclick="conncet(this.id,this.class)"
+                                                                                 href="#"
+                                                                                 style="font-size: 20px">${i}</a></span>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -705,8 +782,8 @@ background-color: #7ab5d3;margin-left: 500px;margin-top:250px
                 <c:when test="${requestScope.number>10}">
                     <c:forEach var="i" begin="1" end="${7}">
                         <span style="margin-left: 10px"><a class="connect" id="${i}"
-                                 onclick="conncet(this.id,this.class)" href="#"
-                             style="font-size: 20px">${i}</a></span>
+                                                           onclick="conncet(this.id,this.class)" href="#"
+                                                           style="font-size: 20px">${i}</a></span>
                     </c:forEach>
                     <span>...</span>
                     <span style="margin-left: 10px">

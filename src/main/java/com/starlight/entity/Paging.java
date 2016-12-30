@@ -12,11 +12,27 @@ public class Paging {
 
     //用来条件查询
     private float price ; //商品单价
-    private UserInfo userInfo;
-    private Admin admin;
+    //管理员级别
+    private int classes;
+    //用户账号的查询
+    private String  name ;
 
-    public Admin getAdmin() {
-        return admin;
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getClasses() {
+        return classes;
+    }
+
+    public void setClasses(int classes) {
+        this.classes = classes;
     }
 
     public float getPrice() {
@@ -27,17 +43,6 @@ public class Paging {
         this.price = price;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
 
 
     public int getRise() {

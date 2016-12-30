@@ -148,9 +148,15 @@ public String checkAccout(String name) {
         user.setPassword(password);
         //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
         if ((id = userServiceImp.login(user)) != 0) {
-            sessionUser.setAttribute("userId",id);
-            sessionUser.setAttribute("userinfo", userinfoServiceImp.findUserInfoById(id));
+            UserInfo userInfo = userinfoServiceImp.findUserInfoById(id);
+            userInfo.setNickname(
+                    userInfo.getNickname().length() > 2 ? userInfo.getNickname().substring(0, 1) + "…" :
+                            userInfo.getNickname());
+            sessionUser.setAttribute("userinfo", userInfo);
+            //判断是否是管理员
             sessionUser.setAttribute("admin", adminServiceImp.findClassesById(id));
+            sessionUser.setAttribute("userId",id);
+            sessionUser.setAttribute("userClasses",adminServiceImp.findClassesById(id));
             return url;
         }
         return url;
