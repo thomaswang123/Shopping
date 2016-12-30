@@ -69,6 +69,8 @@ CREATE TABLE UserInfo
    CONSTRAINT PK_USERINF_ID PRIMARY KEY (uinfo_id),
    FOREIGN KEY (uinfo_id) REFERENCES User(u_id)
 );
+INSERT  INTO UserInfo(uinfo_id, uinfo_nickname, uinfo_sex, uinfo_age, uinfo_phone, uinfo_address)VALUES (1001,'张三','男',13,'13203200681','湖南长沙');
+COMMIT ;
 /***********************************************************************************/
 /*商品表*/
 DROP TABLE Goods;
