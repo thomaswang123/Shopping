@@ -211,7 +211,7 @@ public class ShoppingCartController {
 			httpSession.setAttribute("cartList",sc);
 			return "redirect:checkout.jsp";
 		}
-			return "redirect:404error.html";
+			return "redirect:404.html";
 
 	}
 }
