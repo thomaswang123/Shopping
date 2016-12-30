@@ -98,30 +98,54 @@ public class AdminController {
             /*这里是根据商品的单价进行查询*/
             System.out.println("yes");
             Paging paging = new Paging();
-            //从第几个数据开始
-            paging.setRise(pat * nbr - nbr);
-            //那个数据结束
-            paging.setStop(pat * nbr);
+            if(pat==1) {
+                //从第几个数据开始
+                paging.setRise(pat * nbr - nbr);
+                //那个数据结束
+                paging.setStop(pat * nbr);
+            }else{
+                //从第几个数据开始
+                paging.setRise(pat * nbr-nbr);
+                //那个数据结束
+                paging.setStop(nbr);
+                System.out.println(pat * nbr - nbr+","+nbr);
+            }
             paging.setPrice(Float.parseFloat(price));
             sessionPaging.setAttribute("goodsdata", adminServiceImp.findByGoodsPrice(paging));
             sessionPaging.setAttribute("number", nbr);
         }else if(userRightTemp==1) {
            // 这里是根据商品的单价进行查询
             Paging paging = new Paging();
-            //从第几个数据开始
-            paging.setRise(pat * nbr - nbr);
-            //那个数据结束
-            paging.setStop(pat * nbr);
+            if(pat==1) {
+                //从第几个数据开始
+                paging.setRise(pat * nbr - nbr);
+                //那个数据结束
+                paging.setStop(pat * nbr);
+            }else{
+                //从第几个数据开始
+                paging.setRise(pat * nbr-nbr);
+                //那个数据结束
+                paging.setStop(nbr);
+                System.out.println(pat * nbr - nbr+","+nbr);
+            }
             sessionPaging.setAttribute("userRight",
                     adminServiceImp.findByAdminClasses(paging,Integer.parseInt(userRightClasses)));
             sessionPaging.setAttribute("number", nbr);
         }else if(userTemp==1){
         // 这里是根据用户的账号进行查询
             Paging paging = new Paging();
-            //从第几个数据开始
-            paging.setRise(pat * nbr - nbr);
-            //那个数据结束
-            paging.setStop(pat * nbr);
+            if(pat==1) {
+                //从第几个数据开始
+                paging.setRise(pat * nbr - nbr);
+                //那个数据结束
+                paging.setStop(pat * nbr);
+            }else{
+                //从第几个数据开始
+                paging.setRise(pat * nbr-nbr);
+                //那个数据结束
+                paging.setStop(nbr);
+                System.out.println(pat * nbr - nbr+","+nbr);
+            }
             paging.setName(Account);
             sessionPaging.setAttribute("userdata",
                     adminServiceImp.findAllByLikeName(paging));
@@ -131,10 +155,18 @@ public class AdminController {
                 sessionPaging.setAttribute("userdata", userInfoServiceImp.pagination(pagination, number));
             } else if (goodsnumber == 2) {
                 Paging paging = new Paging();
-                //从第几个数据开始
-                paging.setRise(pat * nbr - nbr);
-                //那个数据结束
-                paging.setStop(pat * nbr);
+                if(pat==1) {
+                    //从第几个数据开始
+                    paging.setRise(pat * nbr - nbr);
+                    //那个数据结束
+                    paging.setStop(pat * nbr);
+                }else{
+                    //从第几个数据开始
+                    paging.setRise(pat * nbr-nbr);
+                    //那个数据结束
+                    paging.setStop(nbr);
+                    System.out.println(pat * nbr - nbr+","+nbr);
+                }
                 sessionPaging.setAttribute("userRight", adminServiceImp.findAdminByPaging(paging));
                 sessionPaging.setAttribute("number", nbr);
             } else {

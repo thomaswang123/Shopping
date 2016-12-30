@@ -22,7 +22,7 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     //用户信息
     @Resource
-    IUserInfoDao iUserinfoDao;
+    IUserInfoDao iUserInfoDao;
     @Resource
     IWalletDao iWalletDao;
     @Resource
@@ -38,7 +38,7 @@ public class UserInfoServiceImp implements IUserInfoService {
     public List<UserInfo> findAllUserInfoById(int id) {
 
 
-        return iUserinfoDao.findAllUserInfoById(id);
+        return iUserInfoDao.findAllUserInfoById(id);
     }
 
     public List<UserInfo> findUserInfoByNickName(String uinfo_nickname) {
@@ -61,14 +61,14 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     public UserInfo findUserInfoById(int id) {
 
-        return iUserinfoDao.findUserInfoById(id);
+        return iUserInfoDao.findUserInfoById(id);
     }
 
     //    插入用户详细信息
     public void register(UserInfo userInfo) {
 
 
-        iUserinfoDao.register(userInfo);
+        iUserInfoDao.register(userInfo);
     }
 
     //    注册用户钱包
@@ -86,11 +86,19 @@ public class UserInfoServiceImp implements IUserInfoService {
         int nbr = Integer.parseInt(number.substring(number.indexOf(":")+1,number.length()));
         //页码
         int pat = Integer.parseInt(pagination);
-        //从第几个数据开始
-        paging.setRise(pat*nbr-nbr);
-        //那个数据结束
-        paging.setStop(pat*nbr);
-        List<UserInfo> list = iUserinfoDao.byPagingfindAll(paging);
+        if(pat==1) {
+            //从第几个数据开始
+            paging.setRise(pat * nbr - nbr);
+            //那个数据结束
+            paging.setStop(pat * nbr);
+        }else{
+            //从第几个数据开始
+            paging.setRise(pat * nbr-nbr);
+            //那个数据结束
+            paging.setStop(nbr);
+            System.out.println(pat * nbr - nbr+","+nbr);
+        }
+        List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
         for (int i = 0; i <list.size() ; i++) {
             list.get(i).setColor(i);
             System.out.println(list.get(i).getNickname());
@@ -102,7 +110,7 @@ public class UserInfoServiceImp implements IUserInfoService {
     //通过分页来查询数据！
     public List<UserInfo> byPagingfindAll(Paging paging) {
 
-        List<UserInfo> list = iUserinfoDao.byPagingfindAll(paging);
+        List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
         //添加颜色
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setColor(i+1);
