@@ -42,6 +42,7 @@
     <script src="sitelogo/sitelogo.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- cart -->
+    <%--页面的所有操作jquery--%>
     <script type="application/x-javascript">
         $(document).ready(function () {
 
@@ -89,15 +90,8 @@
 
             /*显示单矿*/
             $("#addGoods").click(function () {
-                $("#addGoodsdiv").toggle();
-            })
-
-            /*隐藏弹框*/
-            $("#abolish").click(function () {
-                $("#addGoodsdiv").hide();
-            })
-
-
+                $("#addGoodsData").trigger('click');
+            });
             /*选中页面数据数量并刷新页面*/
             /*       $("#select").change(function (){
              var number = $("#select").val();
@@ -289,7 +283,7 @@
 <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <%--表单--%>
+            <%--表单--%>
             <form class="avatar-form" action="upload.do" enctype="multipart/form-data" method="post">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal" type="button">&times;</button>
@@ -699,7 +693,10 @@
     </span>
         <span style="margin-left: 20px">数量:<label id="number"><b>${requestScope.numbersum}</b></label></span>
         <c:if test="${sessionScope.goodsdata!=null}">
-             <span style="margin-left: 60px">
+              <div id="crop-avatar" class="col-md-6"style="width:200px;height: 100%;display: none;float: left; margin-left: 20px;">
+                <input type="button" class="avatar-view" style="width:100px;height: 25px;float: left;" id="addGoodsData"  value="上传图片">
+            </div>
+            <span style="margin-left: 60px">
             <input type="button" style="width:100px;height: 25px" id="addGoods" value="+添加商品">
         </span>
         </c:if>
@@ -812,14 +809,14 @@
                         <c:choose>
                             <c:when test="${i==1}">
                                 <span style="margin-left: 10px"><a class="connect" id="${i}"
-                                                                   onclick="conncet(this.id,this.class)" href="#"
-                                                                   style="color: red;font-size: 20px">${i}</a></span>
+                                    onclick="conncet(this.id,this.class)" href="#"
+                                    style="color: red;font-size: 20px">${i}</a></span>
                             </c:when>
                             <c:otherwise>
                                 <span style="margin-left: 10px;color:#006dcc"><a class="connect" id="${i}"
-                                                                                 onclick="conncet(this.id,this.class)"
-                                                                                 href="#"
-                                                                                 style="font-size: 20px">${i}</a></span>
+                                           onclick="conncet(this.id,this.class)"
+                                         href="#"
+                                     style="font-size: 20px">${i}</a></span>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -830,8 +827,6 @@
                                                            onclick="conncet(this.id,this.class)" href="#"
                                                            style="font-size: 20px">${i}</a></span>
                     </c:forEach>
-                </c:when>
-                <c:otherwise>
                     <span>...</span>
                     <span style="margin-left: 10px">
                        <a href="#" id="${requestScope.number}">${requestScope.number}</a>
