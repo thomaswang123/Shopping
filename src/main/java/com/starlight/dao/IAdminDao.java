@@ -1,6 +1,8 @@
 package com.starlight.dao;
 
 import com.starlight.entity.Admin;
+import com.starlight.entity.Goods;
+import com.starlight.entity.Paging;
 
 import java.util.List;
 
@@ -48,5 +50,24 @@ public interface IAdminDao {
      */
    int delAllUserData(int uid);
 
+    /**
+     * 修改admin
+     * @param admin
+     * @return
+     */
+    int alterAdmin(Admin admin);
 
+    /**
+     * 查询级别等于classes的数据
+     * @param classes
+     * @return
+     */
+    List<Admin> findByClasses(Paging paging);
+
+    /**
+     * 查询级别等于classes的数据总数量
+     * @param paging
+     * @return
+     */
+    int findSumNumberByClasses(Paging paging);
 }

@@ -7,10 +7,10 @@ import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
 import com.starlight.service.IChangePasswordService;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,6 +20,15 @@ import java.util.List;
 @Component
 public class ChangePasswordServiceImp implements IChangePasswordService {
 
+    @Resource
+    IChangePasswordDao iChangePasswordDao;
+
+    @Resource
+    IUserDao iUserDao;
+
+    @Resource
+    IWalletDao iWalletDao;
+
     //用来处理密保,查询密保并展示到前台页面
     public String findQuestionAndIddByUid(int u_id) {
         String string = "";
@@ -27,7 +36,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         int temp = 1;
         //条用dao进行对数据库的查询
         List<PassWordProtection> lists =
-                Appliction.getAct().getBean(IChangePasswordDao.class).findQuestionAndIddByUid(u_id);
+               iChangePasswordDao.findQuestionAndIddByUid(u_id);
         for (PassWordProtection lt : lists
                 ) {
             string += "" + lt.getId() + "," + lt.getQuestion();
@@ -42,7 +51,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
     //查找pp_answer进行答案的判断
     public String Answer_Comparison(String[] result, int u_id) {
         //用来取出result中的数据
-        String[] string = Appliction.getAct().getBean(IChangePasswordDao.class).findAnswerById(u_id);
+        String[] string = iChangePasswordDao.findAnswerById(u_id);
         int temp = 1;
         for (int i = 0; i < string.length; i++) {
             if (string[i].equals(result[i])) {
@@ -92,13 +101,13 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
     //修改用户密码
     public void alertPwd(User user) {
         //进行用户密码修改
-        Appliction.getAct().getBean(IUserDao.class).alertPwdById(user);
+       iUserDao.alertPwdById(user);
     }
 
     //修改用户钱包支付密码
     public void alertPayPwd(Wallet wallet) {
         //进行用户钱包的修改
-        Appliction.getAct().getBean(IWalletDao.class).alertPayPwdById(wallet);
+       iWalletDao.alertPayPwdById(wallet);
     }
 
     //修改用户密保答案
@@ -108,7 +117,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
             PassWordProtection pwp = new PassWordProtection();
             pwp.setId(Integer.parseInt(ppid[i]));
             pwp.setAnswer(result[i]);
-            Appliction.getAct().getBean(IChangePasswordDao.class).alterPWP(pwp);
+          iChangePasswordDao.alterPWP(pwp);
         }
     }
 

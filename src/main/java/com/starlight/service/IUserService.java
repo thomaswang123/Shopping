@@ -1,5 +1,6 @@
 package com.starlight.service;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 
@@ -77,4 +78,5 @@ public interface IUserService {
 	 * @return
 	 */
 	List<User> findAllUserAndUserInfoAndAdminById(int uid);
+
 }

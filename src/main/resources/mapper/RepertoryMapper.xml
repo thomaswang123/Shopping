@@ -10,6 +10,20 @@
         <result property="number" column="ry_number" />
     </resultMap>
 
+    <!--修改-->
+    <update id="alterRepertory" parameterType="com.starlight.entity.Repertory">
+        update repertory set ry_number = #{number}  where ry_id = #{id}
+    </update>
+
+    <!--删除商品信息-->
+    <delete id="delRepertoryData" parameterType="int">
+        delete from repertory where ry_id = #{id}
+    </delete>
+
+    <select id="findNumberById" resultType="int" parameterType="int">
+        select ry_number from repertory where ry_id = #{id}
+    </select>
+
     <insert id="addRepertory" parameterType="com.starlight.entity.Repertory">
         insert into Repertory(ry_id,ry_number)values(#{id},#{number})
     </insert>

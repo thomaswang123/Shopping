@@ -7,7 +7,6 @@ import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
 import com.starlight.entity.Wallet;
 import com.starlight.service.IUserInfoService;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +32,7 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     //处理数据的总数量
     public int countUserIdNumber() {
-        return Appliction.getAct().getBean(IUserDao.class).countAllIdNumber();
+        return iUserDao.countAllIdNumber();
     }
 
     public List<UserInfo> findAllUserInfoById(int id) {
@@ -103,7 +102,7 @@ public class UserInfoServiceImp implements IUserInfoService {
     //通过分页来查询数据！
     public List<UserInfo> byPagingfindAll(Paging paging) {
 
-        List<UserInfo> list = Appliction.getAct().getBean(IUserInfoDao.class).byPagingfindAll(paging);
+        List<UserInfo> list = iUserinfoDao.byPagingfindAll(paging);
         //添加颜色
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setColor(i+1);

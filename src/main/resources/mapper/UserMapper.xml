@@ -11,6 +11,10 @@
         <result property="password" column="u_pwd"/>
     </resultMap>
 
+    <select id="findUserById" resultMap="user" parameterType="int">
+        select u_name ,u_id from user where u_id = #{uid}
+    </select>
+
     <!--删除用户-->
     <delete id="delUser" parameterType="int">
         delete from user where u_id =#{uid}
@@ -61,4 +65,11 @@
         select u_id,u_name,u_pwd from user where  u_id = #{id}
     </select>
 
+    <select id="findByLikeName" resultMap="user" parameterType="com.starlight.entity.Paging">
+        select u_id,u_name from user where u_name like #{name} limit #{rise},#{stop};
+    </select>
+
+    <select id="findByLikeNameNumber" resultType="int" parameterType="com.starlight.entity.Paging">
+        select count(u_id) from user where u_name like #{name}
+    </select>
 </mapper>

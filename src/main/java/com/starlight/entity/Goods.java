@@ -23,17 +23,6 @@ public class Goods {
     //分页查询用库存
     private Repertory repertory;
 
-    //换行
-    private int number;
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public Repertory getRepertory() {
         return repertory;
     }

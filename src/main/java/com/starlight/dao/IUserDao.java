@@ -89,4 +89,25 @@ public interface IUserDao {
 	 * @return
 	 */
 	List<User> findAllUserByPaging(Paging paging);
+
+	/**
+	 * 查询用户的账号加id信息
+	 * @param uid
+	 * @return
+	 */
+	User  findUserById(int uid);
+
+	/**
+	 * 根据账号条件来模糊查询
+	 * @param paging
+	 * @return
+	 */
+	List<User> findByLikeName(Paging paging);
+
+	/**
+	 * 根据账号条件来模糊查询的总数量
+	 * @param paging
+	 * @return
+	 */
+	int findByLikeNameNumber(Paging paging);
 }
