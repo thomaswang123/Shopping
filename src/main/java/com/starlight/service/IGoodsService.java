@@ -20,4 +20,10 @@ public interface IGoodsService {
 	 * @return
 	 */
 	Goods findById(int id);
+
+	/**
+	 * 添加商品
+	 * @param goods
+	 */
+	void addGoods(Goods goods);
 }

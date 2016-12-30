@@ -26,4 +26,8 @@ public class GoodsServiceImp implements IGoodsService{
 
 		return iGoodsDao.findById(id);
 	}
+
+	public void addGoods(Goods goods) {
+		iGoodsDao.addGoods(goods);
+	}
 }

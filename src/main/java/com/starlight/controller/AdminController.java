@@ -172,7 +172,7 @@ public class AdminController {
         return "admin";
     }
 
-
+//上传图片
     @RequestMapping("addgoodsdata.do")
     public String addGoods(MultipartFile file, String goodsname, String goodsprivce, String goodsid, String goodsnumber, String gdsdescribe){
            System.out.println(file);
