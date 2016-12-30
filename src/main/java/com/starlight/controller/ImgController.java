@@ -32,9 +32,8 @@ public class ImgController {
     @RequestMapping(value = "/upload.do", produces = "text/html;charset=UTF-8")
 
     public String upload(
-            @RequestParam(value = "file",required = false)MultipartFile multipartFile,
+            @RequestParam(value = "avatar_file",required = false)MultipartFile multipartFile,
             HttpSession httpSession, HttpServletRequest request)throws IOException{
-
 
 //       判断文件大小
         if(multipartFile.getSize()>1024*1024*2){
@@ -42,6 +41,8 @@ public class ImgController {
         }else if(multipartFile.getSize()<=0){
             System.out.println("文件不能为空");
         }else {
+
+            System.out.println("判断通过");
 //            获取图片名称
            String fileName=multipartFile.getOriginalFilename();
 //            匹配是否是图片
