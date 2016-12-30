@@ -14,20 +14,22 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class GoodsServiceImp implements IGoodsService{
-	@Resource
-	IGoodsDao iGoodsDao;
-//  查找商品
-	public List<Goods> findAll(){
-		return iGoodsDao.findAll();
-	}
-//	通过ID查找商品
-	public Goods findById(int id){
+public class GoodsServiceImp implements IGoodsService {
+    @Resource
+    IGoodsDao iGoodsDao;
 
-		return iGoodsDao.findById(id);
-	}
+    //  查找商品
+    public List<Goods> findAll() {
+        return iGoodsDao.findAll();
+    }
 
-	public void addGoods(Goods goods) {
-		iGoodsDao.addGoods(goods);
-	}
+    //	通过ID查找商品
+    public Goods findById(int id) {
+
+        return iGoodsDao.findById(id);
+    }
+
+    public void addGoods(Goods goods) {
+        iGoodsDao.addGoods(goods);
+    }
 }

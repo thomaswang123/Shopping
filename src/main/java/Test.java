@@ -1,7 +1,6 @@
 import com.starlight.dao.*;
 import com.starlight.entity.*;
 import com.starlight.serviceimp.UserServiceImp;
-import com.starlight.util.Appliction;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

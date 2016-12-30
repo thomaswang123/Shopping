@@ -7,7 +7,6 @@ import com.starlight.entity.Admin;
 import com.starlight.entity.Goods;
 import com.starlight.entity.Paging;
 import com.starlight.service.IAdminService;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,7 +66,7 @@ public class AdminServiceImp implements IAdminService {
 
     //查询管理员的等级
     public int findClassesById(int u_id) {
-        return Appliction.getAct().getBean(IAdminDao.class).findClassesById(u_id);
+        return iAdminDao .findClassesById(u_id);
     }
 
     //删除用户所有数据的操作
@@ -102,12 +101,12 @@ public class AdminServiceImp implements IAdminService {
     //查询商品
     public List<Goods> findAllByPaging(Paging paging) {
         //赋值，进行页面展示
-        return Appliction.getAct().getBean(IGoodsDao.class).byPagingfindAll(paging);
+        return iGoodsDao.byPagingfindAll(paging);
     }
 
     //查询数据总数量
     public int conutGoodsDataNumber() {
-        return Appliction.getAct().getBean(IGoodsDao.class).conutGoodsNumber();
+        return iGoodsDao.conutGoodsNumber();
     }
 
 
@@ -121,7 +120,7 @@ public class AdminServiceImp implements IAdminService {
         paging.setRise(pat * nbr - nbr);
         //那个数据结束
         paging.setStop(pat * nbr);
-        return Appliction.getAct().getBean(IGoodsDao.class).byPagingfindAll(paging);
+        return iGoodsDao.byPagingfindAll(paging);
     }
 
     //查询有关管理员的信息

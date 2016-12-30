@@ -6,7 +6,6 @@ import com.starlight.dao.IUserDao;
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.service.IUserService;
-import com.starlight.util.Appliction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,7 +49,7 @@ public class UserServiceImp implements IUserService {
     //根据用户账号来查询id，用于判断账号是否存在
     public int byname_GainId(String u_name) {
 
-        return Appliction.getAct().getBean(IUserDao.class).findIdByAccoun_Unmber(u_name);
+        return iUserDao.findIdByAccoun_Unmber(u_name);
     }
 
     public boolean byname_JudgeUserNameExist(String u_name) {
