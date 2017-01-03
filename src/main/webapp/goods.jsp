@@ -19,7 +19,7 @@
             $(".alert").click(function () {
                 $(".label").text("" + $(this).attr('id'));
                 $(".id").val("" + $(this).attr('id'));
-                $("#img").attr("src", "images/" + $(this).attr('name'));
+                $("#img").attr("src",""+$(this).attr('name'));
                 $("#goodsNumber").val("0");
                 $("#alertGoodsdiv").show();
             });
@@ -126,7 +126,7 @@ background-color: #7ab5d3;margin-left: 450px;margin-top:200px
         <table style="text-align: center " class="usertable">
             <c:forEach items="${sessionScope.goodsdata}" var="gddata">
                 <tr style="background-color: #c67605;color: #f3f3f3">
-                    <td><img style="width: 300px;height: 200px" src="images/${gddata.picture}"></td>
+                    <td><img style="width: 300px;height: 200px" src="${gddata.picture}"></td>
                     <td style="width:1000px;text-align: left">
                         <span>id:${gddata.id}</span>
                         <br>

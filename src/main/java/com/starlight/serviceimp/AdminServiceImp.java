@@ -117,10 +117,18 @@ public class AdminServiceImp implements IAdminService {
         int nbr = Integer.parseInt(number.substring(number.indexOf(":") + 1, number.length()));
         //页码
         int pat = Integer.parseInt(pagination);
-        //从第几个数据开始
-        paging.setRise(pat * nbr - nbr);
-        //那个数据结束
-        paging.setStop(pat * nbr);
+        if(pat==1) {
+            //从第几个数据开始
+            paging.setRise(pat * nbr - nbr);
+            //那个数据结束
+            paging.setStop(pat * nbr);
+        }else{
+            //从第几个数据开始
+            paging.setRise(pat * nbr-nbr);
+            //那个数据结束
+            paging.setStop(nbr);
+            System.out.println(pat * nbr - nbr+","+nbr);
+        }
         return iGoodsDao.byPagingfindAll(paging);
     }
 

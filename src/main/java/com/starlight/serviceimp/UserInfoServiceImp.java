@@ -50,7 +50,7 @@ public class UserInfoServiceImp implements IUserInfoService {
         return null;
     }
 
-    public boolean alterPhoneById(int userId) {
+    public boolean alterPhoneById(int id) {
 
 
         return false;
@@ -81,11 +81,19 @@ public class UserInfoServiceImp implements IUserInfoService {
         int nbr = Integer.parseInt(number.substring(number.indexOf(":")+1,number.length()));
         //页码
         int pat = Integer.parseInt(pagination);
-        //从第几个数据开始
-        paging.setRise(pat*nbr-nbr);
-        //那个数据结束
-        paging.setStop(pat*nbr);
-        List<UserInfo> list = iUserinfoDao.byPagingfindAll(paging);
+        if(pat==1) {
+            //从第几个数据开始
+            paging.setRise(pat * nbr - nbr);
+            //那个数据结束
+            paging.setStop(pat * nbr);
+        }else{
+            //从第几个数据开始
+            paging.setRise(pat * nbr-nbr);
+            //那个数据结束
+            paging.setStop(nbr);
+            System.out.println(pat * nbr - nbr+","+nbr);
+        }
+        List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
         for (int i = 0; i <list.size() ; i++) {
             list.get(i).setColor(i);
             System.out.println(list.get(i).getNickname());
@@ -97,7 +105,7 @@ public class UserInfoServiceImp implements IUserInfoService {
     //通过分页来查询数据！
     public List<UserInfo> byPagingfindAll(Paging paging) {
 
-        List<UserInfo> list = iUserinfoDao.byPagingfindAll(paging);
+        List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
         //添加颜色
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setColor(i+1);
