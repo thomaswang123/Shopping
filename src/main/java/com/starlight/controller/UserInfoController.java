@@ -33,7 +33,7 @@ public class UserInfoController {
     }
 
 //    修改年龄
-    @RequestMapping(value = "updateUserAge.do",produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/updateUserAge.do",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateUserAge(String age,HttpSession httpSession){
         System.out.println(age);
@@ -45,7 +45,7 @@ public class UserInfoController {
     }
 
 //  修改手机号
-    @RequestMapping(value = "updateUserPhone.do",produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/updateUserPhone.do",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateUserPhone(String phone ,HttpSession httpSession){
         System.out.println(phone);
@@ -56,7 +56,7 @@ public class UserInfoController {
         return "true";
     }
 
-    @RequestMapping(value = "updateUserAddress.do",produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/updateUserAddress.do",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateUserAddress(String place ,HttpSession httpSession){
         System.out.println(place);

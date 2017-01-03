@@ -149,10 +149,10 @@ DROP TABLE Opinion;
 CREATE TABLE Opinion
 (
    on_id          INT                            ,
+   on_gid         INT                             ,
+   on_uid         INT                             ,
    on_grade      INT                           NOT NULL ,
    on_discuss   VARCHAR (100)                     ,
-   on_gid         INT,
-   on_uid         INT,
    CONSTRAINT PK_OPINION_ONID PRIMARY KEY (on_id),
    FOREIGN KEY (on_gid) REFERENCES Goods (g_id)
 );

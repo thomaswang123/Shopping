@@ -32,19 +32,24 @@ public class WalletController {
         int pwd=Integer.parseInt(password);
         float money1=Float.parseFloat(money);
 //      校验密码是否正确
-        Wallet wallet=(Wallet) httpSession.getAttribute("wallet");
+        int userId=(Integer)httpSession.getAttribute("userId");
+        Wallet wallet= walletServiceImp.findById(userId);
+
 //      如果密码正确就进行下一步
         if(wallet.getPassword()==pwd){
             System.out.println("密码："+wallet.getPassword());
-            wallet.getMoney();
             wallet.setMoney(wallet.getMoney()+money1);
+
 //           修改数据库
             walletServiceImp.updateMoney(wallet);
-            httpSession.setAttribute("wallet",wallet);
+            System.out.println("合格");
+//           查询数据库
+            httpSession.removeAttribute("wallet");
+            httpSession.setAttribute("wallet",walletServiceImp.findById(userId));
             return "true";
-        }else{
-            return "false";
         }
+
+        return "false";
 
     }
 

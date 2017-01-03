@@ -148,10 +148,11 @@
                 $.ajax({
                     url:'chargeMoney.do',
                     type:'post',
-                    async:true,
+                    async:false,
+                    cache:true,
                     dataType: "text",
                     data:{money:money,password:password},
-                    timeout:5000,
+                    timeout:7000,
                     success:function (data) {
                         if(data=="true"){
 
@@ -160,7 +161,7 @@
                         }
                     },
                     error:function () {
-                        alert("出现错误！")
+                        alert("出现错误！");
                     }
                 });
 
@@ -625,7 +626,7 @@
                 年龄：<input type="text" class="in age" name="age" value="${sessionScope.userInfo.age}" style="color: whitesmoke;"><br><br>
                 电话：<input type="text" class="in phone" name="phone" value="${sessionScope.userInfo.phone}" style="color: whitesmoke;"> <br><br>
                 住址：<input type="text" class="in place" name="place" value="${sessionScope.userInfo.address}" style="color: whitesmoke;"><br><br>
-                钱包：<label>${sessionScope.wallet.money}</label>元<br>
+                钱包：<label class="wallet">${sessionScope.wallet.money}</label>元<br>
 
             </div>
         </div>
