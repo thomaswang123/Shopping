@@ -76,13 +76,12 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
     <style type="text/css">
-
     </style>
     <!--[if IE]>
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
 <%--删除订单--%>
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         $(".remove").mouseenter(function () {
             $(this).css("background", "rgba(240,120,24,0.7)");
@@ -103,12 +102,13 @@
                 success:function (data) {
                     if(data=="true"){
                         obj.parent().remove();
+
                     }else {
-                        alert("删除不成功")
+                        $(".promptMessage").html("删除失败!").show(200).delay(3000).hide(300);
                     }
                 },
                 error:function () {
-
+                    $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
                 }
             });
 
@@ -117,7 +117,7 @@
     });
 </script>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
 
             $(".recharge").click(function(){
@@ -139,7 +139,7 @@
     </script>
 
     <%--充值--%>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#btn").click(function () {
                 var money=$('[name="amount"]').val();
@@ -155,14 +155,142 @@
                         if(data=="true"){
 
                         }else {
-                            alert("充入失败！")
+                          alert("充值失败！");
                         }
                     },
                     error:function () {
-
+                        alert("出现错误！")
                     }
                 });
 
+            });
+        });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".nickName").blur(function () {
+                var nickName=$(this).val();
+                if(nickName.length<=8 && nickName.length>0){
+                    $.ajax({
+                        url:'updateNickName.do',
+                        type:'post',
+                        async:true,
+                        dataType: "text",
+                        data:{nickName:nickName},
+                        timeout:5000,
+                        success:function (data) {
+                            if(data=="true"){
+
+                                $(".promptMessage").html("昵称修改成功!").show(200).delay(3000).hide(300);
+
+                            }else {
+                                $(".promptMessage").html("昵称修改失败!").show(200).delay(3000).hide(300);
+                            }
+                        },
+                        error:function () {
+                            $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
+                        }
+                    });
+                }else if(nickName.length<=0){
+                    $(".promptMessage").html("昵称不能为空!").show(200).delay(3000).hide(300);
+                }else if(nickName.length>8){
+                    $(".promptMessage").html("昵称过长!").show(200).delay(3000).hide(300);
+                }
+
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".age").blur(function () {
+                var age=$(this).val();
+
+                if((/^[0-9]\d{1,3}$/.test(age))){
+                    $.ajax({
+                        url:'updateUserAge.do',
+                        type:'post',
+                        async:true,
+                        dataType: "text",
+                        data:{age:age},
+                        timeout:5000,
+                        success:function (data) {
+                            if(data=="true"){
+                                $(".promptMessage").html("年龄修改成功!").show(200).delay(3000).hide(300);
+                            }else {
+                                $(".promptMessage").html("昵称修改失败!").show(200).delay(3000).hide(300);
+                            }
+                        },
+                        error:function () {
+                            $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
+                        }
+                    });
+                }else {
+                    $(".promptMessage").html("请输入正确的年龄!").show(200).delay(3000).hide(300);
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(".phone").blur(function () {
+            var phone=$(this).val();
+
+            if((/^1[34578]\d{9}$/.test(phone))){
+                $.ajax({
+                    url:'updateUserPhone.do',
+                    type:'post',
+                    async:true,
+                    dataType: "text",
+                    data:{phone:phone},
+                    timeout:5000,
+                    success:function (data) {
+                        if(data=="true"){
+                            $(".promptMessage").html("手机号修改成功!").show(200).delay(3000).hide(300);
+                        }else {
+                            $(".promptMessage").html("手机号修改失败!").show(200).delay(3000).hide(300);
+                        }
+                    },
+                    error:function () {
+                        $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
+                    }
+                });
+            }else {
+                $(".promptMessage").html("请输入人正确的手机号!").show(200).delay(3000).hide(300);
+            }
+        });
+
+    });
+    </script>
+    <%--修改信息--%>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".place").blur(function () {
+                var place=$(this).val();
+                if(place.length>5 && place.length<=25){
+                    $.ajax({
+                        url:'updateUserAddress.do',
+                        type:'post',
+                        async:true,
+                        dataType: "text",
+                        data:{place:place},
+                        timeout:5000,
+                        success:function (data) {
+                            if(data=="true"){
+                                $(".promptMessage").html("地址修改成功!").show(200).delay(3000).hide(300);
+                            }else {
+                                $(".promptMessage").html("地址修改失败!").show(200).delay(3000).hide(300);
+                            }
+                        },
+                        error:function () {
+                            $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
+                        }
+                    });
+                }else {
+                    $(".promptMessage").html("请输入正确的地址!").show(200).delay(3000).hide(300);
+                }
             });
         });
     </script>
@@ -389,18 +517,18 @@
         </nav>
         <div class="header-info" style="height: 67px;">
             <div class="header-right search-box" style="height: 67px;">
-                <a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                <a href="#" style="height: 67px;"><span class="glyphicon glyphicon-search" aria-hidden="true" style="height: 67px;"></span></a>
                 <div class="search">
                     <form class="navbar-form">
-                        <input type="text" class="form-control">
-                        <button type="submit" class="btn btn-default" aria-label="Left Align">
+                        <input type="text" class="form-control" style="height: 35px; ">
+                        <button type="submit" class="btn btn-default" aria-label="Left Align" style="height: 35px; ">
                             开始搜索
                         </button>
                     </form>
                 </div>
             </div>
             <div class="header-right login" style="height: 67px;">
-                <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                <a href="#" style="height: 67px;"><span class="glyphicon glyphicon-user" aria-hidden="true" style="height: 67px;"></span></a>
                 <div id="loginBox">
                     <form id="loginForm" action="login.do" method="post">
                         <fieldset id="body">
@@ -447,8 +575,8 @@
                 </div>
             </div>
             <c:if test="${sessionScope.userinfo==null}">
-                <div class="header-right cart">
-                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                <div class="header-right cart" style="height: 67px;">
+                    <a href="#" style="height: 67px;"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="height: 67px;"></span></a>
                     <div class="cart-box">
                         <h4>
                             <a href="#">
@@ -463,8 +591,8 @@
                 </div>
             </c:if>
             <c:if test="${sessionScope.userinfo!=null}">
-                <div class="header-right cart">
-                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                <div class="header-right cart" style="height: 67px;">
+                    <a href="#" style="height: 67px;"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="height: 67px;"></span></a>
                     <div class="cart-box">
                         <h4>
                             <a href="showCheckout.do">
@@ -500,6 +628,8 @@
                 钱包：<label>${sessionScope.wallet.money}</label>元<br>
 
             </div>
+        </div>
+        <div style="margin-top: 20px;width: 200px;height: 60px;margin-left: 20px;text-align: center;color: whitesmoke;" class="promptMessage">
         </div>
     </div>
 
