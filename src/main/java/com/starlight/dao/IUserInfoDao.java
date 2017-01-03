@@ -10,6 +10,7 @@ import java.util.List;
  */
 
 public interface IUserInfoDao {
+
     /**
      * 通过用户id来查询用户信息
      * @param id 账号
@@ -17,12 +18,6 @@ public interface IUserInfoDao {
      */
      UserInfo findUserInfoById(int id);
 
-/*    *//*
-     * 查询详细信息
-     * @param id
-     * @return
-     *//*
-    UserInfo findById(int id);*/
 
     /**
      * 通过id寻找有关的用户信息

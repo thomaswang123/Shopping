@@ -9,7 +9,6 @@ import com.starlight.entity.Wallet;
 import com.starlight.service.IUserInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -22,46 +21,44 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     //用户信息
     @Resource
-    IUserInfoDao iUserinfoDao;
+    private IUserInfoDao iUserinfoDao;
     @Resource
-    IWalletDao iWalletDao;
+    private IWalletDao iWalletDao;
     @Resource
-    Paging paging;
+    private Paging paging;
     @Resource
-    IUserDao iUserDao;
+    private IUserDao iUserDao;
 
     //处理数据的总数量
     public int countUserIdNumber() {
         return iUserDao.countAllIdNumber();
     }
 
-    public List<UserInfo> findAllUserInfoById(int id) {
+    public List<UserInfo> findAllUserInfoById(int userId) {
 
 
-        return iUserinfoDao.findAllUserInfoById(id);
+        return iUserinfoDao.findAllUserInfoById(userId);
     }
 
-    public List<UserInfo> findUserInfoByNickName(String uinfo_nickname) {
-
+    public List<UserInfo> findUserInfoByNickName(String nickname) {
 
         return null;
     }
 
     public List<UserInfo> findUserInfoByAge(int age) {
 
-
         return null;
     }
 
-    public boolean alterPhoneById(int id) {
+    public boolean alterPhoneById(int userId) {
 
 
         return false;
     }
 
-    public UserInfo findUserInfoById(int id) {
+    public UserInfo findUserInfoById(int userId) {
 
-        return iUserinfoDao.findUserInfoById(id);
+        return iUserinfoDao.findUserInfoById(userId);
     }
 
     //    插入用户详细信息
@@ -73,8 +70,6 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     //    注册用户钱包
     public void registerWallet(Wallet wallet) {
-
-
         iWalletDao.register(wallet);
     }
 

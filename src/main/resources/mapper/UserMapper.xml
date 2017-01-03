@@ -12,7 +12,7 @@
     </resultMap>
 
     <select id="findUserById" resultMap="user" parameterType="int">
-        select u_name ,u_id from user where u_id = #{uid}
+        select u_name,u_id from user where u_id = #{uid}
     </select>
 
     <!--删除用户-->

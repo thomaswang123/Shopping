@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="findClassesById" resultType="int" parameterType="int">
-        select admin_classes from admin where admin_id =#{u_id}
+        select admin_classes from admin where admin_id =#{userId}
     </select>
     <select id="addAdmin" parameterType="com.starlight.entity.Admin">
         insert into admin (admin_id,admin_classes)values(#{id},#{classes})

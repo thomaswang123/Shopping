@@ -24,13 +24,6 @@ public interface IChangePasswordDao {
      */
     String[] findAnswerById(int u_id);
 
-	/**
-	 * 查询密保
-	 * @param id
-	 * @return
-	 */
-	List<PassWordProtection> findAllById(int id);
-
 
 	/**
 	 * 删除密保

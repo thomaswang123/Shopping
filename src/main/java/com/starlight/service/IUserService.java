@@ -1,6 +1,5 @@
 package com.starlight.service;
 
-import com.starlight.entity.Paging;
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 
@@ -16,34 +15,14 @@ public interface IUserService {
 	 * @return boolean
     */
 	 int login(User user);
-    /**
-     * 判断是否存在该账号（前台ajax）
-     * @param u_name 账号
-     * @return   boolean
-     */
-    boolean bynameJudgeUserNameExist(String u_name);
-
 
 	/**
 	 * 通过用户账号获取id
-	 * @param u_name 用户账号
+	 * @param username 用户账号
 	 * @return int
     */
-	 int  bynameGainId(String u_name);
+	 int   bynameGainId(String username);
 
-	/**
-	 * 获取全部的id
-	 * @param number 页面展示的数据数量
-	 * @return List<Integer>
-	 */
-	 List<Integer> findAllId(int number);
-
-	/**
-	 * 通过用户id获取用户全部的账号
-	 * @param list 用户id的集合
-	 * @return List<String>
-	 */
-	List<String> findAllNameById(List<Integer> list);
 
 	/**
 	 * 用户注册并返回用户ID
@@ -72,11 +51,5 @@ public interface IUserService {
 	 */
 	User findAccountById(int id);
 
-	/**
-	 * 查找所有有关管理员信息
-	 * @param uid
-	 * @return
-	 */
-	List<User> findAllUserAndUserInfoAndAdminById(int uid);
 
 }

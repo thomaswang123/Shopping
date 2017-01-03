@@ -9,17 +9,17 @@ import com.starlight.entity.Wallet;
 public interface IChangePasswordService {
     /**
      * 通过id查询密保以及id
-     * @param u_id
+     * @param userId
      * @return
      */
-   String findQuestionAndIddByUid(int u_id);
+   String findQuestionAndIddByUid(int userId);
 
     /**
      * 通过u_id查询答案，进行判断比对是否相同
-     * @param u_id
+     * @param userId
      * @return
      */
-      String Answer_Comparison(String[] result,int u_id);
+      String AnswerComparison(String[] result,int userId);
 
     /**
      * 通过u_id进行不同数据库操作！这里需要事务处理

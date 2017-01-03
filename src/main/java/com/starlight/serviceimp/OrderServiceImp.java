@@ -5,7 +5,6 @@ import com.starlight.entity.Order;
 import com.starlight.service.IOrderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -17,11 +16,11 @@ import java.util.List;
 @Transactional
 public class OrderServiceImp implements IOrderService {
 	@Resource
-	IOrderDao iOrderDao;
+	private IOrderDao iOrderDao;
+
 	public void addOrder(Order order) {
 		iOrderDao.addOrder(order);
 	}
-
 
 	public List<Order> findByUserId(int id) {
 		return iOrderDao.findByUserId(id);

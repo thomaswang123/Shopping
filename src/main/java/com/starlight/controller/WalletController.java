@@ -16,23 +16,29 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class WalletController {
     @Resource
-    WalletServiceImp walletServiceImp;
+    private WalletServiceImp walletServiceImp;
 
-
+    /**
+     * 修改钱包余额
+     * @param password
+     * @param money
+     * @param httpSession
+     * @return
+     */
     @RequestMapping(value = "/chargeMoney.do", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String chargeMoney(String password,String money,HttpSession httpSession){
         System.out.print("充入：--"+password+"--"+money);
         int pwd=Integer.parseInt(password);
         float money1=Float.parseFloat(money);
-//        校验密码是否正确
+//      校验密码是否正确
         Wallet wallet=(Wallet) httpSession.getAttribute("wallet");
 //      如果密码正确就进行下一步
         if(wallet.getPassword()==pwd){
             System.out.println("密码："+wallet.getPassword());
             wallet.getMoney();
             wallet.setMoney(wallet.getMoney()+money1);
-//            修改数据库
+//           修改数据库
             walletServiceImp.updateMoney(wallet);
             httpSession.setAttribute("wallet",wallet);
             return "true";
@@ -41,6 +47,5 @@ public class WalletController {
         }
 
     }
-
 
 }

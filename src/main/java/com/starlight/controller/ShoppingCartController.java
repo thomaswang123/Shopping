@@ -11,7 +11,6 @@ import com.starlight.serviceimp.WalletServiceImp;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -25,20 +24,25 @@ import java.util.List;
 @Controller
 public class ShoppingCartController {
 	@Resource
-	ShoppingCartServiceImp shoppingCartSI;
+	private ShoppingCartServiceImp shoppingCartSI;
 	@Resource
-	GoodsServiceImp goodsServiceImp;
+	private GoodsServiceImp goodsServiceImp;
 	@Resource
-	List<ShoppingCart> shoppingCartsList;
+	private ShoppingCart shoppingCart;
 	@Resource
-	ShoppingCart shoppingCart;
+	private WalletServiceImp walletServiceImp;
 	@Resource
-	WalletServiceImp walletServiceImp;
+	private Order order;
 	@Resource
-	Order order;
-	@Resource
-	OrderServiceImp orderServiceImp;
+	private OrderServiceImp orderServiceImp;
 
+	/**
+	 * 添加商品至购物车
+	 * @param id
+	 * @param quantity
+	 * @param httpSession
+	 * @return
+	 */
 	@RequestMapping(value = "/addToCart.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String addToCart(int id,String quantity,HttpSession httpSession){

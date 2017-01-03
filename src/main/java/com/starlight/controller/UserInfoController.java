@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserInfoController {
     @Resource
-    UserInfo userInfo;
+    private UserInfo userInfo;
     @Resource
-    UserInfoServiceImp userInfoServiceImp;
+    private UserInfoServiceImp userInfoServiceImp;
 
 //    修改昵称
     @RequestMapping(value = "/updateNickName.do", produces = "text/html;charset=UTF-8")

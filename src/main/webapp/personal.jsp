@@ -82,7 +82,7 @@
     <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
 <%--删除订单--%>
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
         $(".remove").mouseenter(function () {
             $(this).css("background", "rgba(240,120,24,0.7)");
@@ -118,7 +118,7 @@
     });
 </script>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
 
             $(".recharge").click(function(){
@@ -140,7 +140,7 @@
     </script>
 
     <%--充值--%>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#btn").click(function () {
                 var money=$('[name="amount"]').val();
@@ -167,13 +167,10 @@
             });
         });
     </script>
-
-    <%--修改信息--%>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $(".nickName").blur(function () {
                 var nickName=$(this).val();
-
                 if(nickName.length<=8 && nickName.length>0){
                     $.ajax({
                         url:'updateNickName.do',
@@ -202,6 +199,12 @@
                 }
 
             });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
             $(".age").blur(function () {
                 var age=$(this).val();
 
@@ -228,38 +231,44 @@
                     $(".promptMessage").html("请输入正确的年龄!").show(200).delay(3000).hide(300);
                 }
             });
+        });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(".phone").blur(function () {
+            var phone=$(this).val();
 
-            $(".phone").blur(function () {
-                var phone=$(this).val();
-
-                if((/^1[34578]\d{9}$/.test(phone))){
-                    $.ajax({
-                        url:'updateUserPhone.do',
-                        type:'post',
-                        async:true,
-                        dataType: "text",
-                        data:{phone:phone},
-                        timeout:5000,
-                        success:function (data) {
-                            if(data=="true"){
-                                $(".promptMessage").html("手机号修改成功!").show(200).delay(3000).hide(300);
-                            }else {
-                                $(".promptMessage").html("手机号修改失败!").show(200).delay(3000).hide(300);
-                            }
-                        },
-                        error:function () {
-                            $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
+            if((/^1[34578]\d{9}$/.test(phone))){
+                $.ajax({
+                    url:'updateUserPhone.do',
+                    type:'post',
+                    async:true,
+                    dataType: "text",
+                    data:{phone:phone},
+                    timeout:5000,
+                    success:function (data) {
+                        if(data=="true"){
+                            $(".promptMessage").html("手机号修改成功!").show(200).delay(3000).hide(300);
+                        }else {
+                            $(".promptMessage").html("手机号修改失败!").show(200).delay(3000).hide(300);
                         }
-                    });
-                }else {
-                    $(".promptMessage").html("请输入人正确的手机号!").show(200).delay(3000).hide(300);
-                }
-            });
+                    },
+                    error:function () {
+                        $(".promptMessage").html("出现错误!").show(200).delay(3000).hide(300);
+                    }
+                });
+            }else {
+                $(".promptMessage").html("请输入人正确的手机号!").show(200).delay(3000).hide(300);
+            }
+        });
 
-
+    });
+    </script>
+    <%--修改信息--%>
+    <script type="text/javascript">
+        $(document).ready(function () {
             $(".place").blur(function () {
                 var place=$(this).val();
-
                 if(place.length>5 && place.length<=25){
                     $.ajax({
                         url:'updateUserAddress.do',

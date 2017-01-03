@@ -1,7 +1,6 @@
 package com.starlight.dao;
 
 import com.starlight.entity.Admin;
-import com.starlight.entity.Goods;
 import com.starlight.entity.Paging;
 
 import java.util.List;
@@ -11,12 +10,6 @@ import java.util.List;
  */
 
 public interface IAdminDao {
-    /**
-     * 返回用户的管理员的等级
-     * @param u_id
-     * @return
-     */
-    List<Admin> finAllClassesById(int u_id);
 
     /**
      * 添加管理员
@@ -26,16 +19,10 @@ public interface IAdminDao {
 
     /**
      * 返回用户的管理员的等级
-     * @param u_id
+     * @param userId
      * @return
      */
-    int findClassesById(int u_id);
-
-    /**
-    * 查找用户有多少条数据
-    * @return
-    */
-    int findAllCountNumber();
+    int findClassesById(int userId);
 
     /**
      * 统计管理员的数量
@@ -59,7 +46,7 @@ public interface IAdminDao {
 
     /**
      * 查询级别等于classes的数据
-     * @param classes
+     * @param paging
      * @return
      */
     List<Admin> findByClasses(Paging paging);

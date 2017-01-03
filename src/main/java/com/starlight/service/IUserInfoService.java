@@ -15,7 +15,7 @@ public interface IUserInfoService {
 
     /**
      * 查找用户信息（分页）
-     * @param List<Integer> 用户id的集合
+     * @param Paging paging
      * @return list<Userinfo><
      */
     List<UserInfo> byPagingfindAll(Paging paging);
@@ -31,7 +31,7 @@ public interface IUserInfoService {
      * @return Userinfo
      * @paramu info_nickname  用户姓名
      */
-    List<UserInfo> findUserInfoByNickName(String uinfo_nickname);
+    List<UserInfo> findUserInfoByNickName(String Nickname);
 
 
     /**

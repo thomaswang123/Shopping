@@ -35,11 +35,5 @@ public interface IShoppingCartDao {
 	 */
 	ShoppingCart findOnlyOne(int id);
 
-    /**
-     * 删除用户信息
-     * @param uid
-     * @return
-     */
-    int delShoppingCart(int uid);
 
 }

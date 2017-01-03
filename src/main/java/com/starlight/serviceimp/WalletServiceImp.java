@@ -5,7 +5,6 @@ import com.starlight.entity.Wallet;
 import com.starlight.service.IWalletService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 
 /**
@@ -15,11 +14,11 @@ import javax.annotation.Resource;
 @Transactional
 public class WalletServiceImp implements IWalletService {
 	@Resource
-	IWalletDao iWalletDao;
+	private IWalletDao iWalletDao;
 
 	//通过ID查找用户钱包信息
-	public Wallet findById(int uId) {
-		return iWalletDao.findById(uId);
+	public Wallet findById(int userId) {
+		return iWalletDao.findById(userId);
 	}
 
 	//修改金额

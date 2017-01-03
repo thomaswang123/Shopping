@@ -5,7 +5,6 @@ import com.starlight.entity.ShoppingCart;
 import com.starlight.service.IShoppingCartService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -16,7 +15,8 @@ import java.util.List;
 @Transactional
 public class ShoppingCartServiceImp implements IShoppingCartService {
 	@Resource
-	IShoppingCartDao iShoppingCartDao;
+	private IShoppingCartDao iShoppingCartDao;
+
 	public List<ShoppingCart> findById(int id) {
 		return iShoppingCartDao.findAll(id);
 	}
