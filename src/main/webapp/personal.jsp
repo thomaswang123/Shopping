@@ -547,7 +547,8 @@
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a href="changePassword.jsp">忘记密码?</a></span>
+                        <p>没有账号吧？<a class="sign" href="register.jsp">点击注册</a>
+                            <span><a href="changePassword.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
                         <c:otherwise>
@@ -559,7 +560,7 @@
                                 </span>
                                     <c:choose>
                                         <c:when test="${sessionScope.admin>0}">
-                                            <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                            <span style="margin-left: 20px"><a href="userControl.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
                                             <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
                                         </c:when>
                                         <c:otherwise></c:otherwise>
@@ -567,7 +568,7 @@
                                 </h4>
                                 <h5 style="margin-top: 15px">
                                     <span><a href="switchover.do"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
-                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do">退出</a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do?url=index">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>
@@ -657,23 +658,23 @@
             <!--商品图片-->
             <div class="goodpic"
                  style="float: left;margin: 20px 10px;background-color: #F2F6F7;width: 140px;height: 120px;">
-                <img src="images/${order.picture}" width="140px" height="120px">
+                <img src="${order.picture}" width="140px" height="120px">
             </div>
             <!--商品价格-->
             <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 130px;height: 60px;">
                 名称：${order.goodsName}
             </div>
             <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 130px;height: 60px;">
-                价格：100.00元
+                价格：${order.price}元
             </div>
             <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 100px;height: 60px;">
-                数量：42
+                数量：${order.number}
             </div>
             <div class="gooddescribe" style="float: left;margin: 40px 10px;padding-top:30px;width: 160px;height: 60px;">
-                购买时间：16.12.10
+                购买时间：${order.date}
             </div>
             <div class="goodprice" style="float: left;margin: 40px 10px;padding-top:30px;width: 120px;height: 60px;">
-                总计：525元
+                总计：${order.money}元
             </div>
             <div class="gooddescribe remove"
                  style="float: left;margin: 50px 10px;padding-top:20px;width: 60px;height: 60px;text-align: center" name="${order.id}" >

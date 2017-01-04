@@ -12,7 +12,8 @@ $(document).ready(function () {
         var text = $("#goodsText").val();
         var goodsCondition = $("#goodsCondition").val();
         var goods = parseInt($("#goodsnumber").val());
-        alert(goods);
+
+
         /*进行颜色的变换*/
         var pagination = $(this).attr("id");
         var number = $("#select").val();

@@ -1,6 +1,8 @@
 package com.starlight.controller;
 
+import com.starlight.dao.IUserDao;
 import com.starlight.entity.*;
+import com.starlight.service.IUserService;
 import com.starlight.serviceimp.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -22,7 +23,8 @@ public class UserController {
 
     //获取处理用户业务的类
     @Resource
-    private UserServiceImp userServiceImp;
+    private IUserDao iUserDao;
+
     //获取用户信息业务处理的类
     @Resource
     private UserInfoServiceImp userinfoServiceImp;
@@ -36,29 +38,21 @@ public class UserController {
     @Resource
     private GoodsServiceImp goodsServiceImp;
     @Resource
-    List<Order> orderList1;
-    @Resource
-    User user;
-    @Resource
-    UserInfo userInfo;
-    @Resource
-    PassWordProtection passWordProtection;
-    @Resource
-    Wallet wallet;
-    @Resource
-    Admin admin;
+    private IUserService iUserService;
+
 
 
     /**
      * 用户注册方法
      *
      * @param httpServletRequest
-     * @param httpServletResponse
+     *
      */
     @RequestMapping("/register.do")
-    public String register(String nickName, String account_number, String tel, String age, String sex, String password,
+    public String register(User user,UserInfo userInfo,Admin admin,PassWordProtection passWordProtection,
+                           Wallet wallet,String nickName, String account_number, String tel, String age, String sex, String password,
                            String payPassWord,
-                           HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+                           HttpServletRequest httpServletRequest) {
 
         System.out.println("进入注册");
 
@@ -74,7 +68,7 @@ public class UserController {
         user.setPassword(password);
 
         System.out.println("构建个体");
-        int userId = userServiceImp.register(user);
+        int userId = iUserService.register(user);
 
     //		插入用户详细信息表数据
         userInfo.setId(userId);
@@ -108,7 +102,7 @@ public class UserController {
                 passWordProtection.setQuestion(question[i]);
                 passWordProtection.setAnswer(answer[i]);
     //				插入数据
-                userServiceImp.addPWP(passWordProtection);
+                iUserService.addPWP(passWordProtection);
             }
         }
 
@@ -133,7 +127,7 @@ public class UserController {
         System.out.println("进入账号验证");
     //		匹配输入的账号是否符合规则并查询是否存在该账号
 
-        if (userServiceImp.findAccount(name).isEmpty()) {
+        if (iUserService.findAccount(name).isEmpty()) {
             return "true";
         } else {
             return "false";
@@ -143,12 +137,14 @@ public class UserController {
         //登陆验证
         @RequestMapping("login.do")
         public String test (String username, String password, HttpSession sessionUser, User user,String url){
+        System.out.println("登陆方法");
             int id=0;
             //为user赋值
             user.setAccount(username);
             user.setPassword(password);
             //条用UserServiceImp中的login登陆方法,判断账号密码是否正确
-            if ((id = userServiceImp.login(user)) != 0) {
+            if ((id = iUserService.login(user)) != 0) {
+                System.out.println();
                 UserInfo userInfo = userinfoServiceImp.findUserInfoById(id);
                 userInfo.setNickname(
                         userInfo.getNickname().length() > 2 ? userInfo.getNickname().substring(0, 1) + "…" :
@@ -169,7 +165,7 @@ public class UserController {
             //使session为null
             sessionUser.invalidate();
             //  sessionUser.setAttribute("userinfo",null);
-            return url;
+            return "redirect:index.jsp";
         }
 
     //    个人信息展示
@@ -177,7 +173,7 @@ public class UserController {
         public String personal(HttpSession httpSession){
             int userId=(Integer)httpSession.getAttribute("userId");
     //        查找账号
-            User user=userServiceImp.findAccountById(userId);
+            User user=iUserService.findAccountById(userId);
             System.out.println(user.getId()+"--"+user.getPassword()+"--"+user.getAccount());
 
     //      创建session

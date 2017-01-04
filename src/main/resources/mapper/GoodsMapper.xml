@@ -60,7 +60,7 @@
     </select>
 
     <insert id="addGoods" parameterType="com.starlight.entity.Goods">
-        insert into goods(g_id,g_name,g_picture,g_price,g_describe)values(#{id},#{name},#{picture},#{price},#{describe});
+        insert into goods(g_id,g_name,g_picture,g_price,g_describe)values(#{id},#{name},#{picture},#{price},#{describe})
     </insert>
 
     <!--删除商品信息-->

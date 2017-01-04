@@ -1,12 +1,14 @@
 package com.starlight.service;
 
 import com.starlight.entity.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/20.
  */
+@Service
 public interface IAdminService {
     /**
      * 返回用户的管理员的等级

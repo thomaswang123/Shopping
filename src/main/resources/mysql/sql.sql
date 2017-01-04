@@ -89,6 +89,7 @@ ALTER TABLE Goods modify g_id   INTEGER DEFAULT '1';
 ALTER TABLE Goods modify g_id   INTEGER auto_increment ;
 
 
+
 /***********************************************************************************/
 /*购物车*/
 DROP TABLE ShoppingCart;
@@ -99,7 +100,7 @@ CREATE TABLE ShoppingCart
    sc_uid      INT                        NOT NULL ,
    sc_gid     INT                         NOT NULL ,
    sc_number    INT                       NOT NULL ,
-   sc_date      DATE                      NOT NULL ,
+   sc_date      TIMESTAMP                NOT NULL ,
    sc_summoney    FLOAT (7,2)            NOT NULL ,
    CONSTRAINT PK_SHOPPINGCART_SCID PRIMARY KEY (sc_id),
    FOREIGN KEY (sc_uid) REFERENCES User(u_id),
@@ -120,7 +121,7 @@ CREATE TABLE Orders
    o_uid        INT                            NOT NULL ,
    o_gid        INT                            NOT NULL ,
    o_money        FLOAT (7,2)                  NOT NULL ,
-   o_date         DATE                          NOT NULL ,
+   o_date        TIMESTAMP                    NOT NULL ,
    o_number       INT                          NOT NULL ,
    CONSTRAINT PK_ORDERS_OID PRIMARY KEY (o_id),
    FOREIGN KEY (o_uid) REFERENCES User (u_id)
@@ -159,7 +160,6 @@ CREATE TABLE Opinion
 /*创建自增长序列*/
 ALTER TABLE Opinion modify on_id   INTEGER DEFAULT '1';
 ALTER TABLE Opinion modify on_id   INTEGER auto_increment ;
-
 /***********************************************************************************/
 /*管理员*/
 DROP TABLE Admin;

@@ -36,7 +36,7 @@
                 $.post("delGoods.do",
                     $("#delGoods").serialize(),
                     function (data) {
-                        alert(data);
+
                         if(data!=null||data!="") {
                             //刷新admin.jsp
                             window.parent.location.reload();
@@ -63,7 +63,7 @@
                     function (data) {
                         var datas = data;
                         if (datas != "no") {
-                            alert(datas);
+
                             $("#price" + $(".id").val()).text($("#price").val());
                             $("#name" + $(".id").val()).text($("#goodsName").val());
                             $("#number" + $(".id").val()).text($("#goodsNumber").val());

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  *
  * 密保类
  */
-@Component
+
 public class PassWordProtection {
     private int id ;
     private String  question ;

@@ -58,7 +58,7 @@ public class ImgController {
 //            获取图片名称
             String fileName=multipartFile.getOriginalFilename();
 
-            String []suffixName=new String[]{"gif","jpg","png"};
+            String []suffixName=new String[]{"gif","jpg","png","jpeg"};
             String fileSuffixName=fileName.substring(fileName.lastIndexOf(".")+1);
 
             System.out.println("f:"+fileSuffixName);
@@ -66,7 +66,8 @@ public class ImgController {
 //            匹配是否是图片
             if (suffixName[0].equals(fileSuffixName) ||
                     suffixName[1].equals(fileSuffixName) ||
-                    suffixName[2].equals(fileSuffixName)){
+                    suffixName[2].equals(fileSuffixName)||
+                    suffixName[3].equals(fileSuffixName)){
 
                 System.out.println("匹配！");
 
@@ -76,7 +77,7 @@ public class ImgController {
                 String []strs=url.split("target");
                 System.out.println("--:"+strs[0]+"src/main/webapp/");
 //              拼接路径
-                String newUrl=strs[0]+"src/main/webapp/images/"+multipartFile.getOriginalFilename();
+                String newUrl=strs[0]+"src/main/webapp/img/"+multipartFile.getOriginalFilename();
 
                 String path3=newUrl.substring(newUrl.indexOf("/")+1);
                 System.out.println("path3"+path3);
@@ -107,7 +108,7 @@ public class ImgController {
 //              填充商品实体
                 goods.setId(Integer.parseInt(request.getParameter("goodsid"))+1);
                 goods.setName(request.getParameter("goodsname"));
-                goods.setPicture(multipartFile.getOriginalFilename());
+                goods.setPicture("img/"+multipartFile.getOriginalFilename());
                 goods.setPrice(Float.parseFloat(request.getParameter("goodsprivce")));
                 goods.setDescribe(request.getParameter("gdsdescribe"));
 //              添加商品信息至数据库

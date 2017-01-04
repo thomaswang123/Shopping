@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * <p>
  * 商品类
  */
-@Component
+
 public class Goods {
     //    商品ID
     private int id;

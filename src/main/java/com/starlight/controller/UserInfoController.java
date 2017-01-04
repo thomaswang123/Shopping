@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class UserInfoController {
     @Resource
     private UserInfo userInfo;
+
     @Resource
     private UserInfoServiceImp userInfoServiceImp;
 
@@ -29,6 +30,11 @@ public class UserInfoController {
         userInfo.setId(userId);
         userInfo.setNickname(nickName);
         userInfoServiceImp.updateNickName(userInfo);
+        httpSession.removeAttribute("userinfo");
+        UserInfo userInfo2=userInfoServiceImp.findUserInfoById(userId);
+        httpSession.setAttribute("userinfo",userInfo2);
+
+
         return "true";
     }
 

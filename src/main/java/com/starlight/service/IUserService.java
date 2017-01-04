@@ -2,6 +2,7 @@ package com.starlight.service;
 
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/20.
  *   用户接口
  */
+@Service
 public interface IUserService {
 	/**
 	 * 根据输入的账号密码判断是否存在用户

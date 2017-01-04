@@ -9,7 +9,7 @@ import java.util.List;
  * <p>
  * 用户类
  */
-@Component
+
 public class User {
     private int id;
     private String account;

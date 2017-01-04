@@ -365,7 +365,7 @@
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="register.html">点击注册</a>
+                        <p>没有账号吧？<a class="sign" href="register.jsp">点击注册</a>
                             <span><a href="changePassword.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
@@ -380,7 +380,7 @@
                                 </span>
                                     <c:choose>
                                         <c:when test="${sessionScope.admin>0}">
-                                            <span style="margin-left: 20px"><a href="adminOperation.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                            <span style="margin-left: 20px"><a href="userControl.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
                                             <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
                                         </c:when>
                                         <c:otherwise></c:otherwise>

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by thomas.wang on 2016/12/23.
  */
-@Component
+
 public class Paging {
     private int rise;
     private int stop;

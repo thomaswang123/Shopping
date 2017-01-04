@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  * Created by thomas.wang on 2016/12/9.
  * 用信息类
  */
-@Component
+
 public class UserInfo {
 
     private int id;

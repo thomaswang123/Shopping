@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  *
  * 意见类
  */
-@Component
+
 public class Opinion {
     private int id ;
     private  int grade ;

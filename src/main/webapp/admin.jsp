@@ -376,8 +376,8 @@
                                 <input type="submit" id="login" value="登陆">
                                 <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                             </fieldset>
-                            <p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a
-                                    href="changePassword.jsp">忘记密码?</a></span>
+                            <p>没有账号吧？<a class="sign" href="register.jsp">点击注册</a>
+                                <span><a href="changePassword.jsp">忘记密码?</a></span>
                             </p>
                             </c:when>
                             <c:otherwise>
@@ -391,21 +391,15 @@
                                 </span>
                                 <c:choose>
                                     <c:when test="${sessionScope.admin>0}">
-                                        <span style="margin-left: 20px"><a
-                                                href="userControl.do?number=10&pagination=1"><img
-                                                src="images/admin.png"><span
-                                                style="color: red">管理中心</span> </a></span>
-                                        <span style="margin-left: 20px;color: red">Lv:</span><span
-                                            style="color:red">${sessionScope.admin}</span>
+                                        <span style="margin-left: 20px"><a href="userControl.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                        <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
                                     </c:when>
                                     <c:otherwise></c:otherwise>
                                 </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="switchover.do?url=index"><img src="images/login.png"><span
-                                            style="padding-top: 10px">切换账号</span></a></span>
-                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a
-                                            href="switchover.do?url=index">退出</a></span>
+                                    <span><a href="switchover.do?url=index"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do?url=index">退出</a></span>
                                 </h5>
                             </div>
                             </c:otherwise>

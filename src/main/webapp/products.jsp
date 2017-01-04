@@ -299,7 +299,7 @@
             <div class="header-right login">
                 <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
                 <div id="loginBox">
-                    <form id="loginForm" action="login.do" method="post">
+                    <form id="loginForm" action="login.do?url=index" method="post">
                         <fieldset id="body">
                             <c:choose>
                             <c:when test="${sessionScope.userinfo==null}">
@@ -315,7 +315,8 @@
                             <input type="submit" id="login" value="登陆">
                             <!--	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住账号</i></label>-->
                         </fieldset>
-                        <p>没有账号吧？<a class="sign" href="register.html">点击注册</a> <span><a href="changePassword.jsp">忘记密码?</a></span>
+                        <p>没有账号吧？<a class="sign" href="register.jsp">点击注册</a>
+                            <span><a href="changePassword.jsp">忘记密码?</a></span>
                         </p>
                         </c:when>
                         <c:otherwise>
@@ -327,15 +328,15 @@
                                 </span>
                                     <c:choose>
                                         <c:when test="${sessionScope.admin>0}">
-                                            <span style="margin-left: 20px"><a href="#"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
+                                            <span style="margin-left: 20px"><a href="userControl.do?number=10&pagination=1"><img src="images/admin.png"><span style="color: red">管理中心</span> </a></span>
                                             <span style="margin-left: 20px;color: red">Lv:</span><span style="color:red">${sessionScope.admin}</span>
                                         </c:when>
                                         <c:otherwise></c:otherwise>
                                     </c:choose>
                                 </h4>
                                 <h5 style="margin-top: 15px">
-                                    <span><a href="switchover.do"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
-                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do">退出</a></span>
+                                    <span><a href="switchover.do?url=index"><img src="images/login.png"><span style="padding-top: 10px">切换账号</span></a></span>
+                                    <span style="color: red;margin-left: 70px;margin-top: 10px"><a href="switchover.do?url=index">退出</a></span>
                                 </h5>
                             </div>
                         </c:otherwise>
@@ -388,12 +389,12 @@
 
                 <!--第一个蛋糕-->
             <c:forEach items="${showAllGoods}" var="cake">
-            <div class="product-grid">
+            <div class="product-grid" style="width: 247.5px;height: 347.38px;">
                 <a href="single.do?id=${cake.id}">
                     <div class="more-product"><span> </span></div>
-                    <div class="product-img b-link-stripe b-animate-go  thickbox">
-                        <img src="images/${cake.picture}" class="img-responsive" alt="">
-                        <div class="b-wrapper">
+                    <div class="product-img b-link-stripe b-animate-go  thickbox" style="width: 243.5px;height: 187.5px;">
+                        <img src="${cake.picture}" width="300px" height="300px" class="img-responsive" alt="">
+                        <div class="b-wrapper" style="width:243.5px;height: 187.5px; ">
                             <h4 class="b-animate b-from-left  b-delay03">
                                 <button>View</button>
                             </h4>
@@ -401,7 +402,7 @@
                     </div>
                 </a>
 
-                <div class="product-info simpleCart_shelfItem">
+                <div class="product-info simpleCart_shelfItem" style="width: 243.5px;height: 155.38px;">
                     <div class="product-info-cust prt_name">
                         <h4>${cake.name}</h4>
                         <span class="item_price">${cake.price}</span>

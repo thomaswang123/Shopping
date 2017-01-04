@@ -43,19 +43,5 @@
         delete  from wallet where w_id = #{uid}
     </delete>
 
-<!--
-    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
-        delete from DEPT
-        <where>
-            <if test="deptnos!=null">
-                deptno in
-                <foreach collection="deptnos" item="dept" open="(" separator="," close=")">
-                #{dept}
-                </foreach>
-            </if>
-            <if test="deptnos==null">
-                1=2
-            </if>
-        </where>
-    </delete>&ndash;&gt;-->
+
 </mapper>

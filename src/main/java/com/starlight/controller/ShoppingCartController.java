@@ -31,8 +31,7 @@ public class ShoppingCartController {
 	private ShoppingCart shoppingCart;
 	@Resource
 	private WalletServiceImp walletServiceImp;
-	@Resource
-	private Order order;
+
 	@Resource
 	private OrderServiceImp orderServiceImp;
 
@@ -125,7 +124,7 @@ public class ShoppingCartController {
 
 	@RequestMapping(value = "/pay.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String Pay(String password,String id,HttpSession httpSession){
+	public String Pay(Order order,String password,String id,HttpSession httpSession){
 		System.out.println("password:"+password+"id:"+id);
 //		获取用户ID
 		int uid=(Integer)httpSession.getAttribute("userId");
@@ -157,15 +156,18 @@ public class ShoppingCartController {
 			order.setUserId(uid);
 			order.setMoney(shoppingCart3.getTotalMoney());
 			order.setNumber(shoppingCart3.getNumber());
+			System.out.println("插入时间");
 			order.setDate(str);
 			order.setGoodsId(shoppingCart3.getGoodsId());
-
+			System.out.println("订单开始插入数据库");
 //			插入订单表
+			System.out.println(order.getDate()+"--"+order.getUserId()+"--"+order.getPrice());
 			orderServiceImp.addOrder(order);
 			System.out.println("插入订单成功！");
 
 //			从购物车中删除一条数据
 			shoppingCartSI.removeOfCart(Integer.parseInt(id));
+
 //          从session中删除数据
 			List<ShoppingCart> sc2=(List<ShoppingCart>) httpSession.getAttribute("cartList");
 
@@ -175,14 +177,16 @@ public class ShoppingCartController {
 				}
 			}
 			if(sc2!=null){
+				httpSession.removeAttribute("cartList");
 				httpSession.setAttribute("cartList",sc2);
 				return "true";
+			}else{
+				return "false";
 			}
 
 		}else {
 			return "failed";
 		}
-
 		}
 		return "false";
 	}

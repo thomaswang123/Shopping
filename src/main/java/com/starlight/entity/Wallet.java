@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  * Created by thomas.wang on 2016/12/9.
  * 钱包类
  */
-@Component
+
 public class Wallet {
     private int id;
     private float money;

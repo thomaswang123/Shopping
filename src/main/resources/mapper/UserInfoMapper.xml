@@ -75,18 +75,5 @@
         update userinfo set uinfo_address=#{address} where uinfo_id=#{id}
     </update>
 
-    <!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
-            delete from DEPT
-            <where>
-                <if test="deptnos!=null">
-                    deptno in
-                    <foreach collection="deptnos" item="dept" open="(" separator="," close=")">
-                    #{dept}
-                    </foreach>
-                </if>
-                <if test="deptnos==null">
-                    1=2
-                </if>
-            </where>
-        </delete>-->
+
 </mapper>

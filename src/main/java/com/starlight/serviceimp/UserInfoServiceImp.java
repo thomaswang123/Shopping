@@ -21,7 +21,7 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     //用户信息
     @Resource
-    private IUserInfoDao iUserinfoDao;
+    private IUserInfoDao iUserInfoDao;
     @Resource
     private IWalletDao iWalletDao;
     @Resource
@@ -37,7 +37,7 @@ public class UserInfoServiceImp implements IUserInfoService {
     public List<UserInfo> findAllUserInfoById(int userId) {
 
 
-        return iUserinfoDao.findAllUserInfoById(userId);
+        return iUserInfoDao.findAllUserInfoById(userId);
     }
 
     public List<UserInfo> findUserInfoByNickName(String nickname) {
@@ -58,14 +58,14 @@ public class UserInfoServiceImp implements IUserInfoService {
 
     public UserInfo findUserInfoById(int userId) {
 
-        return iUserinfoDao.findUserInfoById(userId);
+        return iUserInfoDao.findUserInfoById(userId);
     }
 
     //    插入用户详细信息
     public void register(UserInfo userInfo) {
 
 
-        iUserinfoDao.register(userInfo);
+        iUserInfoDao.register(userInfo);
     }
 
     //    注册用户钱包
@@ -115,19 +115,19 @@ public class UserInfoServiceImp implements IUserInfoService {
 
 //    修改昵称
     public void updateNickName(UserInfo userInfo) {
-        iUserinfoDao.updateNickName(userInfo);
+        iUserInfoDao.updateNickName(userInfo);
     }
 
 //    修改年龄
     public void updateUserAge(UserInfo userInfo) {
-        iUserinfoDao.updateUserAge(userInfo);
+        iUserInfoDao.updateUserAge(userInfo);
     }
 //  修改手机号
     public void updateUserPhone(UserInfo userInfo) {
-        iUserinfoDao.updateUserPhone(userInfo);
+        iUserInfoDao.updateUserPhone(userInfo);
     }
 //  修改地址
     public void updateUserAddress(UserInfo userInfo) {
-        iUserinfoDao.updateUserAddress(userInfo);
+        iUserInfoDao.updateUserAddress(userInfo);
     }
 }

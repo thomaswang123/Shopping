@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  * Created by thomas.wang on 2016/12/9.
  * 购物车类
  */
-@Component
+
 public class ShoppingCart {
     private int id ;
     private int userId;
