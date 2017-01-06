@@ -2,12 +2,14 @@ package com.starlight.controller;
 
 import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
-import com.starlight.serviceimp.ChangePasswordServiceImp;
-import com.starlight.serviceimp.UserServiceImp;
+import com.starlight.service.IChangePasswordService;
+import com.starlight.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import javax.annotation.Resource;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by thomas.wang on 2016/12/20.
@@ -16,12 +18,10 @@ import javax.annotation.Resource;
 @Controller
 public class ChangePasswordController {
 
-    //用来记录改用户id方便其他操作
-    public int userId = 0;
-    @Resource
-    private UserServiceImp userServiceImp;
-    @Resource
-    private ChangePasswordServiceImp changePasswordSI;
+    @Autowired
+    private IUserService iUserService;
+    @Autowired
+    private IChangePasswordService iChangePasswordService;
 
 
     /**
@@ -33,7 +33,7 @@ public class ChangePasswordController {
      */
     @RequestMapping("answer.do")
     @ResponseBody
-    public String consistencyOfJudgment(String resultthree, String resultone, String resulttwo) {
+    public String consistencyOfJudgment(String resultthree, String resultone, String resulttwo, HttpSession httpSession) {
 
         String[] result = new String[3];
         result[0] = resultone;
@@ -43,11 +43,10 @@ public class ChangePasswordController {
         for (String str: result) {
             System.out.println(str);
         }
-
+       int userId=(Integer) httpSession.getAttribute("userId");
         // 返回的是ajax的数据，不是页面的名字
-        return changePasswordSI.AnswerComparison(result, userId);
+        return iChangePasswordService.AnswerComparison(result, userId);
     }
-
 
     /**
      * 用来判断申请账号是否存在
@@ -56,11 +55,13 @@ public class ChangePasswordController {
      */
     @RequestMapping("user_checkexist")
     @ResponseBody
-    public String userCheckExist(String username) {
+    public String userCheckExist(String username,HttpSession httpSession) {
+
+        int userId=(Integer)httpSession.getAttribute("userId");
         //用户账号对应的id
-        if ((userId = userServiceImp.bynameGainId(username)) != 0) {
+        if ((userId = iUserService.bynameGainId(username)) != 0) {
             //这里反回值是ajax的回调函数中数据！不是页面
-            return changePasswordSI.findQuestionAndIddByUid(userId);
+            return iChangePasswordService.findQuestionAndIddByUid(userId);
         }
         return null;
     }
@@ -77,14 +78,15 @@ public class ChangePasswordController {
      */
     @RequestMapping("alertPpAll.do")
     @ResponseBody
-    public String alertPpAll(String[] result, User user, Wallet wallet, String password, String payment_code, String[] ppid) {
+    public String alertPpAll(String[] result, User user, Wallet wallet, String password, String payment_code, String[] ppid,HttpSession httpSession) {
+        int userId=(Integer)httpSession.getAttribute("userId");
         //用户重置的密码
         user.setPassword(password);
         user.setId(userId);
         //钱包
         wallet.setId(userId);
         wallet.setPassword(Integer.parseInt(payment_code));
-        return changePasswordSI.alertAllById(user, result, ppid, wallet);
+        return iChangePasswordService.alertAllById(user, result, ppid, wallet);
     }
 
 }

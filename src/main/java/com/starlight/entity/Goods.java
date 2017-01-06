@@ -1,7 +1,5 @@
 package com.starlight.entity;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Created by thomas.wang on 2016/12/9.
  * <p>
@@ -19,9 +17,9 @@ public class Goods {
     private String describe;
     //    图片
     private String picture;
-
-    //分页查询用库存
     private Repertory repertory;
+    //分页查询用库存
+
 
     public Repertory getRepertory() {
         return repertory;
@@ -70,6 +68,4 @@ public class Goods {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-
-
 }

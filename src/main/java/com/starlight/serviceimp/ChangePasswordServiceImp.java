@@ -7,25 +7,26 @@ import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
 import com.starlight.service.IChangePasswordService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.annotation.Resource;
+
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/21.
  */
 @Service
-@Transactional(rollbackFor = Exception.class) //指定回滚,遇到异常Exception时回滚
 public class ChangePasswordServiceImp implements IChangePasswordService {
-    @Resource
+    @Autowired
     private IChangePasswordDao iChangePasswordDao;
-    @Resource
+    @Autowired
     private IUserDao iUserDao;
-    @Resource
+    @Autowired
     private IWalletDao iWalletDao;
 
     //查找pp_answer进行答案的判断
+    @Transactional
     public String AnswerComparison(String[] result, int userid) {
         //用来取出result中的数据
         String[] string = iChangePasswordDao.findAnswerById(userid);
@@ -44,6 +45,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
 
 
     //用来处理密保,查询密保并展示到前台页面
+    @Transactional
     public String findQuestionAndIddByUid(int userId) {
         String string = "";
         //记录分隔符“,”
@@ -65,6 +67,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
 
 
     //进行对密保答案，密码，支付密码的修改！*需要事务管理进行管理
+    @Transactional
     public String alertAllById(User user, String[] result, String[] ppid, Wallet wallet) {
         System.out.println(user.getPassword());
         System.out.println(result[2]);
@@ -86,6 +89,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
     }
 
     //判断用户密保答案是否为空
+    @Transactional
     public int answerIsEmpty(String[] result) {
         int temp = 1;
         for (int k = 0; k < result.length; k++) {
@@ -98,18 +102,21 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
     }
 
     //修改用户密码
+    @Transactional
     public void alertPwd(User user) {
         //进行用户密码修改
        iUserDao.alertPwdById(user);
     }
 
     //修改用户钱包支付密码
+    @Transactional
     public void alertPayPwd(Wallet wallet) {
         //进行用户钱包的修改
        iWalletDao.alertPayPwdById(wallet);
     }
 
     //修改用户密保答案
+    @Transactional
     public void alertAnswer(String[] result, String[] ppid) {
         //进行密保答案的查询
         for (int i = 0; i < ppid.length; i++) {

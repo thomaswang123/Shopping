@@ -1,8 +1,8 @@
 package com.starlight.service;
 
+import com.starlight.entity.Paging;
 import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Created by thomas.wang on 2016/12/20.
  *   用户接口
  */
-@Service
+
 public interface IUserService {
 	/**
 	 * 根据输入的账号密码判断是否存在用户
@@ -53,5 +53,11 @@ public interface IUserService {
 	 */
 	User findAccountById(int id);
 
+	/**
+	 * 根据账号条件来模糊查询的总数量
+	 * @param paging
+	 * @return
+	 */
+	int findByLikeNameNumber(Paging paging);
 
 }

@@ -31,6 +31,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".close3").click(function () {
+                var item=$(this);
                 var id=$(this).attr("name");
                 $.ajax({
                     url:'removeOfCart.do',
@@ -41,7 +42,7 @@
                     timeout:5000,
                     success:function (data) {
                         if(data=="true"){
-                           $(".close3").parent().parent().parent().remove();
+                           item.parent().parent().parent().remove();
                         }else {
                             alert("页面不能跳转")
                         }

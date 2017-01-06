@@ -28,11 +28,10 @@
     <insert id="register"  parameterType="com.starlight.entity.User">
         insert into User(u_name,u_pwd)values(#{account},#{password})
     </insert>
-    <!--&lt;!&ndash;通过账号查找ID&ndash;&gt;-->
-    <!--<select id="findIdByUser" parameterType="String" resultType="int">-->
-        <!--select u_id from user where u_name=#{account}-->
-    <!--</select>-->
-
+    <!--通过账号查找ID-->
+    <select id="findIdByUser" parameterType="String" resultType="int">
+        select u_id from user where u_name=#{account}
+    </select>
     <!--查找是否存在该用户-->
     <select id="findAccount" parameterType="String"  resultMap="userMap">
         select u_id from user where u_name=#{account}
@@ -47,7 +46,7 @@
     </select>
 
     <select id="findIdByAccoun_Unmber" resultType="int" parameterType="java.lang.String">
-             select u_id from user where u_name =#{u_name}
+        select u_id from user where u_name =#{u_name}
     </select>
 
     <!--查找账号-->

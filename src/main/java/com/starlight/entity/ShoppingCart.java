@@ -1,7 +1,5 @@
 package com.starlight.entity;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Created by thomas.wang on 2016/12/9.
  * 购物车类
@@ -17,9 +15,6 @@ public class ShoppingCart {
     private String goodsName;
     private String gPicture;
     private float goodsPrice;
-
-
-
 
     public int getId() {
         return id;

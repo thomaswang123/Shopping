@@ -4,14 +4,14 @@ import com.starlight.entity.Goods;
 import com.starlight.entity.Order;
 import com.starlight.entity.ShoppingCart;
 import com.starlight.entity.Wallet;
-import com.starlight.serviceimp.GoodsServiceImp;
-import com.starlight.serviceimp.OrderServiceImp;
-import com.starlight.serviceimp.ShoppingCartServiceImp;
-import com.starlight.serviceimp.WalletServiceImp;
+import com.starlight.service.IGoodsService;
+import com.starlight.service.IOrderService;
+import com.starlight.service.IShoppingCartService;
+import com.starlight.service.IWalletService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,17 +23,14 @@ import java.util.List;
  */
 @Controller
 public class ShoppingCartController {
-	@Resource
-	private ShoppingCartServiceImp shoppingCartSI;
-	@Resource
-	private GoodsServiceImp goodsServiceImp;
-	@Resource
-	private ShoppingCart shoppingCart;
-	@Resource
-	private WalletServiceImp walletServiceImp;
-
-	@Resource
-	private OrderServiceImp orderServiceImp;
+	@Autowired
+	private IShoppingCartService iShoppingCartService;
+	@Autowired
+	private IGoodsService iGoodsService;
+	@Autowired
+	private IWalletService iWalletService;
+	@Autowired
+	private IOrderService iOrderService;
 
 	/**
 	 * 添加商品至购物车
@@ -51,7 +48,7 @@ public class ShoppingCartController {
 		if(httpSession.getAttribute("userId")!=null){
 			int uid=(Integer)httpSession.getAttribute("userId");
 			System.out.println("用户："+uid);
-			Goods g=goodsServiceImp.findById(id);
+			Goods g=iGoodsService.findById(id);
 
 //		计算价格
 			Float total=g.getPrice()*Integer.parseInt(quantity);
@@ -65,6 +62,7 @@ public class ShoppingCartController {
 
 
 //		将数据添加到对象中
+			ShoppingCart shoppingCart=new ShoppingCart();
 			shoppingCart.setUserId(uid);
 			shoppingCart.setGoodsId(id);
 			shoppingCart.setNumber(Integer.parseInt(quantity));
@@ -72,10 +70,10 @@ public class ShoppingCartController {
 			shoppingCart.setDate(str);
 			System.out.println("对象构建完成");
 //		添加到数据库
-			shoppingCartSI.addToCart(shoppingCart);
+			iShoppingCartService.addToCart(shoppingCart);
 			System.out.println("添加到数据库");
 //		获取购物车
-			List<ShoppingCart> sc=shoppingCartSI.findById(uid);
+			List<ShoppingCart> sc=iShoppingCartService.findById(uid);
 			System.out.println("添加到数据库");
 //		创建临时仓库
 			List<Goods> goods2=(List<Goods>) httpSession.getAttribute("showAllGoods");
@@ -86,10 +84,18 @@ public class ShoppingCartController {
 						sc2.setGoodsName(g2.getName());
 						sc2.setGoodsPrice(g2.getPrice());
 						sc2.setgPicture(g2.getPicture());
+
 					}
 				}
 			}
+
+
 			if(sc!=null){
+				for (ShoppingCart sn :
+						sc) {
+					System.out.println(sn.getGoodsId()+"_____"+sn.getNumber());
+				}
+
 				httpSession.setAttribute("cartList",sc);
 				System.out.println("跳转");
 				return "true";
@@ -107,7 +113,7 @@ public class ShoppingCartController {
 		System.out.println("Sid:"+id);
 		int scid=Integer.parseInt(id);
 //		删除一条数据
-		shoppingCartSI.removeOfCart(scid);
+		iShoppingCartService.removeOfCart(scid);
 		List<ShoppingCart> sc2=(List<ShoppingCart>) httpSession.getAttribute("cartList");
 		for(int i=0;i<sc2.size();i++){
 			if(sc2.get(i).getId()==scid){
@@ -132,19 +138,19 @@ public class ShoppingCartController {
 		System.out.println("----"+uid);
 
 
-		Wallet wallet=walletServiceImp.findById(uid);
+		Wallet wallet=iWalletService.findById(uid);
 
 // 		如果密码正确则判断钱包金额是否大于或等于待支付的金额
 		if(wallet.getPassword()==Integer.parseInt(password)){
 
 //		通过Id查询购物商品的金额
-		ShoppingCart shoppingCart3=shoppingCartSI.findOnlyOne(Integer.parseInt(id));
+		ShoppingCart shoppingCart3=iShoppingCartService.findOnlyOne(Integer.parseInt(id));
 
 //		如果钱包金额大于支付额就进行相减操作
 		if(shoppingCart3.getTotalMoney()<=wallet.getMoney()){
 
 			wallet.setMoney(wallet.getMoney()-shoppingCart3.getTotalMoney());
-			walletServiceImp.updateMoney(wallet);
+			iWalletService.updateMoney(wallet);
 			System.out.println("金额支付成功！");
 //			在订单表中添加一条数据
 //			订单生成时间
@@ -162,11 +168,11 @@ public class ShoppingCartController {
 			System.out.println("订单开始插入数据库");
 //			插入订单表
 			System.out.println(order.getDate()+"--"+order.getUserId()+"--"+order.getPrice());
-			orderServiceImp.addOrder(order);
+			iOrderService.addOrder(order);
 			System.out.println("插入订单成功！");
 
 //			从购物车中删除一条数据
-			shoppingCartSI.removeOfCart(Integer.parseInt(id));
+			iShoppingCartService.removeOfCart(Integer.parseInt(id));
 
 //          从session中删除数据
 			List<ShoppingCart> sc2=(List<ShoppingCart>) httpSession.getAttribute("cartList");
@@ -200,10 +206,10 @@ public class ShoppingCartController {
 		}
 
 //		从数据库查找数据并发送到session
-		List<ShoppingCart> sc=shoppingCartSI.findById(uid);
+		List<ShoppingCart> sc=iShoppingCartService.findById(uid);
 		System.out.println("添加到数据库");
 //		创建临时仓库
-		List<Goods> goods =goodsServiceImp.findAll();
+		List<Goods> goods =iGoodsService.findAll();
 
 		for (Goods g:goods) {
 			for (ShoppingCart shoppingCart:sc) {

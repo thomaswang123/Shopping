@@ -1,9 +1,5 @@
 package com.starlight.entity;
 
-import org.springframework.stereotype.Component;
-
-import java.util.List;
-
 /**
  * Created by thomas.wang on 2016/12/9.
  * <p>

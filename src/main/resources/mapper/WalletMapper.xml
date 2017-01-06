@@ -18,7 +18,7 @@
 
     <!--用户注册-->
     <insert id="register"  parameterType="com.starlight.entity.Wallet">
-        insert into Wallet(w_id,w_money,w_paypwd)values(#{id},#{money},#{password})
+        INSERT INTO Wallet(w_id,w_money,w_paypwd)VALUES (#{id},#{money},#{password})
     </insert>
 
     <!--通过账号查找ID-->

@@ -40,13 +40,11 @@ public interface IUserInfoDao {
     void register(UserInfo userInfo);
 
 
-
     /**
      * 修改昵称
-     * @param nickName
-     * @return
+     * @param userInfo
      */
-    boolean alterNickName(String nickName);
+    void updateNickName(UserInfo userInfo);
 
 
     /**
@@ -76,12 +74,6 @@ public interface IUserInfoDao {
      * @return
      */
      int delUserInfo(int uid);
-
-    /**
-     * 修改昵称
-     * @param userInfo
-     */
-    void updateNickName(UserInfo userInfo);
 
     /**
      * 修改年龄

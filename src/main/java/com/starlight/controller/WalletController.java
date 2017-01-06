@@ -1,12 +1,12 @@
 package com.starlight.controller;
 
 import com.starlight.entity.Wallet;
-import com.starlight.serviceimp.WalletServiceImp;
+import com.starlight.service.IWalletService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class WalletController {
-    @Resource
-    private WalletServiceImp walletServiceImp;
+    @Autowired
+    private IWalletService iWalletService;
 
     /**
      * 修改钱包余额
@@ -33,7 +33,7 @@ public class WalletController {
         float money1=Float.parseFloat(money);
 //      校验密码是否正确
         int userId=(Integer)httpSession.getAttribute("userId");
-        Wallet wallet= walletServiceImp.findById(userId);
+        Wallet wallet= iWalletService.findById(userId);
 
 //      如果密码正确就进行下一步
         if(wallet.getPassword()==pwd){
@@ -41,11 +41,11 @@ public class WalletController {
             wallet.setMoney(wallet.getMoney()+money1);
 
 //           修改数据库
-            walletServiceImp.updateMoney(wallet);
+            iWalletService.updateMoney(wallet);
             System.out.println("合格");
 //           查询数据库
             httpSession.removeAttribute("wallet");
-            httpSession.setAttribute("wallet",walletServiceImp.findById(userId));
+            httpSession.setAttribute("wallet",iWalletService.findById(userId));
             return "true";
         }
 

@@ -1,11 +1,12 @@
 package com.starlight.controller;
 
 import com.starlight.entity.Goods;
-import com.starlight.serviceimp.GoodsServiceImp;
-import com.starlight.serviceimp.OpinionServiceImp;
+import com.starlight.service.IGoodsService;
+import com.starlight.service.IOpinionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import javax.annotation.Resource;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -15,10 +16,10 @@ import java.util.List;
  */
 @Controller
 public class GoodsController {
-	@Resource
-	private GoodsServiceImp goodsServiceImp;
-	@Resource
-	private OpinionServiceImp opinionServiceImp;
+	@Autowired
+	private IGoodsService iGoodsService;
+	@Autowired
+	private IOpinionService iOpinionService;
 
 	/**
 	 * 如果有商品就获取商品，如果没有就返回404错误
@@ -28,7 +29,7 @@ public class GoodsController {
 	@RequestMapping("/products.do")
 	public String getGoods(HttpSession httpSession){
 		System.out.print("进入商品");
-		List<Goods> list =goodsServiceImp.findAll();
+		List<Goods> list =iGoodsService.findAll();
 
 		if(list!=null){
 			httpSession.setAttribute("showAllGoods",list);
@@ -51,8 +52,8 @@ public class GoodsController {
 		     list) {
 			if(g.getId()==id){
 				httpSession.setAttribute("onlyGoods",g);
-				if(opinionServiceImp.findGoodsOpinion(g.getId())!=null){
-					httpSession.setAttribute("opinion",opinionServiceImp.findGoodsOpinion(g.getId()));
+				if(iOpinionService.findGoodsOpinion(g.getId())!=null){
+					httpSession.setAttribute("opinion",iOpinionService.findGoodsOpinion(g.getId()));
 				}
 				return "redirect:single.jsp";
 			}

@@ -1,7 +1,5 @@
 package com.starlight.entity;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Created by thomas.wang on 2016/12/23.
  */
@@ -11,38 +9,11 @@ public class Paging {
     private int stop;
 
     //用来条件查询
-    private float price ; //商品单价
+    private float price; //商品单价
     //管理员级别
     private int classes;
     //用户账号的查询
-    private String  name ;
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getClasses() {
-        return classes;
-    }
-
-    public void setClasses(int classes) {
-        this.classes = classes;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
+    private String name;
 
 
     public int getRise() {
@@ -59,5 +30,29 @@ public class Paging {
 
     public void setStop(int stop) {
         this.stop = stop;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getClasses() {
+        return classes;
+    }
+
+    public void setClasses(int classes) {
+        this.classes = classes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

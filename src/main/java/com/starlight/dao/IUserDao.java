@@ -27,7 +27,7 @@ public interface IUserDao {
 	 * 通过账号来查询id
 	 * @return   id
 	 */
-	 int findIdByAccounUnmber(String username);
+	 int findIdByAccounUnmber(String u_name);
 
 	/**
 	 * 用来修改用户密码
@@ -62,6 +62,12 @@ public interface IUserDao {
 	 */
 	List<User> findAccount(String account);
 
+	/**
+	 * 修改密码
+	 * @param password
+	 * @return
+	 */
+	boolean alterPassWord(String password);
 
 	/**
 	 * 通过ID查找账号

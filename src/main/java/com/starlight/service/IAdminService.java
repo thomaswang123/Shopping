@@ -1,14 +1,13 @@
 package com.starlight.service;
 
 import com.starlight.entity.*;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/20.
  */
-@Service
+
 public interface IAdminService {
     /**
      * 返回用户的管理员的等级
@@ -102,5 +101,18 @@ public interface IAdminService {
      * @return
      */
     List<UserInfo> findAllByLikeName(Paging paging);
+
+    /**
+     * 统计管理员的数量
+     * @return
+     */
+    int countAdminnumber();
+
+    /**
+     * 查询级别等于classes的数据总数量
+     * @param paging
+     * @return
+     */
+    int findSumNumberByClasses(Paging paging);
 
 }

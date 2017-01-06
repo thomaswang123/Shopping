@@ -1,12 +1,12 @@
 package com.starlight.controller;
 
 import com.starlight.entity.UserInfo;
-import com.starlight.serviceimp.UserInfoServiceImp;
+import com.starlight.service.IUserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -15,11 +15,9 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class UserInfoController {
-    @Resource
-    private UserInfo userInfo;
 
-    @Resource
-    private UserInfoServiceImp userInfoServiceImp;
+    @Autowired
+    private IUserInfoService iUserInfoService;
 
 //    修改昵称
     @RequestMapping(value = "/updateNickName.do", produces = "text/html;charset=UTF-8")
@@ -27,11 +25,12 @@ public class UserInfoController {
     public String updateNickName(String nickName, HttpSession httpSession){
         System.out.println(nickName);
         int userId=(Integer) httpSession.getAttribute("userId");
+        UserInfo userInfo=new UserInfo();
         userInfo.setId(userId);
         userInfo.setNickname(nickName);
-        userInfoServiceImp.updateNickName(userInfo);
+        iUserInfoService.updateNickName(userInfo);
         httpSession.removeAttribute("userinfo");
-        UserInfo userInfo2=userInfoServiceImp.findUserInfoById(userId);
+        UserInfo userInfo2=iUserInfoService.findUserInfoById(userId);
         httpSession.setAttribute("userinfo",userInfo2);
 
 
@@ -44,9 +43,10 @@ public class UserInfoController {
     public String updateUserAge(String age,HttpSession httpSession){
         System.out.println(age);
         int userId=(Integer) httpSession.getAttribute("userId");
+        UserInfo userInfo=new UserInfo();
         userInfo.setId(userId);
         userInfo.setAge(Integer.parseInt(age));
-        userInfoServiceImp.updateUserAge(userInfo);
+        iUserInfoService.updateUserAge(userInfo);
         return "true";
     }
 
@@ -56,9 +56,10 @@ public class UserInfoController {
     public String updateUserPhone(String phone ,HttpSession httpSession){
         System.out.println(phone);
         int userId=(Integer) httpSession.getAttribute("userId");
+        UserInfo userInfo=new UserInfo();
         userInfo.setId(userId);
         userInfo.setPhone(phone);
-        userInfoServiceImp.updateUserPhone(userInfo);
+        iUserInfoService.updateUserPhone(userInfo);
         return "true";
     }
 
@@ -67,9 +68,10 @@ public class UserInfoController {
     public String updateUserAddress(String place ,HttpSession httpSession){
         System.out.println(place);
         int userId=(Integer) httpSession.getAttribute("userId");
+        UserInfo userInfo=new UserInfo();
         userInfo.setId(userId);
         userInfo.setAddress(place);
-        userInfoServiceImp.updateUserAddress(userInfo);
+        iUserInfoService.updateUserAddress(userInfo);
         return "true";
     }
 }

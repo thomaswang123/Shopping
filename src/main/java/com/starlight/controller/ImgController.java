@@ -2,14 +2,14 @@ package com.starlight.controller;
 
 import com.starlight.entity.Goods;
 import com.starlight.entity.Repertory;
-import com.starlight.serviceimp.GoodsServiceImp;
-import com.starlight.serviceimp.RepertoryServiceImp;
+import com.starlight.service.IGoodsService;
+import com.starlight.service.IRepertoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,14 +22,10 @@ import java.io.InputStream;
  */
 @Controller
 public class ImgController {
-    @Resource
-    private GoodsServiceImp goodsServiceImp;
-    @Resource
-    private Goods goods;
-    @Resource
-    private Repertory repertory;
-    @Resource
-    private RepertoryServiceImp repertoryServiceImp;
+    @Autowired
+    private IGoodsService iGoodsService;
+    @Autowired
+    private IRepertoryService iRepertoryService;
 
     /**
      * 图片上传到服务器并添加图片信息至数据库
@@ -106,19 +102,21 @@ public class ImgController {
                 inputStream.close();
 
 //              填充商品实体
+                Goods goods=new Goods();
                 goods.setId(Integer.parseInt(request.getParameter("goodsid"))+1);
                 goods.setName(request.getParameter("goodsname"));
                 goods.setPicture("img/"+multipartFile.getOriginalFilename());
                 goods.setPrice(Float.parseFloat(request.getParameter("goodsprivce")));
                 goods.setDescribe(request.getParameter("gdsdescribe"));
 //              添加商品信息至数据库
-                goodsServiceImp.addGoods(goods);
+                iGoodsService.addGoods(goods);
 
 //              填充库存实体
+                Repertory repertory=new Repertory();
                 repertory.setId(Integer.parseInt(request.getParameter("goodsid"))+1);
                 repertory.setNumber(Integer.parseInt(request.getParameter("goodsnumber")));
 //              添加库存信息至数据库
-                repertoryServiceImp.addRepertory(repertory);
+                iRepertoryService.addRepertory(repertory);
 
             }else{
                 System.out.println("不是图片文件");

@@ -1,11 +1,14 @@
 package com.starlight.controller;
 
-import com.starlight.serviceimp.OrderServiceImp;
+import com.starlight.entity.Order;
+import com.starlight.service.IOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by james.jiang on 2016/12/26.
@@ -13,8 +16,8 @@ import javax.annotation.Resource;
  */
 @Controller
 public class OrderController {
-	@Resource
-	private OrderServiceImp orderServiceImp;
+	@Autowired
+	private IOrderService iOrderService;
 
 	/**
 	 * 删除订单信息
@@ -23,10 +26,18 @@ public class OrderController {
 	 */
 	@RequestMapping(value = "/removeOrder.do", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String removeOrder(int id){
-//		删除一条数据
-		orderServiceImp.removeOrder(id);
-		System.out.println("删除");
+	public String removeOrder(int id, HttpSession httpSession){
+//		删除订单数据
+		iOrderService.removeOrder(id);
+//		删除session中的数据
+		List<Order> list=(List<Order>) httpSession.getAttribute("orderList");
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getId()==id){
+				list.remove(i);
+			}
+		}
+		httpSession.removeAttribute("orderList");
+		httpSession.setAttribute("orderList",list);
 		return "true";
 	}
 
