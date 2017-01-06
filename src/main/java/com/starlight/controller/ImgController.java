@@ -4,11 +4,12 @@ import com.starlight.entity.Goods;
 import com.starlight.entity.Repertory;
 import com.starlight.service.IGoodsService;
 import com.starlight.service.IRepertoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,27 +22,24 @@ import java.io.InputStream;
  */
 @Controller
 public class ImgController {
-    @Autowired
-    private IGoodsService iGoodsService;
-    @Autowired
-    private IRepertoryService iRepertoryService;
 
-    @Autowired
-    public ImgController(IRepertoryService iRepertoryService, IGoodsService iGoodsService) {
-        this.iRepertoryService = iRepertoryService;
-        this.iGoodsService = iGoodsService;
-    }
+    /**商品业务*/
+    @Resource
+    private IGoodsService iGoodsService;
+
+    /**库存业务*/
+    @Resource
+    private IRepertoryService iRepertoryService;
 
     /**
      * 图片上传到服务器并添加图片信息至数据库
-     * @param multipartFile
-     * @param request
-     * @return
-     * @throws IOException
+     * @param multipartFile 文件上传对象
+     * @param request   请求
+     * @return  跳转至admin.jsp
+     * @throws IOException  IO异常
      */
     @RequestMapping(value = "/upload.do", produces = "text/html;charset=UTF-8")
-    public String upload(
-            @RequestParam(value = "avatar_file",required = false)MultipartFile multipartFile,
+    public String upload(@RequestParam(value = "avatar_file",required = false)MultipartFile multipartFile,
              HttpServletRequest request)throws IOException{
 
 //       判断文件大小
@@ -96,9 +94,9 @@ public class ImgController {
                 System.out.println("长度："+bytes.length);
 
                FileOutputStream out=new FileOutputStream(file);
-                int i=0;
+
 //              读取输出
-                while ((i=inputStream.read(bytes))!=-1){
+                while ((inputStream.read(bytes))!=-1){
                     out.write(bytes,0,bytes.length);
                     out.flush();
                 }

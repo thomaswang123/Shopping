@@ -1,7 +1,6 @@
 package com.starlight.service;
 
 import com.starlight.entity.UserInfo;
-import com.starlight.entity.Wallet;
 
 import java.util.List;
 
@@ -13,62 +12,56 @@ public interface IUserInfoService {
 
 
     /**
-     * 统计数据的总数量
-     * @return
+     * 获取数据库中用户数量
+     * @return  用户量
      */
     int countUserIdNumber();
 
 
     /**
-     * 通过用户id来查询用户信息
-     *
-     * @param id
-     * @return
+     * 查找用户信息
+     * @param userId    用户id
+     * @return  用户详细信息
      */
-     UserInfo findUserInfoById(int id);
+     UserInfo findUserInfoById(int userId);
 
     /**
      * 插入用户详细信息
-     * @param userInfo
+     * @param userInfo  用户详细信息
      */
     void register(UserInfo userInfo);
 
-    /**
-     * 钱包注册
-     * @param wallet
-     */
 
-    void registerWallet(Wallet wallet);
 
     /**
-     * 根据页面数据数量，以及第几页来展示数据
-     * @param pagination
-     * @param number
-     * @return
+     * 根据分页的页码来分页
+     * @param pagination    页码
+     * @param number  总数量
+     * @return  用户信息集合
      */
     List<UserInfo> pagination(String pagination,String number);
 
     /**
      * 修改昵称
-     * @param userInfo
+     * @param userInfo 用户信息
      */
     void updateNickName(UserInfo userInfo);
 
     /**
      * 修改年龄
-     * @param userInfo
+     * @param userInfo  用户信息
      */
     void updateUserAge(UserInfo userInfo);
 
     /**
      * 修改手机号
-     * @param userInfo
+     * @param userInfo  用户信息
      */
     void updateUserPhone(UserInfo userInfo);
 
     /**
      * 修改地址
-     * @param userInfo
+     * @param userInfo  用户信息
      */
     void updateUserAddress(UserInfo userInfo);
 }

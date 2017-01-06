@@ -8,39 +8,46 @@ import com.starlight.service.IAdminService;
 import com.starlight.service.IGoodsService;
 import com.starlight.service.IUserInfoService;
 import com.starlight.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
  * Created by thomas.wang on 2016/12/23.
- * 管理员
+ * 管理员控制类
  */
 @Controller
 public class AdminController {
 
-    @Autowired
+    /**用户详细信息业务*/
+    @Resource
     private IUserInfoService iUserInfoService;
 
-    @Autowired
+    /**管理员业务*/
+    @Resource
     private IAdminService iAdminService;
 
-    @Autowired
+    /**用户账号业务*/
+    @Resource
     private IUserService iUserService;
 
-    @Autowired
+    /**商品业务*/
+    @Resource
     private IGoodsService iGoodsService;
 
-    @Autowired
-    public AdminController(IGoodsService iGoodsService) {
-        this.iGoodsService = iGoodsService;
-    }
 
-    //进入用户管理员界面
+    /**
+     * 进入用户管理员界面
+     * @param number    用户账号
+     * @param pagination    页码
+     * @param sessionPaging session
+     * @param rst   响应数据
+     * @return  跳转至admin.jsp页面
+     */
     @RequestMapping("userControl.do")
     public String adminInit(int number, int pagination,HttpSession sessionPaging, HttpServletRequest rst) {
         //设置分页的数据pagination为第几页number为一页有多数据
@@ -77,10 +84,23 @@ public class AdminController {
         rst.setAttribute("userTemp",0);
 
         rst.setAttribute("numbersum", iUserInfoService.countUserIdNumber());
-        return "admin";
+        return "redirect:admin.jsp";
     }
 
-    //进行相关页码的数据的展示
+    /**
+     * 进行相关页码的数据的展示
+     * @param Account   账号
+     * @param userTemp
+     * @param pagination    页码
+     * @param goodsCondition    商品
+     * @param number
+     * @param goodsnumber
+     * @param price
+     * @param sessionPaging
+     * @param userRightTemp
+     * @param userRightClasses
+     * @return
+     */
     @RequestMapping("pagination.do")
     @ResponseBody
     public String pagination(String Account ,int userTemp,
@@ -177,7 +197,11 @@ public class AdminController {
         return "yes";
     }
 
-    //删除相对应的用户数据
+    /**
+     * 删除相对应的用户数据
+     * @param uid 用户id
+     * @return 提示
+     */
     @RequestMapping("deluser.do")
     @ResponseBody
     public String deluser(String uid) {
@@ -189,7 +213,15 @@ public class AdminController {
     }
 
 
-    //进商品管理界面
+    /**
+     * 进商品管理界面
+     * @param number
+     * @param pagination    页码
+     * @param paging
+     * @param sessionPaging session
+     * @param rst   响应数据
+     * @return  跳转至admin.jsp页面
+     */
     @RequestMapping("goods.do")
     public String shoppingInit(int number, int pagination, Paging paging,
                                HttpSession sessionPaging, HttpServletRequest rst) {
@@ -231,7 +263,15 @@ public class AdminController {
         return "admin";
     }
 
-    //进入用户权限管理界面
+    /**
+     * 进入用户权限管理界面
+     * @param number
+     * @param pagination
+     * @param paging
+     * @param sessionPaging
+     * @param rst
+     * @return
+     */
     @RequestMapping("userRight.do")
     public String userRightInit(int number, int pagination, Paging paging,
                                 HttpSession sessionPaging, HttpServletRequest rst) {
@@ -268,21 +308,31 @@ public class AdminController {
         return "admin";
     }
 
-    //修改商品的信息
+    /**
+     * 修改商品的信息
+     * @param goodsId
+     * @param price
+     * @param goodsName
+     * @param describe
+     * @param goodsNumber
+     * @return
+     */
     @RequestMapping("alertGoods.do")
     @ResponseBody
-    public String alertGoodsData(Goods goods, Repertory repertory, int goodsId, float price, String goodsName, String describe, int goodsNumber) {
+    public String alertGoodsData(int goodsId, float price, String goodsName, String describe, int goodsNumber) {
         if (price == 0) {
             return "no";
         } else if (goodsName == null || goodsName.equals("")) {
             return "no";
         } else {
             //商品信息
+            Goods goods=new Goods();
             goods.setId(goodsId);
             goods.setDescribe(describe);
             goods.setName(goodsName);
             goods.setPrice(price);
             //库存
+            Repertory repertory=new Repertory();
             repertory.setId(goodsId);
             repertory.setNumber(goodsNumber);
             goods.setRepertory(repertory);
@@ -295,7 +345,11 @@ public class AdminController {
     }
 
 
-    //删除商品信息
+    /**
+     * 删除商品信息
+     * @param goodsId 商品id
+     * @return  提示信息
+     */
     @RequestMapping("delGoods.do")
     @ResponseBody
     public String deleteGoods(int goodsId) {
@@ -306,12 +360,20 @@ public class AdminController {
         return null;
     }
 
-    //根据商品价格查找商品信息
+    /**
+     * 根据商品价格查找商品信息
+     * @param price     商品价格
+     * @param numbers   商品数量
+     * @param pagination    页码
+     * @param sessionPaging  session
+     * @param rst   响应信息
+     * @return  跳转至admin.jsp页面
+     */
     @RequestMapping("findByGoodsPrice.do")
-    public String findByGoodsPrice(float price, String numbers, int pagination, Paging paging,
-                                   HttpSession sessionPaging, HttpServletRequest rst) {
+    public String findByGoodsPrice(float price, String numbers, int pagination,HttpSession sessionPaging, HttpServletRequest rst) {
         //设置分页的数据pagination为第几页number为一页有多数据
         int number = Integer.parseInt(numbers.substring(numbers.indexOf(":") + 1, numbers.length()));
+        Paging paging=new Paging();
         paging.setRise((pagination * number) - number);
         paging.setStop(number * pagination);
         paging.setPrice(price);
@@ -344,26 +406,42 @@ public class AdminController {
         rst.setAttribute("userTemp",0);
         rst.setAttribute("maxid", iGoodsService.findMaxId());
         rst.setAttribute("numbersum", iGoodsService.findSumNumberByPrice(paging));
-        return "admin";
+        return "redirect:admin.jsp";
     }
 
-    //设置管理员的等级,也是间接添加管理员删除管理员
+    /**
+     * 修改管理员权限
+     * @param alterClasses  修改的级别
+     * @param classes   用户拥有的级别
+     * @param id    用户id
+     * @param session   session
+     * @return  提示信息
+     */
     @RequestMapping("alterAdmin.do")
     @ResponseBody
-    public String alterClasses(int alterClasses, int classes, int id, HttpSession session, Admin admin){
+    public String alterClasses(int alterClasses, int classes, int id, HttpSession session){
         System.out.println(classes+","+id);
         Integer uid=(Integer)session.getAttribute("userClasses");
+        Admin admin=new Admin();
         admin.setId(id);
         admin.setClasses(alterClasses);
         return iAdminService.alterAdminClasses(admin,uid,classes);
     }
 
-    //根据管理员的级别查找管理相关信息
+    /**
+     * 根据管理员的级别查找管理相关信息
+     * @param classes   用户级别
+     * @param numbers   数量
+     * @param pagination    页码
+     * @param sessionPaging
+     * @param rst   响应信息
+     * @return   跳转至admin.jsp页面
+     */
     @RequestMapping("findByAdminClasses.do")
-    public String findByGoodsPrice(int classes, String numbers, int pagination, Paging paging,
-                                   HttpSession sessionPaging, HttpServletRequest rst) {
+    public String findByGoodsPrice(int classes, String numbers, int pagination,HttpSession sessionPaging, HttpServletRequest rst) {
         //设置分页的数据pagination为第几页number为一页有多数据
         int number = Integer.parseInt(numbers.substring(numbers.indexOf(":") + 1, numbers.length()));
+        Paging paging=new Paging();
         paging.setRise((pagination * number) - number);
         paging.setStop(number * pagination);
         paging.setClasses(classes);
@@ -395,15 +473,23 @@ public class AdminController {
         //用户管理分页
         rst.setAttribute("userTemp",0);
         rst.setAttribute("numbersum",iAdminService.findSumNumberByClasses(paging));
-        return "admin";
+        return "redirect:admin.jsp";
     }
 
-    //根据用户的账号来查找用户相关信息
+    /**
+     * 根据用户的账号来查找用户相关信息
+     * @param Account 账号
+     * @param numbers  数量
+     * @param pagination  页码
+     * @param sessionPaging
+     * @param rst  响应数据
+     * @return 跳转至admin.jsp页面
+     */
     @RequestMapping("findByLikeName.do")
-    public String findByLikeName(String Account, String numbers, int pagination, Paging paging,
-                                 HttpSession sessionPaging, HttpServletRequest rst) {
+    public String findByLikeName(String Account, String numbers, int pagination,HttpSession sessionPaging, HttpServletRequest rst) {
         //设置分页的数据pagination为第几页number为一页有多数据
         int number = Integer.parseInt(numbers.substring(numbers.indexOf(":") + 1, numbers.length()));
+        Paging paging=new Paging();
         paging.setRise((pagination * number) - number);
         paging.setStop(number * pagination);
         paging.setName(Account+"%");
@@ -435,6 +521,6 @@ public class AdminController {
         rst.setAttribute("Account",Account);
         rst.setAttribute("userTemp",1);
         rst.setAttribute("numbersum",iUserService.findByLikeNameNumber(paging));
-        return "admin";
+        return "redirect:admin.jsp";
     }
 }

@@ -5,61 +5,56 @@ import com.starlight.dao.IUserInfoDao;
 import com.starlight.dao.IWalletDao;
 import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
-import com.starlight.entity.Wallet;
 import com.starlight.service.IUserInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/20.
+ * 用户详细信息业务类
  */
 @Service
 public class UserInfoServiceImp implements IUserInfoService {
 
-    //用户信息
-    @Autowired
+    /**用户信息sql接口*/
+    @Resource
     private IUserInfoDao iUserInfoDao;
-    @Autowired
+
+    /**用户钱包sql接口*/
+    @Resource
     private IWalletDao iWalletDao;
-    @Autowired
+
+    /**用户账号sql接口*/
+    @Resource
     private IUserDao iUserDao;
 
-
-    //处理数据的总数量
+    /**
+     * 获取数据库中用户数量
+     * @return  用户量
+     */
     @Transactional
     public int countUserIdNumber() {
         return iUserDao.countAllIdNumber();
     }
-    @Transactional
-    public List<UserInfo> findAllUserInfoById(int userId) {
 
-
-        return iUserInfoDao.findAllUserInfoById(userId);
-    }
-    @Transactional
-    public List<UserInfo> findUserInfoByNickName(String nickname) {
-
-        return null;
-    }
-    @Transactional
-    public List<UserInfo> findUserInfoByAge(int age) {
-
-        return null;
-    }
-    @Transactional
-    public boolean alterPhoneById(int id) {
-        return false;
-    }
+    /**
+     * 查找用户信息
+     * @param userId    用户id
+     * @return  用户详细信息
+     */
     @Transactional
     public UserInfo findUserInfoById(int userId) {
 
         return iUserInfoDao.findUserInfoById(userId);
     }
 
-    //    插入用户详细信息
+    /**
+     * 插入用户详细信息
+     * @param userInfo  用户详细信息
+     */
     @Transactional
     public void register(UserInfo userInfo) {
 
@@ -67,14 +62,12 @@ public class UserInfoServiceImp implements IUserInfoService {
         iUserInfoDao.register(userInfo);
     }
 
-    //    注册用户钱包
-    @Transactional
-    public void registerWallet(Wallet wallet) {
-        iWalletDao.register(wallet);
-    }
-
-
-    //根据分页的页码来分页
+    /**
+     * 根据分页的页码来分页
+     * @param pagination    页码
+     * @param number
+     * @return  用户信息集合
+     */
     @Transactional
     public List<UserInfo> pagination(String pagination,String number) {
         System.out.println("aaaaa"+number+pagination);
@@ -103,36 +96,37 @@ public class UserInfoServiceImp implements IUserInfoService {
         return list;
     }
 
-
-    //通过分页来查询数据！
-    @Transactional
-    public List<UserInfo> byPagingfindAll(Paging paging) {
-
-        List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
-        //添加颜色
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setColor(i+1);
-        }
-        return list;
-    }
-
-//    修改昵称
+    /**
+     * 修改昵称
+     * @param userInfo 用户信息
+     */
     @Transactional
     public void updateNickName(UserInfo userInfo) {
         iUserInfoDao.updateNickName(userInfo);
     }
 
-//    修改年龄
+    /**
+     * 修改年龄
+     * @param userInfo  用户信息
+     */
     @Transactional
     public void updateUserAge(UserInfo userInfo) {
         iUserInfoDao.updateUserAge(userInfo);
     }
-//  修改手机号
+
+    /**
+     * 修改手机号
+     * @param userInfo  用户信息
+     */
     @Transactional
     public void updateUserPhone(UserInfo userInfo) {
         iUserInfoDao.updateUserPhone(userInfo);
     }
-//  修改地址
+
+    /**
+     * 修改地址
+     * @param userInfo  用户信息
+     */
     @Transactional
     public void updateUserAddress(UserInfo userInfo) {
         iUserInfoDao.updateUserAddress(userInfo);

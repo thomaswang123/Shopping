@@ -8,10 +8,11 @@ import com.starlight.service.IGoodsService;
 import com.starlight.service.IOrderService;
 import com.starlight.service.IShoppingCartService;
 import com.starlight.service.IWalletService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,21 +24,29 @@ import java.util.List;
  */
 @Controller
 public class ShoppingCartController {
-	@Autowired
+
+	/**购物车业务*/
+	@Resource
 	private IShoppingCartService iShoppingCartService;
-	@Autowired
+
+	/**商品业务*/
+	@Resource
 	private IGoodsService iGoodsService;
-	@Autowired
+
+	/**钱包业务*/
+	@Resource
 	private IWalletService iWalletService;
-	@Autowired
+
+	/**订单业务*/
+	@Resource
 	private IOrderService iOrderService;
 
 	/**
 	 * 添加商品至购物车
-	 * @param id
-	 * @param quantity
-	 * @param httpSession
-	 * @return
+	 * @param id	商品id
+	 * @param quantity	商品数量
+	 * @param httpSession	session
+	 * @return	返回提示信息
 	 */
 	@RequestMapping(value = "/addToCart.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -88,8 +97,6 @@ public class ShoppingCartController {
 					}
 				}
 			}
-
-
 			if(sc!=null){
 				for (ShoppingCart sn :
 						sc) {
@@ -107,6 +114,12 @@ public class ShoppingCartController {
 		return "false";
 	}
 
+	/**
+	 * 从购物车中删除信息
+	 * @param id	商品id
+	 * @param httpSession	session
+	 * @return	ajax的提示信息
+	 */
 	@RequestMapping(value = "/removeOfCart.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
 	public String removeOfCart(String id,HttpSession httpSession){
@@ -128,9 +141,16 @@ public class ShoppingCartController {
 		return "false";
 	}
 
+	/**
+	 * 支付功能
+	 * @param password	支付密码
+	 * @param id	购物车id
+	 * @param httpSession	session
+	 * @return	ajax的提示信息
+	 */
 	@RequestMapping(value = "/pay.do",produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String Pay(Order order,String password,String id,HttpSession httpSession){
+	public String Pay(String password,String id,HttpSession httpSession){
 		System.out.println("password:"+password+"id:"+id);
 //		获取用户ID
 		int uid=(Integer)httpSession.getAttribute("userId");
@@ -158,7 +178,7 @@ public class ShoppingCartController {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String str=sdf.format(date);
 			System.out.println("date:"+str);
-
+			Order order=new Order();
 			order.setUserId(uid);
 			order.setMoney(shoppingCart3.getTotalMoney());
 			order.setNumber(shoppingCart3.getNumber());
@@ -197,35 +217,39 @@ public class ShoppingCartController {
 		return "false";
 	}
 
-//	展示购物车
+	/**
+	 * 展示购物车
+	 * @param httpSession 获取购物车商品信息添加至session
+	 * @return 跳转至checkout.jsp
+	 */
 	@RequestMapping("/showCheckout.do")
 	public String showCheckout(HttpSession httpSession){
 		int uid=(Integer)httpSession.getAttribute("userId");
 		if(httpSession.getAttribute("cartList")!=null){
 			return "redirect:checkout.jsp";
-		}
+		}else{
+			//从数据库查找数据并发送到session
+			List<ShoppingCart> sc=iShoppingCartService.findById(uid);
+			System.out.println("添加到数据库");
 
-//		从数据库查找数据并发送到session
-		List<ShoppingCart> sc=iShoppingCartService.findById(uid);
-		System.out.println("添加到数据库");
-//		创建临时仓库
-		List<Goods> goods =iGoodsService.findAll();
+			//创建临时仓库
+			List<Goods> goods =iGoodsService.findAll();
 
-		for (Goods g:goods) {
-			for (ShoppingCart shoppingCart:sc) {
-				if(shoppingCart.getGoodsId()==g.getId()){
-					shoppingCart.setGoodsName(g.getName());
-					shoppingCart.setgPicture(g.getPicture());
-					shoppingCart.setGoodsPrice(g.getPrice());
+			for (Goods g:goods) {
+				for (ShoppingCart shoppingCart:sc) {
+					if(shoppingCart.getGoodsId()==g.getId()){
+						shoppingCart.setGoodsName(g.getName());
+						shoppingCart.setgPicture(g.getPicture());
+						shoppingCart.setGoodsPrice(g.getPrice());
+					}
 				}
 			}
-		}
 
-		if(sc!=null){
-			httpSession.setAttribute("cartList",sc);
-			return "redirect:checkout.jsp";
+			if(sc!=null){
+				httpSession.setAttribute("cartList",sc);
+				return "redirect:checkout.jsp";
+			}
 		}
 			return "redirect:404.html";
-
 	}
 }

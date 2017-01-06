@@ -2,11 +2,11 @@ package com.starlight.controller;
 
 import com.starlight.entity.UserInfo;
 import com.starlight.service.IUserInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -16,10 +16,16 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserInfoController {
 
-    @Autowired
+    /**用户详细信息业务*/
+    @Resource
     private IUserInfoService iUserInfoService;
 
-//    修改昵称
+    /**
+     * 修改昵称
+     * @param nickName 需要修改的昵称
+     * @param httpSession 获取用户id
+     * @return 返回提示信息
+     */
     @RequestMapping(value = "/updateNickName.do", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateNickName(String nickName, HttpSession httpSession){
@@ -33,11 +39,15 @@ public class UserInfoController {
         UserInfo userInfo2=iUserInfoService.findUserInfoById(userId);
         httpSession.setAttribute("userinfo",userInfo2);
 
-
         return "true";
     }
 
-//    修改年龄
+    /**
+     * 修改年龄
+     * @param age 需要修改的年龄
+     * @param httpSession  获取用户id
+     * @return  提示信息
+     */
     @RequestMapping(value = "/updateUserAge.do",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateUserAge(String age,HttpSession httpSession){
@@ -50,7 +60,12 @@ public class UserInfoController {
         return "true";
     }
 
-//  修改手机号
+    /**
+     * 修改手机号
+     * @param phone  需要修改的手机号
+     * @param httpSession   获取用户id
+     * @return 提示信息
+     */
     @RequestMapping(value = "/updateUserPhone.do",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateUserPhone(String phone ,HttpSession httpSession){
@@ -63,6 +78,12 @@ public class UserInfoController {
         return "true";
     }
 
+    /**
+     * 修改地址
+     * @param place  新的地址
+     * @param httpSession  获取用户id
+     * @return  提示信息
+     */
     @RequestMapping(value = "/updateUserAddress.do",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String updateUserAddress(String place ,HttpSession httpSession){

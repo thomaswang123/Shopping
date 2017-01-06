@@ -2,7 +2,6 @@ package com.starlight.entity;
 
 /**
  * Created by thomas.wang on 2016/12/16.
- *
  * 意见类
  */
 

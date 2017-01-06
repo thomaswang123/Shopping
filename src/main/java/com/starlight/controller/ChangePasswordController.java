@@ -4,11 +4,11 @@ import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
 import com.starlight.service.IChangePasswordService;
 import com.starlight.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -18,18 +18,21 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class ChangePasswordController {
 
-    @Autowired
+    /**用户账号业务*/
+    @Resource
     private IUserService iUserService;
-    @Autowired
+
+    /**密保业务*/
+    @Resource
     private IChangePasswordService iChangePasswordService;
 
 
     /**
      * 进行判断密保问题域答案是否一致，进行下一步的修改密码操作等
-     * @param resultthree
-     * @param resultone
-     * @param resulttwo
-     * @return
+     * @param resultthree   答案三
+     * @param resultone     答案一
+     * @param resulttwo     答案二
+     * @return  ajax提示信息
      */
     @RequestMapping("answer.do")
     @ResponseBody
@@ -50,8 +53,8 @@ public class ChangePasswordController {
 
     /**
      * 用来判断申请账号是否存在
-     * @param username
-     * @return
+     * @param username  输入的账号
+     * @return  ajax的提示信息
      */
     @RequestMapping("user_checkexist")
     @ResponseBody
@@ -68,22 +71,23 @@ public class ChangePasswordController {
 
     /**
      * 修改密码，支付密码，密保答案
-     * @param result
-     * @param user
-     * @param wallet
-     * @param password
-     * @param payment_code
-     * @param ppid
-     * @return
+     * @param result 答案数组
+     * @param password  密码
+     * @param payment_code  支付密码
+     * @param ppid  支付id
+     * @param httpSession session
+     * @return 密保
      */
     @RequestMapping("alertPpAll.do")
     @ResponseBody
-    public String alertPpAll(String[] result, User user, Wallet wallet, String password, String payment_code, String[] ppid,HttpSession httpSession) {
+    public String alertPpAll(String[] result,String password, String payment_code, String[] ppid,HttpSession httpSession) {
         int userId=(Integer)httpSession.getAttribute("userId");
         //用户重置的密码
+        User user=new User();
         user.setPassword(password);
         user.setId(userId);
         //钱包
+        Wallet wallet=new Wallet();
         wallet.setId(userId);
         wallet.setPassword(Integer.parseInt(payment_code));
         return iChangePasswordService.alertAllById(user, result, ppid, wallet);

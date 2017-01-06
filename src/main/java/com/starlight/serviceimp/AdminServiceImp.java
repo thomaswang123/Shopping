@@ -3,100 +3,121 @@ package com.starlight.serviceimp;
 import com.starlight.dao.*;
 import com.starlight.entity.*;
 import com.starlight.service.IAdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by james.jiang on 2016/12/23.
+ * 管理员业务类
  */
 @Service
 public class AdminServiceImp implements IAdminService {
 
+    /**管理员sql接口*/
+    @Resource
+    private IAdminDao iAdminDao;
 
-    @Autowired
-    IAdminDao iAdminDao;
+    /**用户详细信息sql接口*/
+    @Resource
+    private IUserInfoDao iUserInfoDao;
 
-    @Autowired
-    IUserInfoDao iUserInfoDao;
+    /**用户sql接口*/
+    @Resource
+    private IUserDao iUserDao;
 
-    @Autowired
-    IUserDao iUserDao;
+    /**密保sql接口*/
+    @Resource
+    private IChangePasswordDao iChangePasswordDao;
 
-    @Autowired
-    IChangePasswordDao iChangePasswordDao;
+    /**钱包sql接口*/
+    @Resource
+    private IWalletDao iWalletDao;
 
-    @Autowired
-    IOpinionDao iOpinionDao;
+    /**商品sql接口*/
+    @Resource
+    private IGoodsDao iGoodsDao;
 
-    @Autowired
-    IOrderDao iOrderDao;
+    /**库存接口*/
+    @Resource
+    private IRepertoryDao iRepertoryDao;
 
-    @Autowired
-    IShoppingCartDao iShoppingCartDao;
-
-    @Autowired
-    IWalletDao iWalletDao;
-    @Autowired
-    IGoodsDao iGoodsDao;
-
-    @Autowired
-    IRepertoryDao iRepertoryDao;
-
+    /**
+     * 添加管理员
+     * @param admin 管理员
+     */
     @Transactional
     public void addAdmin(Admin admin) {
         iAdminDao.addAdmin(admin);
     }
 
-    //查询管理员的等级
+    /**
+     * 返回用户的管理员的等级
+     * @param userId 用户
+     * @return  返回用户等级
+     */
     @Transactional
-    public int findClassesById(int u_id) {
-        return iAdminDao .findClassesById(u_id);
+    public int findClassesById(int userId) {
+        return iAdminDao .findClassesById(userId);
 
     }
 
-    //删除用户所有数据的操作
+    /**
+     * 删除用户所有数据的操作
+     * @param userId 用户id
+     * @return  如果操作成功返回非0
+     */
     @Transactional
-    public int delAllUserData(int uid) {
-        int uftemp = 0, cls = 0, wle = 0, on = 0, pwp = 0, shopping = 0, os = 0, user = 0;
+    public int delAllUserData(int userId) {
+        int uftemp = 0, cls = 0, wle = 0, pwp = 0,user = 0;
         try {
             //用户信息
-            uftemp = iUserInfoDao.delUserInfo(uid);
+            uftemp = iUserInfoDao.delUserInfo(userId);
             //钱包
-            wle = iWalletDao.delWakket(uid);
+            wle = iWalletDao.delWakket(userId);
             //密保
-            pwp = iChangePasswordDao.deletePwp(uid);
+            pwp = iChangePasswordDao.deletePwp(userId);
             //管理员
-            cls = iAdminDao.delAllUserData(uid);
+            cls = iAdminDao.delAllUserData(userId);
         } catch (Exception e) {
             //用户
-            user = iUserDao.delUser(uid);
+            user = iUserDao.delUser(userId);
         }
         if (cls != 0 || wle != 0 || pwp != 0
-               || os != 0 || user != 0 || uftemp != 0) {
+               ||user != 0 || uftemp != 0) {
             return 1;
         }
         return 0;
     }
 
-    //查询商品
+    /**
+     * 查询商品
+     * @param paging    分页
+     * @return  商品集合
+     */
     @Transactional
     public List<Goods> findAllByPaging(Paging paging) {
         //赋值，进行页面展示
         return iGoodsDao.byPagingfindAll(paging);
     }
 
-    //查询数据总数量
+    /**
+     * 查询数据总数量
+     * @return  返回商品总数
+     */
     @Transactional
     public int conutGoodsDataNumber() {
         return iGoodsDao.conutGoodsNumber();
     }
 
-
-    //根据分页的页码来展示数据
+    /**
+     * 根据分页的页码来展示数据
+     * @param pagination    页码
+     * @param number    总页数
+     * @return  商品信息集合
+     */
     @Transactional
     public List<Goods> pagination(String pagination, String number) {
         Paging paging=new Paging();
@@ -119,7 +140,11 @@ public class AdminServiceImp implements IAdminService {
         return iGoodsDao.byPagingfindAll(paging);
     }
 
-    //查询有关管理员的信息
+    /**
+     * 查询有关管理员的信息
+     * @param paging    分页
+     * @return  如果操作成功返回非0
+     */
     @Transactional
     public List<UserInfo> findAdminByPaging(Paging paging) {
         List<UserInfo> list = iUserInfoDao.byPagingfindAll(paging);
@@ -132,7 +157,12 @@ public class AdminServiceImp implements IAdminService {
         return list;
     }
 
-    //修改商品信息和库存的信息
+    /**
+     * 修改商品信息和库存的信息
+     * @param goods 商品
+     * @param repertory 库存
+     * @return  如果操作成功返回非0
+     */
     @Transactional
     public int alterGoodsData(Goods goods, Repertory repertory) {
         int goodsTemp = iGoodsDao.alterGoods(goods);
@@ -140,7 +170,11 @@ public class AdminServiceImp implements IAdminService {
         return goodsTemp + repertoryTemp;
     }
 
-    //删除商品信息
+    /**
+     * 删除商品信息
+     * @param id    商品id
+     * @return  如果操作成功返回非0
+     */
     @Transactional
     public int delGoodsData(int id) {
         int repertoryTemp = iRepertoryDao.delRepertoryData(id);
@@ -148,7 +182,11 @@ public class AdminServiceImp implements IAdminService {
         return goodsTemp + repertoryTemp;
     }
 
-    //根据单价来查询
+    /**
+     * 根据单价来查询
+     * @param paging    分页
+     * @return  商品集合
+     */
     @Transactional
     public List<Goods> findByGoodsPrice(Paging paging) {
         List<Goods> list = iGoodsDao.findByPrice(paging);
@@ -161,7 +199,13 @@ public class AdminServiceImp implements IAdminService {
         return list;
     }
 
-    //修改admin的级别也是间接添加管理员
+    /**
+     * 修改admin的级别也是间接添加管理员
+     * @param admin     管理员
+     * @param oneselfClasses    修改的等级
+     * @param classes   现有等级
+     * @return  提示信息
+     */
     @Transactional
     public String alterAdminClasses(Admin admin, int oneselfClasses, int classes) {
         if (oneselfClasses >= classes && admin.getClasses() <= oneselfClasses) {
@@ -175,7 +219,12 @@ public class AdminServiceImp implements IAdminService {
         return "你的级别不够";
     }
 
-    //通过管理员的等级条件来查询
+    /**
+     * 通过管理员的等级条件来查询
+     * @param paging    分页
+     * @param classes   等级
+     * @return  返回用户详细信息集合
+     */
     @Transactional
     public List<UserInfo> findByAdminClasses(Paging paging, int classes) {
         paging.setClasses(classes);
@@ -202,7 +251,11 @@ public class AdminServiceImp implements IAdminService {
         return userInfoList;
     }
 
-    //通过账号来模糊查询用户信息
+    /**
+     * 通过账号来模糊查询用户信息
+     * @param paging    分页
+     * @return  返回用户详细信息集合
+     */
     @Transactional
     public List<UserInfo> findAllByLikeName(Paging paging) {
         List<User> listUser = iUserDao.findByLikeName(paging);
@@ -220,13 +273,20 @@ public class AdminServiceImp implements IAdminService {
         return userInfoList;
     }
 
-//    查找数据库里所有的管理员
+    /**
+     * 查找数据库里所有的管理员
+     * @return  返回数据库中管理员的数量
+     */
     @Transactional
     public int countAdminnumber() {
        return iAdminDao.countAdminnumber();
     }
 
-//    查询级别等于classes的数据总数量
+    /**
+     * 查询级别等于classes的数据总数量
+     * @param paging    分页
+     * @return  各等级的用户数量
+     */
     @Transactional
     public int findSumNumberByClasses(Paging paging){
         return iAdminDao.findSumNumberByClasses(paging);

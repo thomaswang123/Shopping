@@ -2,11 +2,11 @@ package com.starlight.controller;
 
 import com.starlight.entity.Order;
 import com.starlight.service.IOrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -16,13 +16,16 @@ import java.util.List;
  */
 @Controller
 public class OrderController {
-	@Autowired
+
+	/**用户订单业务*/
+	@Resource
 	private IOrderService iOrderService;
 
 	/**
 	 * 删除订单信息
-	 * @param id
-	 * @return
+	 * @param id	订单id
+	 * @param httpSession	session
+	 * @return	提示信息
 	 */
 	@RequestMapping(value = "/removeOrder.do", produces = "text/html;charset=UTF-8")
 	@ResponseBody

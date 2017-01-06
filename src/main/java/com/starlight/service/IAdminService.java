@@ -6,112 +6,115 @@ import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/20.
+ * 管理员业务
  */
 
 public interface IAdminService {
-    /**
-     * 返回用户的管理员的等级
-     *
-     * @param u_id
-     * @return
-     */
-    int findClassesById(int u_id);
 
     /**
-     * 插入管理员信息
-     * @param admin
+     * 返回用户的管理员的等级
+     * @param userId 用户
+     * @return  返回用户等级
+     */
+    int findClassesById(int userId);
+
+    /**
+     * 添加管理员
+     * @param admin 管理员
      */
     void addAdmin(Admin admin);
 
     /**
-     * 删除用户相关所有数据
-     * @param uid
-     * @return
+     * 删除用户所有数据的操作
+     * @param userId 用户id
+     * @return  如果操作成功返回非0
      */
-     int  delAllUserData(int uid);
+     int  delAllUserData(int userId);
 
     /**
-     * 处理一夜所需要的商品数据
-     * @param paging
-     * @return
+     * 查询商品
+     * @param paging    分页
+     * @return  商品集合
      */
      List<Goods> findAllByPaging(Paging paging);
 
     /**
-     * 处理商品的总数量进行分页
-     * @return
+     * 查询数据总数量
+     * @return  返回商品总数
      */
     int conutGoodsDataNumber();
 
     /**
-     * 根据页面数据数量，以及第几页来展示数据
-     * @param pagination
-     * @param number
-     * @return
+     * 根据分页的页码来展示数据
+     * @param pagination    页码
+     * @param number    总页数
+     * @return  商品信息集合
      */
     List<Goods> pagination(String pagination, String number);
 
     /**
-     * 查询所有有关管理员的信息
-     *
-     * @return
+     * 查询有关管理员的信息
+     * @param paging    分页
+     * @return  如果操作成功返回非0
      */
     List<UserInfo> findAdminByPaging(Paging paging);
 
     /**
-     * 修改商品信息 和库存的信息
-     * @param goods
-     * @param repertory
+     * 修改商品信息和库存的信息
+     * @param goods 商品
+     * @param repertory 库存
+     * @return  如果操作成功返回非0
      */
      int  alterGoodsData(Goods goods, Repertory repertory);
 
     /**
      * 删除商品信息
-     * @param id
-     * @return
+     * @param id    商品id
+     * @return  如果操作成功返回非0
      */
      int delGoodsData(int id);
 
     /**
      * 根据单价来查询
-     * @param paging
-     * @return
+     * @param paging    分页
+     * @return  商品集合
      */
     List<Goods>  findByGoodsPrice(Paging paging);
 
     /**
-     * 修改admin的级别
-     * @param admin
-     * @param oneselfClasses
-     * @return
+     * 修改admin的级别也是间接添加管理员
+     * @param admin     管理员
+     * @param oneselfClasses    修改的等级
+     * @param classes   现有等级
+     * @return  提示信息
      */
     String alterAdminClasses(Admin admin,int oneselfClasses,int classes);
 
     /**
      * 通过管理员的等级条件来查询
-     * @param paging
-     * @param classes
-     * @return
+     * @param paging    分页
+     * @param classes   等级
+     * @return  返回用户详细信息集合
      */
     List<UserInfo> findByAdminClasses(Paging paging,int classes);
 
     /**
      * 通过账号来模糊查询用户信息
-     * @param paging
-     * @return
+     * @param paging    分页
+     * @return  返回用户详细信息集合
      */
     List<UserInfo> findAllByLikeName(Paging paging);
 
     /**
-     * 统计管理员的数量
-     * @return
+     * 查找数据库里所有的管理员
+     * @return  返回数据库中管理员的数量
      */
     int countAdminnumber();
 
     /**
      * 查询级别等于classes的数据总数量
-     * @param paging
-     * @return
+     * @param paging    分页
+     * @return  各等级的用户数量
      */
     int findSumNumberByClasses(Paging paging);
 

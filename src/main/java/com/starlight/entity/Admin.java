@@ -2,12 +2,8 @@ package com.starlight.entity;
 
 /**
  * Created by thomas.wang on 2016/12/16.
+ * 管理员实体类
  */
-
-/**
- *  管理员类
- */
-
 public class Admin {
     private int id;
     private int classes;

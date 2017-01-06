@@ -7,25 +7,36 @@ import com.starlight.entity.PassWordProtection;
 import com.starlight.entity.User;
 import com.starlight.entity.Wallet;
 import com.starlight.service.IChangePasswordService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * Created by thomas.wang on 2016/12/21.
+ * 密保业务
  */
 @Service
 public class ChangePasswordServiceImp implements IChangePasswordService {
-    @Autowired
+
+    /**密保sql接口*/
+    @Resource
     private IChangePasswordDao iChangePasswordDao;
-    @Autowired
+
+    /**用户sql接口*/
+    @Resource
     private IUserDao iUserDao;
-    @Autowired
+
+    /**用户钱包sql接口*/
+    @Resource
     private IWalletDao iWalletDao;
 
-    //查找pp_answer进行答案的判断
+    /**
+     * 查找pp_answer进行答案的判断
+     * @param result
+     * @param userid
+     * @return
+     */
     @Transactional
     public String AnswerComparison(String[] result, int userid) {
         //用来取出result中的数据
@@ -43,8 +54,11 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         return null;
     }
 
-
-    //用来处理密保,查询密保并展示到前台页面
+    /**
+     * 用来处理密保,查询密保并展示到前台页面
+     * @param userId
+     * @return
+     */
     @Transactional
     public String findQuestionAndIddByUid(int userId) {
         String string = "";
@@ -64,9 +78,14 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         return string;
     }
 
-
-
-    //进行对密保答案，密码，支付密码的修改！*需要事务管理进行管理
+    /**
+     * 进行对密保答案，密码，支付密码的修改！*需要事务管理进行管理
+     * @param user   用户对象
+     * @param result  密保答案
+     * @param ppid  密保id
+     * @param wallet    用户钱包对象
+     * @return  提示信息
+     */
     @Transactional
     public String alertAllById(User user, String[] result, String[] ppid, Wallet wallet) {
         System.out.println(user.getPassword());
@@ -88,7 +107,11 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         return null;
     }
 
-    //判断用户密保答案是否为空
+    /**
+     * 判断用户密保答案是否为空
+     * @param result
+     * @return
+     */
     @Transactional
     public int answerIsEmpty(String[] result) {
         int temp = 1;
@@ -101,21 +124,31 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         return temp;
     }
 
-    //修改用户密码
+    /**
+     * 修改用户密码
+     * @param user  用户
+     */
     @Transactional
     public void alertPwd(User user) {
         //进行用户密码修改
        iUserDao.alertPwdById(user);
     }
 
-    //修改用户钱包支付密码
+    /**
+     * 修改用户钱包支付密码
+     * @param wallet    钱包
+     */
     @Transactional
     public void alertPayPwd(Wallet wallet) {
         //进行用户钱包的修改
        iWalletDao.alertPayPwdById(wallet);
     }
 
-    //修改用户密保答案
+    /**
+     * 修改用户密保答案
+     * @param result
+     * @param ppid
+     */
     @Transactional
     public void alertAnswer(String[] result, String[] ppid) {
         //进行密保答案的查询

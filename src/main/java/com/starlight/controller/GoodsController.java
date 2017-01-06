@@ -3,10 +3,10 @@ package com.starlight.controller;
 import com.starlight.entity.Goods;
 import com.starlight.service.IGoodsService;
 import com.starlight.service.IOpinionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -16,15 +16,19 @@ import java.util.List;
  */
 @Controller
 public class GoodsController {
-	@Autowired
+
+	/**商品业务*/
+	@Resource
 	private IGoodsService iGoodsService;
-	@Autowired
+
+	/**商品意见业务*/
+	@Resource
 	private IOpinionService iOpinionService;
 
 	/**
 	 * 如果有商品就获取商品，如果没有就返回404错误
-	 * @param httpSession
-	 * @return
+	 * @param httpSession 创建商品session
+	 * @return 跳转页面至 products.jsp
 	 */
 	@RequestMapping("/products.do")
 	public String getGoods(HttpSession httpSession){
@@ -40,9 +44,9 @@ public class GoodsController {
 
 	/**
 	 * 获取商品详细信息并跳转到商品详细页面
-	 * @param id
-	 * @param httpSession
-	 * @return
+	 * @param id 商品id
+	 * @param httpSession	session
+	 * @return	跳转页面至single.jsp
 	 */
 	@RequestMapping("/single.do")
 	public String getGoodsInfo(int id,HttpSession httpSession){
