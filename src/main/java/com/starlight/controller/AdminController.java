@@ -35,6 +35,11 @@ public class AdminController {
     @Autowired
     private IGoodsService iGoodsService;
 
+    @Autowired
+    public AdminController(IGoodsService iGoodsService) {
+        this.iGoodsService = iGoodsService;
+    }
+
     //进入用户管理员界面
     @RequestMapping("userControl.do")
     public String adminInit(int number, int pagination,HttpSession sessionPaging, HttpServletRequest rst) {
@@ -269,7 +274,7 @@ public class AdminController {
     public String alertGoodsData(Goods goods, Repertory repertory, int goodsId, float price, String goodsName, String describe, int goodsNumber) {
         if (price == 0) {
             return "no";
-        } else if (goodsName == null || goodsName =="") {
+        } else if (goodsName == null || goodsName.equals("")) {
             return "no";
         } else {
             //商品信息
@@ -293,7 +298,7 @@ public class AdminController {
     //删除商品信息
     @RequestMapping("delGoods.do")
     @ResponseBody
-    public String deleteGoods(int goodsId, int number) {
+    public String deleteGoods(int goodsId) {
         //判断是否删除成功
         if (iAdminService.delGoodsData(goodsId) != 0) {
             return "删除成功";

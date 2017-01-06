@@ -49,11 +49,7 @@
         <property name="basePackage" value="com.starlight.dao"></property>
     </bean>
 
-    <!--<context:component-scan base-package="com.starlight.entity"></context:component-scan>-->
-    <!--<context:component-scan base-package="com.starlight.controller"></context:component-scan>-->
-    <!--<context:component-scan base-package="com.starlight.dao"></context:component-scan>-->
-    <!--<context:component-scan base-package="com.starlight.service"></context:component-scan>-->
-    <!--<context:component-scan base-package="com.starlight.serviceimp"></context:component-scan>-->
+
     <context:component-scan base-package="com.starlight"></context:component-scan>
 
     <!-- 开启MVC扫描注解 -->

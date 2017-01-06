@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,6 +25,12 @@ public class ImgController {
     private IGoodsService iGoodsService;
     @Autowired
     private IRepertoryService iRepertoryService;
+
+    @Autowired
+    public ImgController(IRepertoryService iRepertoryService, IGoodsService iGoodsService) {
+        this.iRepertoryService = iRepertoryService;
+        this.iGoodsService = iGoodsService;
+    }
 
     /**
      * 图片上传到服务器并添加图片信息至数据库
