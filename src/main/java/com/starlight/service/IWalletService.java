@@ -10,7 +10,7 @@ public interface IWalletService {
 
 	/**
 	 * 钱包注册
-	 * @param wallet
+	 * @param wallet	钱包数据
 	 */
 	void registerWallet(Wallet wallet);
 	/**

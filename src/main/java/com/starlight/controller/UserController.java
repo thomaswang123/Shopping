@@ -121,7 +121,7 @@ public class UserController {
                Wallet wallet=new Wallet();
                wallet.setId(userId);
                wallet.setPassword(Integer.parseInt(payPassWord));
-               alletServiceiw.registerWallet(wallet);
+               iWalletService.registerWallet(wallet);
            }catch (Exception e){
                return "redirect:404.html";
            }

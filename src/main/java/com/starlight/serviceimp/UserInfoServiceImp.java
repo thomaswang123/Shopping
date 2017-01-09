@@ -2,7 +2,6 @@ package com.starlight.serviceimp;
 
 import com.starlight.dao.IUserDao;
 import com.starlight.dao.IUserInfoDao;
-import com.starlight.dao.IWalletDao;
 import com.starlight.entity.Paging;
 import com.starlight.entity.UserInfo;
 import com.starlight.service.IUserInfoService;
@@ -22,11 +21,6 @@ public class UserInfoServiceImp implements IUserInfoService {
     /**用户信息sql接口*/
     @Resource
     private IUserInfoDao iUserInfoDao;
-
-    /**用户钱包sql接口*/
-    @Resource
-    private IWalletDao iWalletDao;
-
     /**用户账号sql接口*/
     @Resource
     private IUserDao iUserDao;
@@ -65,7 +59,7 @@ public class UserInfoServiceImp implements IUserInfoService {
     /**
      * 根据分页的页码来分页
      * @param pagination    页码
-     * @param number
+     * @param number    分页数
      * @return  用户信息集合
      */
     @Transactional

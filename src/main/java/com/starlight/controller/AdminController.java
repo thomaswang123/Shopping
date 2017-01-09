@@ -90,16 +90,16 @@ public class AdminController {
     /**
      * 进行相关页码的数据的展示
      * @param Account   账号
-     * @param userTemp
+     * @param userTemp  用户分页
      * @param pagination    页码
      * @param goodsCondition    商品
-     * @param number
-     * @param goodsnumber
-     * @param price
-     * @param sessionPaging
-     * @param userRightTemp
-     * @param userRightClasses
-     * @return
+     * @param number    分页数
+     * @param goodsnumber   商品数量
+     * @param price 商品价格
+     * @param sessionPaging 用来分页的session
+     * @param userRightTemp 用户
+     * @param userRightClasses  用户等级
+     * @return  提示信息
      */
     @RequestMapping("pagination.do")
     @ResponseBody
@@ -215,9 +215,9 @@ public class AdminController {
 
     /**
      * 进商品管理界面
-     * @param number
+     * @param number    数量
      * @param pagination    页码
-     * @param paging
+     * @param paging    分页
      * @param sessionPaging session
      * @param rst   响应数据
      * @return  跳转至admin.jsp页面
@@ -260,17 +260,17 @@ public class AdminController {
         rst.setAttribute("userTemp",0);
         rst.setAttribute("numbersum", iAdminService.conutGoodsDataNumber());
         rst.setAttribute("maxid",iGoodsService.findMaxId());
-        return "admin";
+        return "redirect:admin.jsp";
     }
 
     /**
      * 进入用户权限管理界面
-     * @param number
-     * @param pagination
-     * @param paging
-     * @param sessionPaging
-     * @param rst
-     * @return
+     * @param number    数量
+     * @param pagination    分页
+     * @param paging    分页
+     * @param sessionPaging 用来分页的session
+     * @param rst   响应数据
+     * @return    页面跳转
      */
     @RequestMapping("userRight.do")
     public String userRightInit(int number, int pagination, Paging paging,
@@ -305,17 +305,17 @@ public class AdminController {
         //用户管理分页
         rst.setAttribute("userTemp",0);
         rst.setAttribute("numbersum", iAdminService.countAdminnumber());
-        return "admin";
+        return "redirect:admin.jsp";
     }
 
     /**
      * 修改商品的信息
-     * @param goodsId
-     * @param price
-     * @param goodsName
-     * @param describe
-     * @param goodsNumber
-     * @return
+     * @param goodsId   商品id
+     * @param price 价格
+     * @param goodsName 商品数量
+     * @param describe  商品描述
+     * @param goodsNumber   商品数量
+     * @return  提示信息
      */
     @RequestMapping("alertGoods.do")
     @ResponseBody
@@ -433,7 +433,7 @@ public class AdminController {
      * @param classes   用户级别
      * @param numbers   数量
      * @param pagination    页码
-     * @param sessionPaging
+     * @param sessionPaging 请求信息
      * @param rst   响应信息
      * @return   跳转至admin.jsp页面
      */
@@ -481,7 +481,7 @@ public class AdminController {
      * @param Account 账号
      * @param numbers  数量
      * @param pagination  页码
-     * @param sessionPaging
+     * @param sessionPaging 请求信息
      * @param rst  响应数据
      * @return 跳转至admin.jsp页面
      */

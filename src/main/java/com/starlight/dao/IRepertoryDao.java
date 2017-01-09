@@ -11,36 +11,29 @@ public interface IRepertoryDao {
 
 	/**
 	 *  查询库存
-	 * @param id
-	 * @return
+	 * @param id	商品id
+	 * @return	库存量
 	 */
 	int findNumberById(int id);
 
 	/**
 	 * 添加库存
-	 * @param repertory
-	 * @return
+	 * @param repertory	库存
 	 */
-	boolean addRepertory(Repertory repertory);
+	void addRepertory(Repertory repertory);
 
-	/**
-	 *  减少库存
-	 * @param re
-	 * @return
-	 */
-	boolean cutRepertory(Repertory re);
 
 	/**
 	 * 修改商品的库存信息
-	 * @param repertory
-	 * @return
+	 * @param repertory		库存
+	 * @return	提示信息
 	 */
 	int alterRepertory(Repertory repertory);
 
 	/**
 	 * 删除商品的库存信息
-	 * @param id
-	 * @return
+	 * @param id	库存id
+	 * @return	提示信息
 	 */
 	int delRepertoryData(int id);
 

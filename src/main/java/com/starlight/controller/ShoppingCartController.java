@@ -85,7 +85,8 @@ public class ShoppingCartController {
 			List<ShoppingCart> sc=iShoppingCartService.findById(uid);
 			System.out.println("添加到数据库");
 //		创建临时仓库
-			List<Goods> goods2=(List<Goods>) httpSession.getAttribute("showAllGoods");
+
+		List<Goods> goods2=(List<Goods>) httpSession.getAttribute("showAllGoods");
 
 			for (Goods g2:goods2) {
 				for (ShoppingCart sc2:sc) {
@@ -133,12 +134,10 @@ public class ShoppingCartController {
 				sc2.remove(i);
 			}
 		}
-		if (sc2!=null){
-			httpSession.setAttribute("cartList",sc2);
-			return "true";
-		}
 
-		return "false";
+		httpSession.setAttribute("cartList",sc2);
+		return "true";
+
 	}
 
 	/**
@@ -202,13 +201,11 @@ public class ShoppingCartController {
 					sc2.remove(i);
 				}
 			}
-			if(sc2!=null){
+
 				httpSession.removeAttribute("cartList");
 				httpSession.setAttribute("cartList",sc2);
 				return "true";
-			}else{
-				return "false";
-			}
+
 
 		}else {
 			return "failed";

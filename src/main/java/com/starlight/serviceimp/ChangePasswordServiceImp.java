@@ -33,9 +33,9 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
 
     /**
      * 查找pp_answer进行答案的判断
-     * @param result
-     * @param userid
-     * @return
+     * @param result    答案
+     * @param userid    用户id
+     * @return  提示信息
      */
     @Transactional
     public String AnswerComparison(String[] result, int userid) {
@@ -56,8 +56,8 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
 
     /**
      * 用来处理密保,查询密保并展示到前台页面
-     * @param userId
-     * @return
+     * @param userId    用户id
+     * @return  密保问题
      */
     @Transactional
     public String findQuestionAndIddByUid(int userId) {
@@ -92,7 +92,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
         System.out.println(result[2]);
         System.out.println(wallet.getPassword());
         //判断用户密码是否为空
-        if (user.getPassword() != null && user.getPassword().length() >= 6 && user.getPassword() != "") {
+        if (user.getPassword() != null && user.getPassword().length() >= 6 &&"".equals(user.getPassword())) {
             alertPwd(user);
             //判断钱包是否为空
             if (wallet.getPassword() != 0 && wallet.getPassword() + "".length() >= 6) {
@@ -109,14 +109,14 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
 
     /**
      * 判断用户密保答案是否为空
-     * @param result
-     * @return
+     * @param result    答案
+     * @return  返回正确数
      */
     @Transactional
-    public int answerIsEmpty(String[] result) {
+    private int answerIsEmpty(String[] result) {
         int temp = 1;
-        for (int k = 0; k < result.length; k++) {
-            if (result[k] != null && result[k] != "") {
+        for (String aResult : result) {
+            if (aResult != null && " ".equals(aResult)) {
                 temp++;
             }
         }
@@ -129,7 +129,7 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
      * @param user  用户
      */
     @Transactional
-    public void alertPwd(User user) {
+    private void alertPwd(User user) {
         //进行用户密码修改
        iUserDao.alertPwdById(user);
     }
@@ -139,18 +139,18 @@ public class ChangePasswordServiceImp implements IChangePasswordService {
      * @param wallet    钱包
      */
     @Transactional
-    public void alertPayPwd(Wallet wallet) {
+    private void alertPayPwd(Wallet wallet) {
         //进行用户钱包的修改
        iWalletDao.alertPayPwdById(wallet);
     }
 
     /**
      * 修改用户密保答案
-     * @param result
-     * @param ppid
+     * @param result    密保答案
+     * @param ppid      密保id
      */
     @Transactional
-    public void alertAnswer(String[] result, String[] ppid) {
+    private void alertAnswer(String[] result, String[] ppid) {
         //进行密保答案的查询
         for (int i = 0; i < ppid.length; i++) {
             PassWordProtection pwp = new PassWordProtection();

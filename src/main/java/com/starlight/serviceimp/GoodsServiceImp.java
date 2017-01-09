@@ -23,7 +23,7 @@ public class GoodsServiceImp implements IGoodsService {
 
     /**
      * 查找商品
-     * @return
+     * @return  商品集合
      */
     @Transactional
     public List<Goods> findAll() {
@@ -32,8 +32,8 @@ public class GoodsServiceImp implements IGoodsService {
 
     /**
      * 通过ID查找商品
-     * @param id
-     * @return
+     * @param id    商品id
+     * @return  一条商品数据
      */
     @Transactional
     public Goods findById(int id) {
@@ -42,7 +42,7 @@ public class GoodsServiceImp implements IGoodsService {
 
     /**
      * 添加商品
-     * @param goods
+     * @param goods 一条商品数据
      */
     @Transactional
     public void addGoods(Goods goods) {
@@ -50,8 +50,8 @@ public class GoodsServiceImp implements IGoodsService {
     }
 
     /**
-     *
-     * @return
+     *查找最大的ID
+     * @return  返回id
      */
     @Transactional
     public int findMaxId() {
@@ -59,9 +59,9 @@ public class GoodsServiceImp implements IGoodsService {
     }
 
     /**
-     *
-     * @param paging
-     * @return
+     *通过价格查找商品
+     * @param paging 分页
+     * @return  数量
      */
     @Transactional
     public int findSumNumberByPrice(Paging paging) {

@@ -21,8 +21,8 @@ public class OpinionServiceImp implements IOpinionService {
 
     /**
      * 查找商品
-     * @param goodsId
-     * @return
+     * @param goodsId  商品id
+     * @return  意见集合
      */
     @Transactional
     public List<Opinion> findGoodsOpinion(int goodsId) {

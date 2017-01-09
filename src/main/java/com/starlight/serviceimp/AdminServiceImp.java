@@ -76,7 +76,7 @@ public class AdminServiceImp implements IAdminService {
             //用户信息
             uftemp = iUserInfoDao.delUserInfo(userId);
             //钱包
-            wle = iWalletDao.delWakket(userId);
+            wle = iWalletDao.delWallet(userId);
             //密保
             pwp = iChangePasswordDao.deletePwp(userId);
             //管理员

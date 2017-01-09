@@ -39,7 +39,7 @@
         SELECT u_id FROM USER WHERE u_name=#{u_name}
     </select>
 
-    <delete id="delWakket" parameterType="int">
+    <delete id="delWallet" parameterType="int">
         delete  from wallet where w_id = #{uid}
     </delete>
 

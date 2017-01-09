@@ -45,8 +45,8 @@
         select u_id from user where u_name=#{account} and u_pwd=#{password}
     </select>
 
-    <select id="findIdByAccoun_Unmber" resultType="int" parameterType="java.lang.String">
-        select u_id from user where u_name =#{u_name}
+    <select id="findIdByAccounUnmber" resultType="int" parameterType="java.lang.String">
+        select u_id from user where u_name =#{username}
     </select>
 
     <!--查找账号-->
