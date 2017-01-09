@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IAdminDao">
+
+    <!--映射字段-->
+    <resultMap id="admin" type="com.starlight.entity.Admin">
+        <id property="id" column="admin_id" />
+        <result property="classes" column="admin_classes" />
+    </resultMap>
+
+    <select id="findClassesById"  resultType="int" parameterType="int">
+        select admin_classes from admin where admin_id =#{u_id}
+    </select>
+
+    <select id=" findAllClssesById"  resultMap="admin" parameterType="int">
+        select admin_classes,admin_id from admin where admin_id !=#{u_id}
+    </select>
+<!--
+
+    <insert id="">
+        insert into admin admin_id =
+    </insert>-->
+
+   <!-- 删除管理员表数据-->
+    <delete id="delAllUserData" parameterType="int">
+          delete from admin where admin_id =#{uid};
+    </delete>
+
+
+<!--    <delete id="deleteAll" parameterType="com.wy.test.entity.Dept">
+        delete from DEPT
+        <where>
+            <if test="deptnos!=null">
+                deptno in
+                <foreach collection="deptnos" item="dept" open="(" separator="," close=")">
+                #{dept}
+                </foreach>
+            </if>
+            <if test="deptnos==null">
+                1=2
+            </if>
+        </where>
+    </delete>-->
+</mapper>

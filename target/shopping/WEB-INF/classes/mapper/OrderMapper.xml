@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starlight.dao.IOrderDao">
+    <!--映射字段-->
+    <resultMap id="order" type="com.starlight.entity.Order">
+        <id property="id" column="o_id" />
+        <result property="userId" column="o_uid" />
+        <result property="goodsId" column="o_gid"/>
+        <result property="money" column="o_money"/>
+        <result property="number" column="o_number"/>
+        <result property="date" column="o_date"/>
+    </resultMap>
+
+    <insert id="addOrder" parameterType="com.starlight.entity.Order">
+        insert into Orders (o_uid,o_gid,o_money,o_number,o_date)values(#{userId},#{goodsId},#{money},#{number},#{date})
+    </insert>
+
+    <select id="findByUserId" parameterType="int" resultMap="order">
+        select o_id,o_uid,o_gid,o_money,o_number,o_date from Orders where o_uid=#{id}
+    </select>
+
+    <delete id="removeOrder" parameterType="int" >
+        delete from Orders where o_id=#{id}
+    </delete>
+
+        <delete id="delOrder">
+            delete  from orders where  o_uid = #{uid}
+        </delete>
+
+</mapper>
